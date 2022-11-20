@@ -29,3 +29,24 @@ Ir a la ruta => C:\MAMP\bin\php\php7.4.1, biscar el archivo php.init, buscar el 
 Correr el servidor
 http://127.0.0.1:8000
 php artisan serve
+
+/*========================================================================================*/
+Crear el hipervínculo del storage
+
+PS D:\WWW\avaluamos> php artisan storage:link
+The [D:\WWW\avaluamos\public\storage] link has been connected to [D:\WWW\avaluamos\storage\app/public].
+The links have been created.
+
+/*========================================================================================*/
+
+Crear el Repo en Github y luego subirlo
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jgmejiaco/avaluamos.git
+git push -u origin main
+
+/*========================================================================================*/
+
