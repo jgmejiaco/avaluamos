@@ -1,0 +1,31 @@
+Instalación de proyecto con laravel: https://laravel.com/docs/7.x
+composer create-project --prefer-dist laravel/laravel:^7.0 jgmc_digital // con la versión de laravel
+
+/*========================================================================================*/
+
+PS D:\WWW\avaluamos> composer --version
+Composer version 2.3.5 2022-04-13 16:43:00
+
+PS D:\WWW\avaluamos> php --version
+PHP 7.4.1 (cli) (built: Jan 20 2020 22:21:57) ( ZTS Visual C++ 2017 x86 )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+
+PS D:\WWW\avaluamos> php artisan --version
+Laravel Framework 7.30.6
+
+/*========================================================================================*/
+
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ composer create-project laravel/laravel nombre_proyecto ?????????????????????????
+
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ composer create-project --prefer-dist laravel/laravel mi-proyecto^"7.0.*" ?????????????????????????
+
+/*========================================================================================*/
+
+Ir a la ruta => C:\MAMP\bin\php\php7.4.1, biscar el archivo php.init, buscar el archivo ("extension=php_pdo_mysql.dll"), si está, se descomenta, de no estar, se incluye (siempre descomentado)
+
+/*========================================================================================*/
+
+Correr el servidor
+http://127.0.0.1:8000
+php artisan serve
