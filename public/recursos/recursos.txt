@@ -1,11 +1,4 @@
-Tutorial
+Tutorial Base de Datos Remota
 https://www.youtube.com/watch?v=TzqDZCTCdXA
 
-179.13.148.215
-179.13.%.%
 
-# DB_HOST=avaluamos.com.co
-# DB_PORT=3306
-# DB_DATABASE=avaluamo_pruebas
-# DB_USERNAME=avaluamo_pruebas
-# DB_PASSWORD=Avaluamos2023*
