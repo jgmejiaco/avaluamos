@@ -22,6 +22,6 @@ class TipoDocumento extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'descripcion_documento','id_estado'
+        'decripcion_documento','id_estado'
     ];
 }

@@ -22,6 +22,9 @@ class Persona extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
+        'nombre_usuario',
+        'clave',
+        'clave_fallas',
         'nombres',
         'apellidos',
         'fecha_nacimiento',
@@ -37,6 +40,7 @@ class Persona extends Model
         'id_ciudad',
         'id_estado',
         'id_cargo',
+        'id_rol',
         'id_usuario'
     ];
 }

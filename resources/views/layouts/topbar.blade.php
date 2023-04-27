@@ -1,4 +1,4 @@
-<header class="topbar container-fluid">
+{{-- <header class="topbar container-fluid">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary justify-content-between">
         <div class="">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,11 +18,18 @@
             </div>
         </div>
 
-        <div class="">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                {{-- <img src="{{asset('imagenes/logo_avaluamos.png')}}" alt="Logo" width="80" height="80" class="d-inline-block align-text-top"> --}}
                 <img src="{{asset('imagenes/logo-negro.png')}}" alt="Logo" width="100" height="80" class="d-inline-block align-text-top">
             </a>
         </div>
     </nav>
+</header> --}}
+
+<header class="topbar w-100 pl-0 pr-0 fixed-top mb-5">
+    <div class="">
+        <a class="" href="#">
+            <img src="{{asset('imagenes/logo-negro.png')}}" alt="Logo" width="100" height="80" class="d-inline-block align-text-top">
+        </a>
+    </div>
 </header>
