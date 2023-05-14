@@ -13,10 +13,28 @@ use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
+use App\Models\Pais;
+use App\Models\Municipio;
+use App\Models\TipoVivienda;
+use App\Models\TipoInmueble;
+use App\Models\UsoInmueble;
+use App\Models\Topografia;
+use App\Models\Forma;
+use App\Models\IndicadorNumerico;
+use App\Models\SiNo;
+use App\Models\SistemaConstructivo;
+use App\Models\PuertasMaterial;
+use App\Models\TipoFachada;
+use App\Models\TipoMuro;
+use App\Models\Ventaneria;
+use App\Models\TipoTecho;
+// use App\Models\Ventaneria;TipoTecho
+// use App\Models\Ventaneria;TipoTecho
+// use App\Models\Ventaneria;TipoTecho
+// use App\Models\Ventaneria;TipoTecho
+// use App\Models\Ventaneria;TipoTecho
+// use App\Models\Ventaneria;TipoTecho
 use App\Http\Responsable\admin\UsuarioStore;
-// use App\Http\Responsable\administrador\DisponibilidadShow;
-// use App\Http\Responsable\administrador\UsuariosShow;
-// use App\Http\Responsable\administrador\UsuariosUpdate;
 
 class VisitaController extends Controller
 {
@@ -65,7 +83,7 @@ class VisitaController extends Controller
         //     return view('administrador.create');
         // }
         $this->share_data();
-        return view('administrador.create');
+        return view('visita.create');
     }
 
     /**
@@ -183,11 +201,29 @@ class VisitaController extends Controller
 
     private function share_data()
     {
-        // view()->share('rol', Rol::orderBy('nombre_rol','asc')->pluck('nombre_rol', 'id_rol'));
-        // view()->share('cargo', Cargo::orderBy('descripcion_cargo','asc')->pluck('descripcion_cargo', 'id_cargo'));
-        // view()->share('descripcion_documento', TipoDocumento::orderBy('decripcion_documento','asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-        // view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad','asc')->pluck('descripcion_ciudad', 'id_ciudad'));
-        // view()->share('estado', Estado::orderBy('descripcion_estado','asc')->pluck('descripcion_estado', 'id_estado'));
+        view()->share('pais', Pais::orderBy('descripcion_pais','asc')->pluck('descripcion_pais', 'id_pais'));
+        view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda','asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
+        view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad','asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+        view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble','asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
+        view()->share('uso_inmueble', UsoInmueble::orderBy('uso_inmueble','asc')->pluck('uso_inmueble', 'id_uso_inmueble'));
+        view()->share('topografia', Topografia::orderBy('topografia','asc')->pluck('topografia', 'id_topografia'));
+        view()->share('forma', Forma::orderBy('forma','asc')->pluck('forma', 'id_forma'));
+        view()->share('indicador_numerico', IndicadorNumerico::orderBy('id_indicador_numerico','asc')->pluck('indicador_numerico', 'id_indicador_numerico'));
+        view()->share('si_no', SiNo::orderBy('id_si_no','asc')->pluck('descripcion_si_no', 'id_si_no'));
+        view()->share('sistema_constructivo', SistemaConstructivo::orderBy('sistema_constructivo','asc')->pluck('sistema_constructivo', 'id_sistema_constructivo'));
+        view()->share('puertas_material', PuertasMaterial::orderBy('puertas_material','asc')->pluck('puertas_material', 'id_puertas_material'));
+        view()->share('tipo_fachada', TipoFachada::orderBy('tipo_fachada','asc')->pluck('tipo_fachada', 'id_tipo_fachada'));
+        view()->share('tipo_muro', TipoMuro::orderBy('tipo_muro','asc')->pluck('tipo_muro', 'id_tipo_muro'));
+        view()->share('ventaneria', Ventaneria::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        view()->share('tipo_techo', TipoTecho::orderBy('tipo_techo','asc')->pluck('tipo_techo', 'id_tipo_techo'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
         // view()->share('usuarios', $this->todosLosUsuarios());
     }
 
