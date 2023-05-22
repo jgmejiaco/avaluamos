@@ -58,12 +58,7 @@ class UsuarioStore implements Responsable
                 $complemento++;
             }
 
-            // dd(Carbon::parse($fecha_nacimiento)->timestamp);
-
-            // $fecha_nacimiento = strtotime($fecha_nacimiento);
             $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
-            // dd($fecha_nacimiento);
-            // $fecha_ingreso_sistema = Carbon::now()->timestamp;
 
             DB::connection('mysql')->beginTransaction();
 

@@ -21,21 +21,21 @@
 
         {{-- ======================= --}}
 
-        <div class="col-12 col-md-3">
-            <div class="wrap-input100 validate-input" data-validate="Required">
-                <label for="id_rol" class="form-label" data-placeholder="Roll">Rol<span class="text-danger">*</span></label>
-                {!! Form::select('id_rol', $rol, null, ['class' => 'form-control select2', 'id' => 'id_rol', 'required']) !!}
-                {{-- <span class="focus-input100" data-placeholder="Role"></span> --}}
-            </div>
-        </div>
-
-        {{-- ======================= --}}
-
         <div class="col-12 col-md-3" id="">
             <div class="wrap-input100 validate-input" data-validate="Required">
                 <label for="id_cargo" class="form-label" data-placeholder="Municipio">Cargo<span class="text-danger">*</span></label>
                 {!! Form::select('id_cargo', $cargo, null, ['class' => 'form-control select2', 'id' => 'id_cargo', 'required']) !!}
                 {{-- <span class="focus-input100" data-placeholder="Skype"></span> --}}
+            </div>
+        </div>
+
+        {{-- ======================= --}}
+
+        <div class="col-12 col-md-3">
+            <div class="wrap-input100 validate-input" data-validate="Required">
+                <label for="id_rol" class="form-label" data-placeholder="Roll">Rol<span class="text-danger">*</span></label>
+                {!! Form::select('id_rol', $rol, null, ['class' => 'form-control select2', 'id' => 'id_rol', 'required']) !!}
+                {{-- <span class="focus-input100" data-placeholder="Role"></span> --}}
             </div>
         </div>
     </div>

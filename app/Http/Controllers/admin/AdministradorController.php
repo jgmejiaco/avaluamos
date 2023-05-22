@@ -200,6 +200,7 @@ class AdministradorController extends Controller
             $consulta_personas = DB::table('personas')
                             ->join('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'personas.id_tipo_documento')
                             ->join('rol', 'rol.id_rol', '=', 'personas.id_rol')
+                            ->join('cargo', 'cargo.id_cargo', '=', 'personas.id_cargo')
                             // ->join('municipios', 'municipios.id_municipio', '=', 'usuarios.id_municipio_nacimiento')
                             // ->join('municipios as residencia', 'residencia.id_municipio', '=', 'usuarios.id_municipio_residencia')
                             // ->leftJoin('niveles', 'niveles.id_nivel', '=', 'usuarios.id_nivel')
@@ -211,6 +212,7 @@ class AdministradorController extends Controller
                                     'personas.numero_documento',
                                     'personas.correo',
                                     'rol.nombre_rol',
+                                    'cargo.descripcion_cargo',
                                     // 'usuarios.direccion_residencia',
                                     // 'roles.id_rol',
                                     //  'usuarios.fecha_nacimiento',

@@ -1,23 +1,13 @@
 <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
-    <div>
+    <div class="mb-5">
         <h2 class="text-uppercase">0 - DATOS AVALUADOR</h2>
         <div class="row mb-5">
-            <div class="col-12 col-md-3">
+            <div class="col-12">
                 <div class="form-group wrap-input100 validate-input" data-validate="Required">
                     <label for="avaluador" class="form-label text-uppercase" data-placeholder="avaluador">avaluador<span class="text-danger">*</span></label>
-                    {!! Form::text('avaluador', old('avaluador'), ['class' => 'form-control text-uppercase', 'id' => 'avaluador', 'required']) !!}
+                    {!! Form::select('avaluador', $avaluador, old('avaluador'), ['class' => 'form-control text-uppercase', 'id' => 'avaluador', 'required']) !!}
                 </div>
-                {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
-            </div>
-
-            {{-- ======================= --}}
-
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="pais" class="form-label text-uppercase" data-placeholder="pais">País<span class="text-danger">*</span></label>
-                    {!! Form::select('pais', $pais,null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
-                    {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
-                </div>
+                {{-- {!! Form::text('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
             </div>
         </div>
     </div>
@@ -27,7 +17,7 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
+    <div class="mb-5">
         <h2 class="text-uppercase">1 - VISITA TÉCNICA INMUEBLE</h2>
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -67,6 +57,23 @@
 
             {{-- ======================= --}}
 
+            <div class="col-12 col-md-3" id="div_correo">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="dirigido_a_empresa" class="form-label text-uppercase" data-placeholder="dirigido_a_empresa">Dirigido A<span class="text-danger">*</span></label>
+                    {!! Form::select('dirigido_a_empresa', $dirigido_a_empresa,null, ['class' => 'form-control', 'id' => 'dirigido_a_empresa', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="div_correo">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="dirigido_a_nit" class="form-label text-uppercase" data-placeholder="dirigido_a_nit">nit<span class="text-danger">*</span></label>
+                    {!! Form::text('dirigido_a_nit', null, ['class' => 'form-control', 'id' => 'dirigido_a_nit', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
             <div class="col-12 col-md-3">
                 <div class="wrap-input100 validate-input" data-validate="Required">
                     <label for="empresa" class="form-label text-uppercase" data-placeholder="empresa">Empresa<span class="text-danger">*</span></label>
@@ -98,7 +105,15 @@
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase" data-placeholder="pais">País<span class="text-danger">*</span></label>
                     {!! Form::select('pais', $pais,null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
-                    {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="departamento_estado" class="form-label text-uppercase" data-placeholder="departamento_estado">Departamento<span class="text-danger">*</span></label>
+                    {!! Form::select('departamento_estado', $departamento_estado, null, ['class' => 'form-control select2', 'id' => 'departamento_estado', 'required']) !!}
                 </div>
             </div>
 
@@ -121,11 +136,47 @@
             </div>
 
             {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="sector" class="form-label text-uppercase" data-placeholder="sector">Sector<span class="text-danger">*</span></label>
+                    {!! Form::text('sector', null, ['class' => 'form-control select2', 'id' => 'sector', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="cerca_de" class="form-label text-uppercase" data-placeholder="direccion">Cerca De<span class="text-danger">*</span></label>
+                    {!! Form::text('cerca_de', null, ['class' => 'form-control select2', 'id' => 'cerca_de', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
             
             <div class="col-12 col-md-3" id="">
                 <div class="wrap-input100 validate-input" data-validate="Required">
                     <label for="direccion" class="form-label text-uppercase" data-placeholder="direccion">Dirección<span class="text-danger">*</span></label>
                     {!! Form::text('direccion', null, ['class' => 'form-control select2', 'id' => 'direccion', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="edificio" class="form-label text-uppercase" data-placeholder="direccion">Edificio<span class="text-danger">*</span></label>
+                    {!! Form::text('edificio', null, ['class' => 'form-control select2', 'id' => 'edificio', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="apartamento_numero" class="form-label text-uppercase" data-placeholder="apartamento_numero">Apartamento Número<span class="text-danger">*</span></label>
+                    {!! Form::text('apartamento_numero', null, ['class' => 'form-control select2', 'id' => 'apartamento_numero', 'required']) !!}
                 </div>
             </div>
 
@@ -153,15 +204,6 @@
                 <div class="wrap-input100 validate-input" data-validate="Required">
                     <label for="estrato" class="form-label text-uppercase" data-placeholder="estrato">Estrato<span class="text-danger">*</span></label>
                     {!! Form::text('estrato', null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="">
-                <div class="wrap-input100 validate-input" data-validate="Required">
-                    <label for="sector" class="form-label text-uppercase" data-placeholder="sector">Sector<span class="text-danger">*</span></label>
-                    {!! Form::text('sector', null, ['class' => 'form-control select2', 'id' => 'sector', 'required']) !!}
                 </div>
             </div>
 
@@ -199,8 +241,145 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">2 - información del inmueble</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">2 - INFORMACIÓN JURÍDICA</h2>
+        <div class="row mb-5">
+            <div class="col-12 col-md-3">
+                <div class="form-group wrap-input100 validate-input" data-validate="Required">
+                    <label for="propietario_1" class="form-label text-uppercase" data-placeholder="propietario_1">propietario 1<span class="text-danger">*</span></label>
+                    {!! Form::text('propietario_1', old('propietario_1'), ['class' => 'form-control text-uppercase', 'id' => 'propietario_1', 'required']) !!}
+                </div>
+                {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group wrap-input100 validate-input" data-validate="Required">
+                    <label for="cedula_propietario_1" class="form-label text-uppercase" data-placeholder="cedula_propietario_1">cédula propietario 1<span class="text-danger">*</span></label>
+                    {!! Form::text('cedula_propietario_1', old('cedula_propietario_1'), ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_1', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group wrap-input100 validate-input" data-validate="Required">
+                    <label for="propietario_2" class="form-label text-uppercase" data-placeholder="propietario_2">propietario 2<span class="text-danger">*</span></label>
+                    {!! Form::text('propietario_2', old('propietario_2'), ['class' => 'form-control text-uppercase', 'id' => 'propietario_2', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group wrap-input100 validate-input" data-validate="Required">
+                    <label for="cedula_propietario_2" class="form-label text-uppercase" data-placeholder="cedula_propietario_2">cédula propietario 2<span class="text-danger">*</span></label>
+                    {!! Form::text('cedula_propietario_2', old('cedula_propietario_2'), ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_2', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="matricula_inmueble" class="form-label text-uppercase" data-placeholder="matricula_inmueble">Matrícula Inmueble<span class="text-danger">*</span></label>
+                    {!! Form::text('matricula_inmueble', null, ['class' => 'form-control select2', 'id' => 'matricula_inmueble', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="coeficiente_copropiedad" class="form-label text-uppercase" data-placeholder="coeficiente_copropiedad">Coeficiente Copropiedad<span class="text-danger">*</span></label>
+                    {!! Form::text('coeficiente_copropiedad', null, ['class' => 'form-control select2', 'id' => 'coeficiente_copropiedad', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="certificado_libertad" class="form-label text-uppercase" data-placeholder="certificado_libertad">Certificado Libertad<span class="text-danger">*</span></label>
+                    {!! Form::text('certificado_libertad', null, ['class' => 'form-control select2', 'id' => 'certificado_libertad', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="escritura_publica" class="form-label text-uppercase" data-placeholder="escritura_publica">Escritura Pública<span class="text-danger">*</span></label>
+                    {!! Form::text('escritura_publica', null, ['class' => 'form-control select2', 'id' => 'escritura_publica', 'required']) !!}
+                    {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="notaria" class="form-label text-uppercase" data-placeholder="notaria">Notaría<span class="text-danger">*</span></label>
+                    {!! Form::text('notaria', null, ['class' => 'form-control select2', 'id' => 'notaria', 'required']) !!}
+                    {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="impuesto_predial_anual" class="form-label text-uppercase" data-placeholder="impuesto_predial_anual">Impuesto Predial Anual<span class="text-danger">*</span></label>
+                    {!! Form::text('impuesto_predial_anual', null, ['class' => 'form-control select2', 'id' => 'impuesto_predial_anual', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="administracion" class="form-label text-uppercase" data-placeholder="administracion">Administración<span class="text-danger">*</span></label>
+                    {!! Form::text('administracion', null, ['class' => 'form-control select2', 'id' => 'administracion', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="avaluo_catastral" class="form-label text-uppercase" data-placeholder="avaluo_catastral">Avaluo Catastral<span class="text-danger">*</span></label>
+                    {!! Form::text('avaluo_catastral', null, ['class' => 'form-control select2', 'id' => 'avaluo_catastral', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="normas_usos" class="form-label text-uppercase" data-placeholder="normas_usos">Normas y Usos<span class="text-danger">*</span></label>
+                    {!! Form::textarea('normas_usos', null, ['class' => 'form-control select2', 'id' => 'normas_usos', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12" id="">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="mejor_mayor_uso" class="form-label text-uppercase" data-placeholder="mejor_mayor_uso">Mejor y Mayor Uso<span class="text-danger">*</span></label>
+                    {!! Form::textarea('mejor_mayor_uso', null, ['class' => 'form-control select2', 'id' => 'mejor_mayor_uso', 'required']) !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+
+    <div class="mb-5">
+        <h2 class="text-uppercase">3 - información del inmueble</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -229,6 +408,16 @@
             </div>
 
             {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="Required">
+                    <label for="tipo_suelo" class="form-label text-uppercase" data-placeholder="tipo_suelo">Tipo Suelo<span class="text-danger">*</span></label>
+                    {!! Form::select('tipo_suelo', $tipo_suelo, null, ['class' => 'form-control', 'id' => 'tipo_suelo', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
             {{-- @php
                 use Carbon\Carbon;
                 // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
@@ -327,11 +516,77 @@
 
             <div class="col-12 col-md-3">
                 <div class="wrap-input100 validate-input" data-validate="State Is Required">
-                    <label for="area_libre_mcuadrado" class="form-label text-uppercase" data-placeholder="area_libre_mcuadrado">Área Libre M<sup>2<span class="text-danger">*</span></label>
+                    <label for="area_libre_mcuadrado" class="form-label text-uppercase" data-placeholder="area_libre_mcuadrado">Área Libre M<sup>2</sup><span class="text-danger">*</span></label>
                     {!! Form::text('area_libre_mcuadrado', null, ['class' => 'form-control select2', 'id' => 'area_libre_mcuadrado', 'required']) !!}
                 </div>
             </div>
 
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="anio_cosntruccion" class="form-label text-uppercase" data-placeholder="anio_cosntruccion">Año De Construcción<span class="text-danger">*</span></label>
+                    {!! Form::text('anio_cosntruccion', null, ['class' => 'form-control select2', 'id' => 'anio_cosntruccion', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="area_construida" class="form-label text-uppercase" data-placeholder="area_construida">Área Construida M<sup>2</sup><span class="text-danger">*</span></label>
+                    {!! Form::text('area_construida', null, ['class' => 'form-control select2', 'id' => 'area_construida', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+             
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="area_patios_vacio" class="form-label text-uppercase" data-placeholder="area_patios_vacio">Área Patios - vacio M<sup>2</sup><span class="text-danger">*</span></label>
+                    {!! Form::text('area_patios_vacio', null, ['class' => 'form-control select2', 'id' => 'area_patios_vacio', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="condicion_inmueble" class="form-label text-uppercase" data-placeholder="condicion_inmueble">Condición Inmueble<span class="text-danger">*</span></label>
+                    {!! Form::select('condicion_inmueble', $condicion_inmueble, null, ['class' => 'form-control select2', 'id' => 'condicion_inmueble', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="anio_remodelacion" class="form-label text-uppercase" data-placeholder="anio_remodelacion">Año Remodelación<span class="text-danger">*</span></label>
+                    {!! Form::text('anio_remodelacion', null, ['class' => 'form-control select2', 'id' => 'anio_remodelacion', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="porcentaje_depreciacion" class="form-label text-uppercase" data-placeholder="porcentaje_depreciacion">% depreciación<span class="text-danger">*</span></label>
+                    {!! Form::text('porcentaje_depreciacion', null, ['class' => 'form-control select2', 'id' => 'porcentaje_depreciacion', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="calificacion_fitto_corvini" class="form-label text-uppercase" data-placeholder="calificacion_fitto_corvini">CALIFICACIÓN (FITTO CORVINI)<span class="text-danger">*</span></label>
+                    {!! Form::select('calificacion_fitto_corvini', $calificacion_fitto_corvini,null, ['class' => 'form-control select2', 'id' => 'calificacion_fitto_corvini', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            {{-- ======================= --}}
             {{-- ======================= --}}
 
             <div class="col-12">
@@ -348,8 +603,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">3 - CARACTERÍSTICAS DEL INMUEBLE</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">4 - CARACTERÍSTICAS DEL INMUEBLE</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -514,8 +769,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">4 - ACABADOS  Y EVALUACIÓN TÉCNICA DEL INMUEBLE</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">5 - ACABADOS  Y EVALUACIÓN TÉCNICA DEL INMUEBLE</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -680,8 +935,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">5 - CALIFICACIÓN DEL INMUEBLE</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">6 - CALIFICACIÓN DEL INMUEBLE</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -846,8 +1101,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">6 - EQUIPAMIENTO Y DOTACIÓN COMUNAL</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">7 - EQUIPAMIENTO Y DOTACIÓN COMUNAL</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -958,8 +1213,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">7- INFORMACIÓN DEL SECTOR</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">8- INFORMACIÓN DEL SECTOR</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -1007,8 +1262,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">8 - VALOR ESTIMADO AVALÚO</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">9 - VALOR ESTIMADO AVALÚO</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">
@@ -1025,8 +1280,8 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div>
-        <h2 class="text-uppercase">9 - OBSERVACIONES GENERALES</h2>
+    <div class="mb-5">
+        <h2 class="text-uppercase">10 - OBSERVACIONES GENERALES</h2>
 
         <div class="row mb-5">
             <div class="col-12">

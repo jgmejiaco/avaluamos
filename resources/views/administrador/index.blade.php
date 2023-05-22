@@ -31,6 +31,7 @@
                             <th>Tipo Documento</th>
                             <th>Número Documento</th>
                             <th>Correo</th>
+                            <th>Cargo</th>
                             <th>Rol</th>
                             <th>Estado</th>
                             <th>Editar</th>
@@ -49,6 +50,7 @@
                                 <td>{{$usuario->decripcion_documento}}</td>
                                 <td>{{$usuario->numero_documento}}</td>
                                 <td>{{$usuario->correo}}</td>
+                                <td>{{$usuario->descripcion_cargo}}</td>
                                 <td>{{$usuario->nombre_rol}}</td>
                                 <td>estado</td>
                                 

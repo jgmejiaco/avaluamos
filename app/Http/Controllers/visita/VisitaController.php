@@ -14,6 +14,7 @@ use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Models\Pais;
+use App\Models\DepartamentoEstado;
 use App\Models\Municipio;
 use App\Models\TipoVivienda;
 use App\Models\TipoInmueble;
@@ -28,12 +29,12 @@ use App\Models\TipoFachada;
 use App\Models\TipoMuro;
 use App\Models\Ventaneria;
 use App\Models\TipoTecho;
-// use App\Models\Ventaneria;TipoTecho
-// use App\Models\Ventaneria;TipoTecho
-// use App\Models\Ventaneria;TipoTecho
-// use App\Models\Ventaneria;TipoTecho
-// use App\Models\Ventaneria;TipoTecho
-// use App\Models\Ventaneria;TipoTecho
+use App\Models\Empresa;
+use App\Models\TipoSuelo;
+use App\Models\CondicionInmueble;
+use App\Models\FittoCorvini;
+// use App\Models\;
+// use App\Models\;
 use App\Http\Responsable\admin\UsuarioStore;
 
 class VisitaController extends Controller
@@ -201,9 +202,16 @@ class VisitaController extends Controller
 
     private function share_data()
     {
+        // ->select(DB::raw("municipios.nombre || ' - ' || departamentos.nombre AS nombre_ciudad"), 'municipios.id')
+        // view()->share('avaluador', Persona::select('id_persona',DB::raw("nombres || ' ' || apellidos AS nombre_avaluador"))
+        //                                     ->whereIn(1,2)
+        //                                     ->orderBy('nombres', 'asc')
+        //                                     ->pluck('nombres', 'id_persona'));
+        view()->share('avaluador', Persona::orderBy('nombres','asc')->pluck('nombres', 'id_persona'));
         view()->share('pais', Pais::orderBy('descripcion_pais','asc')->pluck('descripcion_pais', 'id_pais'));
-        view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda','asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
+        view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento','asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
         view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad','asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+        view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda','asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
         view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble','asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
         view()->share('uso_inmueble', UsoInmueble::orderBy('uso_inmueble','asc')->pluck('uso_inmueble', 'id_uso_inmueble'));
         view()->share('topografia', Topografia::orderBy('topografia','asc')->pluck('topografia', 'id_topografia'));
@@ -216,14 +224,15 @@ class VisitaController extends Controller
         view()->share('tipo_muro', TipoMuro::orderBy('tipo_muro','asc')->pluck('tipo_muro', 'id_tipo_muro'));
         view()->share('ventaneria', Ventaneria::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
         view()->share('tipo_techo', TipoTecho::orderBy('tipo_techo','asc')->pluck('tipo_techo', 'id_tipo_techo'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
-        // view()->share('ventaneria', TipoMuro::orderBy('ventaneria','asc')->pluck('ventaneria', 'id_ventaneria'));
+        view()->share('dirigido_a_empresa', Empresa::orderBy('nombre_empresa','asc')->pluck('nombre_empresa', 'id_empresa'));
+        view()->share('tipo_suelo', TipoSuelo::orderBy('descripcion_tipo_suelo','asc')->pluck('descripcion_tipo_suelo', 'id_tipo_suelo'));
+        view()->share('condicion_inmueble', CondicionInmueble::orderBy('condicion_inmueble','asc')->pluck('condicion_inmueble', 'id_condicion_inmueble'));
+        view()->share('calificacion_fitto_corvini', FittoCorvini::orderBy('fitto_corvini','asc')->pluck('fitto_corvini', 'id_fitto_corvini'));
+        // view()->share('', ::orderBy('','asc')->pluck('', ''));
+        // view()->share('', ::orderBy('','asc')->pluck('', ''));
+        // view()->share('', ::orderBy('','asc')->pluck('', ''));
+        // view()->share('', ::orderBy('','asc')->pluck('', ''));
+        // view()->share('', ::orderBy('','asc')->pluck('', ''));
         // view()->share('usuarios', $this->todosLosUsuarios());
     }
 
