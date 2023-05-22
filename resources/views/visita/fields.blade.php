@@ -585,7 +585,33 @@
             </div>
 
             {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="vida_util_anios" class="form-label text-uppercase" data-placeholder="vida_util_anios">vida útil en años<span class="text-danger">*</span></label>
+                    {!! Form::text('vida_util_anios', null, ['class' => 'form-control select2', 'id' => 'vida_util_anios', 'required']) !!}
+                </div>
+            </div>
 
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="vetustez_anios" class="form-label text-uppercase" data-placeholder="vetustez_anios">vetustez en años<span class="text-danger">*</span></label>
+                    {!! Form::text('vetustez_anios', null, ['class' => 'form-control select2', 'id' => 'vetustez_anios', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+            
+            <div class="col-12 col-md-3">
+                <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <label for="vida permanente_anios" class="form-label text-uppercase" data-placeholder="vida permanente_anios">vida permanente en años<span class="text-danger">*</span></label>
+                    {!! Form::text('vida permanente_anios', null, ['class' => 'form-control select2', 'id' => 'vida permanente_anios', 'required']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
             {{-- ======================= --}}
             {{-- ======================= --}}
 
