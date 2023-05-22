@@ -1,5 +1,33 @@
 <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
     <div>
+        <h2 class="text-uppercase">0 - DATOS AVALUADOR</h2>
+        <div class="row mb-5">
+            <div class="col-12 col-md-3">
+                <div class="form-group wrap-input100 validate-input" data-validate="Required">
+                    <label for="avaluador" class="form-label text-uppercase" data-placeholder="avaluador">avaluador<span class="text-danger">*</span></label>
+                    {!! Form::text('avaluador', old('avaluador'), ['class' => 'form-control text-uppercase', 'id' => 'avaluador', 'required']) !!}
+                </div>
+                {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
+            </div>
+
+            {{-- ======================= --}}
+
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="pais" class="form-label text-uppercase" data-placeholder="pais">País<span class="text-danger">*</span></label>
+                    {!! Form::select('pais', $pais,null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
+                    {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+    {{-- ========================================================= --}}
+
+    <div>
         <h2 class="text-uppercase">1 - VISITA TÉCNICA INMUEBLE</h2>
         <div class="row mb-5">
             <div class="col-12 col-md-3">

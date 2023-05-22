@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Persona;
+use Jenssegers\Date\Date;
 
 class UsuarioStore implements Responsable
 {
@@ -57,8 +58,12 @@ class UsuarioStore implements Responsable
                 $complemento++;
             }
 
-            $fecha_nacimiento = strtotime($fecha_nacimiento);
-            $fecha_ingreso_sistema = Carbon::now()->timestamp;
+            // dd(Carbon::parse($fecha_nacimiento)->timestamp);
+
+            // $fecha_nacimiento = strtotime($fecha_nacimiento);
+            $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
+            // dd($fecha_nacimiento);
+            // $fecha_ingreso_sistema = Carbon::now()->timestamp;
 
             DB::connection('mysql')->beginTransaction();
 
@@ -84,7 +89,6 @@ class UsuarioStore implements Responsable
                     'id_estado' => $id_estado,
                     'id_cargo' => $id_cargo,
                     'id_rol' => $id_rol,
-                    // 'id_usuario' => $,
                 ]);
 
                 if($nuevo_usuario)
@@ -102,6 +106,7 @@ class UsuarioStore implements Responsable
             }
             catch (Exception $e)
             {
+                dd($e);
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
                 return back();
