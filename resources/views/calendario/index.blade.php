@@ -31,7 +31,6 @@
     <div class="page-titles">
         <div class="d-flex flex-row justify-content-between align-center px-3">
             <h3 class="text-themecolor m-b-0 m-t-0">Calendario Visitas</h3>
-            {{-- <img src="{{asset('imagenes/icon_help.png')}}" alt="homepage" class="dark-logo size-logo float-right mt-2 pointer" width="25" id="icon_ayuda"> --}}
         </div>
     </div>
 
@@ -69,15 +68,12 @@
 
 @section('scripts')
     {{-- INICIO SCRIPT FULL CALENDAR "LOCAL" --}}
-    {{-- <script src="{{asset('fullcalendar/js/fullcalendar.min.js')}}"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> --}}
+    <script src="{{asset('fullcalendar/moment/cdnjs.cloudflare.com_ajax_libs_moment.js_2.24.0_moment.min.js')}}"></script>
+    <script src="{{asset('fullcalendar/js/fullcalendar.min.js')}}"></script>
     <script src="{{asset('fullcalendar/js/locale/es.js')}}"></script>
     {{-- FIN SCRIPT FULL CALENDAR "LOCAL" --}}
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
     {{-- ===================================================== --}}
     {{-- ===================================================== --}}
