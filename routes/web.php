@@ -43,4 +43,7 @@ Route::resource('administrador', 'admin\AdministradorController');
 // RUTAS DE LA VISITA
 Route::resource('visita', 'visita\VisitaController');
 
+// RUTAS DEL CALENDARIO
+Route::resource('calendario', 'calendario\CalendarioController');
+
 
