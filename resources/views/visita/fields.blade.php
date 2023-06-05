@@ -1295,7 +1295,7 @@
             <div class="col-12 col-md-3">
                 <div class="wrap-input100 validate-input" data-validate="Required">
                     <label for="valorizacion" class="form-label text-uppercase">valorización<span class="text-danger">*</span></label>
-                    {!! Form::text('valorizacion', null, ['class' => 'form-control select2', 'id' => 'valorizacion', 'required']) !!}
+                    {!! Form::select('valorizacion', $valorizacion, null, ['class' => 'form-control select2', 'id' => 'valorizacion', 'required']) !!}
                 </div>
             </div>
 
@@ -1304,7 +1304,7 @@
             <div class="col-12 col-md-3">
                 <div class="wrap-input100 validate-input" data-validate="Required">
                     <label for="alumbrado_publico" class="form-label text-uppercase">alumbrado público<span class="text-danger">*</span></label>
-                    {!! Form::text('alumbrado_publico', null, ['class' => 'form-control', 'id' => 'alumbrado_publico', 'required']) !!}
+                    {!! Form::select('alumbrado_publico', $calificacion_general, null, ['class' => 'form-control', 'id' => 'alumbrado_publico', 'required']) !!}
                 </div>
             </div>
 
@@ -1317,7 +1317,7 @@
             <div class="col-12 col-md-3">
                 <div class="wrap-input100">
                     <label for="transporte" class="form-label text-uppercase" data-placeholder="transporte">Transporte</label>
-                    {!! Form::text('transporte', null, ['class' => 'form-control', 'id' => 'transporte']) !!}
+                    {!! Form::select('transporte', $calificacion_general, null, ['class' => 'form-control', 'id' => 'transporte']) !!}
                 </div>
             </div>
 
@@ -1326,7 +1326,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="orden_publico" class="form-label text-uppercase">orden público<span class="text-danger">*</span></label>
-                    {!! Form::text('orden_publico', null, ['class' => 'form-control select2', 'id' => 'orden_publico', 'required']) !!}
+                    {!! Form::select('orden_publico', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'orden_publico', 'required']) !!}
                 </div>
             </div>
 
@@ -1335,7 +1335,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="seguridad" class="form-label text-uppercase">seguridad<span class="text-danger">*</span></label>
-                    {!! Form::text('seguridad', null, ['class' => 'form-control select2', 'id' => 'seguridad', 'required']) !!}
+                    {!! Form::select('seguridad', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'seguridad', 'required']) !!}
                 </div>
             </div>
 
@@ -1344,7 +1344,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="salubridad" class="form-label text-uppercase">salubridad<span class="text-danger">*</span></label>
-                    {!! Form::text('salubridad', null, ['class' => 'form-control select2', 'id' => 'salubridad', 'required']) !!}
+                    {!! Form::select('salubridad', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'salubridad', 'required']) !!}
                 </div>
             </div>
 
@@ -1353,7 +1353,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="vias" class="form-label text-uppercase">vías<span class="text-danger">*</span></label>
-                    {!! Form::text('vias', null, ['class' => 'form-control select2', 'id' => 'vias_acces
+                    {!! Form::select('vias', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'vias_acces
                     o', 'required']) !!}
                 </div>
             </div>
@@ -1363,7 +1363,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="tipo_vias" class="form-label text-uppercase">tipo de vías<span class="text-danger">*</span></label>
-                    {!! Form::text('tipo_vias', null, ['class' => 'form-control select2', 'id' => 'tipo_vias', 'required']) !!}
+                    {!! Form::select('tipo_vias', $tipo_vias, null, ['class' => 'form-control select2', 'id' => 'tipo_vias', 'required']) !!}
                 </div>
             </div>
             
