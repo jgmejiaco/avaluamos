@@ -132,6 +132,9 @@ class VisitaController extends Controller
         //     $this->share_data();
         //     return view('administrador.show');
         // }
+
+        $this->share_data();
+        return view('visita.edit');
     }
 
     /**

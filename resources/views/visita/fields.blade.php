@@ -1,25 +1,16 @@
 <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
     <div class="mb-5">
-        <h2 class="text-uppercase">0 - DATOS AVALUADOR</h2>
+        <h2 class="text-uppercase">1 - VISITA TÉCNICA INMUEBLE</h2>
         <div class="row mb-5">
-            <div class="col-12">
+            <div class="col-12 col-md-3">
                 <div class="form-group wrap-input100 validate-input" data-validate="Required">
                     <label for="avaluador" class="form-label text-uppercase" data-placeholder="avaluador">avaluador<span class="text-danger">*</span></label>
                     {!! Form::select('avaluador', $avaluador, old('avaluador'), ['class' => 'form-control text-uppercase', 'id' => 'avaluador', 'required']) !!}
                 </div>
-                {{-- {!! Form::text('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
             </div>
-        </div>
-    </div>
 
-    {{-- ========================================================= --}}
-    {{-- ========================================================= --}}
-    {{-- ========================================================= --}}
-    {{-- ========================================================= --}}
-
-    <div class="mb-5">
-        <h2 class="text-uppercase">1 - VISITA TÉCNICA INMUEBLE</h2>
-        <div class="row mb-5">
+            {{-- ======================= --}}
+            
             <div class="col-12 col-md-3">
                 <div class="form-group wrap-input100 validate-input" data-validate="Required">
                     <label for="solicitante" class="form-label text-uppercase" data-placeholder="solicitante">solicitante<span class="text-danger">*</span></label>
@@ -796,7 +787,7 @@
     {{-- ========================================================= --}}
 
     <div class="mb-5">
-        <h2 class="text-uppercase">5 - ACABADOS  Y EVALUACIÓN TÉCNICA DEL INMUEBLE</h2>
+        <h2 class="text-uppercase">5 - ACABADOS Y EVALUACIÓN TÉCNICA DEL INMUEBLE</h2>
 
         <div class="row mb-5">
             <div class="col-12 col-md-3">

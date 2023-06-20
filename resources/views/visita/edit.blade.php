@@ -10,11 +10,11 @@
     <div class="container-fluid p-5">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase">registro de visita</h1>
+                <h1 class="text-center text-uppercase">editar visita</h1>
             </div>
         </div>
 
-        @include('visita.fields_create_main')
+        @include('visita.fields_edit_main')
     </div>
 @stop
 
