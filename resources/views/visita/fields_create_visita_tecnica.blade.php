@@ -62,7 +62,7 @@
                 <div class="col-12 col-md-3" id="div_correo">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="dirigido_a_nit" class="form-label text-uppercase" data-placeholder="dirigido_a_nit">nit<span class="text-danger">*</span></label>
-                        {!! Form::text('dirigido_a_nit', null, ['class' => 'form-control', 'id' => 'dirigido_a_nit', 'required']) !!}
+                        {!! Form::text('dirigido_a_nit', null, ['class' => 'form-control text-uppercase', 'id' => 'dirigido_a_nit', 'required']) !!}
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
                 <div class="col-12 col-md-3">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="empresa" class="form-label text-uppercase" data-placeholder="empresa">Empresa<span class="text-danger">*</span></label>
-                        {!! Form::text('empresa', null, ['class' => 'form-control select2', 'id' => 'empresa', 'required']) !!}
+                        {!! Form::text('empresa', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'empresa', 'required']) !!}
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="fecha_inspeccion" class="form-label text-uppercase" data-placeholder="fecha_inspeccion">Fecha Inspección<span class="text-danger">*</span></label>
-                        {!! Form::text('fecha_inspeccion', null, ['class' => 'form-control select2', 'id' => 'fecha_inspeccion', 'required']) !!}
+                        {!! Form::date('fecha_inspeccion', null, ['class' => 'form-control select2', 'id' => 'fecha_inspeccion', 'required']) !!}
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="hora_visita" class="form-label text-uppercase" data-placeholder="hora_visita">Hora Visita<span class="text-danger">*</span></label>
-                        {!! Form::text('hora_visita', null, ['class' => 'form-control select2', 'id' => 'hora_visita', 'required']) !!}
+                        {!! Form::time('hora_visita', null, ['class' => 'form-control select2', 'id' => 'hora_visita', 'required']) !!}
                     </div>
                 </div>
 
@@ -124,7 +124,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="barrio" class="form-label text-uppercase" data-placeholder="barrio">Barrio<span class="text-danger">*</span></label>
-                        {!! Form::text('barrio', null, ['class' => 'form-control select2', 'id' => 'barrio', 'required']) !!}
+                        {!! Form::text('barrio', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'barrio', 'required']) !!}
                     </div>
                 </div>
 
@@ -133,7 +133,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="sector" class="form-label text-uppercase" data-placeholder="sector">Sector<span class="text-danger">*</span></label>
-                        {!! Form::text('sector', null, ['class' => 'form-control select2', 'id' => 'sector', 'required']) !!}
+                        {!! Form::text('sector', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'sector', 'required']) !!}
                     </div>
                 </div>
 
@@ -151,7 +151,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="direccion" class="form-label text-uppercase" data-placeholder="direccion">Dirección<span class="text-danger">*</span></label>
-                        {!! Form::text('direccion', null, ['class' => 'form-control select2', 'id' => 'direccion', 'required']) !!}
+                        {!! Form::text('direccion', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'direccion', 'required']) !!}
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="edificio" class="form-label text-uppercase" data-placeholder="direccion">Edificio<span class="text-danger">*</span></label>
-                        {!! Form::text('edificio', null, ['class' => 'form-control select2', 'id' => 'edificio', 'required']) !!}
+                        {!! Form::text('edificio', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'edificio', 'required']) !!}
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="apartamento_numero" class="form-label text-uppercase" data-placeholder="apartamento_numero">Apartamento Número<span class="text-danger">*</span></label>
-                        {!! Form::text('apartamento_numero', null, ['class' => 'form-control select2', 'id' => 'apartamento_numero', 'required']) !!}
+                        {!! Form::text('apartamento_numero', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'apartamento_numero', 'required']) !!}
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="numero_inmueble" class="form-label text-uppercase" data-placeholder="numero_inmueble">Número Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::text('numero_inmueble', null, ['class' => 'form-control select2', 'id' => 'numero_inmueble', 'required']) !!}
+                        {!! Form::text('numero_inmueble', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'numero_inmueble', 'required']) !!}
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="unidad" class="form-label text-uppercase" data-placeholder="unidad">Unidad<span class="text-danger">*</span></label>
-                        {!! Form::text('unidad', null, ['class' => 'form-control select2', 'id' => 'unidad', 'required']) !!}
+                        {!! Form::text('unidad', null, ['class' => 'form-control select2 text-uppercase', 'id' => 'unidad', 'required']) !!}
                     </div>
                 </div>
 
@@ -196,7 +196,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100 validate-input" data-validate="Required">
                         <label for="estrato" class="form-label text-uppercase" data-placeholder="estrato">Estrato<span class="text-danger">*</span></label>
-                        {!! Form::text('estrato', null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
+                        {!! Form::select('estrato', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
                     </div>
                 </div>
 

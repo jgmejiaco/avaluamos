@@ -19,11 +19,11 @@ class VisitaStore implements Responsable
 
         $avaluador = request('avaluador', null);
         $solicitante = strtoupper(request('solicitante', null));
-        $numeroDocumento = request('numero_documento', null);
+        $numeroDocumento = strtoupper(request('numero_documento', null));
         $celular = request('celular', null);
         $correo = request('correo', null);
         $dirigidoEmpresa = strtoupper(request('dirigido_a_empresa', null));
-        $dirigidoNit = request('dirigido_a_nit', null);
+        $dirigidoNit = strtoupper(request('dirigido_a_nit', null));
         $empresa = strtoupper(request('empresa', null));
         $fechaInspeccion = request('fecha_inspeccion', null);
         $horaVisita = request('hora_visita', null);
@@ -31,12 +31,12 @@ class VisitaStore implements Responsable
         $departamentoEstado = request('departamento_estado', null);
         $ciudad = request('ciudad', null);
         $barrio = strtoupper(request('barrio', null));
-        $sector = request('sector', null);
+        $sector = strtoupper(request('sector', null));
         $cercaDe = request('cerca_de', null);
         $direccion = strtoupper(request('direccion', null));
         $edificio = strtoupper(request('edificio', null));
-        $apartamentoNumero = request('apartamento_numero', null);
-        $numeroInmueble = request('numero_inmueble', null);
+        $apartamentoNumero = strtoupper(request('apartamento_numero', null));
+        $numeroInmueble = strtoupper(request('numero_inmueble', null));
         $unidad = strtoupper(request('unidad', null));
         $estrato = request('estrato', null);
         $latitud = request('latitud', null);
