@@ -41,7 +41,7 @@
     {{-- ============================================================================================================= --}}
 
     <body>
-        <div class="container-fluid p-0">
+        <div class="container-fluid">
             <div class="row">
                 @include('layouts.topbar');
 
@@ -50,15 +50,10 @@
 
                         @yield('content')
 
-                        {{-- Inicia footer --}}
-                        {{-- <footer class="footer text-center" id="footer">
-                            <a href="http://www.avaluamos.org" target="_blank" class=""><img src="{{ asset('imagenes/logo-negro.png') }}" height="30" width="80" class=""></a> Avaluamos Todos los derechos reservados.
-                        </footer> --}}
-                        {{-- Final footer --}}
                     </div>
                 </div>
 
-                @include('layouts.footer');
+                @include('layouts.footer')
             </div>
         </div>
 

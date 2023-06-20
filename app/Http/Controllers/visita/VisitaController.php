@@ -36,7 +36,7 @@ use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
 use App\Models\CalificacionGeneral;
 use App\Models\TipoVias;
-use App\Http\Responsable\admin\UsuarioStore;
+use App\Http\Responsable\visita\VisitaStore;
 
 class VisitaController extends Controller
 {
@@ -107,7 +107,7 @@ class VisitaController extends Controller
         // } else {
         //     return new UsuarioStore();
         // }
-        return new UsuarioStore();
+        return new VisitaStore();
     }
 
     /**
