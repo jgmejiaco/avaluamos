@@ -43,7 +43,7 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                @include('layouts.topbar');
+                @include('layouts.topbar')
 
                 <div class="flex-center position-ref full-height">
                     <div class="content">

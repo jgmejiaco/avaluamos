@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Crear Visita')
+@section('title', 'Editar Visita')
 @section('css')
     {{-- <link href="{{asset('DataTables/datatables.min.css')}}"/> --}}
 @stop

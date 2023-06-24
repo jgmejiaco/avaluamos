@@ -7,7 +7,7 @@
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="tipo_vivienda" class="form-label text-uppercase" data-placeholder="tipo">Tipo Vivienda<span class="text-danger">*</span></label>
+                        <label for="tipo_vivienda" class="form-label text-uppercase" data-placeholder="tipo">Tipo Inmueble<span class="text-danger">*</span></label>
                         {!! Form::select('tipo_vivienda', $tipo_vivienda,null, ['class' => 'form-control select2', 'id' => 'tipo_vivienda', 'required']) !!}
                     </div>
                 </div>
@@ -16,7 +16,7 @@
 
                 <div class="col-12 col-md-3">
                     <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="tipo_inmueble" class="form-label text-uppercase" data-placeholder="tipo_inmueble">Tipo Inmueble<span class="text-danger">*</span></label>
+                        <label for="tipo_inmueble" class="form-label text-uppercase" data-placeholder="tipo_inmueble">Tipo Vivienda<span class="text-danger">*</span></label>
                         {!! Form::select('tipo_inmueble', $tipo_inmueble,null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
                     </div>
                 </div>
