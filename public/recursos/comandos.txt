@@ -1,3 +1,8 @@
+Tutorial Base de Datos Remota
+https://www.youtube.com/watch?v=TzqDZCTCdXA
+
+//========================================================================================//
+
 Instalación de proyecto con laravel: https://laravel.com/docs/7.x
 composer create-project --prefer-dist laravel/laravel:^7.0 jgmc_digital // con la versión de laravel
 
@@ -93,3 +98,5 @@ composer require doctrine/dbal
 composer require doctrine/dbal laravel/framework ^7.30.6
 
 composer require doctrine/dbal:2.*
+
+prueba nueva rama desarrollo
