@@ -100,3 +100,4 @@ composer require doctrine/dbal laravel/framework ^7.30.6
 composer require doctrine/dbal:2.*
 
 prueba nueva rama desarrollo
+prueba nueva rama jgmc
