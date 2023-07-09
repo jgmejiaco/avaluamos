@@ -212,7 +212,7 @@ class AdministradorController extends Controller
                                     'personas.numero_documento',
                                     'personas.correo',
                                     'rol.nombre_rol',
-                                    'cargo.descripcion_cargo',
+                                    'cargo.descripcion_cargo'
                                     // 'usuarios.direccion_residencia',
                                     // 'roles.id_rol',
                                     //  'usuarios.fecha_nacimiento',
@@ -236,8 +236,6 @@ class AdministradorController extends Controller
                             // ->whereNull('niveles.deleted_at')
                             ->get()
                             ->toarray();
-
-            // dd($consulta_personas);
 
             return $consulta_personas;
 
@@ -407,5 +405,5 @@ class AdministradorController extends Controller
         // return $variables_sesion;
     }
 
-   
+
 }
