@@ -404,6 +404,4 @@ class AdministradorController extends Controller
         // array_push($variables_sesion, $rol_usuario);
         // return $variables_sesion;
     }
-
-
 }
