@@ -46,4 +46,7 @@ Route::resource('visita', 'visita\VisitaController');
 // RUTAS DEL CALENDARIO
 Route::resource('calendario', 'calendario\CalendarioController');
 
+// RUTAS DEL CLIENTE POTENCIAL
+Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
+
 
