@@ -27,16 +27,20 @@
                             <a class="nav-link" href="/calendario">CALENDARIO</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            AVALUO
-                            </a>
-                                <ul class="dropdown-menu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">AVALUO</a>
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/cotizador">Cotización</a></li>
                                 <li><a class="dropdown-item" href="/visita">Visita Técnica</a></li>
                                 <li><a class="dropdown-item" href="/informe">Informe Avaluo</a></li>
                             </ul>
                         </li>
-                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES GERENCIALES</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
+                                <li><a class="dropdown-item" href="/visita">Informe 2</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
