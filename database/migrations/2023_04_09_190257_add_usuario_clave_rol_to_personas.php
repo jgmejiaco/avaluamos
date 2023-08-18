@@ -14,7 +14,7 @@ class AddUsuarioClaveRolToPersonas extends Migration
     public function up()
     {
         Schema::table('personas', function (Blueprint $table) {
-            $table->string('nombre_usuario')->nullable()->after('id_persona');
+            $table->string('nombre_usuario')->nullable()->after('id_usuario');
             $table->string('clave')->nullable()->after('nombre_usuario');
             $table->string('clave_fallas')->nullable()->after('clave');
             $table->integer('id_rol')->unsigned()->nullable()->after('id_cargo');

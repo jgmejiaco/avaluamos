@@ -207,11 +207,11 @@ class VisitaController extends Controller
     private function share_data()
     {
         // ->select(DB::raw("municipios.nombre || ' - ' || departamentos.nombre AS nombre_ciudad"), 'municipios.id')
-        // view()->share('avaluador', Usuario::select('id_persona',DB::raw("nombres || ' ' || apellidos AS nombre_avaluador"))
+        // view()->share('avaluador', Usuario::select('id_us',DB::raw("nombres || ' ' || apellidos AS nombre_avaluador"))
         //                                     ->whereIn(1,2)
         //                                     ->orderBy('nombres', 'asc')
-        //                                     ->pluck('nombres', 'id_persona'));
-        view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_persona'));
+        //                                     ->pluck('nombres', 'id_usuario'));
+        view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_usuario'));
         view()->share('pais', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
         view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
         view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
