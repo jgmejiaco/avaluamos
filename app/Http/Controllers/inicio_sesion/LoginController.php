@@ -108,28 +108,9 @@ class LoginController extends Controller
     // ======================================================================
     // ======================================================================
     
-    public function loginAdministrador()
-    {
-        return view('inicio_sesion.login_administrador');
-    }
-
-    public function loginColaborador()
-    {
-        return view('inicio_sesion.login_colaborador');
-    }
-    
-    // ======================================================================
-    
-    // public function resetPasswordAdministrador()
+    // public function resetPassword()
     // {
     //     return view('inicio_sesion.resetear_password_administrador');
-    // }
-    
-    // ======================================================================
-    
-    // public function resetPasswordColaborador()
-    // {
-    //     return view('inicio_sesion.resetear_password_colaborador');
     // }
     
     // ======================================================================

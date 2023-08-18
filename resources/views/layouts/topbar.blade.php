@@ -36,10 +36,13 @@
                                 <li><a class="dropdown-item" href="/informe">Informe Avaluo</a></li>
                             </ul>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
-            
+            <span class="nav-item">
+                <a class="nav-link" href="">SALIR</a>
+            </span>
         </div>
       </nav>
 </header>
