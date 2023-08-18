@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Persona;
+use App\Models\Usuario;
 use Jenssegers\Date\Date;
 
 class UsuarioStore implements Responsable
@@ -37,7 +38,7 @@ class UsuarioStore implements Responsable
         // $usuarioShow = new UsuariosShow();
 
         // Consultamos si ya existe un usuario con la cedula ingresada
-        $consulta_cedula = Persona::where('numero_documento', $numero_documento)->first();
+        $consulta_cedula = Usuario::where('numero_documento', $numero_documento)->first();
         
         if(isset($consulta_cedula) && !empty($consulta_cedula) && !is_null($consulta_cedula))
         {
@@ -64,7 +65,7 @@ class UsuarioStore implements Responsable
 
             try {
 
-                $nuevo_usuario = Persona::create([
+                $nuevo_usuario = Usuario::create([
                     'nombre_usuario' => $usuario.$complemento,
                     'clave' => Hash::make($numero_documento),
                     'clave_fallas' => 0,
@@ -113,7 +114,7 @@ class UsuarioStore implements Responsable
     {
         try
         {
-            $usuario = Persona::where('nombre_usuario', $usuario)
+            $usuario = Usuario::where('nombre_usuario', $usuario)
                                 ->first();
             return $usuario;
 

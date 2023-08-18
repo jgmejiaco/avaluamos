@@ -22,6 +22,17 @@ class Usuario extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'nombre_usuario','clave','clave_fallas','id_estado','id_rol'
+        'nombre_usuario',
+        'clave',
+        'clave_fallas',
+        'nombres',
+        'apellidos',
+        'id_tipo_documento',
+        'numero_documento',
+        'correo',
+        'celular',
+        'id_estado',
+        'id_cargo',
+        'id_rol',
     ];
 }
