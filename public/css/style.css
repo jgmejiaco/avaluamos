@@ -7,7 +7,15 @@ body {
 	font-size:14px;
 	color:#666;
     overflow-x: hidden !important;
+	min-height: 100vh;
+  	display: flex;
+  	flex-direction: column;
 }
+
+footer {
+  margin-top: auto;
+}
+
 .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
 	font-family:Montserrat;
 	color:#111;
@@ -1462,7 +1470,6 @@ header.page-header .container,header.page-header .container-fluid {
 .clockbox>div:before {
 	width:2px;
 	background: rgba(255,255,255,0.2);
-	height
 }
 /* =================================================================== */
 /* PAGINATION
@@ -2821,7 +2828,7 @@ input[readonly].datetime-picker {
 	max-width:100%;
 }
 .booking-form .group {
-	*zoom:1;
+	/* *zoom:1; */
 	-webkit-transition:all ease .2s;
 	transition:all ease .2s;
 	border-left:4px solid #fff;
@@ -3020,7 +3027,7 @@ textarea.form-control {
 	border:0;
 	overflow:hidden;
 	/* IE 6/7 fallback */
-	*text-indent:-9999px;
+	/* *text-indent:-9999px; */
 }
 .ir:before {
 	content:"";
@@ -3301,3 +3308,13 @@ div label input {margin-right: 100px;}
     background-color: #343A40 !important;
 }
 /* Fin estilos badge */
+
+/* body {
+	min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+} */

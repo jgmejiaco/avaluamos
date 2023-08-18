@@ -37,8 +37,8 @@
         <script src="{{ asset('js/jquery-2.1.3.min.js') }}"></script>
     </head>
 
-    {{-- ============================================================================================================= --}}
-    {{-- ============================================================================================================= --}}
+    {{-- =========================================================================== --}}
+    {{-- =========================================================================== --}}
 
     <body>
         <div class="container-fluid">
@@ -52,10 +52,9 @@
 
                     </div>
                 </div>
-
-                @include('layouts.footer')
             </div>
         </div>
+        @include('layouts.footer')
 
         {{-- ======================================================== --}}
         {{-- ======================================================== --}}
@@ -66,33 +65,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
         <!-- SCRIPTS -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/functions.js') }}"></script>
         <script src="{{ asset('js/homeslider.j') }}s"></script>
         <script src="{{ asset('js/jquery.grid-a-licious.js') }}"></script>
-        <script src="{{ asset('js/404.js') }}"></script>
-
-        {{-- Scripts Login Entrenador  --}}
-        {{-- <script src="{{asset('js/main.js')}}"></script>
-        <script src="{{asset('vendor/animsition/js/animsition.min.js')}}"></script>
-        <script src="{{asset('vendor/bootstrap/js/popper.js')}}"></script>
-        <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
-        <script src="{{asset('vendor/daterangepicker/moment.min.js')}}"></script>
-        <script src="{{asset('vendor/daterangepicker/daterangepicker.js')}}"></script>
-        <script src="{{asset('vendor/countdowntime/countdowntime.js')}}"></script> --}}
+        <script src="{{ asset('js/404.js') }}"></script> --}}
 
         {{-- Sweetalert --}}
-        <script src="{{asset('js/sweetalert2.all.js')}}"></script>
-        <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+        {{-- <script src="{{asset('js/sweetalert2.all.js')}}"></script>
+        <script src="{{asset('js/sweetalert2.min.js')}}"></script> --}}
 
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        </script>
+        </script> --}}
 
-        @include('sweetalert::alert')
+        {{-- @include('sweetalert::alert') --}}
     </body>
 </html>
