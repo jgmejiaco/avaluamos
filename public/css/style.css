@@ -3309,12 +3309,7 @@ div label input {margin-right: 100px;}
 }
 /* Fin estilos badge */
 
-/* body {
-	min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.table {
+	margin-bottom: 0;
 }
 
-footer {
-  margin-top: auto;
-} */

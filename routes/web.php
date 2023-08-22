@@ -36,9 +36,8 @@ Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_
 // RUTAS DEL ADMINISTRADOR
 Route::resource('administrador', 'admin\AdministradorController');
 
-
-// RUTAS DEL COLABORADOR
-// Route::resource('colaborador', 'admin\AdministradorController');
+// RUTAS PERMISOS
+Route::resource('permisos', 'permisos\PermisosController');
 
 // RUTAS DE LA VISITA
 Route::resource('visita', 'visita\VisitaController');

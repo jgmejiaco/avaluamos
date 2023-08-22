@@ -7,7 +7,6 @@
 {{-- ====================================================== --}}
 
 @section('content')
-
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <h1 class="text-center text-uppercase">Lista de Usuarios</h1>
@@ -22,7 +21,8 @@
     <div class="row p-t-30">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dt-button" id="tabla_ususuarios">
+                <table class="table table-striped table-bordered" id="tabla_ususuarios">
+                    {{-- <table class="table table-striped table-bordered table-hover dt-button" id="tabla_ususuarios"> --}}
                     <thead>
                         <tr class="header-table">
                             <th>Usuario</th>
