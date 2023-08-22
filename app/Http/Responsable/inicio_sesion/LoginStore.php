@@ -12,8 +12,11 @@ class LoginStore implements Responsable
 {
     public function toResponse($request)
     {
+        // dd($request);
+        
         $usuario = request('usuario', null);
         $clave = request('clave', null);
+        // dd($usuario,$clave);
 
         // ==================================================
 
@@ -22,6 +25,8 @@ class LoginStore implements Responsable
             alert()->error('Error','Usuario y Clave son requeridos!');
             return back();
         }
+
+        // dd($usuario,$clave);
 
         // ==================================================
 
@@ -94,14 +99,14 @@ class LoginStore implements Responsable
     // ==================================================
     // ==================================================
 
-    private function crearVariablesSesion($user)
-    {
-        // Creamos las variables de sesion
-        session()->put('id_usuario', $user->id_user);
-        session()->put('username', $user->usuario);
-        session()->put('sesion_iniciada', true);
-        session()->put('rol', $user->id_rol);
-    }
+    // private function crearVariablesSesion($user)
+    // {
+    //     // Creamos las variables de sesion
+    //     session()->put('usuario_id', $user->id_user);
+    //     session()->put('username', $user->usuario);
+    //     session()->put('sesion_iniciada', true);
+    //     session()->put('rol', $user->id_rol);
+    // }
 
     private function consultarUsuario($usuario)
     {
