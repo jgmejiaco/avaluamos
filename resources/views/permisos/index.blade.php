@@ -5,14 +5,8 @@
     <style>
         .text-center {
             width: 12.5%;
-            /* align-middle text-center */
-            /* display: flexbox; */
-            /* text-align: center; */
-            /* align-items: center; */
-            /* vertical-align:middle; */
             text-align: center;
             margin-top: auto;
-            /* margin-bottom: auto; */
         }
     </style>
 @stop
@@ -42,34 +36,38 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="tabla_permisos">
                         <thead>
-                            <tr class="header-table">
-                                <th class="text-center">ID ROL</th>
-                                <th class="text-center">ROL</th>
-                                <th class="text-center">MÓDULO USUARIOS</th>
-                                <th class="text-center">MÓDULO CLIENTE POTENCIAL</th>
-                                <th class="text-center">MÓDULO CALENDARIO</th>
-                                <th class="text-center">AVALUO</th>
-                                <th class="text-center">MÓDULO INFORMES GERENCIALES</th>
-                                <th class="text-center">ACCIONES</th>
+                            <tr class="header-table"">
+                                <th class="text-center" style="vertical-align: middle">ID ROL</th>
+                                <th class="text-center" style="vertical-align: middle">ROL</th>
+                                <th class="text-center" style="vertical-align: middle">MÓDULO USUARIOS</th>
+                                <th class="text-center" style="vertical-align: middle">MÓDULO CLIENTE POTENCIAL</th>
+                                <th class="text-center" style="vertical-align: middle">MÓDULO CALENDARIO</th>
+                                <th class="text-center" style="vertical-align: middle">AVALUO</th>
+                                <th class="text-center" style="vertical-align: middle">MÓDULO INFORMES GERENCIALES</th>
+                                <th class="text-center" style="vertical-align: middle">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
-                                dd($roles);
-                            @endphp --}}
                             @foreach ($roles as $rol)
-                                {{-- @php
-                                    dd($rol['id_rol'], $rol['nombre_rol']);
-                                @endphp --}}
                                 <tr>
-                                    <td class="text-center">{{$rol['id_rol']}}</td>
-                                    <td class="text-center">{{$rol['nombre_rol']}}</td>
-                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="vertical-align: middle">{{$rol['id_rol']}}</td>
+                                    <td class="text-center" style="vertical-align: middle">{{$rol['nombre_rol']}}</td>
+                                    <td class="text-center" style="vertical-align: middle">
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle">
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle">
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle">
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle">
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle">
                                         <button class="btn btn-info" title="Update Password" id="">
                                             <i class="fa fa-key" aria-hidden="true"></i>Editar Rol
                                         </button>

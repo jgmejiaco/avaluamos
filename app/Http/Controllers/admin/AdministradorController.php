@@ -25,10 +25,24 @@ class AdministradorController extends Controller
      */
     public function index()
     {
+        // $sesion = $this->validarVariablesSesion();
+        // // dd($sesion);
+
+        // if(empty($sesion[0]) || is_null($sesion[0]) &&
+        //    empty($sesion[1]) || is_null($sesion[1]) &&
+        //    empty($sesion[2]) || is_null($sesion[2]) &&
+        //    $sesion[2] != true) {
+        //     return redirect()->to(route('inicio'));
+        // } else {
+        //     $this->share_data();
+        //     return view('administrador.index');
+        // }
         
         $this->share_data();
         return view('administrador.index');
     }
+
+    // ==========================================================================
 
     /**
      * Show the form for creating a new resource.
@@ -42,6 +56,8 @@ class AdministradorController extends Controller
         return view('administrador.create');
     }
 
+    // ==========================================================================
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,6 +70,8 @@ class AdministradorController extends Controller
         return new UsuarioStore();
     }
 
+    // ==========================================================================
+
     /**
      * Display the specified resource.
      *
@@ -65,6 +83,8 @@ class AdministradorController extends Controller
         
     }
 
+    // ==========================================================================
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,6 +95,8 @@ class AdministradorController extends Controller
     {
         
     }
+
+    // ==========================================================================
 
     /**
      * Update the specified resource in storage.
@@ -88,6 +110,8 @@ class AdministradorController extends Controller
        
     }
 
+    // ==========================================================================
+
     /**
      * Remove the specified resource from storage.
      *
@@ -98,6 +122,8 @@ class AdministradorController extends Controller
     {
         
     }
+
+    // ==========================================================================
 
     private function share_data()
     {
@@ -114,15 +140,10 @@ class AdministradorController extends Controller
     public function todosLosUsuarios()
     {
        try {
-
             $consultaUsuarios = DB::table('usuarios')
-                            ->join('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
-                            ->join('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
-                            ->join('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
-                            // ->join('municipios', 'municipios.id_municipio', '=', 'usuarios.id_municipio_nacimiento')
-                            // ->join('municipios as residencia', 'residencia.id_municipio', '=', 'usuarios.id_municipio_residencia')
-                            // ->leftJoin('niveles', 'niveles.id_nivel', '=', 'usuarios.id_nivel')
-                            // ->leftJoin('tipo_ingles', 'tipo_ingles.id', '=', 'usuarios.id_tipo_ingles')
+                            ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
+                            ->leftjoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
+                            ->leftjoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
                             ->select('usuarios.nombre_usuario',
                                     'usuarios.nombres',
                                     'usuarios.apellidos',
@@ -131,32 +152,11 @@ class AdministradorController extends Controller
                                     'usuarios.correo',
                                     'rol.nombre_rol',
                                     'cargo.descripcion_cargo'
-                                    // 'usuarios.direccion_residencia',
-                                    // 'roles.id_rol',
-                                    //  'usuarios.fecha_nacimiento',
-                                    //  'usuarios.genero', 'usuarios.estado',
-                                    //  'usuarios.telefono', 'usuarios.celular',
-                                    //  'usuarios.contacto2', 'usuarios.contacto_opcional',
-                                    //  'usuarios.skype', 'usuarios.zoom',
-                                    //  'usuarios.fecha_ingreso_sistema AS fecha_ingreso',
-                                    //  'municipios.descripcion AS ciudad_nacimiento',
-                                    //  'residencia.descripcion AS ciudad_residencia',
-                                    //  'niveles.nivel_descripcion AS niveles',
-                                    //  'niveles.id_nivel',
-                                    //  'tipo_ingles.id AS id_tip_ing',
-                                    //  'tipo_ingles.descripcion AS desc_tip_ing'
                                     )
-                            // ->whereNull('usuarios.deleted_at')
-                            // ->whereNull('tipo_documento.deleted_at')
-                            // ->whereNull('municipios.deleted_at')
-                            // ->whereNull('residencia.deleted_at')
-                            // ->whereNull('roles.deleted_at')
-                            // ->whereNull('niveles.deleted_at')
                             ->get()
                             ->toarray();
 
             return $consultaUsuarios;
-
        }
        catch (Exception $e)
        {
@@ -165,62 +165,70 @@ class AdministradorController extends Controller
        }
     }
 
-    public function tipos_documento()
-    {
-        
-    }
-
-    public function municipios()
-    {
-       
-    }
-
-    public function roles()
-    {
-        
-    }
-
-    public function validarCedula(Request $request)
-    {
-        
-    }
-
-    public function validarCedulaEdicion(Request $request)
-    {
-        
-    }
-
-    public function validarCorreo(Request $request)
-    {
-      
-    }
-
-    public function validarCorreoEdicion(Request $request)
-    {
-        
-    }
-
-    public function cambiarEstadoUsuario(Request $request)
-    {
-        
-    }
-
-    public function actualizarClave(Request $request)
-    {
-        
-    }
+    // ==========================================================================
 
     public function validarVariablesSesion()
     {
-        // $variables_sesion =[];
-        // $id_usuario = session('usuario_id');
-        // array_push($variables_sesion, $id_usuario);
-        // $username = session('username');
-        // array_push($variables_sesion, $username);
-        // $sesion_iniciada = session('sesion_iniciada');
-        // array_push($variables_sesion, $sesion_iniciada);
-        // $rol_usuario = session('rol');
-        // array_push($variables_sesion, $rol_usuario);
-        // return $variables_sesion;
+        $variablesSesion =[];
+
+        $idUsuario = session('id_usuario');
+        array_push($variablesSesion, $idUsuario);
+
+        $username = session('username');
+        array_push($variablesSesion, $username);
+
+        $sesionIniciada = session('sesion_iniciada');
+        array_push($variablesSesion, $sesionIniciada);
+        
+        $rolUsuario = session('id_rol');
+        array_push($variablesSesion, $rolUsuario);
+
+        return $variablesSesion;
     }
+
+    // ==========================================================================
+
+    // public function tipos_documento()
+    // {
+        
+    // }
+
+    // ==========================================================================
+
+    
+    // ==========================================================================
+
+    
+
+    // ==========================================================================
+
+    
+
+    // ==========================================================================
+
+    
+
+    // ==========================================================================
+
+    
+
+    // ==========================================================================
+
+    
+
+    // ==========================================================================
+
+    // public function cambiarEstadoUsuario(Request $request)
+    // {
+        
+    // }
+
+    // ==========================================================================
+
+    // public function actualizarClave(Request $request)
+    // {
+        
+    // }
+
+    
 }

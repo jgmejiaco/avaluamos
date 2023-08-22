@@ -125,9 +125,8 @@ class LoginController extends Controller
     // public function logout(Request $request)
     // {
     //     try {
-
-    //         Session::forget('usuario_id');
-    //         Session::forget('username');
+    //         Session::forget('id_usuario');
+    //         Session::forget('nombre_usuario');
     //         Session::forget('sesion_iniciada');
     //         Session::forget('rol');
     //         Session::flush();
@@ -135,7 +134,7 @@ class LoginController extends Controller
     //         $request->session()->invalidate();
     //         $request->session()->regenerateToken();
 
-    //         return redirect()->to(route('home'));
+    //         return redirect()->to(route('inicio'));
 
     //     } catch (Exception $e)
     //     {

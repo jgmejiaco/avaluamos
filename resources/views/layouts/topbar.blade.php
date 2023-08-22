@@ -45,7 +45,7 @@
                 </div>
             </div>
             <span class="nav-item">
-                <a class="nav-link" href="">SALIR</a>
+                <a class="nav-link" href="/">SALIR</a>
             </span>
         </div>
       </nav>

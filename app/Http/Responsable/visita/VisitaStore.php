@@ -44,7 +44,7 @@ class VisitaStore implements Responsable
         $longitud = request('longitud', null);
         $observacionesVisitaTecnicaInmueble = request('observaciones_visita_tecnica_inmueble', null);
 
-        dd($avaluador, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
+        // dd($avaluador, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
         
         // $usuarioShow = new UsuariosShow();
 
@@ -113,7 +113,7 @@ class VisitaStore implements Responsable
             }
             catch (Exception $e)
             {
-                dd($e);
+                // dd($e);
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
                 return back();

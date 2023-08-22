@@ -56,7 +56,7 @@ class ClientePotencialController extends Controller
             return view('cliente_potencial.index');
             
         } catch (Exception $e) {
-            dd($e);
+            // dd($e);
             alert()->error("Ha ocurrido un error!");
             // return redirect()->to(route('home'));
         }
@@ -81,7 +81,7 @@ class ClientePotencialController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
     }
 
     /**

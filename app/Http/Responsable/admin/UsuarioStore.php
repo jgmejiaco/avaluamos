@@ -102,7 +102,7 @@ class UsuarioStore implements Responsable
             }
             catch (Exception $e)
             {
-                dd($e);
+                // dd($e);
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
                 return back();

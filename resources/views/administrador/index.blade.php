@@ -40,9 +40,6 @@
                     </thead>
                     <tbody>
                         @foreach ($usuarios as $usuario)
-                        {{-- @php
-                            dd($usuario);
-                        @endphp --}}
                             <tr>
                                 <td>{{$usuario->nombre_usuario}}</td>
                                 <td>{{$usuario->nombres}}</td>
