@@ -64,7 +64,10 @@
                                 <td>empleado juan</td>
                                 <td>pendiente</td>
                                 <td>
-                                    <button class="btn btn-info" title="Update Password" id=""><i class="fa fa-key" aria-hidden="true"></i>Editar</button>
+                                    <a href="visita/edit" class="btn btn-info" id="">Editar</a>
+                                    {{-- <button class="btn btn-info" id="">
+                                        <i class="fa fa-key" aria-hidden="true"></i>Editar
+                                    </button> --}}
                                 </td>
                             </tr>
                         </tbody>

@@ -25,21 +25,23 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        // $sesion = $this->validarVariablesSesion();
-        // // dd($sesion);
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true) {
-        //     return redirect()->to(route('inicio'));
-        // } else {
-        //     $this->share_data();
-        //     return view('administrador.index');
-        // }
-        
-        $this->share_data();
-        return view('administrador.index');
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('administrador.index');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     // ==========================================================================
@@ -51,9 +53,18 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-       
-        $this->share_data();
-        return view('administrador.create');
+        $sesion = $this->validarVariablesSesion();
+
+        if(empty($sesion[0]) || is_null($sesion[0]) &&
+           empty($sesion[1]) || is_null($sesion[1]) &&
+           empty($sesion[2]) || is_null($sesion[2]) &&
+           empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        {
+            return redirect()->to(route('inicio'));
+        } else {
+            $this->shareData();
+            return view('administrador.create');
+        }
     }
 
     // ==========================================================================
@@ -125,7 +136,7 @@ class AdministradorController extends Controller
 
     // ==========================================================================
 
-    private function share_data()
+    private function shareData()
     {
         view()->share('rol', Rol::orderBy('nombre_rol','asc')->pluck('nombre_rol', 'id_rol'));
         view()->share('cargo', Cargo::orderBy('descripcion_cargo','asc')->pluck('descripcion_cargo', 'id_cargo'));
@@ -140,7 +151,7 @@ class AdministradorController extends Controller
     public function todosLosUsuarios()
     {
        try {
-            $consultaUsuarios = DB::table('usuarios')
+            return DB::table('usuarios')
                             ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
                             ->leftjoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
                             ->leftjoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
@@ -156,10 +167,7 @@ class AdministradorController extends Controller
                             ->get()
                             ->toarray();
 
-            return $consultaUsuarios;
-       }
-       catch (Exception $e)
-       {
+       } catch (Exception $e) {
            alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
            return back();
        }
@@ -174,14 +182,14 @@ class AdministradorController extends Controller
         $idUsuario = session('id_usuario');
         array_push($variablesSesion, $idUsuario);
 
-        $username = session('username');
+        $username = session('usuario');
         array_push($variablesSesion, $username);
+
+        $rolUsuario = session('id_rol');
+        array_push($variablesSesion, $rolUsuario);
 
         $sesionIniciada = session('sesion_iniciada');
         array_push($variablesSesion, $sesionIniciada);
-        
-        $rolUsuario = session('id_rol');
-        array_push($variablesSesion, $rolUsuario);
 
         return $variablesSesion;
     }

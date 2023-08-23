@@ -20,39 +20,22 @@ class CalendarioController extends Controller
      */
     public function index(Request $request)
     {
-        try 
-        {
-            // Si el usuario no esta autenticado, redireccionamos al login
-            // if (!Auth::check()) {
-            //     return redirect()->to(route('login'));
-            //     exit;
-            // }
-            
-            // if (! Gate::allows('compras_mtto_cronograma')) {
-            //     return abort(401);
-            // }
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-            // $sesion = $this->validarVariablesSesion();
-
-            // if(empty($sesion[0]) || is_null($sesion[0]) &&
-            //    empty($sesion[1]) || is_null($sesion[1]) &&
-            //    empty($sesion[2]) || is_null($sesion[2]) &&
-            //    empty($sesion[3]) || is_null($sesion[3]) &&
-            //    $sesion[2] != true)
-            // {
-            //     return redirect()->to(route('home'));
-            // } else {
-
-            //     $this->share_data();
-            //     return view('administrador.index');
-            // }
-            // $this->share_data();
-            return view('calendario.index');
-            
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('calendario.index');
+            }
         } catch (Exception $e) {
-            dd($e);
+            // dd($e);
             alert()->error("Ha ocurrido un error!");
-            // return redirect()->to(route('home'));
         }
     }
 

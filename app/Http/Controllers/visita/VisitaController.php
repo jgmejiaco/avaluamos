@@ -47,22 +47,23 @@ class VisitaController extends Controller
      */
     public function index()
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    empty($sesion[3]) || is_null($sesion[3]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-
-        //     $this->share_data();
-        //     return view('administrador.index');
-        // }
-        $this->share_data();
-        return view('visita.index');
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('visita.index');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     /**
@@ -72,20 +73,23 @@ class VisitaController extends Controller
      */
     public function create()
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $this->share_data();
-        //     return view('administrador.create');
-        // }
-        $this->share_data();
-        return view('visita.create');
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('visita.create');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     /**
@@ -118,23 +122,23 @@ class VisitaController extends Controller
      */
     public function show($id)
     {
-        // $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuario = User::find($id);
-        //     view()->share('usuario', $usuario);
-        //     $this->share_data();
-        //     return view('administrador.show');
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('inicio'));
+        //     } else {
+        //         $this->shareData();
+        //         return view('visita.edit');
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
         // }
-
-        $this->share_data();
-        return view('visita.edit');
     }
 
     /**
@@ -156,7 +160,7 @@ class VisitaController extends Controller
         // } else {
         //     $usuario = User::find($id);
         //     view()->share('usuario', $usuario);
-        //     $this->share_data();
+        //     $this->shareData();
         //     return view('administrador.edit');
         // }
     }
@@ -204,7 +208,7 @@ class VisitaController extends Controller
         // }
     }
 
-    private function share_data()
+    private function shareData()
     {
         // ->select(DB::raw("municipios.nombre || ' - ' || departamentos.nombre AS nombre_ciudad"), 'municipios.id')
         // view()->share('avaluador', Usuario::select('id_us',DB::raw("nombres || ' ' || apellidos AS nombre_avaluador"))

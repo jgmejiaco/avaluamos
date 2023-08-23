@@ -18,22 +18,23 @@ class PermisosController extends Controller
      */
     public function index()
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    empty($sesion[3]) || is_null($sesion[3]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-
-        //     $this->share_data();
-        //     return view('administrador.index');
-        // }
-        $this->shareData();
-        return view('permisos.index');
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('permisos.index');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     /**
@@ -43,20 +44,23 @@ class PermisosController extends Controller
      */
     public function create()
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $this->share_data();
-        //     return view('administrador.create');
-        // }
-        $this->shareData();
-        return view('visita.create');
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
+            } else {
+                $this->shareData();
+                return view('permisos.create');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     /**
@@ -100,11 +104,11 @@ class PermisosController extends Controller
         // } else {
         //     $usuario = User::find($id);
         //     view()->share('usuario', $usuario);
-        //     $this->share_data();
+        //     $this->shareData();
         //     return view('administrador.show');
         // }
 
-        $this->share_data();
+        $this->shareData();
         // return view('visita.edit');
     }
 
@@ -127,7 +131,7 @@ class PermisosController extends Controller
         // } else {
         //     $usuario = User::find($id);
         //     view()->share('usuario', $usuario);
-        //     $this->share_data();
+        //     $this->shareData();
         //     return view('administrador.edit');
         // }
     }
