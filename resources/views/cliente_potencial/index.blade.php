@@ -91,7 +91,7 @@
             $("#tabla_visitas").DataTable({
                 dom: 'Blfrtip',
                 "infoEmpty": "No hay registros",
-                stripe: true, 
+                stripe: true,
                 "bSort": false,
                 "buttons": [
                     {
@@ -113,7 +113,7 @@
                     }
                 ],
                 "pageLength": 25,
-                "scrollX": true,                 
+                "scrollX": true,
             });
             // CIERRE DataTable LISTA CLIENTES
         });
