@@ -17,23 +17,23 @@ class LoginController extends Controller
      */
     public function index()
     {
-        try {
-            $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            {
-                return redirect()->to(route('inicio'));
-            } else {
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('inicio'));
+        //     } else {
                 $this->shareData();
                 return view('inicio_sesion.login');
-            }
-        } catch (Exception $e) {
-            // dd($e);
-            alert()->error("Ha ocurrido un error!");
-        }
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     // ======================================================================
@@ -123,6 +123,26 @@ class LoginController extends Controller
 
     // ======================================================================
     // ======================================================================
+
+    public function logout(Request $request)
+    {
+        try {
+            Session::forget('id_usuario');
+            Session::forget('usuario');
+            Session::forget('id_rol');
+            Session::forget('sesion_iniciada');
+            Session::flush();
+            $request->session()->flush();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()->to(route('login'));
+
+        } catch (Exception $e) {
+            alert()->error('Error','An error has occurred, try again, if the problem persists contact support.');
+            return back();
+        }
+    }
     
     // public function resetPassword()
     // {
@@ -138,24 +158,5 @@ class LoginController extends Controller
     
     // ======================================================================
 
-    // public function logout(Request $request)
-    // {
-    //     try {
-    //         Session::forget('id_usuario');
-    //         Session::forget('nombre_usuario');
-    //         Session::forget('sesion_iniciada');
-    //         Session::forget('rol');
-    //         Session::flush();
-    //         $request->session()->flush();
-    //         $request->session()->invalidate();
-    //         $request->session()->regenerateToken();
-
-    //         return redirect()->to(route('inicio'));
-
-    //     } catch (Exception $e)
-    //     {
-    //         alert()->error('Error','An error has occurred, try again, if the problem persists contact support.');
-    //         return back();
-    //     }
-    // }
+    
 }

@@ -127,6 +127,15 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group wrap-input100">
+                <label for="sector" class="form-label text-uppercase">Sector<span class="text-danger">*</span></label>
+                {!! Form::text('sector', null, ['class' => 'form-control text-uppercase', 'id' => 'sector', 'required']) !!}
+            </div>
+        </div>
+
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3">
+            <div class="form-group wrap-input100">
                 <label for="direccion" class="form-label text-uppercase">Dirección<span class="text-danger">*</span></label>
                 {!! Form::text('direccion', null, ['class' => 'form-control text-uppercase', 'id' => 'direccion', 'required']) !!}
             </div>
@@ -156,7 +165,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group wrap-input100">
                 <label for="estrato" class="form-label text-uppercase">Estrato<span class="text-danger">*</span></label>
-                {!! Form::text('estrato', null, ['class' => 'form-control text-uppercase', 'id' => 'estrato', 'required']) !!}
+                {!! Form::select('estrato', $indicador_numerico, null, ['class' => 'form-control text-uppercase', 'id' => 'estrato', 'required']) !!}
             </div>
         </div>
 

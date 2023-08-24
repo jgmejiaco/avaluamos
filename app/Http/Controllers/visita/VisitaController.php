@@ -47,23 +47,23 @@ class VisitaController extends Controller
      */
     public function index()
     {
-        try {
-            $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            {
-                return redirect()->to(route('inicio'));
-            } else {
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('inicio'));
+        //     } else {
                 $this->shareData();
                 return view('visita.index');
-            }
-        } catch (Exception $e) {
-            // dd($e);
-            alert()->error("Ha ocurrido un error!");
-        }
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     /**
@@ -73,23 +73,23 @@ class VisitaController extends Controller
      */
     public function create()
     {
-        try {
-            $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            {
-                return redirect()->to(route('inicio'));
-            } else {
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('inicio'));
+        //     } else {
                 $this->shareData();
                 return view('visita.create');
-            }
-        } catch (Exception $e) {
-            // dd($e);
-            alert()->error("Ha ocurrido un error!");
-        }
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     /**
@@ -300,21 +300,7 @@ class VisitaController extends Controller
     //    }
     // }
 
-    // public function tipos_documento()
-    // {
-    //     // $sesion = $this->validarVariablesSesion();
-
-    //     // if(empty($sesion[0]) || is_null($sesion[0]) &&
-    //     //    empty($sesion[1]) || is_null($sesion[1]) &&
-    //     //    empty($sesion[2]) || is_null($sesion[2]) &&
-    //     //    $sesion[2] != true)
-    //     // {
-    //     //     return redirect()->to(route('home'));
-    //     // } else {
-    //     //     $usuariosShow = new  UsuariosShow();
-    //     //    return $usuariosShow->tiposDocumento();
-    //     // }
-    // }
+    
 
     public function municipios()
     {
@@ -446,15 +432,20 @@ class VisitaController extends Controller
 
     public function validarVariablesSesion()
     {
-        // $variables_sesion =[];
-        // $id_usuario = session('usuario_id');
-        // array_push($variables_sesion, $id_usuario);
-        // $username = session('username');
-        // array_push($variables_sesion, $username);
-        // $sesion_iniciada = session('sesion_iniciada');
-        // array_push($variables_sesion, $sesion_iniciada);
-        // $rol_usuario = session('rol');
-        // array_push($variables_sesion, $rol_usuario);
-        // return $variables_sesion;
+        // $variablesSesion =[];
+
+        // $idUsuario = session('id_usuario');
+        // array_push($variablesSesion, $idUsuario);
+
+        // $username = session('usuario');
+        // array_push($variablesSesion, $username);
+
+        // $rolUsuario = session('id_rol');
+        // array_push($variablesSesion, $rolUsuario);
+
+        // $sesionIniciada = session('sesion_iniciada');
+        // array_push($variablesSesion, $sesionIniciada);
+
+        // return $variablesSesion;
     }
 }

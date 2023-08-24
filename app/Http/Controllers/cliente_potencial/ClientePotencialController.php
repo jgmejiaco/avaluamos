@@ -26,23 +26,23 @@ class ClientePotencialController extends Controller
      */
     public function index(Request $request)
     {
-        try {
-            $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            {
-                return redirect()->to(route('inicio'));
-            } else {
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('login'));
+        //     } else {
                 $this->shareData();
                 return view('cliente_potencial.index');
-            }
-        } catch (Exception $e) {
-            // dd($e);
-            alert()->error("Ha ocurrido un error!");
-        }
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     /**
@@ -52,23 +52,23 @@ class ClientePotencialController extends Controller
      */
     public function create()
     {
-        try {
-            $sesion = $this->validarVariablesSesion();
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            {
-                return redirect()->to(route('inicio'));
-            } else {
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) &&
+        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //     {
+        //         return redirect()->to(route('inicio_sesion.login'));
+        //     } else {
                 $this->shareData();
                 return view('cliente_potencial.create');
-            }
-        } catch (Exception $e) {
-            // dd($e);
-            alert()->error("Ha ocurrido un error!");
-        }
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     /**
@@ -157,6 +157,24 @@ class ClientePotencialController extends Controller
     }
 
     // ========================================================
+    public function validarVariablesSesion()
+    {
+        // $variablesSesion =[];
+
+        // $idUsuario = session('id_usuario');
+        // array_push($variablesSesion, $idUsuario);
+
+        // $username = session('usuario');
+        // array_push($variablesSesion, $username);
+
+        // $rolUsuario = session('id_rol');
+        // array_push($variablesSesion, $rolUsuario);
+
+        // $sesionIniciada = session('sesion_iniciada');
+        // array_push($variablesSesion, $sesionIniciada);
+
+        // return $variablesSesion;
+    }
 
     
 }

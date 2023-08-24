@@ -28,6 +28,7 @@ Route::get('/', function () {
 // Rutas del Login
 Route::resource('login', 'inicio_sesion\LoginController');
 Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_usuario');
+Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
 
 // RUTAS DEL ADMINISTRADOR
 Route::resource('administrador', 'admin\AdministradorController');
