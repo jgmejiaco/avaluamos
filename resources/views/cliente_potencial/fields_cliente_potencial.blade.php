@@ -40,7 +40,7 @@
         <div class="col-12 col-md-3" id="div_correo">
             <div class="form-group">
                 <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::email('dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'dirigido_a', 'required']) !!}
+                {!! Form::text('dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'dirigido_a', 'required']) !!}
             </div>
         </div>
 
@@ -115,6 +115,15 @@
         </div>
 
         {{-- ======================= --}}
+
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="sector" class="form-label text-uppercase">Sector</label>
+                {!! Form::text('sector', null, ['class' => 'form-control text-uppercase', 'id' => 'sector']) !!}
+            </div>
+        </div>
+        
+        {{-- ======================= --}}
         
         <div class="col-12 col-md-3">
             <div class="form-group">
@@ -122,16 +131,7 @@
                 {!! Form::text('barrio', null, ['class' => 'form-control text-uppercase', 'id' => 'barrio', 'required']) !!}
             </div>
         </div>
-
-        {{-- ======================= --}}
         
-        <div class="col-12 col-md-3">
-            <div class="form-group">
-                <label for="sector" class="form-label text-uppercase">Sector<span class="text-danger">*</span></label>
-                {!! Form::text('sector', null, ['class' => 'form-control text-uppercase', 'id' => 'sector', 'required']) !!}
-            </div>
-        </div>
-
         {{-- ======================= --}}
         
         <div class="col-12 col-md-3">
@@ -173,8 +173,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="numero_inmueble" class="form-label text-uppercase">Número Inmueble<span class="text-danger">*</span></label>
-                {!! Form::text('numero_inmueble', null, ['class' => 'form-control text-uppercase', 'id' => 'numero_inmueble', 'required']) !!}
+                <label for="numero_inmueble" class="form-label text-uppercase">Número Inmueble</label>
+                {!! Form::text('numero_inmueble', null, ['class' => 'form-control text-uppercase', 'id' => 'numero_inmueble']) !!}
             </div>
         </div>
 
@@ -182,8 +182,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_parqueaderos" class="form-label text-uppercase">Cantidad Parqueaderos<span class="text-danger">*</span></label>
-                {!! Form::select('cant_parqueaderos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_parqueaderos', 'required']) !!}
+                <label for="cant_parqueaderos" class="form-label text-uppercase">Cantidad Parqueaderos</label>
+                {!! Form::select('cant_parqueaderos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_parqueaderos']) !!}
             </div>
         </div>
 
@@ -191,8 +191,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_cuarto util" class="form-label text-uppercase">Cantidad Cuartos Útiles<span class="text-danger">*</span></label>
-                {!! Form::select('cant_cuarto util', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_cuarto util', 'required']) !!}
+                <label for="cant_cuarto util" class="form-label text-uppercase">Cantidad Cuartos Útiles</label>
+                {!! Form::select('cant_cuarto_util', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_cuarto util']) !!}
             </div>
         </div>
 
@@ -200,8 +200,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_kioscos" class="form-label text-uppercase">Cantidad Kioscos<span class="text-danger">*</span></label>
-                {!! Form::select('cant_kioscos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_kioscos', 'required']) !!}
+                <label for="cant_kioscos" class="form-label text-uppercase">Cantidad Kioscos</label>
+                {!! Form::select('cant_kioscos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_kioscos']) !!}
             </div>
         </div>
 
@@ -209,8 +209,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_piscinas" class="form-label text-uppercase">Cantidad Piscinas<span class="text-danger">*</span></label>
-                {!! Form::select('cant_piscinas', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_piscinas', 'required']) !!}
+                <label for="cant_piscinas" class="form-label text-uppercase">Cantidad Piscinas</label>
+                {!! Form::select('cant_piscinas', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_piscinas']) !!}
             </div>
         </div>
 
@@ -218,8 +218,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_establos" class="form-label text-uppercase">Cantidad Establos<span class="text-danger">*</span></label>
-                {!! Form::select('cant_establos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_establos', 'required']) !!}
+                <label for="cant_establos" class="form-label text-uppercase">Cantidad Establos</label>
+                {!! Form::select('cant_establos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_establos']) !!}
             </div>
         </div>
 
@@ -227,8 +227,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="cant_billares" class="form-label text-uppercase">Cantidad Billares<span class="text-danger">*</span></label>
-                {!! Form::select('cant_billares', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_billares', 'required']) !!}
+                <label for="cant_billares" class="form-label text-uppercase">Cantidad Billares</label>
+                {!! Form::select('cant_billares', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_billares']) !!}
             </div>
         </div>
 

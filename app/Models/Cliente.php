@@ -22,29 +22,29 @@ class Cliente extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'cliente_nombres',
-        'cliente_celular',
-        'cliente_email',
+        'cli_nombres',
+        'cli_celular',
+        'cli_email',
         'id_tipo_persona',
-        'id_empresa',
-        'id_tipo_documento',
+        'id_dirigido_a',
         'objeto_avaluo',
         'id_ciudad',
+        'sector',
         'barrio',
         'direccion',
         'id_tipo_inmueble',
         'area',
-        'estrato',
+        'id_estrato',
         'numero_inmueble',
-        'cant_parqueaderos',
-        'cant_cuartos_utiles',
-        'cant_kioskos',
-        'cant_piscinas',
-        'cant_establos',
-        'cant_billares',
+        'id_cant_parqueaderos',
+        'id_cant_cuarto_util',
+        'id_cant_kioskos',
+        'id_cant_piscinas',
+        'id_cant_establos',
+        'id_cant_billares',
         'id_referido_por',
         'porcentaje_descuento',
         'valor_cotizacion',
-        'visitado'
+        'id_visitado'
     ];
 }

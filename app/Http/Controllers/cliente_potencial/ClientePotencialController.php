@@ -18,6 +18,7 @@ use App\Models\IndicadorNumerico;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Models\SiNo;
+use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 
 class ClientePotencialController extends Controller
 {
@@ -81,6 +82,7 @@ class ClientePotencialController extends Controller
      */
     public function store(Request $request)
     {
+        return new ClientePotencialStore();
         // dd($request);
     }
 
