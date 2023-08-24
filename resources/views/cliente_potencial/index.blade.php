@@ -10,24 +10,24 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase">Clientes Potenciales</h1>
+                <h2 class="text-center text-uppercase">Clientes Potenciales</h2>
             </div>
         </div>
 
         {{-- ====================================================== --}}
 
-        <div class="row p-b-20 float-right">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary">Crear Nuevo Cliente</a>
+        <div class="row mb-5">
+            <div class="col-12 d-flex justify-content-end">
+                <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary float-right">Crear Nuevo Cliente</a>
             </div>
         </div>
 
         {{-- ====================================================== --}}
 
-        <div class="row p-t-30">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="row" style="margin-top: 5em !important;">
+            <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover dt-button" id="tabla_visitas">
+                    <table class="table table-striped table-bordered" id="tabla_visitas">
                         <thead>
                             <tr class="header-table">
                                 <th>ID</th>
