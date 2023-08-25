@@ -71,18 +71,14 @@
 
         <!-- SELECT2 -->
         <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
-        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-        {{-- <script src="{{asset('assets/plugins/select2/dist/js/select2.min.js')}}"></script> --}}
 
+        {{-- Sweetalert --}}
+        <script src="{{asset('js/sweetalert2.all.js')}}"></script>
+        <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+        
         <!-- SCRIPTS -->
         
 
-        {{-- Sweetalert --}}
-        {{-- <script src="{{asset('js/sweetalert2.all.js')}}"></script>
-        <script src="{{asset('js/sweetalert2.min.js')}}"></script> --}}
-
-        
-
-        {{-- @include('sweetalert::alert') --}}
+        @include('sweetalert::alert')
     </body>
 </html>

@@ -79,17 +79,13 @@ Es para que acepte ls sgte sintaxis de los formualrios
 
 //========================================================================================//
 
-Crear la UI, Interfaz de usuario de la autenticación, ingresando en el "package.json" las dependencias Bootstrap, jquery y popper, además de las carpetas "auth" del controlador (Homecontroller) y vistas (auth/home), cambia si existe o crea layouts/app.blade, nuevas rutas, nuevas migraciones (password_resets)
-php artisan ui bootstrap --auth
+Instalar el sweet alert para los alert de php en controller y reponses
+composer require realrashid/sweet-alert
+php artisan vendor:publish --provider="RealRashid\SweetAlert\SweetAlertServiceProvider"
 
+@include('sweetalert::alert') en el layout
 
-
-https://diegooo.com/laravel-ui-autenticacion-de-laravel-8/
-
-
-
-php artisan migrate
-php artisan serve => http://127.0.0.1:8000/
+//========================================================================================//
 
 Sirve para cambiar nombres y tipos de datos de las columnas de la BD por medio de las migraciones
 
@@ -98,6 +94,20 @@ composer require doctrine/dbal
 composer require doctrine/dbal laravel/framework ^7.30.6
 
 composer require doctrine/dbal:2.*
+
+//========================================================================================//
+
+Crear la UI, Interfaz de usuario de la autenticación, ingresando en el "package.json" las dependencias Bootstrap, jquery y popper, además de las carpetas "auth" del controlador (Homecontroller) y vistas (auth/home), cambia si existe o crea layouts/app.blade, nuevas rutas, nuevas migraciones (password_resets)
+php artisan ui bootstrap --auth
+
+https://diegooo.com/laravel-ui-autenticacion-de-laravel-8/
+
+
+
+php artisan migrate
+php artisan serve => http://127.0.0.1:8000/
+
+
 
 prueba nueva rama desarrollo
 prueba nueva rama jgmc

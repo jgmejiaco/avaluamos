@@ -21,6 +21,9 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="/dirigido_empresa">CREAR EMPRESA</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="/cliente_potencial">CLIENTE POTENCIAL</a>
                         </li>
                         <li class="nav-item">
@@ -35,7 +38,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES GERENCIALES</a>
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
                                 <li><a class="dropdown-item" href="/visita">Informe 2</a></li>

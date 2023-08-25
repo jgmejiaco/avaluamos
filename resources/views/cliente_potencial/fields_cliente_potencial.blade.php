@@ -236,8 +236,8 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
-                {!! Form::select('referido_por', $referido_por, null, ['class' => 'form-control select2', 'id' => 'referido_por', 'required']) !!}
+                <label for="id_referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
+                {!! Form::select('id_referido_por', $referido_por, null, ['class' => 'form-control select2', 'id' => 'id_referido_por', 'required']) !!}
             </div>
         </div>
 
@@ -245,8 +245,8 @@
         
         <div class="col-12 col-md-3" id="div_red_social">
             <div class="form-group">
-                <label for="red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
-                {!! Form::select('red_social', $red_social, null, ['class' => 'form-control select2', 'id' => 'red_social', 'required']) !!}
+                <label for="id_red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
+                {!! Form::select('id_red_social', $red_social, null, ['class' => 'form-control select2', 'id' => 'id_red_social', 'required']) !!}
             </div>
         </div>
 

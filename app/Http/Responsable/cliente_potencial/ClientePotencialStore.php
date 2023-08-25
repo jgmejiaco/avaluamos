@@ -8,42 +8,90 @@ use Illuminate\Contracts\Support\Responsable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Persona;
-use App\Models\Usuario;
 use Jenssegers\Date\Date;
+use App\Models\Usuario;
+use App\Models\DirigidoA;
+use App\Models\ReferidoPor;
 
 class ClientePotencialStore implements Responsable
 {
     public function toResponse($request)
     {
         // dd($request);
-
-        $cliNombres = strtoupper(request('nombre_solicitante', null));
-        $cliCelular = request('celular', null);
-        $cliEmail = request('correo', null);
-        $idTipoPersona = request('tipo_persona', null);
+        // Se crea primero en la tabla "dirigo_a", se consulta y luego hacer insert en clientes
         $dirigidoA = strtoupper(request('dirigido_a', null));
         $idTipoDocumento = request('tipo_documento', null);
         $docDirigidoA = strtoupper(request('documento_dirigido_a', null));
-        $objetoAvaluo = request('objeto_avaluo', null);
-        $idCiudad = request('municipio', null);
-        $sector = strtoupper(request('sector', null));
-        $barrio = strtoupper(request('barrio', null));
-        $direccion = strtoupper(request('direccion', null));
-        $idTipoInmueble = request('tipo_inmueble', null);
-        $area = doubleval(request('area', null));
-        $idEstrato = request('estrato', null);
-        $numeroInmueble = strtoupper(request('numero_inmueble', null));
-        $cantParqueaderos = request('cant_parqueaderos', null);
-        $cantCuartoUtil = request('cant_cuarto_util', null);
-        $cantKioskos = request('cant_kioscos', null);
-        $cantPiscinas = request('cant_piscinas', null);
-        $cantEstablos = request('cant_establos', null);
-        $cantBillares = request('cant_billares', null);
-        $idReferidoPor = request('referido_por', null);
-        $porcentajeDescuento = intval(request('porcentaje_descuento', null));
-        $valorCotizacion = request('valor_cotizacion', null);
-        $idVisitado = request('visitado', null);
+
+        // ========================================================
+
+        DB::connection('mysql')->beginTransaction();
+
+        try {
+            $nuevoDirigidoA = DirigidoA::create([
+                'dirigido_a' => $dirigidoA,
+                'id_tipo_documento' => $idTipoDocumento,
+                'numero_documento' => $docDirigidoA,
+            ]);
+
+            // =======================================
+
+            if($nuevoDirigidoA)
+            {
+                $cliNombres = strtoupper(request('nombre_solicitante', null));
+                $cliCelular = request('celular', null);
+                $cliEmail = request('correo', null);
+                $idTipoPersona = request('tipo_persona', null);
+                $objetoAvaluo = request('objeto_avaluo', null);
+                $idCiudad = request('municipio', null);
+                $sector = strtoupper(request('sector', null));
+                $barrio = strtoupper(request('barrio', null));
+                $direccion = strtoupper(request('direccion', null));
+                $idTipoInmueble = request('tipo_inmueble', null);
+                $area = doubleval(request('area', null));
+                $idEstrato = request('estrato', null);
+                $numeroInmueble = strtoupper(request('numero_inmueble', null));
+                $cantParqueaderos = request('cant_parqueaderos', null);
+                $cantCuartoUtil = request('cant_cuarto_util', null);
+                $cantKioskos = request('cant_kioscos', null);
+                $cantPiscinas = request('cant_piscinas', null);
+                $cantEstablos = request('cant_establos', null);
+                $cantBillares = request('cant_billares', null);
+                $idReferidoPor = request('id_referido_por', null);
+                $idRedSocial = request('id_red_social', null);
+                $nombreQuienRefiere = request('nombre_quien_refiere', null);
+                $empresaQueRefiere = request('empresa_que_refiere', null);
+                $porcentajeDescuento = intval(request('porcentaje_descuento', null));
+                $valorCotizacion = request('valor_cotizacion', null);
+                $idVisitado = request('visitado', null);
+
+
+
+                DB::connection('mysql')->commit();
+                alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevo_usuario->usuario . ' y la clave es: ' . $numero_documento);
+                return redirect()->to(route('administrador.index'));
+
+            } else {
+                DB::connection('mysql')->rollback();
+                alert()->error('Error', 'Ha ocurrido un error al crear el usuario, por favor contacte a Soporte.');
+                return redirect()->to(route('administrador.index'));
+            }
+
+        }
+        catch (Exception $e)
+        {
+            // dd($e);
+            DB::connection('mysql')->rollback();
+            alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
+            return back();
+        }
+
+
+        // ==============================================================================
+        
+
+
+        // ==============================================================================
 
         dd($cliNombres, $cliCelular, $cliEmail, $idTipoPersona, $dirigidoA, $idTipoDocumento, $docDirigidoA, $objetoAvaluo, $idCiudad, $sector, $barrio, $direccion, $idTipoInmueble, $area, $idEstrato, $numeroInmueble, $cantParqueaderos, $cantCuartoUtil, $cantKioskos, $cantPiscinas, $cantEstablos, $cantBillares, $idReferidoPor, $porcentajeDescuento, $valorCotizacion, $idVisitado);
         

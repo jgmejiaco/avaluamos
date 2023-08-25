@@ -44,3 +44,7 @@ Route::resource('calendario', 'calendario\CalendarioController');
 
 // RUTAS DEL CLIENTE POTENCIAL
 Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
+
+// RUTAS CREACIÓN EMPRESAS (Dirigido a)
+Route::resource('dirigido_empresa', 'dirigido_empresa\DirigidoEmpresaController');
+Route::post('validar_empresa', 'dirigido_empresa\DirigidoEmpresaController@validarEmpresa')->name('validar_empresa');
