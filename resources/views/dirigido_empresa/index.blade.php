@@ -40,14 +40,12 @@
                         <tbody>
                             @foreach ($empresas as $empresa)
                                 <tr>
-                                    <td>{{$empresa->id_dirigido_a}}</td>
-                                    <td>{{$empresa->dirigido_a}}</td>
-                                    {{-- <td>{{$empresa->decripcion_documento}}</td> --}}
-                                    <td>documento</td>
-                                    <td>{{$empresa->numero_documento}}</td>
+                                    <td>{{isset($empresa) ? $empresa->id_dirigido_a : null}}</td>
+                                    <td>{{isset($empresa) ? $empresa->dirigido_a : null}}</td>
+                                    <td>{{isset($empresa) ? $empresa->decripcion_documento : null}}</td>
+                                    <td>{{isset($empresa) ? $empresa->numero_documento : null}} {{}}</td>
                                     <td>
-                                        <button class="btn btn-info" id="{{$empresa->id_dirigido_a}}">
-                                        {{-- <button class="btn btn-info" id="{{$empresa->id_dirigido_a}}" onclick="editarEmpresa($empresa->id_dirigido_a)"> --}}
+                                        <button class="btn btn-info" id="{{isset($empresa) ? $empresa->id_dirigido_a : null}}">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar
                                         </button>
                                     </td>
