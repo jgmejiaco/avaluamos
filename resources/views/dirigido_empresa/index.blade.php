@@ -18,8 +18,6 @@
 
         <div class="row mb-5">
             <div class="col-12 d-flex justify-content-end">
-                {{-- <a href="{{route('dirigido_empresa.create')}}" class="btn btn-primary float-right">Crear Nueva Empresa</a> --}}
-
                 <button class="btn btn-primary float-right" id="crear_empresa">Crear Nueva Empresa</button>
             </div>
         </div>
@@ -44,11 +42,12 @@
                                 <tr>
                                     <td>{{$empresa->id_dirigido_a}}</td>
                                     <td>{{$empresa->dirigido_a}}</td>
-                                    <td>{{$empresa->decripcion_documento}}</td>
+                                    {{-- <td>{{$empresa->decripcion_documento}}</td> --}}
+                                    <td>documento</td>
                                     <td>{{$empresa->numero_documento}}</td>
                                     <td>
-                                        {{-- <a href="visita/edit" class="btn btn-info" id="">Editar</a> --}}
                                         <button class="btn btn-info" id="{{$empresa->id_dirigido_a}}">
+                                        {{-- <button class="btn btn-info" id="{{$empresa->id_dirigido_a}}" onclick="editarEmpresa($empresa->id_dirigido_a)"> --}}
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar
                                         </button>
                                     </td>
@@ -234,9 +233,28 @@
                                 footer: '<a href="">Why do I have this issue?</a>'
                             })
                         }
+
+                        if (respuesta == "error_exception") {
+                            Swal.fire({
+                                icon: 'error',
+                                type: 'error',
+                                title: 'Error Exception!',
+                                text: 'Verifique por favor con soporte técnico',
+                                footer: '<a href="">Why do I have this issue?</a>'
+                            })
+                        }
                     }
                 });
             })
         })
+
+        // =========================================================================
+        // =========================================================================
+
+        // function editarEmpresa(idEmpresa) {
+        //     alert(idEmpresa);
+        // }
+
+        
     </script>
 @endsection
