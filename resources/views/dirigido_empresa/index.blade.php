@@ -43,7 +43,7 @@
                                     <td>{{isset($empresa) ? $empresa->id_dirigido_a : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->dirigido_a : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->decripcion_documento : null}}</td>
-                                    <td>{{isset($empresa) ? $empresa->numero_documento : null}} {{}}</td>
+                                    <td>{{isset($empresa) ? $empresa->numero_documento : null}}</td>
                                     <td>
                                         <button class="btn btn-info" id="{{isset($empresa) ? $empresa->id_dirigido_a : null}}">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar
