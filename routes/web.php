@@ -48,3 +48,4 @@ Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialControll
 // RUTAS CREACIÓN EMPRESAS (Dirigido a)
 Route::resource('dirigido_empresa', 'dirigido_empresa\DirigidoEmpresaController');
 Route::post('validar_empresa', 'dirigido_empresa\DirigidoEmpresaController@validarEmpresa')->name('validar_empresa');
+Route::post('editar_empresa', 'dirigido_empresa\DirigidoEmpresaController@update')->name('editar_empresa');
