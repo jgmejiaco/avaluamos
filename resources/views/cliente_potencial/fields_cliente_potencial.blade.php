@@ -3,7 +3,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="nombre_solicitante" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
-                {!! Form::text('nombre_solicitante', old('nombre_solicitante'), ['class' => 'form-control text-uppercase', 'id' => 'nombre_solicitante', 'required']) !!}
+                {!! Form::text('nombre_solicitante', old('nombre_solicitante'), ['class' => 'form-control text-uppercase', 'id' => 'nombre_solicitante']) !!}
             </div>
             {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
         </div>
@@ -13,7 +13,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
-                {!! Form::text('celular', old('celular'), ['class' => 'form-control text-uppercase', 'id' => 'celular', 'required']) !!}
+                {!! Form::text('celular', old('celular'), ['class' => 'form-control text-uppercase', 'id' => 'celular']) !!}
             </div>
         </div>
 
@@ -22,7 +22,7 @@
         <div class="col-12 col-md-3" id="div_correo">
             <div class="form-group">
                 <label for="correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
-                {!! Form::email('correo', null, ['class' => 'form-control', 'id' => 'correo', 'required']) !!}
+                {!! Form::email('correo', null, ['class' => 'form-control', 'id' => 'correo']) !!}
             </div>
         </div>
 
@@ -31,7 +31,7 @@
         <div class="col-12 col-md-3" id="div_correo">
             <div class="form-group">
                 <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
-                {!! Form::select('tipo_persona', $tipo_persona, null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'required']) !!}
+                {!! Form::select('tipo_persona', $tipo_persona, null, ['class' => 'form-control select2', 'id' => 'tipo_persona']) !!}
             </div>
         </div>
 
@@ -40,7 +40,7 @@
         <div class="col-12 col-md-3" id="div_correo">
             <div class="form-group">
                 <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::text('dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'dirigido_a', 'required']) !!}
+                {!! Form::select('dirigido_a', $dirigido_a, null, ['class' => 'form-control select2', 'id' => 'dirigido_a']) !!}
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="tipo_documento" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::select('tipo_documento', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_documento', 'required']) !!}
+                {!! Form::select('tipo_documento', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_documento', 'read-only']) !!}
             </div>
         </div>
 
@@ -58,7 +58,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="documento_dirigido_a" class="form-label text-uppercase">Documento Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::text('documento_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'required']) !!}
+                {!! Form::text('documento_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'read-only']) !!}
             </div>
         </div>
 
@@ -70,37 +70,37 @@
             <div class="border rounded d-flex justify-content-around p-5">
                 <div>
                     <label for="comercial" class="form-label text-uppercase">comercial</label>
-                    {!!Form::checkbox('comercial', null, null, ['class' => '', 'id' => 'comercial'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Comercial', null, ['class' => '', 'id' => 'comercial'])!!}
                 </div>
 
                 <div>
                     <label for="juridico" class="form-label text-uppercase">Jurídico</label>
-                    {!!Form::checkbox('juridico', null, null, ['class' => '', 'id' => 'juridico',])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Jurídico', null, ['class' => '', 'id' => 'juridico'])!!}
                 </div>
 
                 <div>
                     <label for="rentas" class="form-label text-uppercase">Rentas</label>
-                    {!!Form::checkbox('rentas', null, null, ['class'=>'', 'id'=>'rentas'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Rentas', null, ['class'=>'', 'id'=>'rentas'])!!}
                 </div>
 
                 <div>
                     <label for="contable" class="form-label text-uppercase">Contable</label>
-                    {!!Form::checkbox('contable', null, null, ['class'=>'', 'id'=>'contable'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Contable', null, ['class'=>'', 'id'=>'contable'])!!}
                 </div>
 
                 <div>
                     <label for="financiero" class="form-label text-uppercase">Financiero</label>
-                    {!!Form::checkbox('financiero', null, null, ['class'=>'', 'id'=>'financiero'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Financiero', null, ['class'=>'', 'id'=>'financiero'])!!}
                 </div>
 
                 <div>
                     <label for="reforma_vivienda" class="form-label text-uppercase">Reforma Vivienda</label>
-                    {!!Form::checkbox('reforma_vivienda', null, null, ['class'=>'', 'id'=>'reforma_vivienda'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Reforma Vivienda', null, ['class'=>'', 'id'=>'reforma_vivienda'])!!}
                 </div>
 
                 <div>
                     <label for="compra_vivienda" class="form-label text-uppercase">Compra Vivienda</label>
-                    {!!Form::checkbox('compra_vivienda', null, null, ['class'=>'', 'id'=>'compra_vivienda'])!!}
+                    {!!Form::checkbox('objeto_avaluo[]', 'Compra Vivienda', null, ['class'=>'', 'id'=>'compra_vivienda'])!!}
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="municipio" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
-                {!! Form::select('municipio', $ciudad, null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
+                {!! Form::select('municipio', $ciudad, null, ['class' => 'form-control select2', 'id' => 'municipio']) !!}
             </div>
         </div>
 
@@ -128,7 +128,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="barrio" class="form-label text-uppercase">Barrio<span class="text-danger">*</span></label>
-                {!! Form::text('barrio', null, ['class' => 'form-control text-uppercase', 'id' => 'barrio', 'required']) !!}
+                {!! Form::text('barrio', null, ['class' => 'form-control text-uppercase', 'id' => 'barrio']) !!}
             </div>
         </div>
         
@@ -137,7 +137,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="direccion" class="form-label text-uppercase">Dirección<span class="text-danger">*</span></label>
-                {!! Form::text('direccion', null, ['class' => 'form-control text-uppercase', 'id' => 'direccion', 'required']) !!}
+                {!! Form::text('direccion', null, ['class' => 'form-control text-uppercase', 'id' => 'direccion']) !!}
             </div>
         </div>
 
@@ -147,7 +147,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
-                {!! Form::select('tipo_inmueble', $tipo_inmueble, null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
+                {!! Form::select('tipo_inmueble', $tipo_inmueble, null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble']) !!}
             </div>
         </div>
 
@@ -156,7 +156,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="area" class="form-label text-uppercase">Área<span class="text-danger">*</span></label>
-                {!! Form::text('area', null, ['class' => 'form-control text-uppercase', 'id' => 'area', 'required']) !!}
+                {!! Form::text('area', null, ['class' => 'form-control text-uppercase', 'id' => 'area']) !!}
             </div>
         </div>
 
@@ -165,7 +165,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="estrato" class="form-label text-uppercase">Estrato<span class="text-danger">*</span></label>
-                {!! Form::select('estrato', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
+                {!! Form::select('estrato', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'estrato']) !!}
             </div>
         </div>
 
@@ -237,7 +237,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="id_referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
-                {!! Form::select('id_referido_por', $referido_por, null, ['class' => 'form-control select2', 'id' => 'id_referido_por', 'required']) !!}
+                {!! Form::select('id_referido_por', $referido_por, null, ['class' => 'form-control select2', 'id' => 'id_referido_por']) !!}
             </div>
         </div>
 
@@ -246,7 +246,7 @@
         <div class="col-12 col-md-3" id="div_red_social">
             <div class="form-group">
                 <label for="id_red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
-                {!! Form::select('id_red_social', $red_social, null, ['class' => 'form-control select2', 'id' => 'id_red_social', 'required']) !!}
+                {!! Form::select('id_red_social', $red_social, null, ['class' => 'form-control select2', 'id' => 'id_red_social']) !!}
             </div>
         </div>
 
@@ -255,7 +255,7 @@
         <div class="col-12 col-md-3" id="div_nombre_refiere">
             <div class="form-group">
                 <label for="nombre_quien_refiere" class="form-label text-uppercase">Nombre quien refiere<span class="text-danger">*</span></label>
-                {!! Form::text('nombre_quien_refiere', null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_quien_refiere', 'required']) !!}
+                {!! Form::text('nombre_quien_refiere', null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_quien_refiere']) !!}
             </div>
         </div>
 
@@ -264,7 +264,7 @@
         <div class="col-12 col-md-3" id="div_empresa_refiere">
             <div class="form-group">
                 <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere<span class="text-danger">*</span></label>
-                {!! Form::text('empresa_que_refiere', null, ['class' => 'form-control text-uppercase', 'id' => 'empresa_que_refiere', 'required']) !!}
+                {!! Form::text('empresa_que_refiere', null, ['class' => 'form-control text-uppercase', 'id' => 'empresa_que_refiere']) !!}
             </div>
         </div>
 
@@ -273,7 +273,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="porcentaje_descuento" class="form-label text-uppercase">Porcentaje Descuento<span class="text-danger">*</span></label>
-                {!! Form::number('porcentaje_descuento', null, ['class' => 'form-control text-uppercase', 'id' => 'porcentaje_descuento', 'required']) !!}
+                {!! Form::number('porcentaje_descuento', null, ['class' => 'form-control text-uppercase', 'id' => 'porcentaje_descuento']) !!}
             </div>
         </div>
 
@@ -282,7 +282,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="valor_cotizacion" class="form-label text-uppercase">Valor Cotizacion<span class="text-danger">*</span></label>
-                {!! Form::number('valor_cotizacion', null, ['class' => 'form-control text-uppercase', 'id' => 'valor_cotizacion', 'required']) !!}
+                {!! Form::number('valor_cotizacion', null, ['class' => 'form-control text-uppercase', 'id' => 'valor_cotizacion']) !!}
             </div>
         </div>
 
@@ -291,7 +291,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="visitado" class="form-label text-uppercase">Visitado<span class="text-danger">*</span></label>
-                {!! Form::select('visitado', $si_no, null, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
+                {!! Form::select('visitado', $si_no, null, ['class' => 'form-control select2', 'id' => 'visitado']) !!}
             </div>
         </div>
     </div> {{-- FIN div_campos_cliente_potencial --}}

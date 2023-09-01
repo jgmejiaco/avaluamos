@@ -273,7 +273,7 @@
 
             // ====================================
 
-            form_editar_empresa += ` <input type="text" name="id_empresa_editar" id="id_empresa_editar" value="${idEmpresa}" required >`;
+            form_editar_empresa += ` <input type="hidden" name="id_empresa_editar" id="id_empresa_editar" value="${idEmpresa}" required >`;
 
             // ====================================
 
@@ -354,51 +354,6 @@
                 cancelButtonText:'<i class="fa fa-thumbs-down"> Cancelar</i>',
                 cancelButtonAriaLabel: 'Thumbs down'
             });
-
-            // ================================================
-
-            // $('#numero_documento_editar').blur(function () {
-            //     var csrfToken = document.querySelector('input[name="_token"]').value;
-            //     let idTipoDocumentoEditar = $('#id_tipo_documento_editar').val();
-            //     let numeroDocumentoEditar = $('#numero_documento_editar').val();
-
-            //     console.log(idTipoDocumentoEditar);
-            //     console.log(numeroDocumentoEditar);
-
-            //     $.ajax({
-            //         url: "{{route('validar_empresa')}}",
-            //         type: "POST",
-            //         datatype: "JSON",
-            //         data:{
-            //             _token: csrfToken,
-            //             'id_tipo_documento_editar': idTipoDocumentoEditar,
-            //             'numero_documento_editar': numeroDocumentoEditar
-            //         },
-            //         success: function (respuesta) {
-            //             console.log(respuesta);
-
-            //             if (respuesta == "existe_empresa") {
-            //                 Swal.fire({
-            //                     icon: 'warning',
-            //                     type: 'warning',
-            //                     title: 'Esta empresa ya existe!',
-            //                     text: 'Verifique por favor',
-            //                     footer: '<a href="">Why do I have this issue?</a>'
-            //                 })
-            //             }
-
-            //             if (respuesta == "error_exception") {
-            //                 Swal.fire({
-            //                     icon: 'error',
-            //                     type: 'error',
-            //                     title: 'Error Exception!',
-            //                     text: 'Verifique por favor con soporte técnico',
-            //                     footer: '<a href="">Why do I have this issue?</a>'
-            //                 })
-            //             }
-            //         }
-            //     });
-            // })
         }
     </script>
 @endsection

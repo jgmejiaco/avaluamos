@@ -48,28 +48,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nombre y Apellido</td>
-                                <td>300 555 55 55</td>
-                                <td>nombre@correo.com</td>
-                                <td>Natural</td>
-                                <td>EPM</td>
-                                <td>Nit</td>
-                                <td>0123456789</td>
-                                <td>juridico</td>
-                                <td>medellin</td>
-                                <td>Finca</td>
-                                <td>500000</td>
-                                <td>empleado juan</td>
-                                <td>pendiente</td>
-                                <td>
-                                    <a href="visita/edit" class="btn btn-info" id="">Editar</a>
-                                    {{-- <button class="btn btn-info" id="">
-                                        <i class="fa fa-key" aria-hidden="true"></i>Editar
-                                    </button> --}}
-                                </td>
-                            </tr>
+                            {{-- @php
+                                dd($clientes);
+                            @endphp --}}
+
+                            @foreach ($clientes as $cliente)
+                                {{-- @php
+                                    dd($cliente);
+                                @endphp --}}
+                                <tr>
+                                    <td>{{$cliente['id_cliente']}}</td>
+                                    <td>{{$cliente['cli_nombres']}}</td>
+                                    <td>{{$cliente['cli_celular']}}</td>
+                                    <td>{{$cliente['cli_email']}}</td>
+                                    <td>{{$cliente['id_tipo_persona']}}</td>
+                                    <td>{{$cliente['id_dirigido_a']}}</td>
+                                    <td>{{$cliente['id_doc_empresa']}}</td>
+                                    <td>{{$cliente['documento_empresa']}}</td>
+                                    <td>{{$cliente['objeto_avaluo']}}</td>
+                                    <td>{{$cliente['id_ciudad']}}</td>
+                                    <td>{{$cliente['id_tipo_inmueble']}}</td>
+                                    <td>{{$cliente['valor_cotizacion']}}</td>
+                                    <td>{{$cliente['id_referido_por']}}</td>
+                                    <td>{{$cliente['id_visitado']}}</td>
+                                    <td>
+                                        <a href="visita/edit" class="btn btn-info" id="">Editar</a>
+                                        {{-- <button class="btn btn-info" id="">
+                                            <i class="fa fa-key" aria-hidden="true"></i>Editar
+                                        </button> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

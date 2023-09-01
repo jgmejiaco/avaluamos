@@ -23,10 +23,14 @@ class Cliente extends Model
     public $timestamps = true;
     protected $fillable = [
         'cli_nombres',
+        'id_doc_cliente',
+        'documento_cliente',
         'cli_celular',
         'cli_email',
         'id_tipo_persona',
         'id_dirigido_a',
+        'id_doc_empresa',
+        'documento_empresa',
         'objeto_avaluo',
         'id_ciudad',
         'sector',

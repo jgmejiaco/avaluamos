@@ -18,6 +18,8 @@ use App\Models\IndicadorNumerico;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Models\SiNo;
+use App\Models\DirigidoA;
+use App\Models\Cliente;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 
 class ClientePotencialController extends Controller
@@ -39,8 +41,10 @@ class ClientePotencialController extends Controller
         //     {
         //         return redirect()->to(route('login'));
         //     } else {
+                $clientes = Cliente::all()->toArray();
+
                 $this->shareData();
-                return view('cliente_potencial.index');
+                return view('cliente_potencial.index', compact('clientes'));
         //     }
         // } catch (Exception $e) {
         //     // dd($e);
@@ -140,27 +144,59 @@ class ClientePotencialController extends Controller
         view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
         view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
         view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
+        view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
         view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
         view()->share('indicador_numerico', IndicadorNumerico::orderBy('id_indicador_numerico', 'asc')->pluck('indicador_numerico', 'id_indicador_numerico'));
         view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
         view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
         view()->share('si_no', SiNo::orderBy('id_si_no', 'asc')->pluck('descripcion_si_no', 'id_si_no'));
 
-        // view()->share('pais', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
-        // view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
-        // view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda', 'asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
-        // view()->share('uso_inmueble', UsoInmueble::orderBy('uso_inmueble', 'asc')->pluck('uso_inmueble', 'id_uso_inmueble'));
-        // view()->share('usuarios', $this->todosLosUsuarios());
     }
 
     // ========================================================
 
-    public function consultarMttoInfraestructura()
+    public function consultarEmpresa(Request $request)
     {
-    
+        $idEmpresa = request('id_dirigido_a', null);
+
+        $consultarEmpresa = DB::table('dirigido_a')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
+                ->select('dirigido_a.id_tipo_documento',
+                            'tipo_documento.decripcion_documento',
+                            'dirigido_a.numero_documento'
+                        )
+                ->whereNull('dirigido_a.deleted_at')
+                ->where('id_dirigido_a', $idEmpresa)
+                ->first();
+
+        return response()->json($consultarEmpresa);
     }
 
     // ========================================================
+    
+    public function consultarClientes()
+    {
+        $consultarClientes = DB::table('clientes')
+                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                ->leftjoin('dirigido_a', 'dirigido_a.id_dirigido_a', '=', 'clientes.id_dirigido_a')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_tipo_documento')
+                ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
+                ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'clientes.id_tipo_inmueble')
+                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
+                ->leftjoin('si_no', 'si_no.id_si_no', '=', 'clientes.id_si_no')
+                // ->select('dirigido_a.id_tipo_documento',
+                //             'tipo_documento.decripcion_documento',
+                //             'dirigido_a.numero_documento'
+                //         )
+                ->whereNull('dirigido_a.deleted_at')
+                ->get();
+
+        return $consultarClientes;
+    }
+
+    // ========================================================
+
+
     public function validarVariablesSesion()
     {
         // $variablesSesion =[];

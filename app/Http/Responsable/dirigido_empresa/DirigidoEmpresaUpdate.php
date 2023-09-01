@@ -47,7 +47,6 @@ class DirigidoEmpresaUpdate implements Responsable
                 return redirect()->to(route('dirigido_empresa.index'));
             }
         } catch (Exception $e) {
-            // dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Ha ocurrido un excepción, si el problema persiste, contacte a Soporte.');
             return back();
