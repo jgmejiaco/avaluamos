@@ -62,8 +62,8 @@
             $('#div_nombre_refiere').hide();
             $('#div_empresa_refiere').hide();
 
-            $("#referido_por").on('change',function(){
-                let referido_por = $('#referido_por').val();
+            $("#id_referido_por").on('change',function(){
+                let referido_por = $('#id_referido_por').val();
                 console.log(referido_por);
 
                 if (referido_por == 1) { // EMPRESA = 1
@@ -98,7 +98,7 @@
                     $('#nombre_quien_refiere').removeAttr('required');
                     $('#div_empresa_refiere').hide('slow');
                     $('#empresa_que_refiere').removeAttr('required');
-                    $('#referido_por').attr('required');
+                    $('#id_referido_por').attr('required');
                 }
             });
 

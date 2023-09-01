@@ -47,6 +47,9 @@ class Cliente extends Model
         'id_cant_establos',
         'id_cant_billares',
         'id_referido_por',
+        'id_red_social',
+        'nombre_quien_refiere',
+        'empresa_que_refiere',
         'porcentaje_descuento',
         'valor_cotizacion',
         'id_visitado'

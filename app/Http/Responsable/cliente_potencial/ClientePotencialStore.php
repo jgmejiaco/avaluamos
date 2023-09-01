@@ -92,11 +92,19 @@ class ClientePotencialStore implements Responsable
         }
 
         // ==============================
-
+        
         if ($cantBillares != "-1" || $cantBillares != -1) {
-            $cantBillares = request('cant_billares', null);;
+            $cantBillares = request('cant_billares', null);
         } else {
             $cantBillares = null;
+        }
+        
+        // ==============================
+
+        if ($idRedSocial != "-1" || $idRedSocial != -1) {
+            $idRedSocial = request('id_red_social', null);
+        } else {
+            $idRedSocial = null;
         }
 
         // ==============================================================================
