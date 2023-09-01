@@ -40,17 +40,10 @@
     <script>
         $(document).ready(function()
         {
-            $('.select2').select2({
-                placeholder: 'Seleccionar...',
-                allowClear: true,
-                disabled: false
-            });
-            
-            // let select = $('.select2');
-
-            // let seleccionar = $("<option>", {
-            //     value: "seleccionar", // Valor de la opción
-            //     text: "Seleccionar..." // Texto visible de la opción
+            // $('.select2').select2({
+            //     placeholder: 'Seleccionar...',
+            //     allowClear: true,
+            //     disabled: false
             // });
             
             let select = $('.select2');
