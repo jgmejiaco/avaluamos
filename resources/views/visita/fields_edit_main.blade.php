@@ -62,13 +62,13 @@
             <!-- ***************************************************** -->
             <div class="tab-content p-0">
                 <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" -->
-                <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab">
+                <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
                     @include('visita.fields_edit_visita_tecnica')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN JURÍDICA" -->
-                <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab">
+                <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab" tabindex="0">
                     @include('visita.fields_edit_info_juridica')
                 </div>
                 <!-- ================================== -->

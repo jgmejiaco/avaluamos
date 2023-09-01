@@ -27,7 +27,7 @@
         <div class="row" style="margin-top: 5em !important;">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered" id="tabla_visitas">
+                    <table class="table table-striped table-bordered" id="tabla_visitas" aria-describedby="tbl editar visitas">
                         <thead>
                             <tr class="header-table">
                                 <th>ID</th>
@@ -48,15 +48,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
-                                dd($clientes);
-                            @endphp --}}
-
                             @foreach ($clientes as $cliente)
-                                {{-- @php
-                                    dd($cliente);
-                                    // dd($cliente->id_cliente);
-                                @endphp --}}
                                 <tr>
                                     <td>{{$cliente->id_cliente}}</td>
                                     <td>{{$cliente->cli_nombres}}</td>

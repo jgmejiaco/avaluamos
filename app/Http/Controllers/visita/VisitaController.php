@@ -132,8 +132,8 @@ class VisitaController extends Controller
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
-        //         $this->shareData();
-        //         return view('visita.edit');
+                $this->shareData();
+                return view('visita.edit');
         //     }
         // } catch (Exception $e) {
         //     // dd($e);
@@ -158,11 +158,11 @@ class VisitaController extends Controller
         // {
         //     return redirect()->to(route('home'));
         // } else {
-        //     $usuario = User::find($id);
-        //     view()->share('usuario', $usuario);
-        //     $this->shareData();
-        //     return view('administrador.edit');
+                // $this->shareData();
+                // return view('visita.edit');
         // }
+            // $this->shareData();
+            // return view('visita.edit');
     }
 
     /**

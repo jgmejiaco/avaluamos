@@ -12,7 +12,7 @@
         {{-- Favicon --}}
         <link rel="shortcut icon" href="{{asset('imagenes/logo_avaluamos.png')}}" type="image/x-icon">
 
-        <!-- Bootstrap -->
+        <!-- Bootstrap 5.2.3-->
         <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" >
         
         <!-- Google Fonts -->
@@ -25,10 +25,8 @@
         <script src="{{ asset('js/modernizr.custom.js') }}"></script>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-
         {{-- SELECT2 --}}
         <link rel="stylesheet" href="{{asset('vendor/select2/select2.min.css')}}">
-        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -66,7 +64,7 @@
 
         @yield('scripts')
 
-        <!-- Bootstrap -->
+        <!-- BOOTSTRAP 5.2.3 -->
         <script src="{{asset('bootstrap/bootstrap.bundle.min.js')}}"></script>
 
         <!-- SELECT2 -->
