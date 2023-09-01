@@ -45,7 +45,14 @@
                                     <td>{{isset($empresa) ? $empresa->decripcion_documento : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->numero_documento : null}}</td>
                                     <td>
-                                        <button class="btn btn-info" id="{{isset($empresa) ? $empresa->id_dirigido_a : null}}">
+                                        @php
+                                            $idEmpresa = $empresa->id_dirigido_a;
+                                            $dirigidoA = $empresa->dirigido_a;
+                                            $tipoDocumento = $empresa->id_tipo_documento;
+                                            $documento = $empresa->decripcion_documento;
+                                            $numeroDocumento = $empresa->numero_documento;
+                                        @endphp
+                                        <button class="btn btn-info" id="" onclick="editarEmpresa('{{$idEmpresa}}','{{$dirigidoA}}','{{$tipoDocumento}}','{{$documento}}','{{$numeroDocumento}}')">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar
                                         </button>
                                     </td>
@@ -249,10 +256,104 @@
         // =========================================================================
         // =========================================================================
 
-        // function editarEmpresa(idEmpresa) {
-        //     alert(idEmpresa);
-        // }
+        function editarEmpresa(idEmpresa,empresa,idDocumento,tipoDocumento,documento) {
+            console.log(idEmpresa);
+            console.log(empresa);
+            console.log(idDocumento);
+            console.log(tipoDocumento);
+            console.log(documento);
+            // let tipo_documento = @json($tipo_documento);
 
-        
+            let form_editar_empresa = ''
+
+            form_editar_empresa += `
+                {!! Form::open(['method' => 'POST', 'route' => ['editar_empresa'], 'class'  => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_empresa_editar']) !!}
+                    @csrf
+            `;
+
+            // ====================================
+
+            form_editar_empresa += ` <input type="hidden" name="id_empresa_editar" id="id_empresa_editar" value="${idEmpresa}" required >`;
+
+            // ====================================
+
+            form_editar_empresa += `
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="id_tipo_documento_editar" class="form-label text-uppercase">Tipo Documento
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-control" id="id_tipo_documento_editar" name="id_tipo_documento_editar" required>
+                                <option value="${idDocumento}" selected >${tipoDocumento}</option>
+            `;
+                                $.each(tipo_documento, function(id_documento, documento){
+                                    form_editar_empresa += ' <option value="'+id_documento+'">'+documento+'</option>'
+                                });
+
+            form_editar_empresa += `
+                            </select>
+                        </div>
+                    </div>
+            `;
+
+            // ====================================
+
+            form_editar_empresa += `
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="numero_documento_editar" class="form-label text-uppercase">Numero Documento
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="numero_documento_editar" id="numero_documento_editar" class="form-control text-uppercase" value="${documento}" required>
+                        </div>
+                    </div>
+            `;
+
+            // ====================================
+
+            form_editar_empresa += `
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nombre_empresa_editar" class="form-label text-uppercase">Nombre Empresa
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="nombre_empresa_editar" id="nombre_empresa_editar" class="form-control text-uppercase" value="${empresa}" required>
+                        </div>
+                    </div>
+            `;
+
+            // ====================================
+
+            form_editar_empresa += `
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary rounded-pill mt-5" value="Editar Empresa" id="btn_editar_empresa">
+                        </div>
+                    </div>
+            `;
+
+            // ====================================
+
+            form_editar_empresa += `
+                    {!! Form::close() !!}
+            `;
+
+            // ================================================
+
+            Swal.fire ({
+                title: '<strong>Editar Empresa</strong>',
+                icon: 'info',
+                type: 'info',
+                html: form_editar_empresa,
+                showCloseButton: true,
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                focusConfirm: false,
+                cancelButtonText:'<i class="fa fa-thumbs-down"> Cancelar</i>',
+                cancelButtonAriaLabel: 'Thumbs down'
+            });
+        }
     </script>
 @endsection

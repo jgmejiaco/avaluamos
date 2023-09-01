@@ -52,9 +52,16 @@
             //     value: "seleccionar", // Valor de la opción
             //     text: "Seleccionar..." // Texto visible de la opción
             // });
+            
+            let select = $('.select2');
 
-            // seleccionar.attr("selected", true);
-            // select.prepend(seleccionar);
+            let seleccionar = $("<option>", {
+                value: "-1", // Valor de la opción
+                text: "Seleccionar..." // Texto visible de la opción
+            });
+
+            seleccionar.attr("selected", true);
+            select.prepend(seleccionar);
 
             // ==============================================
 
@@ -103,10 +110,48 @@
             });
 
             // ==============================================
-            
-            // INICIO DataTable LIST USER'S
-           
-            // CIERRE DataTable LISTA CLIENTES
+
+            $('#dirigido_a').on('change', function () {
+                let id_dirigido_a = $('#dirigido_a').val();
+                console.log(id_dirigido_a);
+
+                if (id_dirigido_a == "-1") {
+                    $('#tipo_documento').val('');
+                    $('#documento_dirigido_a').val('');
+                } else {
+                    $.ajax({
+                        url: "{{route('consultar_empresa')}}",
+                        type: "POST",
+                        dataType: "JSON",
+                        data:{
+                            '_token': "{{ csrf_token() }}",
+                            'id_dirigido_a': id_dirigido_a
+                        },
+                        success: function(respuesta) {
+                            console.log(respuesta);
+                            console.log(respuesta.id_tipo_documento);
+                            console.log(respuesta.decripcion_documento);
+                            console.log(respuesta.numero_documento);
+                            
+                            $('#tipo_documento').val(respuesta.id_tipo_documento);
+                            $('#documento_dirigido_a').val(respuesta.numero_documento);
+                        }
+                    });
+                }
+            });
+
+            // ==============================================
+
+            // function actualizacionMasiva(estado) {
+
+            //     let valoresChecks = $('[name="availability_pending[]"]:checked').map(function(){
+            //                             return this.value;
+            //                         }).get();
+
+            //     let arrayIds = valoresChecks.join(',');
+
+                
+            // }
         });
     </script>
 @endsection

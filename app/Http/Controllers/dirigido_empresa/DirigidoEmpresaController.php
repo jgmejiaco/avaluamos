@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Models\TipoDocumento;
 use App\Models\SiNo;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
+use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
 use App\Models\DirigidoA;
 
 class DirigidoEmpresaController extends Controller
@@ -112,7 +113,8 @@ class DirigidoEmpresaController extends Controller
      */
     public function update(Request $request)
     {
-        
+        // dd($request);
+        return new DirigidoEmpresaUpdate();
     }
 
     // ========================================================
