@@ -43,7 +43,7 @@
                                 <th>Tipo Inmueble</th>
                                 <th>Valor Cotización</th>
                                 <th>Recomendado Por</th>
-                                <th>Estado</th>
+                                <th>Visitado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -55,22 +55,23 @@
                             @foreach ($clientes as $cliente)
                                 {{-- @php
                                     dd($cliente);
+                                    // dd($cliente->id_cliente);
                                 @endphp --}}
                                 <tr>
-                                    <td>{{$cliente['id_cliente']}}</td>
-                                    <td>{{$cliente['cli_nombres']}}</td>
-                                    <td>{{$cliente['cli_celular']}}</td>
-                                    <td>{{$cliente['cli_email']}}</td>
-                                    <td>{{$cliente['id_tipo_persona']}}</td>
-                                    <td>{{$cliente['id_dirigido_a']}}</td>
-                                    <td>{{$cliente['id_doc_empresa']}}</td>
-                                    <td>{{$cliente['documento_empresa']}}</td>
-                                    <td>{{$cliente['objeto_avaluo']}}</td>
-                                    <td>{{$cliente['id_ciudad']}}</td>
-                                    <td>{{$cliente['id_tipo_inmueble']}}</td>
-                                    <td>{{$cliente['valor_cotizacion']}}</td>
-                                    <td>{{$cliente['id_referido_por']}}</td>
-                                    <td>{{$cliente['id_visitado']}}</td>
+                                    <td>{{$cliente->id_cliente}}</td>
+                                    <td>{{$cliente->cli_nombres}}</td>
+                                    <td>{{$cliente->cli_celular}}</td>
+                                    <td>{{$cliente->cli_email}}</td>
+                                    <td>{{$cliente->tipo_persona}}</td>
+                                    <td>{{$cliente->dirigido_a}}</td>
+                                    <td>{{$cliente->decripcion_documento}}</td>
+                                    <td>{{$cliente->documento_empresa}}</td>
+                                    <td>{{$cliente->objeto_avaluo}}</td>
+                                    <td>{{$cliente->descripcion_ciudad}}</td>
+                                    <td>{{$cliente->tipo_inmueble}}</td>
+                                    <td>{{$cliente->valor_cotizacion}}</td>
+                                    <td>{{$cliente->referido_por}}</td>
+                                    <td>{{$cliente->descripcion_si_no}}</td>
                                     <td>
                                         <a href="visita/edit" class="btn btn-info" id="">Editar</a>
                                         {{-- <button class="btn btn-info" id="">
