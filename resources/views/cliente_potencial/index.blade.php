@@ -65,10 +65,9 @@
                                     <td>{{$cliente->referido_por}}</td>
                                     <td>{{$cliente->descripcion_si_no}}</td>
                                     <td>
-                                        <a href="visita/edit" class="btn btn-info" id="">Editar</a>
-                                        {{-- <button class="btn btn-info" id="">
-                                            <i class="fa fa-key" aria-hidden="true"></i>Editar
-                                        </button> --}}
+                                        <a href="visita/edit" class="btn btn-info" id="">
+                                            <i class="fa fa-key" aria-hidden="true"></i> Editar
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,8 +22,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
         <!--  Js -->
-        <script src="{{ asset('js/modernizr.custom.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{asset('js/modernizr.custom.js')}}"></script>
+        <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 
         {{-- SELECT2 --}}
         <link rel="stylesheet" href="{{asset('vendor/select2/select2.min.css')}}">
@@ -64,8 +64,10 @@
 
         @yield('scripts')
 
-        <!-- BOOTSTRAP 5.2.3 -->
+        <!-- BOOTSTRAP -->
         <script src="{{asset('bootstrap/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('bootstrap/1.12.9_popper.min.js')}}"></script>
+        <script src="{{asset('bootstrap/4.0.0_bootstrap.min.js')}}"></script>
 
         <!-- SELECT2 -->
         <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
