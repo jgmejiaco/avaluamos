@@ -11,8 +11,12 @@
             <!-- ***************************************************** -->
             <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica">Visita Técnica</a>
+                    <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-toggle="tab" role="tab" aria-controls="nav_cliente">Visita Técnica</a>
                 </li>
+                <!-- ================================== -->
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica">Visita Técnica</a>
+                </li> --}}
                 <!-- ================================== -->
                 <li class="nav-item">
                     <a class="nav-link" href="#nav_info_juridica" id="nav_info_juridica_tab" data-toggle="tab" role="tab" aria-controls="nav_info_juridica">Info Jurídica</a>
@@ -62,9 +66,15 @@
             <!-- ***************************************************** -->
             <div class="tab-content p-0">
                 <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" -->
-                <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
-                    @include('visita.fields_edit_visita_tecnica')
+                <div class="tab-pane active" id="nav_cliente" role="tabpanel" aria-labelledby="nav_cliente_tab" tabindex="0">
+                    @include('visita.fields_edit_cliente')
                 </div>
+                <!-- ================================== -->
+                <!-- ================================== -->
+                <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" -->
+                {{-- <div class="tab-pane" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
+                    @include('visita.fields_edit_visita_tecnica')
+                </div> --}}
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN JURÍDICA" -->

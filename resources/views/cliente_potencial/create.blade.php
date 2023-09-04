@@ -132,19 +132,6 @@
                     });
                 }
             });
-
-            // ==============================================
-
-            // function actualizacionMasiva(estado) {
-
-            //     let valoresChecks = $('[name="availability_pending[]"]:checked').map(function(){
-            //                             return this.value;
-            //                         }).get();
-
-            //     let arrayIds = valoresChecks.join(',');
-
-                
-            // }
         });
     </script>
 @endsection

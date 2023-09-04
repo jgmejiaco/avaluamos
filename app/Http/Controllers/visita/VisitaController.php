@@ -36,7 +36,12 @@ use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
 use App\Models\CalificacionGeneral;
 use App\Models\TipoVias;
-use App\Http\Responsable\visita\VisitaStore;
+use App\Http\Responsable\visita\VisitaUpdate;
+use App\Models\TipoPersona;
+use App\Models\ReferidoPor;
+use App\Models\RedSocial;
+use App\Models\DirigidoA;
+use App\Models\Cliente;
 
 class VisitaController extends Controller
 {
@@ -111,7 +116,7 @@ class VisitaController extends Controller
         // } else {
         //     return new UsuarioStore();
         // }
-        return new VisitaStore();
+        // return new VisitaStore();
     }
 
     /**
@@ -215,6 +220,12 @@ class VisitaController extends Controller
         //                                     ->whereIn(1,2)
         //                                     ->orderBy('nombres', 'asc')
         //                                     ->pluck('nombres', 'id_usuario'));
+        view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
+        view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
+        view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
+        view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
+        view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
+        
         view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_usuario'));
         view()->share('pais', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
         view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
@@ -232,7 +243,7 @@ class VisitaController extends Controller
         view()->share('tipo_muro', TipoMuro::orderBy('tipo_muro', 'asc')->pluck('tipo_muro', 'id_tipo_muro'));
         view()->share('ventaneria', Ventaneria::orderBy('ventaneria', 'asc')->pluck('ventaneria', 'id_ventaneria'));
         view()->share('tipo_techo', TipoTecho::orderBy('tipo_techo', 'asc')->pluck('tipo_techo', 'id_tipo_techo'));
-        view()->share('dirigido_a_empresa', Empresa::orderBy('nombre_empresa', 'asc')->pluck('nombre_empresa', 'id_empresa'));
+        // view()->share('dirigido_a_empresa', Empresa::orderBy('nombre_empresa', 'asc')->pluck('nombre_empresa', 'id_empresa'));
         view()->share('tipo_suelo', TipoSuelo::orderBy('descripcion_tipo_suelo','asc')->pluck('descripcion_tipo_suelo', 'id_tipo_suelo'));
         view()->share('condicion_inmueble', CondicionInmueble::orderBy('condicion_inmueble', 'asc')->pluck('condicion_inmueble', 'id_condicion_inmueble'));
         view()->share('calificacion_fitto_corvini', FittoCorvini::orderBy('fitto_corvini', 'asc')->pluck('fitto_corvini', 'id_fitto_corvini'));
@@ -242,193 +253,16 @@ class VisitaController extends Controller
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
         // view()->share('usuarios', $this->todosLosUsuarios());
+        
     }
 
     // ==========================================================================
 
-    // public function todosLosUsuarios()
-    // {
-    //    try {
-
-    //         $consulta_personas = DB::table('personas')
-    //                         ->join('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'personas.id_tipo_documento')
-    //                         ->join('rol', 'rol.id_rol', '=', 'personas.id_rol')
-    //                         // ->join('municipios', 'municipios.id_municipio', '=', 'usuarios.id_municipio_nacimiento')
-    //                         // ->join('municipios as residencia', 'residencia.id_municipio', '=', 'usuarios.id_municipio_residencia')
-    //                         // ->leftJoin('niveles', 'niveles.id_nivel', '=', 'usuarios.id_nivel')
-    //                         // ->leftJoin('tipo_ingles', 'tipo_ingles.id', '=', 'usuarios.id_tipo_ingles')
-    //                         ->select('personas.nombre_usuario',
-    //                                 'personas.nombres',
-    //                                 'personas.apellidos',
-    //                                 'tipo_documento.decripcion_documento',
-    //                                 'personas.numero_documento',
-    //                                 'personas.correo',
-    //                                 'rol.nombre_rol',
-    //                                 // 'usuarios.direccion_residencia',
-    //                                 // 'roles.id_rol',
-    //                                 //  'usuarios.fecha_nacimiento',
-    //                                 //  'usuarios.genero', 'usuarios.estado',
-    //                                 //  'usuarios.telefono', 'usuarios.celular',
-    //                                 //  'usuarios.contacto2', 'usuarios.contacto_opcional',
-    //                                 //  'usuarios.skype', 'usuarios.zoom',
-    //                                 //  'usuarios.fecha_ingreso_sistema AS fecha_ingreso',
-    //                                 //  'municipios.descripcion AS ciudad_nacimiento',
-    //                                 //  'residencia.descripcion AS ciudad_residencia',
-    //                                 //  'niveles.nivel_descripcion AS niveles',
-    //                                 //  'niveles.id_nivel',
-    //                                 //  'tipo_ingles.id AS id_tip_ing',
-    //                                 //  'tipo_ingles.descripcion AS desc_tip_ing'
-    //                                 )
-    //                         // ->whereNull('usuarios.deleted_at')
-    //                         // ->whereNull('tipo_documento.deleted_at')
-    //                         // ->whereNull('municipios.deleted_at')
-    //                         // ->whereNull('residencia.deleted_at')
-    //                         // ->whereNull('roles.deleted_at')
-    //                         // ->whereNull('niveles.deleted_at')
-    //                         ->get()
-    //                         ->toarray();
-
-    //         // dd($consulta_personas);
-
-    //         return $consulta_personas;
-
-    //    }
-    //    catch (Exception $e)
-    //    {
-    //        alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
-    //        return back();
-    //    }
-    // }
+    
 
     
 
-    public function municipios()
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->municipios();
-        // }
-    }
-
-    public function roles()
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->roles();
-        // }
-    }
-
-    public function validarCedula(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->validarDocumento($request);
-        // }
-    }
-
-    public function validarCedulaEdicion(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->validarDocumentoEdicion($request);
-        // }
-    }
-
-    public function validarCorreo(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->validarCorreo($request);
-        // }
-    }
-
-    public function validarCorreoEdicion(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosShow = new  UsuariosShow();
-        //    return $usuariosShow->validarCorreoEdicion($request);
-        // }
-    }
-
-    public function cambiarEstadoUsuario(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosUpd = new UsuariosUpdate();
-        //      return $usuariosUpd->cambiarEstado($request);
-        // }
-    }
-
-    public function actualizarClave(Request $request)
-    {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuariosUpd = new UsuariosUpdate();
-        //     return $usuariosUpd->cambiarClave($request);
-        // }
-    }
+    
 
     public function validarVariablesSesion()
     {

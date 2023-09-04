@@ -2,7 +2,7 @@
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
-            <h2 class="text-uppercase">6 - CALIFICACIÓN DEL INMUEBLE</h2>
+            <h2 class="text-uppercase">CALIFICACIÓN DEL INMUEBLE</h2>
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">

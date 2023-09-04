@@ -2,11 +2,11 @@
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-1">
-            <h2 class="text-uppercase">1 - VISITA TÉCNICA INMUEBLE</h2>
+            <h2 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h2>
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group wrap-input100 validate-input" data-validate="Required">
-                        <label for="avaluador" class="form-label text-uppercase" data-placeholder="avaluador">avaluador<span class="text-danger">*</span></label>
+                        <label for="avaluador" class="form-label text-uppercase" data-placeholder="avaluador">visitador<span class="text-danger">*</span></label>
                         {!! Form::select('avaluador', $avaluador, old('avaluador'), ['class' => 'form-control text-uppercase', 'id' => 'avaluador', 'required']) !!}
                     </div>
                 </div>
@@ -52,8 +52,8 @@
 
                 <div class="col-12 col-md-3" id="div_correo">
                     <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="dirigido_a_empresa" class="form-label text-uppercase" data-placeholder="dirigido_a_empresa">Dirigido A<span class="text-danger">*</span></label>
-                        {!! Form::select('dirigido_a_empresa', $dirigido_a_empresa,null, ['class' => 'form-control', 'id' => 'dirigido_a_empresa', 'required']) !!}
+                        <label for="dirigido_a" class="form-label text-uppercase" data-placeholder="dirigido_a">Dirigido A<span class="text-danger">*</span></label>
+                        {!! Form::select('dirigido_a', $dirigido_a,null, ['class' => 'form-control', 'id' => 'dirigido_a', 'required']) !!}
                     </div>
                 </div>
 
