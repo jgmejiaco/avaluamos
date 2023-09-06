@@ -170,13 +170,24 @@
         function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,cliCelular,cliEmail,idTipoPersona,tipoPersona) {
             formEditarcliente = '';
 
-            formEditarcliente += `<input type="hidden" value="${idCliente}">`;
+            formEditarcliente += `
+                {!! Form::open(['method' => 'POST', 'route' => ['editar_cliente'], 'id' => 'form_editar_cliente', 'class' => 'login100-form', 'autocomplete' => 'off']) !!}
+                @csrf
+            `;
 
-            formEditarcliente += `  <div class="form-group">
+            // ====================================
+
+            formEditarcliente += `<input type="hidden" name="id_cliente" value="${idCliente}">`;
+
+            // ====================================
+
+            formEditarcliente += `  <div class="form-group mt-5">
                                         <label class="form-label text-uppercase">Nombres</label>
-                                        <input type="text" class="form-control" value="${nombres}">
+                                        <input type="text" class="form-control" name="nombres" value="${nombres}">
                                     </div>
             `;
+
+            // ====================================
 
             formEditarcliente += `
                     <div class="col-12">
@@ -184,7 +195,7 @@
                             <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento
                                 <span class="text-danger">*</span>
                             </label>
-                            <select class="form-control select2" id="id_tipo_documento" name="id_tipo_documento" required>
+                            <select class="form-control select2" id="id_doc_cliente" name="id_doc_cliente" required>
             `;
                                 if (idDocCliente == null || idDocCliente == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -202,23 +213,31 @@
                     </div>
             `;
 
+            // ====================================
+
             formEditarcliente += `  <div class="form-group">
                                         <label class="form-label text-uppercase">Número Documento</label>
-                                        <input type="text" class="form-control" value="${documentoCliente}">
+                                        <input type="text" class="form-control" name="documento_cliente" value="${documentoCliente}">
                                     </div>
             `;
+
+            // ====================================
 
             formEditarcliente += `  <div class="form-group">
                                         <label class="form-label text-uppercase">Celular</label>
-                                        <input type="text" class="form-control" value="${cliCelular}">
+                                        <input type="text" class="form-control" name="cli_celular" value="${cliCelular}">
                                     </div>
             `;
 
+            // ====================================
+
             formEditarcliente += `  <div class="form-group">
                                         <label class="form-label text-uppercase">Correo</label>
-                                        <input type="text" class="form-control" value="${cliEmail}">
+                                        <input type="text" class="form-control" name="cli_email" value="${cliEmail}">
                                     </div>
             `;
+
+            // ====================================
 
             formEditarcliente += `
                     <div class="col-12">
@@ -244,19 +263,23 @@
                     </div>
             `;
 
-            // Swal.fire({
-            //     title: '<strong>EDICIÓN BÁSICA</strong>',
-            //     icon: 'info',
-            //     type: 'info',
-            //     html: formEditarcliente,
-            //     showCloseButton: true,
-            //     showCancelButton: true,
-            //     focusConfirm: false,
-            //     confirmButtonText: '<i class="fa fa-thumbs-up"></i> Editar!',
-            //     confirmButtonAriaLabel: 'Thumbs up, great!',
-            //     cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
-            //     cancelButtonAriaLabel: 'Thumbs down'
-            // })
+            // ====================================
+
+            formEditarcliente += `
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary rounded-pill mt-5" value="Editar Cliente" id="btn_editar_cliente">
+                        </div>
+                    </div>
+            `;
+
+            // ====================================
+
+            formEditarcliente += `
+                    {!! Form::close() !!}
+            `;
+
+            // ===========================================================
 
             Swal.fire({
                 title: '<strong>EDICIÓN BÁSICA</strong>',
@@ -265,17 +288,12 @@
                 html: formEditarcliente,
                 showCloseButton: true,
                 showCancelButton: true,
-                focusConfirm: false,
-                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Editar!',
-                confirmButtonAriaLabel: 'Thumbs up, great!',
+                showConfirmButton: false,
                 cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
-                cancelButtonAriaLabel: 'Thumbs down'
-                }).then((result) => {
-                    console.log(result);
-                if (value == true) {
-                    Swal.fire('Saved!', '', 'success')
-                }
-            })
+                cancelButtonAriaLabel: 'Thumbs down',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            });
         }
     </script>
 @endsection

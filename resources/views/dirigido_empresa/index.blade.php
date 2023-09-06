@@ -257,13 +257,6 @@
         // =========================================================================
 
         function editarEmpresa(idEmpresa,empresa,idDocumento,tipoDocumento,documento) {
-            console.log(idEmpresa);
-            console.log(empresa);
-            console.log(idDocumento);
-            console.log(tipoDocumento);
-            console.log(documento);
-            // let tipo_documento = @json($tipo_documento);
-
             let form_editar_empresa = ''
 
             form_editar_empresa += `

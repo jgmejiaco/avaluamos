@@ -21,6 +21,7 @@ use App\Models\SiNo;
 use App\Models\DirigidoA;
 use App\Models\Cliente;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
+use App\Http\Responsable\cliente_potencial\ClienteUpdate;
 
 class ClientePotencialController extends Controller
 {
@@ -100,8 +101,9 @@ class ClientePotencialController extends Controller
      */
     public function show($id)
     {
-        // $this->shareData();
-        // return view('cliente_potencial.cliente_historial');
+        $cliente = $this->consultarClienteIndividual($id);
+        $this->shareData();
+        return view('cliente_potencial.cliente_historial', compact('cliente'));
     }
 
     /**
@@ -112,9 +114,10 @@ class ClientePotencialController extends Controller
      */
     public function edit($id)
     {
-        $cliente = $this->consultarClienteIndividual($id);
-        $this->shareData();
-        return view('cliente_potencial.cliente_historial', compact('cliente'));
+        // dd($id);
+        // $cliente = $this->consultarClienteIndividual($id);
+        // $this->shareData();
+        // return view('cliente_potencial.cliente_historial', compact('cliente'));
     }
 
     /**
@@ -126,7 +129,7 @@ class ClientePotencialController extends Controller
      */
     public function update(Request $request)
     {
-        
+        return new ClienteUpdate();
     }
 
     // ========================================================
