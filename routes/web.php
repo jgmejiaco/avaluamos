@@ -50,6 +50,7 @@ Route::resource('visita', 'visita\VisitaController');
 // RUTAS DEL CLIENTE POTENCIAL
 Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
 Route::post('consultar_empresa', 'cliente_potencial\ClientePotencialController@consultarEmpresa')->name('consultar_empresa');
+Route::get('editar_cliente/{id}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
 
 // ========================================================================
 

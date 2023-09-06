@@ -100,7 +100,8 @@ class ClientePotencialController extends Controller
      */
     public function show($id)
     {
-        //
+        // $this->shareData();
+        // return view('cliente_potencial.cliente_historial');
     }
 
     /**
@@ -111,7 +112,9 @@ class ClientePotencialController extends Controller
      */
     public function edit($id)
     {
-
+        $cliente = $this->consultarClienteIndividual($id);
+        $this->shareData();
+        return view('cliente_potencial.cliente_historial', compact('cliente'));
     }
 
     /**
@@ -203,6 +206,40 @@ class ClientePotencialController extends Controller
                         )
                 ->whereNull('dirigido_a.deleted_at')
                 ->get();
+    }
+
+    // ========================================================
+    
+    public function consultarClienteIndividual($idcliente)
+    {
+        return DB::table('clientes')
+                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                ->leftjoin('dirigido_a', 'dirigido_a.id_dirigido_a', '=', 'clientes.id_dirigido_a')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_empresa')
+                ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
+                ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'clientes.id_tipo_inmueble')
+                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
+                ->leftjoin('si_no', 'si_no.id_si_no', '=', 'clientes.id_visitado')
+                ->select(   'id_cliente',
+                            'cli_nombres',
+                            'id_doc_cliente',
+                            'documento_cliente',
+                            'cli_celular',
+                            'cli_email',
+                            'tipo_persona',
+                            'dirigido_a',
+                            'decripcion_documento',
+                            'documento_empresa',
+                            'objeto_avaluo',
+                            'descripcion_ciudad',
+                            'tipo_inmueble',
+                            'valor_cotizacion',
+                            'referido_por',
+                            'descripcion_si_no',
+                        )
+                ->where('id_cliente', $idcliente)
+                ->whereNull('clientes.deleted_at')
+                ->first();
     }
 
     // ========================================================

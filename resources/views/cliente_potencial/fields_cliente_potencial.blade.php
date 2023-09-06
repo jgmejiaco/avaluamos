@@ -12,6 +12,24 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
+                <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
+                {!! Form::select('id_doc_cliente', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'id_doc_cliente', 'required']) !!}
+            </div>
+        </div>
+
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente</label>
+                {!! Form::text('documento_cliente', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'required']) !!}
+            </div>
+        </div>
+
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3">
+            <div class="form-group">
                 <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
                 {!! Form::text('celular', old('celular'), ['class' => 'form-control text-uppercase', 'id' => 'celular', 'required']) !!}
             </div>
@@ -48,8 +66,8 @@
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="tipo_documento" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::select('tipo_documento', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_documento', 'readonly' => 'true', 'required']) !!}
+                <label for="tipo_documento" class="form-label text-uppercase">Tipo Documento Dirigido A</label>
+                {!! Form::select('tipo_documento', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_documento', 'readonly' => 'true']) !!}
             </div>
         </div>
 
@@ -57,8 +75,8 @@
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="documento_dirigido_a" class="form-label text-uppercase">Documento Dirigido A<span class="text-danger">*</span></label>
-                {!! Form::text('documento_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'readonly' => 'true', 'required']) !!}
+                <label for="documento_dirigido_a" class="form-label text-uppercase">Documento Dirigido A</label>
+                {!! Form::text('documento_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'readonly' => 'true']) !!}
             </div>
         </div>
 

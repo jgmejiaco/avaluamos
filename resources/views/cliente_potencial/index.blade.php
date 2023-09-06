@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Clietes Potenciales')
+@section('title', 'Clientes Potenciales')
 @section('css')
     {{-- <link href="{{asset('DataTables/datatables.min.css')}}"/> --}}
 @stop
@@ -65,8 +65,8 @@
                                     <td>{{$cliente->referido_por}}</td>
                                     <td>{{$cliente->descripcion_si_no}}</td>
                                     <td>
-                                        <a href="visita/edit" class="btn btn-info" id="">
-                                            <i class="fa fa-key" aria-hidden="true"></i> Editar
+                                        <a href="{{route('editar_cliente',$cliente->id_cliente)}}" class="btn btn-info" id="ver_cliente">
+                                            <i class="fa fa-key" aria-hidden="true"></i> Ver Cliente
                                         </a>
                                     </td>
                                 </tr>

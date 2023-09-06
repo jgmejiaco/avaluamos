@@ -125,9 +125,14 @@
                             console.log(respuesta.id_tipo_documento);
                             console.log(respuesta.decripcion_documento);
                             console.log(respuesta.numero_documento);
-                            
-                            $('#tipo_documento').val(respuesta.id_tipo_documento);
-                            $('#documento_dirigido_a').val(respuesta.numero_documento);
+
+                            if (respuesta != null) {
+                                $('#tipo_documento').val(respuesta.id_tipo_documento);
+                                $('#documento_dirigido_a').val(respuesta.numero_documento);
+                            } else {
+                                $('#tipo_documento').val('');
+                                $('#documento_dirigido_a').val('');
+                            }
                         }
                     });
                 }
