@@ -12,12 +12,15 @@
         <div class="row">
             <div class="col-12">
                 @php
+                    // dd($cliente);
                     $idCliente = $cliente->id_cliente;
                     $nombres = $cliente->cli_nombres;
-                    $TipoDocumento = $cliente->id_doc_cliente;
+                    $idDocCliente = $cliente->id_doc_cliente;
+                    $TipoDocumento = $cliente->decripcion_documento;
                     $documentoCliente = $cliente->documento_cliente;
                     $cliCelular = $cliente->cli_celular;
                     $cliEmail = $cliente->cli_email;
+                    $idTipoPersona = $cliente->id_tipo_persona;
                     $tipoPersona = $cliente->tipo_persona;
                 @endphp
                 <h3 class="text-center text-uppercase">Historial Cliente: {{$nombres}}</h3>
@@ -28,7 +31,7 @@
 
         <div class="row mb-5 mt-5">
             <div class="col-12 d-flex justify-content-around">
-                <button class="btn btn-warning" onclick="editarCliente('{{$idCliente}}','{{$nombres}}','{{$TipoDocumento}}','{{$documentoCliente}}','{{$cliCelular}}','{{$cliEmail}}','{{$tipoPersona}}')">Editar Cliente</button>
+                <button class="btn btn-warning" onclick="editarCliente('{{$idCliente}}','{{$nombres}}','{{$idDocCliente}}','{{$TipoDocumento}}','{{$documentoCliente}}','{{$cliCelular}}','{{$cliEmail}}',{{$idTipoPersona}},'{{$tipoPersona}}')">Editar Cliente</button>
                 <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary">Crear Visista</a>
             </div>
         </div>
@@ -63,34 +66,34 @@
                                 dd($cliente);
                             @endphp --}}
                             <tr>
-                                <td>{{$cliente->id_cliente}}</td>
-                                {{-- <td>id</td> --}}
-                                <td>{{$cliente->cli_nombres}}</td>
-                                {{-- <td>nombre</td> --}}
-                                <td>{{$cliente->cli_celular}}</td>
-                                {{-- <td>celular</td> --}}
-                                <td>{{$cliente->cli_email}}</td>
-                                {{-- <td>correo</td> --}}
-                                <td>{{$cliente->tipo_persona}}</td>
-                                {{-- <td>tipo persona</td> --}}
-                                <td>{{$cliente->dirigido_a}}</td>
-                                {{-- <td>dirigo a</td> --}}
-                                <td>{{$cliente->decripcion_documento}}</td>
-                                {{-- <td>tipo documento</td> --}}
-                                <td>{{$cliente->documento_empresa}}</td>
-                                {{-- <td>documento empresa</td> --}}
-                                <td>{{$cliente->objeto_avaluo}}</td>
-                                {{-- <td>objeto avaluo</td> --}}
-                                <td>{{$cliente->descripcion_ciudad}}</td>
-                                {{-- <td>ciudad</td> --}}
-                                <td>{{$cliente->tipo_inmueble}}</td>
-                                {{-- <td>tipo inmueble</td> --}}
-                                <td>{{$cliente->valor_cotizacion}}</td>
-                                {{-- <td>valor cotizado</td> --}}
-                                <td>{{$cliente->referido_por}}</td>
-                                {{-- <td>referido por</td> --}}
-                                <td>{{$cliente->descripcion_si_no}}</td>
-                                {{-- <td>visitado</td> --}}
+                                {{-- <td>{{$cliente->id_cliente}}</td> --}}
+                                <td>id</td>
+                                {{-- <td>{{$cliente->cli_nombres}}</td> --}}
+                                <td>nombre</td>
+                                {{-- <td>{{$cliente->cli_celular}}</td> --}}
+                                <td>celular</td>
+                                {{-- <td>{{$cliente->cli_email}}</td> --}}
+                                <td>correo</td>
+                                {{-- <td>{{$cliente->tipo_persona}}</td> --}}
+                                <td>tipo persona</td>
+                                {{-- <td>{{$cliente->dirigido_a}}</td> --}}
+                                <td>dirigo a</td>
+                                {{-- <td>{{$cliente->decripcion_documento}}</td> --}}
+                                <td>tipo documento</td>
+                                {{-- <td>{{$cliente->documento_empresa}}</td> --}}
+                                <td>documento empresa</td>
+                                {{-- <td>{{$cliente->objeto_avaluo}}</td> --}}
+                                <td>objeto avaluo</td>
+                                {{-- <td>{{$cliente->descripcion_ciudad}}</td> --}}
+                                <td>ciudad</td>
+                                {{-- <td>{{$cliente->tipo_inmueble}}</td> --}}
+                                <td>tipo inmueble</td>
+                                {{-- <td>{{$cliente->valor_cotizacion}}</td> --}}
+                                <td>valor cotizado</td>
+                                {{-- <td>{{$cliente->referido_por}}</td> --}}
+                                <td>referido por</td>
+                                {{-- <td>{{$cliente->descripcion_si_no}}</td> --}}
+                                <td>visitado</td>
                                 <td>
                                     <a href="visita/edit" class="btn btn-info" id="">
                                         <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
@@ -143,35 +146,35 @@
                 "scrollX": true,
             });
             // CIERRE DataTable LISTA CLIENTES
+
+            
         });
 
         // ===========================================================
 
+        let select = $('.select2');
+
+        let seleccionar = $("<option>", {
+            value: "-1", // Valor de la opción
+            text: "Seleccionar..." // Texto visible de la opción
+        });
+
+        seleccionar.attr("selected", true);
+        select.prepend(seleccionar);
+
+        // ===========================================================
+
         let tipo_documento = @json($tipo_documento);
+        let tipo_persona = @json($tipo_persona);
 
-        function editarCliente(idCliente,nombres,TipoDocumento,documentoCliente,cliCelular,cliEmail,tipoPersona) {
-            console.log(idCliente);
-            console.log(nombres);
-            // console.log(idDocCliente);
-            console.log(TipoDocumento);
-            console.log(documentoCliente);
-            console.log(cliCelular);
-            console.log(cliEmail);
-            console.log(tipoPersona);
-
+        function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,cliCelular,cliEmail,idTipoPersona,tipoPersona) {
             formEditarcliente = '';
 
-            formEditarcliente += `<input type="text" value="${idCliente}">`;
+            formEditarcliente += `<input type="hidden" value="${idCliente}">`;
 
-            formEditarcliente += `  <div>
-                                        <label>Nombres</label>
-                                        <input type="text" value="${nombres}">
-                                    </div>
-            `;
-
-            formEditarcliente += `  <div>
-                                        <label>Tipo Documento</label>
-                                        <input type="select" value="${TipoDocumento}">
+            formEditarcliente += `  <div class="form-group">
+                                        <label class="form-label text-uppercase">Nombres</label>
+                                        <input type="text" class="form-control" value="${nombres}">
                                     </div>
             `;
 
@@ -181,12 +184,16 @@
                             <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento
                                 <span class="text-danger">*</span>
                             </label>
-                            <select class="form-control" id="id_tipo_documento" name="id_tipo_documento" required>
-                                <option value="" selected >Seleccionar...</option>
-                                <option value="${idDocumento}" selected >${TipoDocumento}</option>
+                            <select class="form-control select2" id="id_tipo_documento" name="id_tipo_documento" required>
             `;
+                                if (idDocCliente == null || idDocCliente == "") {
+                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                } else {
+                                    formEditarcliente += `<option value="${idDocCliente}" selected >${TipoDocumento}</option>`;
+                                }
+            
                                 $.each(tipo_documento, function(idDoc, tipDoc){
-                                    formEditarcliente += ' <option value="'+idDoc+'">'+tipDoc+'</option>'
+                                    formEditarcliente += ' <option value="'+idDoc+'">'+tipDoc+'</option>';
                                 });
 
             formEditarcliente += `
@@ -195,36 +202,64 @@
                     </div>
             `;
 
-            formEditarcliente += `  <div>
-                                        <label>Número Documento</label>
-                                        <input type="text" value="${documentoCliente}">
+            formEditarcliente += `  <div class="form-group">
+                                        <label class="form-label text-uppercase">Número Documento</label>
+                                        <input type="text" class="form-control" value="${documentoCliente}">
                                     </div>
             `;
 
-            formEditarcliente += `  <div>
-                                        <label>Celular</label>
-                                        <input type="text" value="${cliCelular}">
+            formEditarcliente += `  <div class="form-group">
+                                        <label class="form-label text-uppercase">Celular</label>
+                                        <input type="text" class="form-control" value="${cliCelular}">
                                     </div>
             `;
 
-            formEditarcliente += `  <div>
-                                        <label>Correo</label>
-                                        <input type="text" value="${cliEmail}">
+            formEditarcliente += `  <div class="form-group">
+                                        <label class="form-label text-uppercase">Correo</label>
+                                        <input type="text" class="form-control" value="${cliEmail}">
                                     </div>
             `;
 
-            formEditarcliente += `  <div>
-                                        <label>Tipo Persona</label>
-                                        <input type="text" value="${tipoPersona}">
-                                    </div>
+            formEditarcliente += `
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="id_tipo_persona" class="form-label text-uppercase">Tipo Persona
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-control select2" id="id_tipo_persona" name="id_tipo_persona" required>
             `;
-
+                                if (idTipoPersona == null || idTipoPersona == "") {
+                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                } else {
+                                    formEditarcliente += `<option value="${idTipoPersona}" selected >${tipoPersona}</option>`;
+                                }
             
+                                $.each(tipo_persona, function(idTipPersona, tipPersona){
+                                    formEditarcliente += ' <option value="'+idTipPersona+'">'+tipPersona+'</option>';
+                                });
 
+            formEditarcliente += `
+                            </select>
+                        </div>
+                    </div>
+            `;
 
+            // Swal.fire({
+            //     title: '<strong>EDICIÓN BÁSICA</strong>',
+            //     icon: 'info',
+            //     type: 'info',
+            //     html: formEditarcliente,
+            //     showCloseButton: true,
+            //     showCancelButton: true,
+            //     focusConfirm: false,
+            //     confirmButtonText: '<i class="fa fa-thumbs-up"></i> Editar!',
+            //     confirmButtonAriaLabel: 'Thumbs up, great!',
+            //     cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
+            //     cancelButtonAriaLabel: 'Thumbs down'
+            // })
 
             Swal.fire({
-                title: '<strong>Edición Báscia</strong>',
+                title: '<strong>EDICIÓN BÁSICA</strong>',
                 icon: 'info',
                 type: 'info',
                 html: formEditarcliente,
@@ -235,6 +270,11 @@
                 confirmButtonAriaLabel: 'Thumbs up, great!',
                 cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
                 cancelButtonAriaLabel: 'Thumbs down'
+                }).then((result) => {
+                    console.log(result);
+                if (value == true) {
+                    Swal.fire('Saved!', '', 'success')
+                }
             })
         }
     </script>
