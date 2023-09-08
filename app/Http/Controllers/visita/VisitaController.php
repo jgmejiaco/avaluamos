@@ -76,25 +76,40 @@ class VisitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        $clienteId = request('idCliente', null);
+        // dd($clienteId);
+        
+        try {
+            // $sesion = $this->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
+            // if (empty($sesion[0]) || is_null($sesion[0]) &&
+            //     empty($sesion[1]) || is_null($sesion[1]) &&
+            //     empty($sesion[2]) || is_null($sesion[2]) &&
+            //     empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+            // {
+            //     return redirect()->to(route('inicio'));
+            // } else {
+                $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
                 $this->shareData();
-                return view('visita.create');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+                
+                // dd($crearVisitaCliente);
+                // $this->shareData($clienteId);
+                
+                // return view('visita.create');
+                
+                return view('visita.create',compact('crearVisitaCliente'));
+                // view()->share('crearVisitaCliente', $crearVisitaCliente);
+                // return view('visita.fields_create_visita_tecnica2',compact('crearVisitaCliente'));
+                // return view('visita.fields_create_visita_tecnica',compact('crearVisitaCliente', 'clienteId'));
+                // return view('visita.create')->with('crearVisitaCliente', $crearVisitaCliente)->with('clienteId', $clienteId);
+                // return view('visita.create', ['crearVisitaCliente' => $crearVisitaCliente,'clienteId' => $clienteId]);
+                // return redirect()->to(route('visita_create',compact('crearVisitaCliente', 'clienteId')));
+        } catch (Exception $e) {
+            // dd($e);
+            return response()->json('error_visita');
+        }
     }
 
     /**
@@ -215,11 +230,17 @@ class VisitaController extends Controller
 
     private function shareData()
     {
-        // ->select(DB::raw("municipios.nombre || ' - ' || departamentos.nombre AS nombre_ciudad"), 'municipios.id')
-        // view()->share('avaluador', Usuario::select('id_us',DB::raw("nombres || ' ' || apellidos AS nombre_avaluador"))
-        //                                     ->whereIn(1,2)
-        //                                     ->orderBy('nombres', 'asc')
-        //                                     ->pluck('nombres', 'id_usuario'));
+        // dd($crearVisitaCliente);
+
+        // if (!is_null($crearVisitaCliente)) {
+        //     view()->share('crearVisitaCliente', $crearVisitaCliente);
+        //     // view()->share('crearVisitaCliente', $this->cliVisitaCreate($clienteId));
+        // }
+
+        // if (!is_null($clienteId)) {
+        //     view()->share('crearVisitaCliente', $this->cliVisitaCreate($clienteId));
+        // }
+
         view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
         view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
         view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
@@ -243,7 +264,6 @@ class VisitaController extends Controller
         view()->share('tipo_muro', TipoMuro::orderBy('tipo_muro', 'asc')->pluck('tipo_muro', 'id_tipo_muro'));
         view()->share('ventaneria', Ventaneria::orderBy('ventaneria', 'asc')->pluck('ventaneria', 'id_ventaneria'));
         view()->share('tipo_techo', TipoTecho::orderBy('tipo_techo', 'asc')->pluck('tipo_techo', 'id_tipo_techo'));
-        // view()->share('dirigido_a_empresa', Empresa::orderBy('nombre_empresa', 'asc')->pluck('nombre_empresa', 'id_empresa'));
         view()->share('tipo_suelo', TipoSuelo::orderBy('descripcion_tipo_suelo','asc')->pluck('descripcion_tipo_suelo', 'id_tipo_suelo'));
         view()->share('condicion_inmueble', CondicionInmueble::orderBy('condicion_inmueble', 'asc')->pluck('condicion_inmueble', 'id_condicion_inmueble'));
         view()->share('calificacion_fitto_corvini', FittoCorvini::orderBy('fitto_corvini', 'asc')->pluck('fitto_corvini', 'id_fitto_corvini'));
@@ -258,11 +278,33 @@ class VisitaController extends Controller
 
     // ==========================================================================
 
-    
+    public function cliVisitaCreate($clienteId)
+    {
+        return DB::table('clientes')
+                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
+                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
+                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'referido_por.id_red_social')
+                ->select(   'id_cliente',
+                            'cli_nombres',
+                            'id_doc_cliente',
+                            'decripcion_documento',
+                            'documento_cliente',
+                            'cli_celular',
+                            'cli_email',
+                            'clientes.id_tipo_persona',
+                            'tipo_persona',
+                            'clientes.id_referido_por',
+                            'referido_por.id_red_social',
+                            'clientes.nombre_quien_refiere',
+                            'clientes.empresa_que_refiere'
+                        )
+                ->where('id_cliente', $clienteId)
+                ->whereNull('clientes.deleted_at')
+                ->first();
+    }
 
-    
-
-    
+    // ==========================================================================
 
     public function validarVariablesSesion()
     {

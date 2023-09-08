@@ -12,7 +12,6 @@
         <div class="row">
             <div class="col-12">
                 @php
-                    // dd($cliente);
                     $idCliente = $cliente->id_cliente;
                     $nombres = $cliente->cli_nombres;
                     $idDocCliente = $cliente->id_doc_cliente;
@@ -32,7 +31,7 @@
         <div class="row mb-5 mt-5">
             <div class="col-12 d-flex justify-content-around">
                 <button class="btn btn-warning" onclick="editarCliente('{{$idCliente}}','{{$nombres}}','{{$idDocCliente}}','{{$TipoDocumento}}','{{$documentoCliente}}','{{$cliCelular}}','{{$cliEmail}}',{{$idTipoPersona}},'{{$tipoPersona}}')">Editar Cliente</button>
-                <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary">Crear Visista</a>
+                <button class="btn btn-success" onclick="crearVisita('{{$idCliente}}')">Crear Visita</button>
             </div>
         </div>
 
@@ -151,6 +150,7 @@
         });
 
         // ===========================================================
+        // ===========================================================
 
         let select = $('.select2');
 
@@ -162,6 +162,7 @@
         seleccionar.attr("selected", true);
         select.prepend(seleccionar);
 
+        // ===========================================================
         // ===========================================================
 
         let tipo_documento = @json($tipo_documento);
@@ -192,10 +193,8 @@
             formEditarcliente += `
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control select2" id="id_doc_cliente" name="id_doc_cliente" required>
+                            <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento</label>
+                            <select class="form-control select2" id="id_doc_cliente" name="id_doc_cliente">
             `;
                                 if (idDocCliente == null || idDocCliente == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -242,10 +241,8 @@
             formEditarcliente += `
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="id_tipo_persona" class="form-label text-uppercase">Tipo Persona
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control select2" id="id_tipo_persona" name="id_tipo_persona" required>
+                            <label for="id_tipo_persona" class="form-label text-uppercase">Tipo Persona</label>
+                            <select class="form-control select2" id="id_tipo_persona" name="id_tipo_persona">
             `;
                                 if (idTipoPersona == null || idTipoPersona == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -268,7 +265,7 @@
             formEditarcliente += `
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <input type="submit" class="btn btn-primary rounded-pill mt-5" value="Editar Cliente" id="btn_editar_cliente">
+                            <input type="submit" class="btn btn-primary rounded-pill mt-3 mb-3" value="Editar Cliente" id="btn_editar_cliente">
                         </div>
                     </div>
             `;
@@ -287,12 +284,36 @@
                 type: 'info',
                 html: formEditarcliente,
                 showCloseButton: true,
-                showCancelButton: true,
+                showCancelButton: false,
                 showConfirmButton: false,
                 cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
                 cancelButtonAriaLabel: 'Thumbs down',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
+            });
+        }
+
+        // ===========================================================
+        // ===========================================================
+
+        function crearVisita(idCliente) {
+            console.log(idCliente);
+
+            $.ajax({
+                url:        "{{route('visita_create')}}",
+                type:       "POST",
+                datatype:   "JSON",
+                data:       {
+                    '_token': "{{ csrf_token() }}",
+                    'idCliente': idCliente
+                },
+                success: function (respuesta) {
+                    if (respuesta == "error_visita") {
+                        console.log("error_visita");
+                    } else {
+                        console.log("visita_ok");
+                    }
+                }
             });
         }
     </script>
