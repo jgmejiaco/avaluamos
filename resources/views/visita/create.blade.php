@@ -32,7 +32,6 @@
                         <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" CREACIÓN -->
                         <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab">
                              @include('visita.fields_create_visita_tecnica')
-                             {{-- @include('visita.fields_create_visita_tecnica', ['crearVisitaCliente' => $crearVisitaCliente]) --}}
                         </div>
                     </div>
                 </div>

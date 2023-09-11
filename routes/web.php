@@ -44,7 +44,8 @@ Route::resource('permisos', 'permisos\PermisosController');
 
 // RUTAS DE LA VISITA
 Route::resource('visita', 'visita\VisitaController');
-Route::post('visita_create', 'visita\VisitaController@create')->name('visita_create');
+// Route::post('visita_create', 'visita\VisitaController@create')->name('visita_create');
+Route::get('crear_visita/{idCliente}', 'visita\VisitaController@create')->name('crear_visita');
 
 // ========================================================================
 

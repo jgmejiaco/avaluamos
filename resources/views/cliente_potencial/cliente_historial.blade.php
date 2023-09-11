@@ -31,7 +31,8 @@
         <div class="row mb-5 mt-5">
             <div class="col-12 d-flex justify-content-around">
                 <button class="btn btn-warning" onclick="editarCliente('{{$idCliente}}','{{$nombres}}','{{$idDocCliente}}','{{$TipoDocumento}}','{{$documentoCliente}}','{{$cliCelular}}','{{$cliEmail}}',{{$idTipoPersona}},'{{$tipoPersona}}')">Editar Cliente</button>
-                <button class="btn btn-success" onclick="crearVisita('{{$idCliente}}')">Crear Visita</button>
+
+                <a href="{{route('crear_visita',$idCliente)}}" class="btn btn-success">Crear Visita</a>
             </div>
         </div>
 
@@ -296,25 +297,6 @@
         // ===========================================================
         // ===========================================================
 
-        function crearVisita(idCliente) {
-            console.log(idCliente);
-
-            $.ajax({
-                url:        "{{route('visita_create')}}",
-                type:       "POST",
-                datatype:   "JSON",
-                data:       {
-                    '_token': "{{ csrf_token() }}",
-                    'idCliente': idCliente
-                },
-                success: function (respuesta) {
-                    if (respuesta == "error_visita") {
-                        console.log("error_visita");
-                    } else {
-                        console.log("visita_ok");
-                    }
-                }
-            });
-        }
+        
     </script>
 @endsection

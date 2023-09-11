@@ -22,6 +22,8 @@ class ClientePotencialStore implements Responsable
         $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
 
         $cliNombres = strtoupper(request('nombre_solicitante', null));
+        $idDocCliente = strtoupper(request('id_doc_cliente', null));
+        $documentoCliente = strtoupper(request('documento_cliente', null));
         $cliCelular = request('celular', null);
         $cliEmail = request('correo', null);
         $idTipoPersona = request('tipo_persona', null);
@@ -114,6 +116,8 @@ class ClientePotencialStore implements Responsable
         try {
             $nuevoCliente = Cliente::create([
                                 'cli_nombres' => $cliNombres,
+                                'id_doc_cliente' => $idDocCliente,
+                                'documento_cliente' => $documentoCliente,
                                 'cli_celular' => $cliCelular,
                                 'cli_email' => $cliEmail,
                                 'id_tipo_persona' => $idTipoPersona,

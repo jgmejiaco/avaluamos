@@ -32,18 +32,12 @@
                             <tr class="header-table">
                                 <th>ID</th>
                                 <th>Nombre Solicitante</th>
+                                <th>Tipo Documento</th>
+                                <th>Documento Cliente</th>
                                 <th>Celular</th>
                                 <th>Correo</th>
                                 <th>Tipo de Pesona</th>
-                                {{-- <th>Dirigido A:</th> --}}
-                                {{-- <th>Tipo Documento</th> --}}
-                                {{-- <th>Número Documento</th> --}}
-                                {{-- <th>Objeto Avalúo</th> --}}
-                                {{-- <th>Municipio</th> --}}
-                                {{-- <th>Tipo Inmueble</th> --}}
-                                {{-- <th>Valor Cotización</th> --}}
                                 <th>Recomendado Por</th>
-                                {{-- <th>Visitado</th> --}}
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -52,18 +46,12 @@
                                 <tr>
                                     <td>{{$cliente->id_cliente}}</td>
                                     <td>{{$cliente->cli_nombres}}</td>
+                                    <td>{{$cliente->decripcion_documento}}</td>
+                                    <td>{{$cliente->documento_cliente}}</td>
                                     <td>{{$cliente->cli_celular}}</td>
                                     <td>{{$cliente->cli_email}}</td>
                                     <td>{{$cliente->tipo_persona}}</td>
-                                    {{-- <td>{{$cliente->dirigido_a}}</td> --}}
-                                    {{-- <td>{{$cliente->decripcion_documento}}</td> --}}
-                                    {{-- <td>{{$cliente->documento_empresa}}</td> --}}
-                                    {{-- <td>{{$cliente->objeto_avaluo}}</td> --}}
-                                    {{-- <td>{{$cliente->descripcion_ciudad}}</td> --}}
-                                    {{-- <td>{{$cliente->tipo_inmueble}}</td> --}}
-                                    {{-- <td>{{$cliente->valor_cotizacion}}</td> --}}
                                     <td>{{$cliente->referido_por}}</td>
-                                    {{-- <td>{{$cliente->descripcion_si_no}}</td> --}}
                                     <td>
                                         <a href="{{route('ver_cliente',$cliente->id_cliente)}}" class="btn btn-info" id="ver_cliente">
                                             <i class="fa fa-key" aria-hidden="true"></i> Ver Cliente

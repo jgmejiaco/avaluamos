@@ -76,11 +76,9 @@ class VisitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create($clienteId)
+    // public function create(Request $request)
     {
-        $clienteId = request('idCliente', null);
-        // dd($clienteId);
-        
         try {
             // $sesion = $this->validarVariablesSesion();
 
@@ -94,21 +92,10 @@ class VisitaController extends Controller
                 $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
                 $this->shareData();
                 
-                // dd($crearVisitaCliente);
-                // $this->shareData($clienteId);
-                
-                // return view('visita.create');
-                
                 return view('visita.create',compact('crearVisitaCliente'));
-                // view()->share('crearVisitaCliente', $crearVisitaCliente);
-                // return view('visita.fields_create_visita_tecnica2',compact('crearVisitaCliente'));
-                // return view('visita.fields_create_visita_tecnica',compact('crearVisitaCliente', 'clienteId'));
-                // return view('visita.create')->with('crearVisitaCliente', $crearVisitaCliente)->with('clienteId', $clienteId);
-                // return view('visita.create', ['crearVisitaCliente' => $crearVisitaCliente,'clienteId' => $clienteId]);
-                // return redirect()->to(route('visita_create',compact('crearVisitaCliente', 'clienteId')));
         } catch (Exception $e) {
-            // dd($e);
-            return response()->json('error_visita');
+            alert()->error('Error', 'Error al consultar el cliente para crear la visita, por favor contacte a Soporte.');
+            return back();
         }
     }
 
@@ -152,8 +139,8 @@ class VisitaController extends Controller
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
-                $this->shareData();
-                return view('visita.edit');
+                // $this->shareData();
+                // return view('visita.edit');
         //     }
         // } catch (Exception $e) {
         //     // dd($e);
@@ -230,17 +217,6 @@ class VisitaController extends Controller
 
     private function shareData()
     {
-        // dd($crearVisitaCliente);
-
-        // if (!is_null($crearVisitaCliente)) {
-        //     view()->share('crearVisitaCliente', $crearVisitaCliente);
-        //     // view()->share('crearVisitaCliente', $this->cliVisitaCreate($clienteId));
-        // }
-
-        // if (!is_null($clienteId)) {
-        //     view()->share('crearVisitaCliente', $this->cliVisitaCreate($clienteId));
-        // }
-
         view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
         view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
         view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
@@ -287,14 +263,14 @@ class VisitaController extends Controller
                 ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'referido_por.id_red_social')
                 ->select(   'id_cliente',
                             'cli_nombres',
-                            'id_doc_cliente',
-                            'decripcion_documento',
+                            'clientes.id_doc_cliente',
+                            'decripcion_documento as cli_tipo_doc',
                             'documento_cliente',
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
                             'tipo_persona',
-                            'clientes.id_referido_por',
+                            'referido_por',
                             'referido_por.id_red_social',
                             'clientes.nombre_quien_refiere',
                             'clientes.empresa_que_refiere'

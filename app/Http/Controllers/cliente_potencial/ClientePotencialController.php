@@ -194,19 +194,14 @@ class ClientePotencialController extends Controller
                 ->leftjoin('si_no', 'si_no.id_si_no', '=', 'clientes.id_visitado')
                 ->select('id_cliente',
                             'cli_nombres',
+                            'id_doc_cliente',
+                            'decripcion_documento',
+                            'documento_cliente',
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
                             'tipo_persona',
-                            'dirigido_a',
-                            'decripcion_documento',
-                            'documento_empresa',
-                            'objeto_avaluo',
-                            'descripcion_ciudad',
-                            'tipo_inmueble',
-                            'valor_cotizacion',
                             'referido_por',
-                            'descripcion_si_no',
                         )
                 ->whereNull('dirigido_a.deleted_at')
                 ->get();
