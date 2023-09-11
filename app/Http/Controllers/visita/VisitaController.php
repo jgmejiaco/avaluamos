@@ -36,12 +36,14 @@ use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
 use App\Models\CalificacionGeneral;
 use App\Models\TipoVias;
-use App\Http\Responsable\visita\VisitaUpdate;
 use App\Models\TipoPersona;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Models\DirigidoA;
 use App\Models\Cliente;
+use App\Models\Visita;
+use App\Http\Responsable\visita\VisitaStore;
+// use App\Http\Responsable\visita\VisitaUpdate;
 
 class VisitaController extends Controller
 {
@@ -116,7 +118,7 @@ class VisitaController extends Controller
         // {
         //     return redirect()->to(route('home'));
         // } else {
-        //     return new UsuarioStore();
+        //     return new VisitaStore();
         // }
         // return new VisitaStore();
     }
