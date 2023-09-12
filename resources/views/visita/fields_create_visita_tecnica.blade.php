@@ -1,13 +1,9 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
 @csrf
-    {{-- @php
-        dd($tipo_documento,$crearVisitaCliente, $crearVisitaCliente->id_doc_cliente ,$crearVisitaCliente->cli_tipo_doc);
-    @endphp --}}
-    <div id="div_cliente_potencial" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_crear_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <h2 class="text-uppercase mb-5">VISITA TÉCNICA INMUEBLE</h2>
-        <div class="row mb-1" id="div_campos_cliente_potencial">
-            {{-- ======================= --}}
 
+        <div class="row mb-1" id="div_campos_cliente">
             {!! Form::hidden('id_cliente', isset($crearVisitaCliente) ? $crearVisitaCliente->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
 
             {{-- ======================= --}}
@@ -118,7 +114,7 @@
                     {!! Form::text('empresa_que_refiere', isset($crearVisitaCliente) ? $crearVisitaCliente->empresa_que_refiere : null, ['class' => 'form-control text-uppercase', 'id' => 'empresa_que_refiere']) !!}
                 </div>
             </div>
-        </div> {{-- FIN div_campos_editar visita técnica --}}
+        </div> {{-- FIN div_campos_cliente --}}
 
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
@@ -127,8 +123,8 @@
 
         <hr style="border: 1px solid grey">
 
-        <div class="row mb-2 mt-2" id="div_campos_visita_tecnica">
-            <div class="col-12 col-md-3" id="div_correo">
+        <div class="row mb-2 mt-2" id="div_dirigido_a">
+            <div class="col-12 col-md-3" id="">
                 <div class="form-group">
                     <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A
                         <span class="text-danger">*</span>
@@ -141,10 +137,10 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="id_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A
+                    <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('id_doc_empresa', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'id_doc_empresa', 'readonly' => 'true', 'required']) !!}
+                    {!! Form::select('tipo_doc_empresa', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
 
@@ -152,13 +148,13 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="documento_dirigido_a" class="form-label text-uppercase">Documento Dirigido A
+                    <label for="doc_dirigido_a" class="form-label text-uppercase">Documento Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::text('documento_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'readonly' => 'true', 'required']) !!}
+                    {!! Form::text('doc_dirigido_a', null, ['class' => 'form-control text-uppercase', 'id' => 'doc_dirigido_a', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
-        </div> {{-- FIN  --}}
+        </div> {{-- FIN div_dirigido_a --}}
 
         <hr style="border: 1px solid grey">
 
@@ -167,7 +163,7 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row mb-1" id="div_campos_visita_tecnica">
+        <div class="row mb-1" id="div_objeto_avaluo">
             <div class="col-12 mt-5 mb-5">
                 <label for="objeto_avaluo" class="form-label text-uppercase">Objeto Avalúo<span class="text-danger">*</span></label>
 
@@ -208,9 +204,16 @@
                     </div>
                 </div>
             </div>
+        </div> {{-- FIN div_objeto_avaluo --}}
 
-            {{-- ======================= --}}
-            
+        <hr style="border: 1px solid grey">
+
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
+
+        <div class="row mb-1" id="div_ubicacion_detalles">
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase">País<span class="text-danger">*</span></label>
@@ -233,10 +236,10 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="municipio" class="form-label text-uppercase">Municipio
+                    <label for="ciudad" class="form-label text-uppercase">Municipio
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('municipio', $ciudad, null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
+                    {!! Form::select('ciudad', $ciudad, null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 
@@ -309,7 +312,7 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="area" class="form-label text-uppercase">Área<span class="text-danger">*</span></label>
+                    <label for="area" class="form-label text-uppercase">Área m<sup>2</sup><span class="text-danger">*</span></label>
                     {!! Form::text('area', null, ['class' => 'form-control text-uppercase', 'id' => 'area', 'required']) !!}
                 </div>
             </div>
@@ -345,8 +348,8 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="cant_cuarto util" class="form-label text-uppercase">Cantidad Cuartos Útiles</label>
-                    {!! Form::select('cant_cuarto_util', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_cuarto util']) !!}
+                    <label for="cant_cuarto_util" class="form-label text-uppercase">Cantidad Cuartos Útiles</label>
+                    {!! Form::select('cant_cuarto_util', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_cuarto_util']) !!}
                 </div>
             </div>
 
@@ -435,10 +438,10 @@
             
             <div class="col-12" id="">
                 <div class="form-group">
-                    <label for="observaciones_inmueble" class="form-label text-uppercase">Observaciones Visita Técnica Inmueble
+                    <label for="obser_visita_tecnica" class="form-label text-uppercase">Observaciones Visita Técnica Inmueble
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::textarea('observaciones_inmueble', null, ['class' => 'form-control select2', 'id' => 'observaciones_inmueble', 'required']) !!}
+                    {!! Form::textarea('obser_visita_tecnica', null, ['class' => 'form-control select2', 'id' => 'obser_visita_tecnica', 'required']) !!}
                 </div>
             </div>
             
@@ -478,15 +481,13 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="avaluador" class="form-label text-uppercase">visitador
+                    <label for="visitador" class="form-label text-uppercase">visitador
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('avaluador', $avaluador, null, ['class' => 'form-control text-uppercase select2', 'id' => 'avaluador', 'required']) !!}
+                    {!! Form::select('visitador', $avaluador, null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador', 'required']) !!}
                 </div>
             </div>
-
-            {{-- ======================= --}}
-        </div> {{-- FIN div_campos_cliente_potencial --}}
+        </div> {{-- FIN div_ubicacion_detalles --}}
 
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}

@@ -22,7 +22,6 @@ class Visita extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'cli_nombres',
         'id_cliente',
         'id_dirigido_a',
         'id_doc_empresa',

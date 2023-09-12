@@ -44,7 +44,7 @@ class CreateVisitas extends Migration
             $table->string('valor_cotizacion')->nullable();
             $table->text('obser_visita')->nullable();
             $table->integer('id_visitado')->nullable()->unsigned(); // relación con id_si_no
-            $table->string('fecha_visita')->nullable();
+            $table->integer('fecha_visita')->nullable();
             $table->string('hora_visita')->nullable();
             $table->integer('id_visitador')->nullable()->unsigned(); // relación con usuarios
             $table->timestamps();

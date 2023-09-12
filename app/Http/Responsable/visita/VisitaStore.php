@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Persona;
 use App\Models\Usuario;
 use Jenssegers\Date\Date;
+use App\Models\Visita;
 
 class VisitaStore implements Responsable
 {
@@ -18,135 +19,168 @@ class VisitaStore implements Responsable
     {
         // dd($request);
 
-        $avaluador = request('avaluador', null);
-        $solicitante = strtoupper(request('solicitante', null));
-        $numeroDocumento = strtoupper(request('numero_documento', null));
-        $celular = request('celular', null);
-        $correo = request('correo', null);
-        $dirigidoEmpresa = strtoupper(request('dirigido_a_empresa', null));
-        $dirigidoNit = strtoupper(request('dirigido_a_nit', null));
-        $empresa = strtoupper(request('empresa', null));
-        $fechaInspeccion = request('fecha_inspeccion', null);
-        $horaVisita = request('hora_visita', null);
+        $idCliente = request('id_cliente', null);
+        $dirigidoA = request('dirigido_a', null);
+        $tipoDocEmpresa = request('tipo_doc_empresa', null);
+        $docDirigidoA = request('doc_dirigido_a', null);
+        $objetoAvaluo = request('objeto_avaluo', null);
         $pais = request('pais', null);
-        $departamentoEstado = request('departamento_estado', null);
+        $departamento = request('departamento', null);
         $ciudad = request('ciudad', null);
-        $barrio = strtoupper(request('barrio', null));
-        $sector = strtoupper(request('sector', null));
+        $sector = request('sector', null);
         $cercaDe = request('cerca_de', null);
-        $direccion = strtoupper(request('direccion', null));
-        $edificio = strtoupper(request('edificio', null));
-        $apartamentoNumero = strtoupper(request('apartamento_numero', null));
-        $numeroInmueble = strtoupper(request('numero_inmueble', null));
-        $unidad = strtoupper(request('unidad', null));
+        $barrio = request('barrio', null);
+        $unidadEdificio = request('unidad_edificio', null);
+        $direccion = request('direccion', null);
+        $tipoInmueble = request('tipo_inmueble', null);
+        $area = request('area', null);
         $estrato = request('estrato', null);
+        $numeroInmueble = request('numero_inmueble', null);
+        $cantParqueaderos = request('cant_parqueaderos', null);
+        $cantCuartoUtil = request('cant_cuarto_util', null);
+        $cantKioscos = request('cant_kioscos', null);
+        $cantPiscinas = strtoupper(request('cant_piscinas', null));
+        $cantEstablos = request('cant_establos', null);
+        $cantBillares = request('cant_billares', null);
+        $porcentajeDescuento = request('porcentaje_descuento', null);
+        $valorCotizacion = request('valor_cotizacion', null);
         $latitud = request('latitud', null);
         $longitud = request('longitud', null);
-        $observacionesVisitaTecnicaInmueble = request('observaciones_visita_tecnica_inmueble', null);
+        $obserVisitaTecnica = request('obser_visita_tecnica', null);
+        $visitado = request('visitado', null);
+        $fechaVisita = request('fecha_visita', null);
+        $horaVisita = request('hora_visita', null);
+        $visitador = request('visitador', null);
+
+        // ==============================================================================
+
+        if ($dirigidoA != "-1" || $dirigidoA != -1) {
+            $dirigidoA = request('dirigido_a', null);
+        } else {
+            $dirigidoA = null;
+        }
+
+        // ==============================
+        
+        if ($tipoDocEmpresa != "-1" || $tipoDocEmpresa != -1) {
+            $tipoDocEmpresa = request('tipo_doc_empresa', null);
+        } else {
+            $tipoDocEmpresa = null;
+        }
+
+        // ==============================
+
+        if ($cantParqueaderos != "-1" || $cantParqueaderos != -1) {
+            $cantParqueaderos = request('cant_parqueaderos', null);
+        } else {
+            $cantParqueaderos = null;
+        }
+
+        // ==============================
+
+        if ($cantCuartoUtil != "-1" || $cantCuartoUtil != -1) {
+            $cantCuartoUtil = request('cant_cuarto_util', null);
+        } else {
+            $cantCuartoUtil = null;
+        }
+
+        // ==============================
+
+        if ($cantKioscos != "-1" || $cantKioscos != -1) {
+            $cantKioscos = request('cant_kioscos', null);
+        } else {
+            $cantKioscos = null;
+        }
+
+        // ==============================
+
+        if ($cantPiscinas != "-1" || $cantPiscinas != -1) {
+            $cantPiscinas = request('cant_piscinas', null);
+        } else {
+            $cantPiscinas = null;
+        }
+
+        // ==============================
+
+        if ($cantEstablos != "-1" || $cantEstablos != -1) {
+            $cantEstablos = request('cant_establos', null);
+        } else {
+            $cantEstablos = null;
+        }
+
+        // ==============================
+        
+        if ($cantBillares != "-1" || $cantBillares != -1) {
+            $cantBillares = request('cant_billares', null);
+        } else {
+            $cantBillares = null;
+        }
+        
+        // ==============================
+
+        
+
+        // ==============================================================================
 
         // dd($avaluador, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
         
-        // $usuarioShow = new UsuariosShow();
+        $fechaVisita = Date::parse($fechaVisita)->timestamp;
 
-        // Consultamos si ya existe un usuario con la cedula ingresada
-        $consulta_cedula = Usuario::where('numero_documento', $numero_documento)->first();
-        
-        if(isset($consulta_cedula) && !empty($consulta_cedula) && !is_null($consulta_cedula))
-        {
-            alert()->info('Info', 'Este número de documento ya existe.');
-            return back();
-        }
-        else
-        {
-            // Contruimos el nombre de usuario
-            $separar_apellidos = explode(" ", $apellidos);
-            $usuario = substr($this->quitarCaracteresEspeciales(trim($nombres)), 0,1) . trim($this->quitarCaracteresEspeciales($separar_apellidos[0]));
-            $usuario = preg_replace("/(Ñ|ñ)/", "n", $usuario);
-            $usuario = strtolower($usuario);
-            $complemento = "";
+        DB::connection('mysql')->beginTransaction();
 
-            while($this->consultaUsuario($usuario.$complemento))
-            {
-                $complemento++;
-            }
+        try {
+            $nuevaVisita = Visita::create([
+                'id_cliente' => $idCliente,
+                'id_dirigido_a' => $dirigidoA,
+                'id_doc_empresa' => $tipoDocEmpresa,
+                'documento_empresa' => $docDirigidoA,
+                'objeto_avaluo' => $objetoAvaluo,
+                'id_pais' => $pais,
+                'id_departamento' => $departamento,
+                'id_ciudad' => $ciudad,
+                'sector' => $sector,
+                'cerca_de' => $cercaDe,
+                'barrio' => $barrio,
+                'unidad_edificio' => $unidadEdificio,
+                'direccion' => $direccion,
+                'id_tipo_inmueble' => $tipoInmueble,
+                'area' => $area,
+                'id_estrato' => $estrato,
+                'numero_inmueble' => $numeroInmueble,
+                'id_cant_parqueaderos' => $cantParqueaderos,
+                'id_cant_cuarto_util' => $cantCuartoUtil,
+                'id_cant_kioskos' => $cantKioscos,
+                'id_cant_piscinas' => $cantPiscinas,
+                'id_cant_establos' => $cantEstablos,
+                'id_cant_billares' => $cantBillares,
+                'latitud' => $latitud,
+                'longitud' => $longitud,
+                'porcentaje_descuento' => $porcentajeDescuento,
+                'valor_cotizacion' => $valorCotizacion,
+                'obser_visita' => $obserVisitaTecnica,
+                'id_visitado' => $visitado,
+                'fecha_visita' => $fechaVisita,
+                'hora_visita' => $horaVisita,
+                'id_visitador' => $visitador,
+            ]);
 
-            $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
+            if($nuevaVisita) {
+                DB::connection('mysql')->commit();
+                alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
+                return redirect()->to(route('administrador.index'));
 
-            DB::connection('mysql')->beginTransaction();
-
-            try {
-
-                $nuevo_usuario = Usuario::create([
-                    'nombre_usuario' => $usuario.$complemento,
-                    'clave' => Hash::make($numero_documento),
-                    'clave_fallas' => 0,
-                    'nombres' => strtoupper($nombres),
-                    'apellidos' => strtoupper($apellidos),
-                    'id_tipo_documento' => $id_tipo_documento,
-                    'numero_documento' => $numero_documento,
-                    'fecha_nacimiento' => $fecha_nacimiento,
-                    'id_lugar_nacimiento' => $id_lugar_nacimiento,
-                    'correo' => $correo,
-                    'direccion' => $direccion,
-                    'celular' => $celular,
-                    'telefono_fijo' => $telefono_fijo,
-                    'nombre_contacto' => $nombre_contacto,
-                    'telefono_contacto' => $telefono_contacto,
-                    'id_ciudad' => $id_ciudad,
-                    'id_estado' => $id_estado,
-                    'id_cargo' => $id_cargo,
-                    'id_rol' => $id_rol,
-                ]);
-
-                if($nuevo_usuario)
-                {
-                    DB::connection('mysql')->commit();
-                    alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevo_usuario->usuario . ' y la clave es: ' . $numero_documento);
-                    return redirect()->to(route('administrador.index'));
-
-                } else {
-                    DB::connection('mysql')->rollback();
-                    alert()->error('Error', 'Ha ocurrido un error al crear el usuario, por favor contacte a Soporte.');
-                    return redirect()->to(route('administrador.index'));
-                }
-
-            }
-            catch (Exception $e)
-            {
-                // dd($e);
+            } else {
                 DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
-                return back();
+                alert()->error('Error', 'Ha ocurrido un error al crear la visita, por favor contacte a Soporte.');
+                return redirect()->to(route('administrador.index'));
             }
-        }
-    }
-
-    private function consultaUsuario($usuario)
-    {
-        try
-        {
-            $usuario = Usuario::where('nombre_usuario', $usuario)
-                                ->first();
-            return $usuario;
-
         }
         catch (Exception $e)
         {
-            alert()->error('Error', 'Ha ocurrido un error, inténtelo de nuevo, si el problema persiste, contacte a Soporte.');
+            // dd($e);
+            DB::connection('mysql')->rollback();
+            alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
         }
-    }
-
-    private function quitarCaracteresEspeciales($cadena)
-    {
-        $no_permitidas = array("á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "ñ", "À", "Ã", "Ì", "Ò", "Ù", "Ã™", "Ã ",
-                               "Ã¨", "Ã¬", "Ã²", "Ã¹", "ç", "Ç", "Ã¢", "ê", "Ã®", "Ã´", "Ã»", "Ã‚", "ÃŠ", "ÃŽ", "Ã”",
-                               "Ã›", "ü", "Ã¶", "Ã–", "Ã¯", "Ã¤", "«", "Ò", "Ã", "Ã„", "Ã‹", "ñ", "Ñ", "*");
-
-        $permitidas = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", "n", "N", "A", "E", "I", "O", "U",
-                            "a", "e", "i", "o", "u", "c", "C", "a", "e", "i", "o", "u", "A", "E", "I", "O", "U",
-                            "u", "o", "O", "i", "a", "e", "U", "I", "A", "E", "n", "N", "");
-        $texto = str_replace($no_permitidas, $permitidas, $cadena);
-        return $texto;
     }
 }
