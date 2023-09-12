@@ -163,24 +163,6 @@ class ClientePotencialController extends Controller
 
     // ========================================================
 
-    public function consultarEmpresa(Request $request)
-    {
-        $idEmpresa = request('id_dirigido_a', null);
-
-        $consultarEmpresa = DB::table('dirigido_a')
-                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
-                ->select('dirigido_a.id_tipo_documento',
-                            'tipo_documento.decripcion_documento',
-                            'dirigido_a.numero_documento'
-                        )
-                ->whereNull('dirigido_a.deleted_at')
-                ->where('id_dirigido_a', $idEmpresa)
-                ->first();
-
-        return response()->json($consultarEmpresa);
-    }
-
-    // ========================================================
     
     public function consultarClientes()
     {

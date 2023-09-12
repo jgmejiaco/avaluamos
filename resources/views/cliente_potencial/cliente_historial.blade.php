@@ -22,7 +22,7 @@
                     $idTipoPersona = $cliente->id_tipo_persona;
                     $tipoPersona = $cliente->tipo_persona;
                 @endphp
-                <h3 class="text-center text-uppercase">Historial Cliente: {{$nombres}}</h3>
+                <h2 class="text-center text-uppercase">Historial de Visitas Cliente: {{$nombres}}</h2>
             </div>
         </div>
 

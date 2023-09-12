@@ -44,14 +44,14 @@ Route::resource('permisos', 'permisos\PermisosController');
 
 // RUTAS DE LA VISITA
 Route::resource('visita', 'visita\VisitaController');
-// Route::post('visita_create', 'visita\VisitaController@create')->name('visita_create');
 Route::get('crear_visita/{idCliente}', 'visita\VisitaController@create')->name('crear_visita');
+Route::post('consultar_empresa', 'visita\VisitaController@consultarEmpresa')->name('consultar_empresa');
+Route::get('editar_visita/{id}', 'visita\VisitaController@edit')->name('editar_visita');
 
 // ========================================================================
 
 // RUTAS DEL CLIENTE POTENCIAL
 Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
-Route::post('consultar_empresa', 'cliente_potencial\ClientePotencialController@consultarEmpresa')->name('consultar_empresa');
 Route::get('ver_cliente/{id}', 'cliente_potencial\ClientePotencialController@show')->name('ver_cliente');
 Route::post('editar_cliente', 'cliente_potencial\ClientePotencialController@update')->name('editar_cliente');
 

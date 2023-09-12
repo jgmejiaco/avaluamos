@@ -57,49 +57,7 @@
 
             // ==============================================
 
-            $('#div_red_social').hide();
-            $('#div_nombre_refiere').hide();
-            $('#div_empresa_refiere').hide();
-
-            $("#id_referido_por").on('change',function(){
-                let referido_por = $('#id_referido_por').val();
-                console.log(referido_por);
-
-                if (referido_por == 1) { // EMPRESA = 1
-                    $('#div_red_social').hide('slow');
-                    $('#red_social').removeAttr('required');
-                    $('#div_nombre_refiere').hide('slow');
-                    $('#nombre_quien_refiere').removeAttr('required');
-                    $('#div_empresa_refiere').show('slow');
-                } else if (referido_por == 2) { // REDES SOCIALES = 2
-                    $('#div_red_social').show('slow');
-                    $('#div_nombre_refiere').hide('slow');
-                    $('#nombre_quien_refiere').removeAttr('required');
-                    $('#div_empresa_refiere').hide('slow');
-                    $('#empresa_que_refiere').removeAttr('required');
-                } else if (referido_por == 3) { // REFERIDOS = 3
-                    $('#div_red_social').hide('slow');
-                    $('#red_social').removeAttr('required');
-                    $('#div_nombre_refiere').show('slow');
-                    $('#div_empresa_refiere').hide('slow');
-                    $('#empresa_que_refiere').removeAttr('required');
-                } else if (referido_por == 4) { // WEB AVALUAMOS = 4
-                    $('#div_red_social').hide('slow');
-                    $('#red_social').removeAttr('required');
-                    $('#div_nombre_refiere').hide('slow');
-                    $('#nombre_quien_refiere').removeAttr('required');
-                    $('#div_empresa_refiere').hide('slow');
-                    $('#empresa_que_refiere').removeAttr('required');
-                } else { // SIN SELECCIONAR = -1
-                    $('#div_red_social').hide('slow');
-                    $('#red_social').removeAttr('required');
-                    $('#div_nombre_refiere').hide('slow');
-                    $('#nombre_quien_refiere').removeAttr('required');
-                    $('#div_empresa_refiere').hide('slow');
-                    $('#empresa_que_refiere').removeAttr('required');
-                    $('#id_referido_por').attr('required');
-                }
-            });
+            $('#visitado').val(2);
 
             // ==============================================
 
@@ -108,8 +66,8 @@
                 console.log(id_dirigido_a);
 
                 if (id_dirigido_a == "-1") {
-                    $('#tipo_documento').val('');
-                    $('#documento_dirigido_a').val('');
+                    $('#tipo_doc_empresa').val('');
+                    $('#doc_dirigido_a').val('');
                 } else {
                     $.ajax({
                         url: "{{route('consultar_empresa')}}",
@@ -126,16 +84,67 @@
                             console.log(respuesta.numero_documento);
 
                             if (respuesta != null) {
-                                $('#tipo_documento').val(respuesta.id_tipo_documento);
-                                $('#documento_dirigido_a').val(respuesta.numero_documento);
+                                $('#tipo_doc_empresa').val(respuesta.id_tipo_documento);
+                                $('#doc_dirigido_a').val(respuesta.numero_documento);
                             } else {
-                                $('#tipo_documento').val('');
-                                $('#documento_dirigido_a').val('');
+                                $('#tipo_doc_empresa').val('');
+                                $('#doc_dirigido_a').val('');
                             }
                         }
                     });
                 }
             });
+        }); // FIN Document Ready
+
+        // ===============================================================
+        // ===============================================================
+        // ===============================================================
+
+        $('#div_red_social').hide();
+        $('#div_nombre_refiere').hide();
+        $('#div_empresa_refiere').hide();
+
+        $("#referido_por").on('change',function(){
+            let referido_por = $('#referido_por').val();
+            console.log(referido_por);
+
+            if (referido_por == 1) { // EMPRESA = 1
+                $('#div_red_social').hide('slow');
+                $('#red_social').removeAttr('required');
+                $('#div_nombre_refiere').hide('slow');
+                $('#nombre_quien_refiere').removeAttr('required');
+                $('#div_empresa_refiere').show('slow');
+            } else if (referido_por == 2) { // REDES SOCIALES = 2
+                $('#div_red_social').show('slow');
+                $('#div_nombre_refiere').hide('slow');
+                $('#nombre_quien_refiere').removeAttr('required');
+                $('#div_empresa_refiere').hide('slow');
+                $('#empresa_que_refiere').removeAttr('required');
+            } else if (referido_por == 3) { // REFERIDOS = 3
+                $('#div_red_social').hide('slow');
+                $('#red_social').removeAttr('required');
+                $('#div_nombre_refiere').show('slow');
+                $('#div_empresa_refiere').hide('slow');
+                $('#empresa_que_refiere').removeAttr('required');
+            } else if (referido_por == 4) { // WEB AVALUAMOS = 4
+                $('#div_red_social').hide('slow');
+                $('#red_social').removeAttr('required');
+                $('#div_nombre_refiere').hide('slow');
+                $('#nombre_quien_refiere').removeAttr('required');
+                $('#div_empresa_refiere').hide('slow');
+                $('#empresa_que_refiere').removeAttr('required');
+            } else { // SIN SELECCIONAR = -1
+                $('#div_red_social').hide('slow');
+                $('#red_social').removeAttr('required');
+                $('#red_social').val('');
+                $('#div_nombre_refiere').hide('slow');
+                $('#nombre_quien_refiere').removeAttr('required');
+                $('#nombre_quien_refiere').val('');
+                $('#div_empresa_refiere').hide('slow');
+                $('#empresa_que_refiere').removeAttr('required');
+                $('#empresa_que_refiere').val('');
+                $('#referido_por').attr('required');
+            }
         });
     </script>
 @endsection

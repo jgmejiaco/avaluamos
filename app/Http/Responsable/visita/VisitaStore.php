@@ -19,23 +19,26 @@ class VisitaStore implements Responsable
     {
         // dd($request);
 
+        $objetoAvaluoCheck = request('objeto_avaluo', []);
+        $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
+
         $idCliente = request('id_cliente', null);
         $dirigidoA = request('dirigido_a', null);
         $tipoDocEmpresa = request('tipo_doc_empresa', null);
         $docDirigidoA = request('doc_dirigido_a', null);
-        $objetoAvaluo = request('objeto_avaluo', null);
+        $objetoAvaluo = $objetoAvaluoCheck;
         $pais = request('pais', null);
         $departamento = request('departamento', null);
         $ciudad = request('ciudad', null);
-        $sector = request('sector', null);
-        $cercaDe = request('cerca_de', null);
-        $barrio = request('barrio', null);
-        $unidadEdificio = request('unidad_edificio', null);
-        $direccion = request('direccion', null);
+        $sector = strtoupper(request('sector', null));
+        $cercaDe = strtoupper(request('cerca_de', null));
+        $barrio = strtoupper(request('barrio', null));
+        $unidadEdificio = strtoupper(request('unidad_edificio', null));
+        $direccion = strtoupper(request('direccion', null));
         $tipoInmueble = request('tipo_inmueble', null);
-        $area = request('area', null);
+        $area = doubleval(request('area', null));
         $estrato = request('estrato', null);
-        $numeroInmueble = request('numero_inmueble', null);
+        $numeroInmueble = strtoupper(request('numero_inmueble', null));
         $cantParqueaderos = request('cant_parqueaderos', null);
         $cantCuartoUtil = request('cant_cuarto_util', null);
         $cantKioscos = request('cant_kioscos', null);
@@ -57,7 +60,7 @@ class VisitaStore implements Responsable
         if ($dirigidoA != "-1" || $dirigidoA != -1) {
             $dirigidoA = request('dirigido_a', null);
         } else {
-            $dirigidoA = null;
+            $dirigidoA = 0;
         }
 
         // ==============================
@@ -66,6 +69,22 @@ class VisitaStore implements Responsable
             $tipoDocEmpresa = request('tipo_doc_empresa', null);
         } else {
             $tipoDocEmpresa = null;
+        }
+
+        // ==============================
+
+        if ($pais != "-1" || $pais != -1) {
+            $pais = request('pais', null);
+        } else {
+            $pais = null;
+        }
+
+        // ==============================
+        
+        if ($departamento != "-1" || $departamento != -1) {
+            $departamento = request('departamento', null);
+        } else {
+            $departamento = null;
         }
 
         // ==============================
@@ -115,16 +134,36 @@ class VisitaStore implements Responsable
         } else {
             $cantBillares = null;
         }
+
+        // ==============================
+        
+        if ($visitado != "-1" || $visitado != -1) {
+            $visitado = request('visitado', null);
+        } else {
+            $visitado = 2;
+        }
         
         // ==============================
-
         
-
+        if ($visitador != "-1" || $visitador != -1) {
+            $visitador = request('visitador', null);
+        } else {
+            $visitador = null;
+        }
+        
+        // ==============================
+        
+        if (isset($fechaVisita) && !is_null($fechaVisita) && !empty($fechaVisita)) {
+            $fechaVisita = Date::parse($fechaVisita)->timestamp;
+        } else {
+            $fechaVisita = null;
+        }
+        // ==============================================================================
         // ==============================================================================
 
-        // dd($avaluador, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
+        // dd($objetoAvaluo, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
+        // dd($objetoAvaluo);
         
-        $fechaVisita = Date::parse($fechaVisita)->timestamp;
 
         DB::connection('mysql')->beginTransaction();
 
@@ -167,17 +206,17 @@ class VisitaStore implements Responsable
             if($nuevaVisita) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
-                return redirect()->to(route('administrador.index'));
+                return redirect()->to(route('visita.index'));
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error al crear la visita, por favor contacte a Soporte.');
-                return redirect()->to(route('administrador.index'));
+                return redirect()->to(route('visita.index'));
             }
         }
         catch (Exception $e)
         {
-            // dd($e);
+            dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();

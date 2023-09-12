@@ -64,8 +64,9 @@ class VisitaController extends Controller
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
+                $todasVisitas = $this->visitasIndex();
                 $this->shareData();
-                return view('visita.index');
+                return view('visita.index', compact('todasVisitas'));
         //     }
         // } catch (Exception $e) {
         //     // dd($e);
@@ -79,7 +80,6 @@ class VisitaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($clienteId)
-    // public function create(Request $request)
     {
         try {
             // $sesion = $this->validarVariablesSesion();
@@ -120,7 +120,7 @@ class VisitaController extends Controller
         // } else {
         //     return new VisitaStore();
         // }
-        // return new VisitaStore();
+        return new VisitaStore();
     }
 
     /**
@@ -156,8 +156,9 @@ class VisitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idVisita)
     {
+        // dd($idVisita);
         // $sesion = $this->validarVariablesSesion();
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
@@ -167,11 +168,11 @@ class VisitaController extends Controller
         // {
         //     return redirect()->to(route('home'));
         // } else {
-                // $this->shareData();
-                // return view('visita.edit');
+            $editarVisita = $this->editarVisita($idVisita);
+            $this->shareData();
+            return view('visita.edit', compact('editarVisita'));
         // }
-            // $this->shareData();
-            // return view('visita.edit');
+            
     }
 
     /**
@@ -262,7 +263,7 @@ class VisitaController extends Controller
                 ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                 ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
                 ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
-                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'referido_por.id_red_social')
+                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
                 ->select(   'id_cliente',
                             'cli_nombres',
                             'clientes.id_doc_cliente',
@@ -273,13 +274,158 @@ class VisitaController extends Controller
                             'clientes.id_tipo_persona',
                             'tipo_persona',
                             'referido_por',
-                            'referido_por.id_red_social',
+                            'clientes.id_red_social',
+                            'redes_sociales.red_social',
                             'clientes.nombre_quien_refiere',
                             'clientes.empresa_que_refiere'
                         )
                 ->where('id_cliente', $clienteId)
                 ->whereNull('clientes.deleted_at')
                 ->first();
+    }
+
+    // ==========================================================================
+
+    public function consultarEmpresa(Request $request)
+    {
+        $idEmpresa = request('id_dirigido_a', null);
+
+        $consultarEmpresa = DB::table('dirigido_a')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
+                ->select('dirigido_a.id_tipo_documento',
+                            'tipo_documento.decripcion_documento',
+                            'dirigido_a.numero_documento'
+                        )
+                ->whereNull('dirigido_a.deleted_at')
+                ->where('id_dirigido_a', $idEmpresa)
+                ->first();
+
+        return response()->json($consultarEmpresa);
+    }
+
+    // ==========================================================================
+
+    public function visitasIndex()
+    {
+        return DB::table('visitas')
+                    ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
+                    ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
+                    ->leftjoin('tipo_documento','tipo_documento.id_tipo_documento','=','visitas.id_doc_empresa')
+                    ->leftjoin('pais','pais.id_pais','=','visitas.id_pais')
+                    ->leftjoin('departamento_estado','departamento_estado.id_departamento_estado','=','visitas.id_departamento')
+                    ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
+                    ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
+                    ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
+                    ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
+                    ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
+                    ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
+                    ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
+                    ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
+                    ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
+                    ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
+                    ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
+                    ->select(
+                        'visitas.id_cliente',
+                        'visitas.id_visita',
+                        'clientes.cli_nombres',
+                        'dirigido_a.dirigido_a',
+                        'visitas.objeto_avaluo',
+                        'descripcion_ciudad',
+                        'tipo_inmueble.tipo_inmueble',
+                        'visitas.area',
+                        'estrato.indicador_numerico as estrato',
+                        'visitas.porcentaje_descuento',
+                        'visitas.valor_cotizacion',
+                        'descripcion_si_no'
+                    )
+                    ->whereNull('visitas.deleted_at')
+                    ->whereNull('clientes.deleted_at')
+                    ->get()
+                    ->toArray();
+    }
+
+    // ==========================================================================
+
+    public function editarVisita($idVisita)
+    {
+        return DB::table('visitas')
+                    ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
+                    ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                    ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
+                    ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
+                    ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
+                    ->leftjoin('tipo_documento as id_doc_cliente','id_doc_cliente.id_tipo_documento','=','clientes.id_doc_cliente')
+                    ->leftjoin('tipo_documento as id_doc_empresa','id_doc_empresa.id_tipo_documento','=','visitas.id_doc_empresa')
+                    ->leftjoin('pais','pais.id_pais','=','visitas.id_pais')
+                    ->leftjoin('departamento_estado','departamento_estado.id_departamento_estado','=','visitas.id_departamento')
+                    ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
+                    ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
+                    ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
+                    ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
+                    ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
+                    ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
+                    ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
+                    ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
+                    ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
+                    ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
+                    ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
+                    ->select(
+                        'visitas.id_visita',
+                        'clientes.id_cliente',
+                        'cli_nombres',
+                        'clientes.id_doc_cliente',
+                        'id_doc_cliente.decripcion_documento as cli_tipo_doc',
+                        'documento_cliente',
+                        'cli_celular',
+                        'cli_email',
+                        'clientes.id_tipo_persona',
+                        'tipo_persona',
+                        'referido_por',
+                        'clientes.id_red_social',
+                        'redes_sociales.red_social',
+                        'clientes.nombre_quien_refiere',
+                        'clientes.empresa_que_refiere',
+                        'dirigido_a.id_dirigido_a',
+                        'dirigido_a.dirigido_a',
+                        'visitas.id_doc_empresa',
+                        'id_doc_empresa.decripcion_documento as empresa_tipo_doc',
+                        'visitas.documento_empresa',
+                        'visitas.objeto_avaluo',
+                        'descripcion_ciudad',
+                        'descripcion_pais',
+                        'descripcion_departamento',
+                        'descripcion_ciudad',
+                        'visitas.sector',
+                        'visitas.cerca_de',
+                        'visitas.barrio',
+                        'visitas.unidad_edificio',
+                        'visitas.direccion',
+                        'tipo_inmueble.id_tipo_inmueble',
+                        'tipo_inmueble.tipo_inmueble',
+                        'visitas.area',
+                        'estrato.indicador_numerico as estrato',
+                        'visitas.numero_inmueble',
+                        'parqueaderos.indicador_numerico as parqueaderos',
+                        'cuarto_util.indicador_numerico as cuarto_util',
+                        'kioskos.indicador_numerico as kioskos',
+                        'piscinas.indicador_numerico as piscinas',
+                        'establos.indicador_numerico as establos',
+                        'billares.indicador_numerico as billares',
+                        'visitas.porcentaje_descuento',
+                        'visitas.valor_cotizacion',
+                        'visitas.latitud',
+                        'visitas.longitud',
+                        'visitas.obser_visita',
+                        'descripcion_si_no',
+                        'visitas.fecha_visita',
+                        'visitas.hora_visita',
+                        'visitas.id_visitador',
+                        DB::raw("CONCAT(nombres, ' ', apellidos) AS nombres_visitador")
+                    )
+                    ->where('visitas.id_visita', $idVisita)
+                    ->whereNull('visitas.deleted_at')
+                    ->whereNull('clientes.deleted_at')
+                    ->first();
     }
 
     // ==========================================================================
