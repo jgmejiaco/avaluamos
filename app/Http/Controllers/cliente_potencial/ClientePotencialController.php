@@ -162,13 +162,13 @@ class ClientePotencialController extends Controller
     public function consultarClientes()
     {
         return DB::table('clientes')
+                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
                 ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
-                ->leftjoin('dirigido_a', 'dirigido_a.id_dirigido_a', '=', 'clientes.id_dirigido_a')
-                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_empresa')
+                ->leftjoin('pais', 'pais.id_pais', '=', 'clientes.id_pais')
+                ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'clientes.id_dpto_estado')
                 ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
-                ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'clientes.id_tipo_inmueble')
                 ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
-                ->leftjoin('si_no', 'si_no.id_si_no', '=', 'clientes.id_visitado')
+                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
                 ->select('id_cliente',
                             'cli_nombres',
                             'id_doc_cliente',
@@ -178,9 +178,20 @@ class ClientePotencialController extends Controller
                             'cli_email',
                             'clientes.id_tipo_persona',
                             'tipo_persona',
+                            'pais.id_pais',
+                            'descripcion_pais',
+                            'departamento_estado.id_departamento_estado',
+                            'descripcion_departamento',
+                            'ciudad.id_ciudad',
+                            'descripcion_ciudad',
+                            'referido_por.id_referido_por',
                             'referido_por',
+                            'redes_sociales.id_red_social',
+                            'red_social',
+                            'nombre_quien_refiere',
+                            'empresa_que_refiere'
                         )
-                ->whereNull('dirigido_a.deleted_at')
+                ->whereNull('clientes.deleted_at')
                 ->get();
     }
 

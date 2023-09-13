@@ -56,7 +56,7 @@
         
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="pais" class="form-label text-uppercase">País</label>
+                <label for="pais" class="form-label text-uppercase">País residencia</label>
                 {!! Form::select('pais', $paises, null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
             </div>
         </div>
@@ -65,7 +65,7 @@
         
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="departamento" class="form-label text-uppercase">Departamento</label>
+                <label for="departamento" class="form-label text-uppercase">Departamento residencia</label>
                 {!! Form::select('departamento', $departamentos, null, ['class' => 'form-control select2', 'id' => 'departamento']) !!}
             </div>
         </div>
@@ -74,7 +74,7 @@
         
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="municipio" class="form-label text-uppercase">Ciudad</label>
+                <label for="municipio" class="form-label text-uppercase">Ciudad residencia</label>
                 {!! Form::select('municipio', $ciudades, null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
             </div>
         </div>

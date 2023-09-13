@@ -23,8 +23,5 @@ class ReferidoPor extends Model
     public $timestamps = true;
     protected $fillable = [
         'referido_por',
-        'id_red_social',
-        'nombre_quien_refiere',
-        'empresa_que_refiere'
     ];
 }
