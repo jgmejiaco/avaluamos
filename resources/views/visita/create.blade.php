@@ -10,13 +10,9 @@
     <div class="container-fluid p-5 pt-0 mt-5">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase mt-0">registro de visita</h1>
+                <h2 class="text-center text-uppercase mt-0">registro de visita cliente: <span class="text-primary">{{$crearVisitaCliente->cli_nombres}}</span></h2>
             </div>
         </div>
-
-        {{-- @php
-            dd($crearVisitaCliente, $clienteId);
-        @endphp --}}
 
         <div class="pt-4 pb-0 py-0">
             <div class="panel panel-default container-fluid p-5">

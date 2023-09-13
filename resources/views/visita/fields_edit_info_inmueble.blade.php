@@ -73,14 +73,6 @@
                 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
-                    <div class="form-group">
-                        <label for="frente" class="form-label text-uppercase" data-placeholder="frente">Frente<span class="text-danger">*</span></label>
-                        {!! Form::text('frente', null, ['class' => 'form-control select2', 'id' => 'frente', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
@@ -101,14 +93,6 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="fondo" class="form-label text-uppercase" data-placeholder="fondo">Fondo<span class="text-danger">*</span></label>
-                        {!! Form::text('fondo', null, ['class' => 'form-control text-uppercase', 'id' => 'fondo', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100">
@@ -130,8 +114,17 @@
 
                 <div class="col-12 col-md-3" id="">
                     <div class="wrap-input100">
-                        <label for="altura" class="form-label text-uppercase" data-placeholder="altura">Altura</label>
-                        {!! Form::text('altura', null, ['class' => 'form-control', 'id' => 'altura']) !!}
+                        <label for="frente" class="form-label text-uppercase" data-placeholder="altura">Frente</label>
+                        {!! Form::text('frente', null, ['class' => 'form-control', 'id' => 'frente']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="wrap-input100 validate-input" data-validate="Required">
+                        <label for="fondo" class="form-label text-uppercase" data-placeholder="fondo">Fondo<span class="text-danger">*</span></label>
+                        {!! Form::text('fondo', null, ['class' => 'form-control text-uppercase', 'id' => 'fondo', 'required']) !!}
                     </div>
                 </div>
 
@@ -254,7 +247,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Visita" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Info Inmueble" id="btn_guardar_visita" name="btn_guardar_visita">
             </div>
         </div>
     </div>

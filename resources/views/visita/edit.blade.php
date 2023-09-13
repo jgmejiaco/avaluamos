@@ -12,7 +12,7 @@
     <div class="container-fluid p-5">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase">visita cliente</h1>
+                <h2 class="text-center text-uppercase">visita cliente:  <span class="text-primary">{{$editarVisita->cli_nombres}}</span></h2>
             </div>
         </div>
 

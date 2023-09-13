@@ -12,13 +12,22 @@ use App\Models\Persona;
 use App\Models\Usuario;
 use Jenssegers\Date\Date;
 use App\Models\Visita;
+use App\Models\InfoJuridica;
+use App\Models\InfoInmueble;
+// use App\Models\CaracteristicasInmueble;
+// use App\Models\AcabadosInmueble;
+// use App\Models\CalificacionInmueble;
+// use App\Models\DotacionComunal;
+// use App\Models\InfoSector;
+// use App\Models\CondicionesUrbanisticas;
+// use App\Models\ObservacionesGenerales;
+// use App\Models\RegistroFotografico;
+// use App\Models\ValorEstimadoAvaluo;
 
 class VisitaStore implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $objetoAvaluoCheck = request('objeto_avaluo', []);
         $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
 
@@ -161,10 +170,6 @@ class VisitaStore implements Responsable
         // ==============================================================================
         // ==============================================================================
 
-        // dd($objetoAvaluo, $solicitante, $numeroDocumento, $celular, $correo, $dirigidoEmpresa, $dirigidoNit, $empresa, $fechaInspeccion, $horaVisita, $pais, $departamentoEstado, $ciudad, $barrio, $sector, $cercaDe, $direccion, $edificio, $apartamentoNumero, $numeroInmueble, $unidad, $estrato, $latitud, $longitud, $observacionesVisitaTecnicaInmueble);
-        // dd($objetoAvaluo);
-        
-
         DB::connection('mysql')->beginTransaction();
 
         try {
@@ -205,6 +210,53 @@ class VisitaStore implements Responsable
 
             if($nuevaVisita) {
                 DB::connection('mysql')->commit();
+
+                $idVisita = Visita::select('id_visita')->orderBy('id_visita', 'DESC')->first();
+
+                InfoJuridica::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
+
+                InfoInmueble::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
+
+                // CaracteristicasInmueble::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // AcabadosInmueble::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // CalificacionInmueble::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // DotacionComunal::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // InfoSector::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // CondicionesUrbanisticas::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // RegistroFotografico::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // ObservacionesGenerales::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
+                // ValorEstimadoAvaluo::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
+
                 alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
                 return redirect()->to(route('visita.index'));
 

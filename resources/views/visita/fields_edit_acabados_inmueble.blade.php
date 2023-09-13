@@ -169,7 +169,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Visita" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Acabados Inmueble" id="btn_guardar_visita" name="btn_guardar_visita">
             </div>
         </div>
     </div>
