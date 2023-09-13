@@ -2,10 +2,9 @@
     <div class="row mb-1" id="div_campos_cliente_potencial">
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="nombre_solicitante" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
+                <label for="nombre_solicitante" class="form-label text-uppercase">Nombre Cliente<span class="text-danger">*</span></label>
                 {!! Form::text('nombre_solicitante', old('nombre_solicitante'), ['class' => 'form-control text-uppercase', 'id' => 'nombre_solicitante', 'required']) !!}
             </div>
-            {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
         </div>
 
         {{-- ======================= --}}
@@ -37,7 +36,7 @@
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="div_correo">
+        <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
                 {!! Form::email('correo', null, ['class' => 'form-control', 'id' => 'correo', 'required']) !!}
@@ -46,10 +45,37 @@
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="div_correo">
+        <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
                 {!! Form::select('tipo_persona', $tipo_persona, null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'required']) !!}
+            </div>
+        </div>
+        
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3" id="">
+            <div class="form-group">
+                <label for="pais" class="form-label text-uppercase">País</label>
+                {!! Form::select('pais', $paises, null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
+            </div>
+        </div>
+        
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3" id="">
+            <div class="form-group">
+                <label for="departamento" class="form-label text-uppercase">Departamento</label>
+                {!! Form::select('departamento', $departamentos, null, ['class' => 'form-control select2', 'id' => 'departamento']) !!}
+            </div>
+        </div>
+        
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3" id="">
+            <div class="form-group">
+                <label for="municipio" class="form-label text-uppercase">Ciudad</label>
+                {!! Form::select('municipio', $ciudades, null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
             </div>
         </div>
         

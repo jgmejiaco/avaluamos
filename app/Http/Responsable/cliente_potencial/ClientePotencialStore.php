@@ -18,89 +18,52 @@ class ClientePotencialStore implements Responsable
 {
     public function toResponse($request)
     {
-        $objetoAvaluoCheck = request('objeto_avaluo', []);
-        $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
-
         $cliNombres = strtoupper(request('nombre_solicitante', null));
         $idDocCliente = strtoupper(request('id_doc_cliente', null));
         $documentoCliente = strtoupper(request('documento_cliente', null));
         $cliCelular = request('celular', null);
         $cliEmail = request('correo', null);
         $idTipoPersona = request('tipo_persona', null);
-        $idDirigidoA = request('dirigido_a', null);
-        $idDocumentoEmpresa = request('tipo_documento', null);
-        $docDirigidoA = strtoupper(request('documento_dirigido_a', null));
-        $objetoAvaluo = $objetoAvaluoCheck;
+        $idPais = request('pais', null);
+        $idDepartamento = request('departamento', null);
         $idCiudad = request('municipio', null);
-        $sector = strtoupper(request('sector', null));
-        $barrio = strtoupper(request('barrio', null));
-        $direccion = strtoupper(request('direccion', null));
-        $idTipoInmueble = request('tipo_inmueble', null);
-        $area = doubleval(request('area', null));
-        $idEstrato = request('estrato', null);
-        $numeroInmueble = strtoupper(request('numero_inmueble', null));
-        $cantParqueaderos = request('cant_parqueaderos', null);
-        $cantCuartoUtil = request('cant_cuarto_util', null);
-        $cantKioskos = request('cant_kioscos', null);
-        $cantPiscinas = request('cant_piscinas', null);
-        $cantEstablos = request('cant_establos', null);
-        $cantBillares = request('cant_billares', null);
         $idReferidoPor = request('id_referido_por', null);
         $idRedSocial = request('id_red_social', null);
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere = request('empresa_que_refiere', null);
-        $porcentajeDescuento = request('porcentaje_descuento', null);
-        $valorCotizacion = request('valor_cotizacion', null);
-        $idVisitado = request('visitado', null);
 
         // ==============================================================================
 
-        if ($cantParqueaderos != "-1" || $cantParqueaderos != -1) {
-            $cantParqueaderos = request('cant_parqueaderos', null);
+        if ($idPais != "-1" || $idPais != -1) {
+            $idPais = request('pais', null);
         } else {
-            $cantParqueaderos = null;
+            $idPais = null;
         }
 
         // ==============================
 
-        if ($cantCuartoUtil != "-1" || $cantCuartoUtil != -1) {
-            $cantCuartoUtil = request('cant_cuarto_util', null);
+        if ($idDepartamento != "-1" || $idDepartamento != -1) {
+            $idDepartamento = request('departamento', null);
         } else {
-            $cantCuartoUtil = null;
+            $idDepartamento = null;
         }
 
         // ==============================
 
-        if ($cantKioskos != "-1" || $cantKioskos != -1) {
-            $cantKioskos = request('cant_kioscos', null);
+        if ($idCiudad != "-1" || $idCiudad != -1) {
+            $idCiudad = request('municipio', null);
         } else {
-            $cantKioskos = null;
+            $idCiudad = null;
         }
 
         // ==============================
 
-        if ($cantPiscinas != "-1" || $cantPiscinas != -1) {
-            $cantPiscinas = request('cant_piscinas', null);
+        if ($idReferidoPor != "-1" || $idReferidoPor != -1) {
+            $idReferidoPor = request('id_referido_por', null);
         } else {
-            $cantPiscinas = null;
+            $idReferidoPor = null;
         }
 
-        // ==============================
-
-        if ($cantEstablos != "-1" || $cantEstablos != -1) {
-            $cantEstablos = request('cant_establos', null);
-        } else {
-            $cantEstablos = null;
-        }
-
-        // ==============================
-        
-        if ($cantBillares != "-1" || $cantBillares != -1) {
-            $cantBillares = request('cant_billares', null);
-        } else {
-            $cantBillares = null;
-        }
-        
         // ==============================
 
         if ($idRedSocial != "-1" || $idRedSocial != -1) {
@@ -121,31 +84,13 @@ class ClientePotencialStore implements Responsable
                                 'cli_celular' => $cliCelular,
                                 'cli_email' => $cliEmail,
                                 'id_tipo_persona' => $idTipoPersona,
-                                'id_dirigido_a' => $idDirigidoA,
-                                'id_doc_empresa' => $idDocumentoEmpresa,
-                                'documento_empresa' => $docDirigidoA,
-                                'objeto_avaluo' => $objetoAvaluo,
+                                'id_pais' => $idPais,
+                                'id_dpto_estado' => $idDepartamento,
                                 'id_ciudad' => $idCiudad,
-                                'sector' => $sector,
-                                'barrio' => $barrio,
-                                'direccion' => $direccion,
-                                'id_tipo_inmueble' => $idTipoInmueble,
-                                'area' => $area,
-                                'id_estrato' => $idEstrato,
-                                'numero_inmueble' => $numeroInmueble,
-                                'id_cant_parqueaderos' => $cantParqueaderos,
-                                'id_cant_cuarto_util' => $cantCuartoUtil,
-                                'id_cant_kioskos' => $cantKioskos,
-                                'id_cant_piscinas' => $cantPiscinas,
-                                'id_cant_establos' => $cantEstablos,
-                                'id_cant_billares' => $cantBillares,
                                 'id_referido_por' => $idReferidoPor,
                                 'id_red_social' => $idRedSocial,
                                 'nombre_quien_refiere' => $nombreQuienRefiere,
                                 'empresa_que_refiere' => $empresaQueRefiere,
-                                'porcentaje_descuento' => $porcentajeDescuento,
-                                'valor_cotizacion' => $valorCotizacion,
-                                'id_visitado' => $idVisitado,
                             ]);
 
             if($nuevoCliente)

@@ -10,16 +10,14 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
+use App\Models\Cliente;
 use App\Models\TipoDocumento;
-use App\Models\Ciudad;
-use App\Models\TipoInmueble;
 use App\Models\TipoPersona;
-use App\Models\IndicadorNumerico;
+use App\Models\Pais;
+use App\Models\DepartamentoEstado;
+use App\Models\Ciudad;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
-use App\Models\SiNo;
-use App\Models\DirigidoA;
-use App\Models\Cliente;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 use App\Http\Responsable\cliente_potencial\ClienteUpdate;
 
@@ -150,15 +148,12 @@ class ClientePotencialController extends Controller
     private function shareData()
     {
         view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-        view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
         view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
-        view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
-        view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
-        view()->share('indicador_numerico', IndicadorNumerico::orderBy('id_indicador_numerico', 'asc')->pluck('indicador_numerico', 'id_indicador_numerico'));
+        view()->share('paises', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
+        view()->share('departamentos', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
+        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
         view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
         view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
-        view()->share('si_no', SiNo::orderBy('id_si_no', 'asc')->pluck('descripcion_si_no', 'id_si_no'));
-
     }
 
     // ========================================================
