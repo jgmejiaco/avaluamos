@@ -19,10 +19,17 @@ class ClienteUpdate implements Responsable
         $idCliente = request('id_cliente', null);
         $cli_nombres = request('nombres', null);
         $idTipoDocumentoCliente = request('id_doc_cliente', null);
-        $documentoCliente = request('documento_cliente', null);
+        $documentoCliente = strtoupper(request('documento_cliente', null));
         $cliCelular = request('cli_celular', null);
         $cliEmail = request('cli_email', null);
         $idTipoPersona = request('id_tipo_persona', null);
+        $paisEdit = request('pais_edit', null);
+        $dptoEdit = request('dpto_edit', null);
+        $ciudadEdit = request('ciudad_edit', null);
+        $referidoPorEdit = request('referido_por_edit', null);
+        $redSocialEdit = request('red_social_edit', null);
+        $quienRefiereEdit = strtoupper(request('quien_refiere_edit', null));
+        $empresaRefiereEdit = strtoupper(request('empresa_refiere_edit', null));
 
         // ========================================================
 
@@ -38,6 +45,13 @@ class ClienteUpdate implements Responsable
                             'cli_celular' => $cliCelular,
                             'cli_email' => $cliEmail,
                             'id_tipo_persona' => $idTipoPersona,
+                            'id_pais' => $paisEdit,
+                            'id_dpto_estado' => $dptoEdit,
+                            'id_ciudad' => $ciudadEdit,
+                            'id_referido_por' => $referidoPorEdit,
+                            'id_red_social' => $redSocialEdit,
+                            'nombre_quien_refiere' => $quienRefiereEdit,
+                            'empresa_que_refiere' => $empresaRefiereEdit,
                         ]
                     );
 

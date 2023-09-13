@@ -41,14 +41,12 @@
                                 <th>Correo</th>
                                 <th>Tipo Persona</th>
                                 <th>Recomendado Por</th>
+                                <th>Referido</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($clientes as $cliente)
-                                {{-- @php
-                                    dd($cliente);
-                                @endphp --}}
                                 <tr>
                                     <td>{{$cliente->id_cliente}}</td>
                                     <td>{{$cliente->cli_nombres}}</td>
@@ -58,6 +56,17 @@
                                     <td>{{$cliente->cli_email}}</td>
                                     <td>{{$cliente->tipo_persona}}</td>
                                     <td>{{$cliente->referido_por}}</td>
+                                    
+                                    @if ($cliente->id_referido_por == 1) {{-- EMPRESA --}}
+                                        <td>{{$cliente->empresa_que_refiere}}</td>
+                                    @elseif($cliente->id_referido_por == 2) {{-- REDES SOCIALES --}}
+                                        <td>{{$cliente->red_social}}</td>
+                                    @elseif($cliente->id_referido_por == 3) {{-- REFERIDOS --}}
+                                        <td>{{$cliente->nombre_quien_refiere}}</td>
+                                    @else {{-- WEB AVALUAMOS --}}
+                                        <td><a href="https://www.avaluamos.com.co" class="text-primary" target="_blank" rel="noopener noreferrer">Avaluamos</a></td>
+                                    @endif
+                                    
                                     <td>
                                         <button class="btn btn-warning" onclick="editarCliente('{{$cliente->id_cliente}}','{{$cliente->cli_nombres}}','{{$cliente->id_doc_cliente}}','{{$cliente->decripcion_documento}}','{{$cliente->documento_cliente}}','{{$cliente->cli_celular}}','{{$cliente->cli_email}}',{{$cliente->id_tipo_persona}},'{{$cliente->tipo_persona}}','{{$cliente->id_pais}}','{{$cliente->descripcion_pais}}','{{$cliente->id_departamento_estado}}','{{$cliente->descripcion_departamento}}','{{$cliente->id_ciudad}}','{{$cliente->descripcion_ciudad}}','{{$cliente->id_referido_por}}','{{$cliente->referido_por}}','{{$cliente->id_red_social}}','{{$cliente->red_social}}','{{$cliente->nombre_quien_refiere}}','{{$cliente->empresa_que_refiere}}')">Editar Cliente</button>
 
@@ -186,7 +195,7 @@
 
             formEditarcliente += `  <div class="form-group">
                                         <label class="form-label text-uppercase">Número Documento</label>
-                                        <input type="text" class="form-control" name="documento_cliente" value="${documentoCliente}">
+                                        <input type="text" class="form-control text-uppercase" name="documento_cliente" value="${documentoCliente}">
                                     </div>
             `;
 
@@ -356,7 +365,7 @@
             
             formEditarcliente += `  <div class="form-group" id="div_quien_refiere_edit">
                                         <label class="form-label text-uppercase">Nombre Quien refiere</label>
-                                        <input type="text" class="form-control" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
+                                        <input type="text" class="form-control text-uppercase" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
                                     </div>
             `;
 
@@ -364,7 +373,7 @@
             
             formEditarcliente += `  <div class="form-group" id="div_empresa_refiere_edit">
                                         <label class="form-label text-uppercase">Empresa que refiere</label>
-                                        <input type="text" class="form-control" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
+                                        <input type="text" class="form-control text-uppercase" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
                                     </div>
             `;
 
