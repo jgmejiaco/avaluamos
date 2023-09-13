@@ -499,6 +499,8 @@
                     $('#div_empresa_refiere_edit').hide();
                     $('#empresa_refiere_edit').removeAttr('required');
                     $('#empresa_refiere_edit').val('');
+
+                    $('#referido_por_edit').attr('required');
                 }
             })
         }
