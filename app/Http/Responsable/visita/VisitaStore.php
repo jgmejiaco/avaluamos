@@ -21,7 +21,7 @@ use App\Models\DotacionComunal;
 use App\Models\InfoSector;
 use App\Models\CondicionesUrbanisticas;
 use App\Models\ObservacionesGenerales;
-// use App\Models\RegistroFotografico;
+use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
 
 class VisitaStore implements Responsable
@@ -249,9 +249,9 @@ class VisitaStore implements Responsable
                     'id_visita' => $idVisita->id_visita,
                 ]);
 
-                // RegistroFotografico::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                RegistroFotografico::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
                 ValorEstimadoAvaluo::create([
                     'id_visita' => $idVisita->id_visita,

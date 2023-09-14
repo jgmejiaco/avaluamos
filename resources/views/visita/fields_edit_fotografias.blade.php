@@ -133,6 +133,43 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
+                        <label for="rf_habitacion4" class="form-label text-uppercase">habitación 4</label>
+                        {!! Form::file('rf_habitacion4', null, ['class' => 'form-control', 'id' => 'rf_habitacion4']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="rf_habitacion5" class="form-label text-uppercase">habitación 5</label>
+                        {!! Form::file('rf_habitacion5', null, ['class' => 'form-control', 'id' => 'rf_habitacion5']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="rf_habitacion6" class="form-label text-uppercase">habitación 6</label>
+                        {!! Form::file('rf_habitacion6', null, ['class' => 'form-control', 'id' => 'rf_habitacion6']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="rf_habitacion7" class="form-label text-uppercase">habitación 7</label>
+                        {!! Form::file('rf_habitacion7', null, ['class' => 'form-control', 'id' => 'rf_habitacion7']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
                         <label for="rf_bano1" class="form-label text-uppercase">baño 1</label>
                         {!! Form::file('rf_bano1', null, ['class' => 'form-control', 'id' => 'rf_bano1']) !!}
                     </div>
