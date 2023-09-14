@@ -225,7 +225,6 @@ class VisitaController extends Controller
         view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
         view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
         view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
-        
         view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_usuario'));
         view()->share('pais', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
         view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
@@ -354,8 +353,8 @@ class VisitaController extends Controller
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
                     ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
-                    ->leftjoin('tipo_documento as id_doc_cliente','id_doc_cliente.id_tipo_documento','=','clientes.id_doc_cliente')
-                    ->leftjoin('tipo_documento as id_doc_empresa','id_doc_empresa.id_tipo_documento','=','visitas.id_doc_empresa')
+                    ->leftjoin('tipo_documento as id_tdoc_cliente','id_tdoc_cliente.id_tipo_documento','=','clientes.id_doc_cliente')
+                    ->leftjoin('tipo_documento as id_tdoc_empresa','id_tdoc_empresa.id_tipo_documento','=','visitas.id_doc_empresa')
                     ->leftjoin('pais','pais.id_pais','=','visitas.id_pais')
                     ->leftjoin('departamento_estado','departamento_estado.id_departamento_estado','=','visitas.id_departamento')
                     ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
@@ -374,7 +373,7 @@ class VisitaController extends Controller
                         'clientes.id_cliente',
                         'cli_nombres',
                         'clientes.id_doc_cliente',
-                        'id_doc_cliente.decripcion_documento as cli_tipo_doc',
+                        'id_tdoc_cliente.decripcion_documento as cli_tipo_doc',
                         'documento_cliente',
                         'cli_celular',
                         'cli_email',
@@ -388,7 +387,7 @@ class VisitaController extends Controller
                         'dirigido_a.id_dirigido_a',
                         'dirigido_a.dirigido_a',
                         'visitas.id_doc_empresa',
-                        'id_doc_empresa.decripcion_documento as empresa_tipo_doc',
+                        'id_tdoc_empresa.decripcion_documento as empresa_tipo_doc',
                         'visitas.documento_empresa',
                         'visitas.objeto_avaluo',
                         'descripcion_ciudad',

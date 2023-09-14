@@ -6,31 +6,9 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="estructura" class="form-label text-uppercase" data-placeholder="estructura">Estructura<span class="text-danger">*</span></label>
-                        {!! Form::text('estructura', null, ['class' => 'form-control select2', 'id' => 'estructura', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="porton_principal" class="form-label text-uppercase" data-placeholder="porton_principal">Portón Principal<span class="text-danger">*</span></label>
-                        {!! Form::text('porton_principal', null, ['class' => 'form-control', 'id' => 'porton_principal', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-                {{-- @php
-                    use Carbon\Carbon;
-                    // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-                @endphp --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100">
-                        <label for="fachada" class="form-label text-uppercase" data-placeholder="fachada">Fachada</label>
-                        {!! Form::text('fachada', null, ['class' => 'form-control', 'id' => 'fachada']) !!}
+                    <div class="form-group">
+                        <label for="estructura" class="form-label text-uppercase">Estructura<span class="text-danger">*</span></label>
+                        {!! Form::select('estructura', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'estructura', 'required']) !!}
                     </div>
                 </div>
 
@@ -38,26 +16,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="puertas" class="form-label text-uppercase" data-placeholder="puertas">Puertas<span class="text-danger">*</span></label>
-                        {!! Form::text('puertas', null, ['class' => 'form-control select2', 'id' => 'puertas', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="form-group">
-                        <label for="muros" class="form-label text-uppercase" data-placeholder="muros">Muros<span class="text-danger">*</span></label>
-                        {!! Form::text('muros', null, ['class' => 'form-control select2', 'id' => 'muros', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="form-group">
-                        <label for="ventaneria" class="form-label text-uppercase" data-placeholder="ventaneria">Ventaneria<span class="text-danger">*</span></label>
-                        {!! Form::text('ventaneria', null, ['class' => 'form-control select2', 'id' => 'ventaneria', 'required']) !!}
+                        <label for="porton_principal" class="form-label text-uppercase">Portón Principal<span class="text-danger">*</span></label>
+                        {!! Form::select('porton_principal', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'porton_principal', 'required']) !!}
                     </div>
                 </div>
 
@@ -65,8 +25,44 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="techos" class="form-label text-uppercase" data-placeholder="techos">Techos<span class="text-danger">*</span></label>
-                        {!! Form::text('techos', null, ['class' => 'form-control select2', 'id' => 'techos', 'required']) !!}
+                        <label for="fachada" class="form-label text-uppercase">Fachada</label>
+                        {!! Form::select('fachada', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'fachada']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="puertas" class="form-label text-uppercase">Puertas<span class="text-danger">*</span></label>
+                        {!! Form::select('puertas', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'puertas', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="muros" class="form-label text-uppercase">Muros<span class="text-danger">*</span></label>
+                        {!! Form::select('muros', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'muros', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="ventaneria" class="form-label text-uppercase">Ventaneria<span class="text-danger">*</span></label>
+                        {!! Form::select('ventaneria', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'ventaneria', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="techos" class="form-label text-uppercase">Techos<span class="text-danger">*</span></label>
+                        {!! Form::select('techos', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'techos', 'required']) !!}
                     </div>
                 </div>
 
@@ -74,89 +70,89 @@
                 
                 <div class="col-12 col-md-3" id="div_telefono">
                     <div class="form-group">
-                        <label for="carpinteria" class="form-label text-uppercase" data-placeholder="carpinteria">Carpintería</label>
-                        {!! Form::text('carpinteria', null, ['class' => 'form-control', 'id' => 'carpinteria']) !!}
+                        <label for="carpinteria" class="form-label text-uppercase">Carpintería</label>
+                        {!! Form::select('carpinteria', $calificacion_general, null, ['class' => 'form-control', 'id' => 'carpinteria']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="pisos" class="form-label text-uppercase" data-placeholder="pisos">Pisos<span class="text-danger">*</span></label>
-                        {!! Form::text('pisos', null, ['class' => 'form-control text-uppercase', 'id' => 'pisos', 'required']) !!}
+                    <div class="form-group">
+                        <label for="pisos" class="form-label text-uppercase">Pisos<span class="text-danger">*</span></label>
+                        {!! Form::select('pisos', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'pisos', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3" id="">
-                    <div class="wrap-input100">
-                        <label for="ventilacion" class="form-label text-uppercase" data-placeholder="ventilacion">Ventilación</label>
-                        {!! Form::text('ventilacion', null, ['class' => 'form-control', 'id' => 'ventilacion']) !!}
+                    <div class="form-group">
+                        <label for="ventilacion" class="form-label text-uppercase">Ventilación</label>
+                        {!! Form::select('ventilacion', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'ventilacion']) !!}
                     </div>
                 </div>
                 
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3" id="">
-                    <div class="wrap-input100">
-                        <label for="cocina" class="form-label text-uppercase" data-placeholder="cocina">Cocina</label>
-                        {!! Form::text('cocina', null, ['class' => 'form-control', 'id' => 'cocina']) !!}
+                    <div class="form-group">
+                        <label for="cocina" class="form-label text-uppercase">Cocina</label>
+                        {!! Form::select('cocina', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'cocina']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3" id="">
-                    <div class="wrap-input100">
-                        <label for="iluminacion" class="form-label text-uppercase" data-placeholder="iluminacion">Iluminación</label>
-                        {!! Form::text('iluminacion', null, ['class' => 'form-control', 'id' => 'iluminacion']) !!}
+                    <div class="form-group">
+                        <label for="iluminacion" class="form-label text-uppercase">Iluminación</label>
+                        {!! Form::select('iluminacion', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'iluminacion']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
-                        <label for="banos" class="form-label text-uppercase" data-placeholder="banos">Baños<span class="text-danger">*</span></label>
-                        {!! Form::text('banos', null, ['class' => 'form-control select2', 'id' => 'banos', 'required']) !!}
+                    <div class="form-group">
+                        <label for="banios" class="form-label text-uppercase" data-placeholder="banos">Baños<span class="text-danger">*</span></label>
+                        {!! Form::select('banios', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'banios', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <div class="form-group">
                         <label for="distribucion" class="form-label text-uppercase" data-placeholder="distribucion">Distribución<span class="text-danger">*</span></label>
-                        {!! Form::text('distribucion', null, ['class' => 'form-control select2', 'id' => 'distribucion', 'required']) !!}
+                        {!! Form::select('distribucion', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'distribucion', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <div class="form-group">
                         <label for="zona_ropas" class="form-label text-uppercase" data-placeholder="zona_ropas">Zona Ropas<span class="text-danger">*</span></label>
-                        {!! Form::text('zona_ropas', null, ['class' => 'form-control select2', 'id' => 'zona_ropas', 'required']) !!}
+                        {!! Form::select('zona_ropas', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'zona_ropas', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
-                        <label for="humedades" class="form-label text-uppercase" data-placeholder="humedades">Humedades<span class="text-danger">*</span></label>
-                        {!! Form::text('humedades', null, ['class' => 'form-control select2', 'id' => 'humedades', 'required']) !!}
+                    <div class="form-group">
+                        <label for="humedades" class="form-label text-uppercase">Humedades<span class="text-danger">*</span></label>
+                        {!! Form::select('humedades',$si_no, null, ['class' => 'form-control select2', 'id' => 'humedades', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
-                        <label for="observaciones_calificacion_inmueble" class="form-label text-uppercase" data-placeholder="observaciones_calificacion_inmueble">Observaciones Calificacion del Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::textarea('observaciones_calificacion_inmueble', null, ['class' => 'form-control select2', 'id' => 'observaciones_calificacion_inmueble', 'required']) !!}
+                    <div class="form-group">
+                        <label for="obs_acabados_inmueble" class="form-label text-uppercase">Observaciones Calificacion del Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::textarea('obs_acabados_inmueble', null, ['class' => 'form-control select2', 'id' => 'obs_acabados_inmueble', 'required']) !!}
                     </div>
                 </div>
             </div>

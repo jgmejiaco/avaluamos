@@ -14,12 +14,12 @@ use Jenssegers\Date\Date;
 use App\Models\Visita;
 use App\Models\InfoJuridica;
 use App\Models\InfoInmueble;
-// use App\Models\CaracteristicasInmueble;
-// use App\Models\AcabadosInmueble;
-// use App\Models\CalificacionInmueble;
-// use App\Models\DotacionComunal;
-// use App\Models\InfoSector;
-// use App\Models\CondicionesUrbanisticas;
+use App\Models\CaracteristicasInmueble;
+use App\Models\AcabadosInmueble;
+use App\Models\CalificacionInmueble;
+use App\Models\DotacionComunal;
+use App\Models\InfoSector;
+use App\Models\CondicionesUrbanisticas;
 // use App\Models\ObservacionesGenerales;
 // use App\Models\RegistroFotografico;
 // use App\Models\ValorEstimadoAvaluo;
@@ -221,29 +221,29 @@ class VisitaStore implements Responsable
                     'id_visita' => $idVisita->id_visita,
                 ]);
 
-                // CaracteristicasInmueble::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                CaracteristicasInmueble::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
-                // AcabadosInmueble::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                AcabadosInmueble::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
-                // CalificacionInmueble::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                CalificacionInmueble::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
-                // DotacionComunal::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                DotacionComunal::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
-                // InfoSector::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                InfoSector::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
-                // CondicionesUrbanisticas::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                CondicionesUrbanisticas::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
                 // RegistroFotografico::create([
                 //     'id_visita' => $idVisita->id_visita,

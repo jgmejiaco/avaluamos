@@ -6,7 +6,7 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
+                    <div class="form-group">
                         <label for="valorizacion" class="form-label text-uppercase">valorización<span class="text-danger">*</span></label>
                         {!! Form::select('valorizacion', $valorizacion, null, ['class' => 'form-control select2', 'id' => 'valorizacion', 'required']) !!}
                     </div>
@@ -15,22 +15,18 @@
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
+                    <div class="form-group">
                         <label for="alumbrado_publico" class="form-label text-uppercase">alumbrado público<span class="text-danger">*</span></label>
-                        {!! Form::select('alumbrado_publico', $calificacion_general, null, ['class' => 'form-control', 'id' => 'alumbrado_publico', 'required']) !!}
+                        {!! Form::select('alumbrado_publico', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'alumbrado_publico', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
-                {{-- @php
-                    use Carbon\Carbon;
-                    // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-                @endphp --}}
-
+                
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100">
-                        <label for="transporte" class="form-label text-uppercase" data-placeholder="transporte">Transporte</label>
-                        {!! Form::select('transporte', $calificacion_general, null, ['class' => 'form-control', 'id' => 'transporte']) !!}
+                    <div class="form-group">
+                        <label for="transporte" class="form-label text-uppercase">Transporte</label>
+                        {!! Form::select('transporte', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'transporte']) !!}
                     </div>
                 </div>
 
@@ -82,28 +78,28 @@
                 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="barrios_sectores" class="form-label text-uppercase" data-placeholder="barrios_sectores">Barrios/Sectores<span class="text-danger">*</span></label>
-                        {!! Form::text('barrios_sectores', null, ['class' => 'form-control select2', 'id' => 'barrios_sectores', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-                
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="tipo_edificaciones" class="form-label text-uppercase">tipo edificaciones<span class="text-danger">*</span></label>
-                        {!! Form::text('tipo_edificaciones', null, ['class' => 'form-control select2', 'id' => 'tipo_edificaciones', 'required']) !!}
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="barrios_sectores" class="form-label text-uppercase">Barrios/Sectores<span class="text-danger">*</span></label>
+                        {!! Form::textarea('barrios_sectores', null, ['class' => 'form-control', 'id' => 'barrios_sectores', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
                 <div class="col-12">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
+                    <div class="form-group">
+                        <label for="tipo_edificaciones" class="form-label text-uppercase">tipo edificaciones<span class="text-danger">*</span></label>
+                        {!! Form::textarea('tipo_edificaciones', null, ['class' => 'form-control', 'id' => 'tipo_edificaciones', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12">
+                    <div class="form-group">
                         <label for="observaciones_condiciones_urbanisticas" class="form-label text-uppercase">Observaciones condiciones urbanisticas<span class="text-danger">*</span></label>
-                        {!! Form::textarea('observaciones_condiciones_urbanisticas', null, ['class' => 'form-control select2', 'id' => 'observaciones_condiciones_urbanisticas', 'required']) !!}
+                        {!! Form::textarea('observaciones_condiciones_urbanisticas', null, ['class' => 'form-control', 'id' => 'observaciones_condiciones_urbanisticas', 'required']) !!}
                     </div>
                 </div>
             </div>

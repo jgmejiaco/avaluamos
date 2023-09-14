@@ -6,31 +6,9 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="porteria_24_horas" class="form-label text-uppercase" data-placeholder="porteria_24_horas">Porteria 24 Horas<span class="text-danger">*</span></label>
-                        {!! Form::text('porteria_24_horas', null, ['class' => 'form-control select2', 'id' => 'porteria_24_horas', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="parqueo_comun" class="form-label text-uppercase" data-placeholder="parqueo_comun">Parqueo Común<span class="text-danger">*</span></label>
-                        {!! Form::text('parqueo_comun', null, ['class' => 'form-control', 'id' => 'parqueo_comun', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-                {{-- @php
-                    use Carbon\Carbon;
-                    // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-                @endphp --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="wrap-input100">
-                        <label for="juegos_infantiles" class="form-label text-uppercase" data-placeholder="juegos_infantiles">Juegos Infantiles</label>
-                        {!! Form::text('juegos_infantiles', null, ['class' => 'form-control', 'id' => 'juegos_infantiles']) !!}
+                    <div class="form-group">
+                        <label for="porteria_24_horas" class="form-label text-uppercase">Porteria 24 Horas<span class="text-danger">*</span></label>
+                        {!! Form::select('porteria_24_horas', $si_no, null, ['class' => 'form-control select2', 'id' => 'porteria_24_horas', 'required']) !!}
                     </div>
                 </div>
 
@@ -38,8 +16,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="zona_mascotas" class="form-label text-uppercase" data-placeholder="zona_mascotas">Zona Mascotas<span class="text-danger">*</span></label>
-                        {!! Form::text('zona_mascotas', null, ['class' => 'form-control select2', 'id' => 'zona_mascotas', 'required']) !!}
+                        <label for="parqueo_comun" class="form-label text-uppercase">Parqueo Común<span class="text-danger">*</span></label>
+                        {!! Form::select('parqueo_comun', $si_no, null, ['class' => 'form-control select2', 'id' => 'parqueo_comun', 'required']) !!}
                     </div>
                 </div>
 
@@ -47,8 +25,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="piscina" class="form-label text-uppercase" data-placeholder="piscina">Piscina<span class="text-danger">*</span></label>
-                        {!! Form::text('piscina', null, ['class' => 'form-control select2', 'id' => 'piscina', 'required']) !!}
+                        <label for="juegos_infantiles" class="form-label text-uppercase">Juegos Infantiles</label>
+                        {!! Form::select('juegos_infantiles', $si_no, null, ['class' => 'form-control select2', 'id' => 'juegos_infantiles']) !!}
                     </div>
                 </div>
 
@@ -56,8 +34,26 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="zonas_verdes" class="form-label text-uppercase" data-placeholder="zonas_verdes">Zonas Verdes<span class="text-danger">*</span></label>
-                        {!! Form::text('zonas_verdes', null, ['class' => 'form-control select2', 'id' => 'zonas_verdes', 'required']) !!}
+                        <label for="zona_mascotas" class="form-label text-uppercase">Zona Mascotas<span class="text-danger">*</span></label>
+                        {!! Form::select('zona_mascotas', $si_no, null, ['class' => 'form-control select2', 'id' => 'zona_mascotas', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="piscina" class="form-label text-uppercase">Piscina<span class="text-danger">*</span></label>
+                        {!! Form::select('piscina', $si_no, null, ['class' => 'form-control select2', 'id' => 'piscina', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group">
+                        <label for="zonas_verdes" class="form-label text-uppercase">Zonas Verdes<span class="text-danger">*</span></label>
+                        {!! Form::select('zonas_verdes', $si_no, null, ['class' => 'form-control select2', 'id' => 'zonas_verdes', 'required']) !!}
                     </div>
                 </div>
 
@@ -65,8 +61,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group">
-                        <label for="sauna" class="form-label text-uppercase" data-placeholder="sauna">Sauna<span class="text-danger">*</span></label>
-                        {!! Form::text('sauna', null, ['class' => 'form-control select2', 'id' => 'sauna', 'required']) !!}
+                        <label for="sauna" class="form-label text-uppercase">Sauna<span class="text-danger">*</span></label>
+                        {!! Form::select('sauna', $si_no, null, ['class' => 'form-control select2', 'id' => 'sauna', 'required']) !!}
                     </div>
                 </div>
 
@@ -74,34 +70,34 @@
                 
                 <div class="col-12 col-md-3" id="div_telefono">
                     <div class="form-group">
-                        <label for="salon_social" class="form-label text-uppercase" data-placeholder="salon_social">Salon Social</label>
-                        {!! Form::text('salon_social', null, ['class' => 'form-control', 'id' => 'salon_social']) !!}
+                        <label for="salon_social" class="form-label text-uppercase">Salon Social</label>
+                        {!! Form::select('salon_social', $si_no, null, ['class' => 'form-control select2', 'id' => 'salon_social']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="turco" class="form-label text-uppercase" data-placeholder="turco">Turco<span class="text-danger">*</span></label>
-                        {!! Form::text('turco', null, ['class' => 'form-control text-uppercase', 'id' => 'turco', 'required']) !!}
+                    <div class="form-group">
+                        <label for="turco" class="form-label text-uppercase">Turco<span class="text-danger">*</span></label>
+                        {!! Form::select('turco', $si_no, null, ['class' => 'form-control select2', 'id' => 'turco', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3" id="">
-                    <div class="wrap-input100">
-                        <label for="canchas" class="form-label text-uppercase" data-placeholder="canchas">canchas</label>
-                        {!! Form::text('canchas', null, ['class' => 'form-control', 'id' => 'canchas']) !!}
+                    <div class="form-group">
+                        <label for="canchas" class="form-label text-uppercase">canchas</label>
+                        {!! Form::select('canchas', $si_no, null, ['class' => 'form-control select2', 'id' => 'canchas']) !!}
                     </div>
                 </div>
                 
                 {{-- ======================= --}}
                 
                 <div class="col-12">
-                    <div class="wrap-input100 validate-input" data-validate="State Is Required">
-                        <label for="observaciones_equipamiento_comunal" class="form-label text-uppercase" data-placeholder="observaciones_equipamiento_comunal">Observaciones Equipamiento y Dotación Comunal<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <label for="observaciones_equipamiento_comunal" class="form-label text-uppercase">Observaciones Equipamiento y Dotación Comunal<span class="text-danger">*</span></label>
                         {!! Form::textarea('observaciones_equipamiento_comunal', null, ['class' => 'form-control select2', 'id' => 'observaciones_equipamiento_comunal', 'required']) !!}
                     </div>
                 </div>
