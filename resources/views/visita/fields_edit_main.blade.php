@@ -46,11 +46,11 @@
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_fotografias" id="nav_fotografias_tab" data-toggle="tab" role="tab" aria-controls="nav_fotografias">Registro Fotográfico</a>
+                    <a class="nav-link" href="#nav_observaciones_generales" id="nav_observaciones_generales_tab" data-toggle="tab" role="tab" aria-controls="nav_observaciones_generales">Observaciones Generales</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_observaciones_generales" id="nav_observaciones_generales_tab" data-toggle="tab" role="tab" aria-controls="nav_observaciones_generales">Observaciones Generales</a>
+                    <a class="nav-link" href="#nav_fotografias" id="nav_fotografias_tab" data-toggle="tab" role="tab" aria-controls="nav_fotografias">Registro Fotográfico</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
@@ -118,15 +118,15 @@
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
-                <!-- CONTENIDO PESTAÑA "VALOR ESTIMADO AVALÚO" -->
-                <div class="tab-pane" id="nav_fotografias" role="tabpanel" aria-labelledby="nav_fotografias_tab">
-                    @include('visita.fields_edit_fotografias')
-                </div>
-                <!-- ================================== -->
-                <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "OBSERVACIONES GENERALES" -->
                 <div class="tab-pane" id="nav_observaciones_generales" role="tabpanel" aria-labelledby="nav_observaciones_generales_tab">
                     @include('visita.fields_edit_observaciones_generales')
+                </div>
+                <!-- ================================== -->
+                <!-- ================================== -->
+                <!-- CONTENIDO PESTAÑA "REGISTRO FOTOGRÁFICO" -->
+                <div class="tab-pane" id="nav_fotografias" role="tabpanel" aria-labelledby="nav_fotografias_tab">
+                    @include('visita.fields_edit_fotografias')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->

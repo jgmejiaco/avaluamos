@@ -6,8 +6,8 @@
 
             <div class="row mb-5">
                 <div class="col-12">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="observaciones_generales" class="form-label text-uppercase" data-placeholder="observaciones_generales">Valor Observaciones Generales<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <label for="observaciones_generales" class="form-label text-uppercase">Observaciones Generales<span class="text-danger">*</span></label>
                         {!! Form::textarea('observaciones_generales', null, ['class' => 'form-control select2', 'id' => 'observaciones_generales', 'required']) !!}
                     </div>
                 </div>

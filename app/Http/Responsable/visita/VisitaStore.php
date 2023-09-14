@@ -20,9 +20,9 @@ use App\Models\CalificacionInmueble;
 use App\Models\DotacionComunal;
 use App\Models\InfoSector;
 use App\Models\CondicionesUrbanisticas;
-// use App\Models\ObservacionesGenerales;
+use App\Models\ObservacionesGenerales;
 // use App\Models\RegistroFotografico;
-// use App\Models\ValorEstimadoAvaluo;
+use App\Models\ValorEstimadoAvaluo;
 
 class VisitaStore implements Responsable
 {
@@ -245,17 +245,17 @@ class VisitaStore implements Responsable
                     'id_visita' => $idVisita->id_visita,
                 ]);
 
+                ObservacionesGenerales::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
+
                 // RegistroFotografico::create([
                 //     'id_visita' => $idVisita->id_visita,
                 // ]);
 
-                // ObservacionesGenerales::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
-
-                // ValorEstimadoAvaluo::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                ValorEstimadoAvaluo::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
                 alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
                 return redirect()->to(route('visita.index'));
