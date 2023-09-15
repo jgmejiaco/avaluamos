@@ -29,6 +29,15 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
+                <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
+                {!! Form::date('fecha_nacimiento', null, ['class' => 'form-control text-uppercase', 'id' => 'fecha_nacimiento']) !!}
+            </div>
+        </div>
+
+        {{-- ======================= --}}
+        
+        <div class="col-12 col-md-3">
+            <div class="form-group">
                 <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
                 {!! Form::text('celular', old('celular'), ['class' => 'form-control text-uppercase', 'id' => 'celular', 'required']) !!}
             </div>

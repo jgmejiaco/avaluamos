@@ -20,6 +20,7 @@ class ClienteUpdate implements Responsable
         $cli_nombres = request('nombres', null);
         $idTipoDocumentoCliente = request('id_doc_cliente', null);
         $documentoCliente = strtoupper(request('documento_cliente', null));
+        $fecha_nacimiento = request('fecha_nacimiento', null);
         $cliCelular = request('cli_celular', null);
         $cliEmail = request('cli_email', null);
         $idTipoPersona = request('id_tipo_persona', null);
@@ -42,6 +43,7 @@ class ClienteUpdate implements Responsable
                             'cli_nombres' => $cli_nombres,
                             'id_doc_cliente' => $idTipoDocumentoCliente,
                             'documento_cliente' => $documentoCliente,
+                            'fecha_nacimiento' => $fecha_nacimiento,
                             'cli_celular' => $cliCelular,
                             'cli_email' => $cliEmail,
                             'id_tipo_persona' => $idTipoPersona,

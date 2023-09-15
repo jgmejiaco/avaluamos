@@ -25,6 +25,7 @@ class Cliente extends Model
         'cli_nombres',
         'id_doc_cliente',
         'documento_cliente',
+        'fecha_nacimiento',
         'cli_celular',
         'cli_email',
         'id_tipo_persona',

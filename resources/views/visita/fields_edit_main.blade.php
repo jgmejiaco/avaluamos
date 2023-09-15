@@ -10,7 +10,11 @@
             <!-- ***************************************************** -->
             <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
                 <li class="nav-item">
-                    <a class="nav-link active text-uppercase" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
+                    <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-toggle="tab" role="tab" aria-controls="nav_cliente" aria-selected="true">Cliente</a>
+                </li>
+                <!-- ================================== -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
@@ -64,8 +68,14 @@
             <!-- ***************************************************** -->
             <!-- ***************************************************** -->
             <div class="tab-content p-0">
+                <!-- CONTENIDO PESTAÑA "CLIENTE" -->
+                <div class="tab-pane active" id="nav_cliente" role="tabpanel" aria-labelledby="nav_cliente_tab" tabindex="0">
+                    @include('visita.fields_edit_cliente')
+                </div>
+                <!-- ================================== -->
+                <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" -->
-                <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
+                <div class="tab-pane" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
                     @include('visita.fields_edit_visita_tecnica')
                 </div>
                 <!-- ================================== -->

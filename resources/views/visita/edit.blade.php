@@ -44,43 +44,110 @@
             $('#div_nombre_refiere').hide();
             $('#div_empresa_refiere').hide();
 
-            $("#id_referido_por").on('change',function(){
-                let referido_por = $('#id_referido_por').val();
+            $("#referido_por").on('change',function(){
+                let referido_por = $('#referido_por').val();
                 console.log(referido_por);
 
                 if (referido_por == 1) { // EMPRESA = 1
+                    $('#div_empresa_refiere').show('slow');
+                    $('#empresa_que_refiere').attr('required');
+
                     $('#div_red_social').hide('slow');
                     $('#red_social').removeAttr('required');
+                    $('#red_social').val('');
+
                     $('#div_nombre_refiere').hide('slow');
                     $('#nombre_quien_refiere').removeAttr('required');
-                    $('#div_empresa_refiere').show('slow');
+                    $('#nombre_quien_refiere').val('');
                 } else if (referido_por == 2) { // REDES SOCIALES = 2
                     $('#div_red_social').show('slow');
+                    $('#red_social').attr('required');
+
                     $('#div_nombre_refiere').hide('slow');
                     $('#nombre_quien_refiere').removeAttr('required');
+                    $('#nombre_quien_refiere').val('');
+
                     $('#div_empresa_refiere').hide('slow');
                     $('#empresa_que_refiere').removeAttr('required');
+                    $('#empresa_que_refiere').val('');
+
                 } else if (referido_por == 3) { // REFERIDOS = 3
+                    $('#div_nombre_refiere').show('slow');
+                    $('#nombre_quien_refiere').attr('required');
+
+
                     $('#div_red_social').hide('slow');
                     $('#red_social').removeAttr('required');
-                    $('#div_nombre_refiere').show('slow');
+                    $('#red_social').val('');
+
                     $('#div_empresa_refiere').hide('slow');
                     $('#empresa_que_refiere').removeAttr('required');
+                    $('#empresa_que_refiere').val('');
                 } else if (referido_por == 4) { // WEB AVALUAMOS = 4
                     $('#div_red_social').hide('slow');
                     $('#red_social').removeAttr('required');
+                    $('#red_social').val('');
+
                     $('#div_nombre_refiere').hide('slow');
                     $('#nombre_quien_refiere').removeAttr('required');
+                    $('#nombre_quien_refiere').val('');
+
                     $('#div_empresa_refiere').hide('slow');
                     $('#empresa_que_refiere').removeAttr('required');
+                    $('#empresa_que_refiere').val('');
+                    
+                    $('#id_referido_por').attr('required');
                 } else { // SIN SELECCIONAR = -1
                     $('#div_red_social').hide('slow');
                     $('#red_social').removeAttr('required');
+                    $('#red_social').val('');
+
                     $('#div_nombre_refiere').hide('slow');
                     $('#nombre_quien_refiere').removeAttr('required');
+                    $('#nombre_quien_refiere').val('');
+
                     $('#div_empresa_refiere').hide('slow');
                     $('#empresa_que_refiere').removeAttr('required');
+                    $('#empresa_que_refiere').val('');
+
                     $('#id_referido_por').attr('required');
+                }
+            });
+
+            // ==============================================
+            // ==============================================
+
+            $('#dirigido_a').on('change', function () {
+                let id_dirigido_a = $('#dirigido_a').val();
+                console.log(id_dirigido_a);
+
+                if (id_dirigido_a == "-1") {
+                    $('#tipo_doc_empresa').val('');
+                    $('#doc_dirigido_a').val('');
+                } else {
+                    $.ajax({
+                        url: "{{route('consultar_empresa')}}",
+                        type: "POST",
+                        dataType: "JSON",
+                        data:{
+                            '_token': "{{ csrf_token() }}",
+                            'id_dirigido_a': id_dirigido_a
+                        },
+                        success: function(respuesta) {
+                            console.log(respuesta);
+                            console.log(respuesta.id_tipo_documento);
+                            console.log(respuesta.decripcion_documento);
+                            console.log(respuesta.numero_documento);
+
+                            if (respuesta != null) {
+                                $('#tipo_doc_empresa').val(respuesta.id_tipo_documento);
+                                $('#doc_dirigido_a').val(respuesta.numero_documento);
+                            } else {
+                                $('#tipo_doc_empresa').val('');
+                                $('#doc_dirigido_a').val('');
+                            }
+                        }
+                    });
                 }
             });
 
@@ -93,7 +160,7 @@
                 buttonText: "Fachada",
                 buttonBefore: true,
                 size : 'md',
-                iconName: "mdi mdi-folder-multiple"
+                iconName: "mdi mdi-folder",
             });
             
             // ====================================

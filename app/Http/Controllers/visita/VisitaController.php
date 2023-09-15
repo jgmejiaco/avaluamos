@@ -43,7 +43,9 @@ use App\Models\DirigidoA;
 use App\Models\Cliente;
 use App\Models\Visita;
 use App\Http\Responsable\visita\VisitaStore;
-// use App\Http\Responsable\visita\VisitaUpdate;
+use App\Http\Responsable\visita\VisitaClienteUpdate;
+use App\Http\Responsable\visita\VisitaTecnicaUpdate;
+use App\Http\Responsable\visita\infoJuridicaUpdate;
 
 class VisitaController extends Controller
 {
@@ -182,8 +184,10 @@ class VisitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request, $id);
+
         // $sesion = $this->validarVariablesSesion();
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
@@ -193,9 +197,59 @@ class VisitaController extends Controller
         // {
         //     return redirect()->to(route('home'));
         // } else {
-        //     return new UsuariosUpdate();
+            // return new VisitaUpdate();
         // }
     }
+
+    //=========================================================
+
+    public function visitaClienteUpdate(Request $request)
+    {
+        // dd($request, $id);
+
+        // $sesion = $this->validarVariablesSesion();
+
+        // if(empty($sesion[0]) || is_null($sesion[0]) &&
+        //    empty($sesion[1]) || is_null($sesion[1]) &&
+        //    empty($sesion[2]) || is_null($sesion[2]) &&
+        //    $sesion[2] != true)
+        // {
+        //     return redirect()->to(route('home'));
+        // } else {
+            return new VisitaClienteUpdate();
+        // }
+    }
+
+    //=========================================================
+
+    public function visitaTecnicaUpdate(Request $request)
+    {
+        // dd($request, $id);
+
+        // $sesion = $this->validarVariablesSesion();
+
+        // if(empty($sesion[0]) || is_null($sesion[0]) &&
+        //    empty($sesion[1]) || is_null($sesion[1]) &&
+        //    empty($sesion[2]) || is_null($sesion[2]) &&
+        //    $sesion[2] != true)
+        // {
+        //     return redirect()->to(route('home'));
+        // } else {
+            return new VisitaTecnicaUpdate();
+        // }
+    }
+
+    //=========================================================
+
+    public function infoJuridicaUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new infoJuridicaUpdate();
+    }
+
+    //=========================================================
 
     /**
      * Remove the specified resource from storage.
@@ -226,9 +280,9 @@ class VisitaController extends Controller
         view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
         view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
         view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_usuario'));
-        view()->share('pais', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
-        view()->share('departamento_estado', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
-        view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+        view()->share('paises', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
+        view()->share('departamentos', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
+        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
         view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda', 'asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
         view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
         view()->share('uso_inmueble', UsoInmueble::orderBy('uso_inmueble', 'asc')->pluck('uso_inmueble', 'id_uso_inmueble'));
@@ -268,6 +322,7 @@ class VisitaController extends Controller
                             'clientes.id_doc_cliente',
                             'decripcion_documento as cli_tipo_doc',
                             'documento_cliente',
+                            'fecha_nacimiento',
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
@@ -375,6 +430,7 @@ class VisitaController extends Controller
                         'clientes.id_doc_cliente',
                         'id_tdoc_cliente.decripcion_documento as cli_tipo_doc',
                         'documento_cliente',
+                        'fecha_nacimiento',
                         'cli_celular',
                         'cli_email',
                         'clientes.id_tipo_persona',

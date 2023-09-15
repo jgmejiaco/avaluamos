@@ -1,114 +1,13 @@
-{!! Form::model($editarVisita,['method' => 'PUT', 'route' => ['visita.update',$editarVisita->id_visita], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita_tecnica_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_visita_tecnica']) !!}
 @csrf
-    {{-- @php
-        dd($editarVisita);
-    @endphp --}}
     <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+        {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+        {!! Form::hidden('id_cliente', isset($editarVisita) ? $editarVisita->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
+
         <h2 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h2>
-        <div class="row mb-1 mt-5" id="div_editar_cliente">
-            {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => 'input100', 'id' => 'id_visita']) !!}
-            {!! Form::hidden('id_cliente', isset($editarVisita) ? $editarVisita->id_cliente : null, ['class' => 'input100', 'id' => 'id_cliente']) !!}
-
-            {{-- ======================= --}}
-
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="nombre_solicitante" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
-                    {!! Form::text('nombre_solicitante', isset($editarVisita) ? $editarVisita->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_solicitante', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc', $tipo_documento, isset($editarVisita) ? $editarVisita->cli_tipo_doc : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::text('documento_cliente', isset($editarVisita) ? $editarVisita->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
-                    {!! Form::text('celular', isset($editarVisita) ? $editarVisita->cli_celular : null, ['class' => 'form-control text-uppercase', 'id' => 'celular', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="div_correo">
-                <div class="form-group">
-                    <label for="correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
-                    {!! Form::email('correo', isset($editarVisita) ? $editarVisita->cli_email : null, ['class' => 'form-control', 'id' => 'correo', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="div_correo">
-                <div class="form-group">
-                    <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
-                    {!! Form::select('tipo_persona', $tipo_persona, isset($editarVisita) ? $editarVisita->tipo_persona : null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3">
-                <div class="form-group">
-                    <label for="referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
-                    {!! Form::select('referido_por', $referido_por, isset($editarVisita) ? $editarVisita->referido_por : null, ['class' => 'form-control select2', 'id' => 'referido_por', 'required']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="div_red_social">
-                <div class="form-group">
-                    <label for="red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
-                    {!! Form::select('red_social', $red_social, isset($editarVisita) ? $editarVisita->red_social : null, ['class' => 'form-control select2', 'id' => 'red_social']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="div_nombre_refiere">
-                <div class="form-group">
-                    <label for="nombre_quien_refiere" class="form-label text-uppercase">Nombre quien refiere<span class="text-danger">*</span></label>
-                    {!! Form::text('nombre_quien_refiere', isset($editarVisita) ? $editarVisita->nombre_quien_refiere : null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_quien_refiere']) !!}
-                </div>
-            </div>
-
-            {{-- ======================= --}}
-            
-            <div class="col-12 col-md-3" id="div_empresa_refiere">
-                <div class="form-group">
-                    <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere<span class="text-danger">*</span></label>
-                    {!! Form::text('empresa_que_refiere', isset($editarVisita) ? $editarVisita->empresa_que_refiere : null, ['class' => 'form-control text-uppercase', 'id' => 'empresa_que_refiere']) !!}
-                </div>
-            </div>
-        </div> {{-- FIN div_editar_cliente --}}
-
-        {{-- ========================================================= --}}
-        {{-- ========================================================= --}}
-        {{-- ========================================================= --}}
-        {{-- ========================================================= --}}
-
-        <hr style="border: 1px solid grey">
 
         <div class="row mb-2 mt-2" id="div_dirigido_a">
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-4" id="">
                 <div class="form-group">
                     <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A<span class="text-danger">*</span></label>
                     {!! Form::select('dirigido_a', $dirigido_a, isset($editarVisita) ? $editarVisita->dirigido_a : null, ['class' => 'form-control select2', 'id' => 'dirigido_a', 'required']) !!}
@@ -117,19 +16,19 @@
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-4">
                 <div class="form-group">
-                    <label for="empresa_tipo_doc" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
-                    {!! Form::select('empresa_tipo_doc', $tipo_documento, isset($editarVisita) ? $editarVisita->empresa_tipo_doc : null, ['class' => 'form-control select2', 'id' => 'empresa_tipo_doc', 'readonly' => 'true', 'required']) !!}
+                    <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
+                    {!! Form::select('tipo_doc_empresa', $tipo_documento, isset($editarVisita) ? $editarVisita->empresa_tipo_doc : null, ['class' => 'form-control select2', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-4">
                 <div class="form-group">
-                    <label for="documento_dirigido_a" class="form-label text-uppercase">Documento Dirigido A<span class="text-danger">*</span></label>
-                    {!! Form::text('documento_dirigido_a', isset($editarVisita) ? $editarVisita->documento_empresa : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_dirigido_a', 'readonly' => 'true', 'required']) !!}
+                    <label for="doc_dirigido_a" class="form-label text-uppercase">Documento Dirigido A<span class="text-danger">*</span></label>
+                    {!! Form::text('doc_dirigido_a', isset($editarVisita) ? $editarVisita->documento_empresa : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_dirigido_a', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
         </div> {{-- FIN div_dirigido_a --}}
@@ -171,7 +70,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase">País<span class="text-danger">*</span></label>
-                    {!! Form::select('pais', $pais, isset($editarVisita) ? $editarVisita->descripcion_pais : null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
+                    {!! Form::select('pais', $paises, isset($editarVisita) ? $editarVisita->descripcion_pais : null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
                 </div>
             </div>
 
@@ -180,7 +79,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="departamento" class="form-label text-uppercase">Departamento<span class="text-danger">*</span></label>
-                    {!! Form::select('departamento', $departamento_estado, isset($editarVisita) ? $editarVisita->descripcion_departamento : null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
+                    {!! Form::select('departamento', $departamentos, isset($editarVisita) ? $editarVisita->descripcion_departamento : null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
                 </div>
             </div>
 
@@ -188,8 +87,8 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="municipio" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
-                    {!! Form::select('municipio', $ciudad, isset($editarVisita) ? $editarVisita->descripcion_ciudad : null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
+                    <label for="ciudad" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
+                    {!! Form::select('ciudad', $ciudades, isset($editarVisita) ? $editarVisita->descripcion_ciudad : null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 
@@ -370,8 +269,8 @@
             
             <div class="col-12" id="">
                 <div class="form-group">
-                    <label for="observaciones_inmueble" class="form-label text-uppercase">Observaciones Visita Técnica Inmueble<span class="text-danger">*</span></label>
-                    {!! Form::textarea('observaciones_inmueble', isset($editarVisita) ? $editarVisita->obser_visita : null, ['class' => 'form-control select2', 'id' => 'observaciones_inmueble', 'required']) !!}
+                    <label for="obser_visita_tecnica" class="form-label text-uppercase">Observaciones Visita Técnica<span class="text-danger">*</span></label>
+                    {!! Form::textarea('obser_visita_tecnica', isset($editarVisita) ? $editarVisita->obser_visita : null, ['class' => 'form-control select2', 'id' => 'obser_visita_tecnica', 'required']) !!}
                 </div>
             </div>
             
@@ -405,8 +304,8 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="avaluador" class="form-label text-uppercase">visitador<span class="text-danger">*</span></label>
-                    {!! Form::select('avaluador', $avaluador, isset($editarVisita) ? $editarVisita->nombres_visitador : null, ['class' => 'form-control text-uppercase select2', 'id' => 'avaluador', 'required']) !!}
+                    <label for="visitador" class="form-label text-uppercase">visitador<span class="text-danger">*</span></label>
+                    {!! Form::select('visitador', $avaluador, isset($editarVisita) ? $editarVisita->nombres_visitador : null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador', 'required']) !!}
                 </div>
             </div>
 
@@ -420,7 +319,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Visita Técnica" id="btn_crear_visita_tecnica" name="btn_crear_visita_tecnica">
+                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Editar Visita Técnica" id="btn_editar_visita_tecnica">
             </div>
         </div>
     </div> {{-- FIN div_ppal_cliente_visita --}}
