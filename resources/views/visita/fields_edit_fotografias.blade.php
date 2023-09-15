@@ -8,7 +8,8 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group">
                         <label for="rf_fachada" class="form-label text-uppercase">Fachada</label>
-                        {!! Form::file('rf_fachada', null, ['class' => 'form-control', 'id' => 'rf_fachada']) !!}
+                        {!! Form::file('rf_fachada', null, ['class' => 'form-control add-file', 'id' => 'rf_fachada']) !!}
+                        {{-- <label class="custom-file-label" for="rf_fachada">Elegir archivo</label> --}}
                     </div>
                 </div>
 
@@ -324,10 +325,11 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group">
                         <label for="rf_zona_ropa3" class="form-label text-uppercase">Zona ropa 3</label>
-                        {!! Form::file('rf_zona_ropa3', null, ['class' => 'form-control', 'id' => 'rf_zona_ropa3']) !!}
+                        {!! Form::file('rf_zona_ropa3', null, ['class' => 'form-control', 'id' => 'rf_zona_ropa3', 'accept' => 'image/*']) !!}
+                        {{-- <label class="custom-file-label" for="rf_zona_ropa3">Elegir archivo</label> --}}
                     </div>
                 </div>
-
+                
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3">

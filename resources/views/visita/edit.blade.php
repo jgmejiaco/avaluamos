@@ -12,7 +12,7 @@
     <div class="container-fluid p-5">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center text-uppercase">visita cliente:  <span class="text-primary">{{$editarVisita->cli_nombres}}</span></h2>
+                <h2 class="text-center text-uppercase">visita cliente: <span class="text-primary">{{$editarVisita->cli_nombres}}</span></h2>
             </div>
         </div>
 
@@ -24,6 +24,7 @@
 {{-- ====================================================== --}}
 
 @section('scripts')
+    <script src="{{asset('js/bootstrap-filestyle.min.js')}}"></script>
     <script>
         $( document ).ready(function()
         {
@@ -81,6 +82,436 @@
                     $('#empresa_que_refiere').removeAttr('required');
                     $('#id_referido_por').attr('required');
                 }
+            });
+
+            // ==============================================
+            // ==============================================
+
+            $('input[name=rf_fachada]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Fachada",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder-multiple"
+            });
+            
+            // ====================================
+
+            $('input[name=rf_entrada]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Entrada",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_sala1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Sala 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_sala2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Sala 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_sala3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Sala3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_comedor1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Comedor 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_comedor2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Comedor 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_comedor3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Comedor 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cocina1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cocina 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cocina2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cocina 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cocina3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cocina 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion4]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 4",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion5]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 5",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion6]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 6",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_habitacion7]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Habitación 7",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_bano1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Baño 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_bano2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Baño 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_bano3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Baño 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_patio1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Patio 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_patio2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Patio 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_patio3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Patio 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_estudio1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Estudio 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_estudio2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Estudio 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_estudio3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Estudio 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cuarto_util1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cuarto Útil 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cuarto_util2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cuarto Útil 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_cuarto_util3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Cuarto Útil 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_pasillo1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Pasillo 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_pasillo2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Pasillo 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_pasillo3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Pasillo 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_zona_ropa1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Zona Ropa 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_zona_ropa2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Zona Ropa 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_zona_ropa3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Zona Ropa 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_balcon1]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Balcón 1",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_balcon2]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Balcón 2",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
+            });
+
+            // ====================================
+
+            $('input[name=rf_balcon3]').filestyle({
+                input: false,
+                buttonName: "btn-rounded btn-success",
+                buttonText: "Balcón 3",
+                buttonBefore: true,
+                size : 'md',
+                iconName: "mdi mdi-folder"
             });
         });
     </script>
