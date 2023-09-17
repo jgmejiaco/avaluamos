@@ -28,13 +28,12 @@ class VisitaStore implements Responsable
 {
     public function toResponse($request)
     {
-        $objetoAvaluoCheck = request('objeto_avaluo', []);
-        $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
-
         $idCliente = request('id_cliente', null);
         $dirigidoA = request('dirigido_a', null);
         $tipoDocEmpresa = request('tipo_doc_empresa', null);
         $docDirigidoA = request('doc_dirigido_a', null);
+        $objetoAvaluoCheck = request('objeto_avaluo', []);
+        $objetoAvaluoCheck = implode(', ', $objetoAvaluoCheck);
         $objetoAvaluo = $objetoAvaluoCheck;
         $pais = request('pais', null);
         $departamento = request('departamento', null);

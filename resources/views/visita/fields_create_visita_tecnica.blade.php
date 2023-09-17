@@ -1,12 +1,9 @@
-{{-- {!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!} --}}
-{!! Form::model($crearVisitaCliente, ['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
 @csrf
     <div id="div_crear_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <h2 class="text-uppercase mb-5">VISITA TÉCNICA INMUEBLE</h2>
 
-        {{-- @php
-            dd($crearVisitaCliente);
-        @endphp --}}
+        {{-- ======================= --}}
 
         <div class="row mb-1" id="div_campos_cliente">
             {!! Form::hidden('id_cliente', isset($crearVisitaCliente) ? $crearVisitaCliente->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
@@ -26,10 +23,8 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="cli_tipo_doc_crear" class="form-label text-uppercase">Tipo Documento Cliente</label>
-                    {!! Form::select('decripcion_documento', $tipo_documento, isset($crearVisitaCliente) ? $crearVisitaCliente->decripcion_documento : null, ['class' => 'form-control select2', 'id' => 'decripcion_documento']) !!}
-
-                    {!! Form::text('decripcion_documento', isset($crearVisitaCliente) ? $crearVisitaCliente->decripcion_documento : null, ['class' => 'form-control', 'id' => 'decripcion_documento']) !!}
+                    <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
+                    {!! Form::select('id_doc_cliente', $tipo_documento, isset($crearVisitaCliente) ? $crearVisitaCliente->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'id_doc_cliente']) !!}
                 </div>
             </div>
 

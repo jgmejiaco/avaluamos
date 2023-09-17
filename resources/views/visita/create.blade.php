@@ -48,8 +48,8 @@
                 text: "Seleccionar..." // Texto visible de la opción
             });
 
-            seleccionar.attr("selected", true);
-            select.prepend(seleccionar);
+            // seleccionar.attr("selected", true);
+            // select.prepend(seleccionar);
 
             // ==============================================
 
