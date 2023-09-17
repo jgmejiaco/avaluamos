@@ -327,6 +327,7 @@ class VisitaController extends Controller
                             'cli_email',
                             'clientes.id_tipo_persona',
                             'tipo_persona',
+                            'clientes.id_referido_por',
                             'referido_por',
                             'clientes.id_red_social',
                             'redes_sociales.red_social',
