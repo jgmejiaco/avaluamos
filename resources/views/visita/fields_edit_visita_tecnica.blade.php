@@ -10,7 +10,7 @@
             <div class="col-12 col-md-4" id="">
                 <div class="form-group">
                     <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A<span class="text-danger">*</span></label>
-                    {!! Form::select('dirigido_a', $dirigido_a, isset($editarVisita) ? $editarVisita->dirigido_a : null, ['class' => 'form-control select2', 'id' => 'dirigido_a', 'required']) !!}
+                    {!! Form::select('dirigido_a', $dirigido_a, isset($editarVisita) ? $editarVisita->id_dirigido_a : null, ['class' => 'form-control select2', 'id' => 'dirigido_a', 'required']) !!}
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
             <div class="col-12 col-md-4">
                 <div class="form-group">
                     <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
-                    {!! Form::select('tipo_doc_empresa', $tipo_documento, isset($editarVisita) ? $editarVisita->empresa_tipo_doc : null, ['class' => 'form-control select2', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
+                    {!! Form::select('tipo_doc_empresa', $tipo_documento, isset($editarVisita) ? $editarVisita->id_doc_empresa : null, ['class' => 'form-control select2', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase">País<span class="text-danger">*</span></label>
-                    {!! Form::select('pais', $paises, isset($editarVisita) ? $editarVisita->descripcion_pais : null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
+                    {!! Form::select('pais', $paises, isset($editarVisita) ? $editarVisita->id_pais : null, ['class' => 'form-control select2', 'id' => 'pais', 'required']) !!}
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="departamento" class="form-label text-uppercase">Departamento<span class="text-danger">*</span></label>
-                    {!! Form::select('departamento', $departamentos, isset($editarVisita) ? $editarVisita->descripcion_departamento : null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
+                    {!! Form::select('departamento', $departamentos, isset($editarVisita) ? $editarVisita->id_departamento : null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="ciudad" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
-                    {!! Form::select('ciudad', $ciudades, isset($editarVisita) ? $editarVisita->descripcion_ciudad : null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
+                    {!! Form::select('ciudad', $ciudades, isset($editarVisita) ? $editarVisita->id_ciudad : null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 
@@ -143,7 +143,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
-                    {!! Form::select('tipo_inmueble', $tipo_inmueble, isset($editarVisita) ? $editarVisita->tipo_inmueble : null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
+                    {!! Form::select('tipo_inmueble', $tipo_inmueble, isset($editarVisita) ? $editarVisita->id_tipo_inmueble : null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
                 </div>
             </div>
 
@@ -277,7 +277,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="visitado" class="form-label text-uppercase">Visitado<span class="text-danger">*</span></label>
-                    {!! Form::select('visitado', $si_no, isset($editarVisita) ? $editarVisita->descripcion_si_no : null, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
+                    {!! Form::select('visitado', $si_no, isset($editarVisita) ? $editarVisita->id_visitado : null, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
                 </div>
             </div>
 
@@ -305,7 +305,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="visitador" class="form-label text-uppercase">visitador<span class="text-danger">*</span></label>
-                    {!! Form::select('visitador', $avaluador, isset($editarVisita) ? $editarVisita->nombres_visitador : null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador', 'required']) !!}
+                    {!! Form::select('visitador', $avaluador, isset($editarVisita) ? $editarVisita->id_visitador : null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador', 'required']) !!}
                 </div>
             </div>
 
