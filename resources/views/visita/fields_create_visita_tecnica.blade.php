@@ -1,4 +1,5 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
+{{-- {!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!} --}}
+{!! Form::model($crearVisitaCliente, ['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
 @csrf
     <div id="div_crear_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <h2 class="text-uppercase mb-5">VISITA TÉCNICA INMUEBLE</h2>
@@ -26,8 +27,9 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc_crear" class="form-label text-uppercase">Tipo Documento Cliente</label>
-                    {!! Form::select('cli_tipo_doc_crear', $tipo_documento, isset($crearVisitaCliente) ? $crearVisitaCliente->cli_tipo_doc : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc_crear']) !!}
-                    {{-- {!! Form::text('cli_tipo_doc_crear', isset($crearVisitaCliente) ? $crearVisitaCliente->cli_tipo_doc : null, ['class' => 'form-control', 'id' => 'cli_tipo_doc_crear']) !!} --}}
+                    {!! Form::select('decripcion_documento', $tipo_documento, isset($crearVisitaCliente) ? $crearVisitaCliente->decripcion_documento : null, ['class' => 'form-control select2', 'id' => 'decripcion_documento']) !!}
+
+                    {!! Form::text('decripcion_documento', isset($crearVisitaCliente) ? $crearVisitaCliente->decripcion_documento : null, ['class' => 'form-control', 'id' => 'decripcion_documento']) !!}
                 </div>
             </div>
 
@@ -221,7 +223,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase">País</label>
-                    {!! Form::select('pais', $pais, null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
+                    {!! Form::select('pais', $paises, null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
                 </div>
             </div>
 
@@ -230,7 +232,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="departamento" class="form-label text-uppercase">Departamento</label>
-                    {!! Form::select('departamento', $departamento_estado, null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
+                    {!! Form::select('departamento', $departamentos, null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
                 </div>
             </div>
 
@@ -241,7 +243,7 @@
                     <label for="ciudad" class="form-label text-uppercase">Municipio
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('ciudad', $ciudad, null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
+                    {!! Form::select('ciudad', $ciudades, null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 

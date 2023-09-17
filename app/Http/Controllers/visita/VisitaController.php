@@ -320,7 +320,7 @@ class VisitaController extends Controller
                 ->select(   'id_cliente',
                             'cli_nombres',
                             'clientes.id_doc_cliente',
-                            'decripcion_documento as cli_tipo_doc',
+                            'decripcion_documento',
                             'documento_cliente',
                             'fecha_nacimiento',
                             'cli_celular',
