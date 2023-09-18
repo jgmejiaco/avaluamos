@@ -45,7 +45,7 @@ use App\Models\Visita;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
-use App\Http\Responsable\visita\infoJuridicaUpdate;
+use App\Http\Responsable\visita\VisitaInfoJuridicaUpdate;
 
 class VisitaController extends Controller
 {
@@ -186,19 +186,7 @@ class VisitaController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request, $id);
-
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-            // return new VisitaUpdate();
-        // }
+        
     }
 
     //=========================================================
@@ -241,12 +229,12 @@ class VisitaController extends Controller
 
     //=========================================================
 
-    public function infoJuridicaUpdate(Request $request)
+    public function visitaInfoJuridicaUpdate(Request $request)
     {
         // Si el usuario no esta autenticado, redireccionamos al login
         
 
-        return new infoJuridicaUpdate();
+        return new VisitaInfoJuridicaUpdate();
     }
 
     //=========================================================
@@ -259,17 +247,7 @@ class VisitaController extends Controller
      */
     public function destroy($id)
     {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-
-        // }
+        
     }
 
     private function shareData()
@@ -302,10 +280,6 @@ class VisitaController extends Controller
         view()->share('valorizacion', Valorizacion::orderBy('valorizacion', 'asc')->pluck('valorizacion', 'id_valorizacion'));
         view()->share('calificacion_general', CalificacionGeneral::orderBy('calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
         view()->share('tipo_vias', TipoVias::orderBy('tipo_vias', 'asc')->pluck('tipo_vias', 'id_tipo_vias'));
-        // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
-        // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
-        // view()->share('usuarios', $this->todosLosUsuarios());
-        
     }
 
     // ==========================================================================

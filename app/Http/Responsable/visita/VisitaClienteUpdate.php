@@ -18,7 +18,7 @@ class VisitaClienteUpdate implements Responsable
     public function toResponse($request)
     {
         $idCliente = request('id_cliente', null);
-        $cliNombres = request('cli_nombres', null);
+        $cliNombres = strtoupper(request('cli_nombres', null));
         $cliTipoDoc = request('cli_tipo_doc', null);
         $docCliente = request('doc_cliente', null);
         $fechaNacimiento = request('fecha_nacimiento', null);
@@ -128,12 +128,12 @@ class VisitaClienteUpdate implements Responsable
                 DB::connection('mysql')->commit();
 
                 alert()->success('Proceso Exitoso', 'Cliente editado satisfactoriamente');
-                return redirect()->to(route('visita.index'));
+                return redirect('editar_visita/'.$id_visita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error al editar el cliente la visita, por favor contacte a Soporte.');
-                return redirect()->to(route('visita.index'));
+                return redirect('editar_visita/'.$id_visita);
             }
         }
         catch (Exception $e)

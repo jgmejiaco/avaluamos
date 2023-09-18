@@ -89,10 +89,6 @@
             </div>
 
             {{-- ======================= --}}
-            {{-- @php
-                use Carbon\Carbon;
-                // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-            @endphp --}}
 
             <div class="col-12 col-md-3">
                 <div class="wrap-input100">
@@ -261,10 +257,6 @@
             </div>
 
             {{-- ======================= --}}
-            {{-- @php
-                use Carbon\Carbon;
-                // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-            @endphp --}}
 
             <div class="col-12 col-md-3">
                 <div class="wrap-input100">
@@ -435,10 +427,6 @@
             </div>
 
             {{-- ======================= --}}
-            {{-- @php
-                use Carbon\Carbon;
-                // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-            @endphp --}}
 
             <div class="col-12 col-md-3">
                 <div class="wrap-input100">

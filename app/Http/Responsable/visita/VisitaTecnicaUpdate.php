@@ -226,12 +226,12 @@ class VisitaTecnicaUpdate implements Responsable
             if($editarVisitaTecnica) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Visita Técnica editada satisfactoriamente');
-                return redirect()->to(route('visita.index'));
+                return redirect('editar_visita/'.$id_visita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error al editar la visita, por favor contacte a Soporte.');
-                return redirect()->to(route('visita.index'));
+                return redirect('editar_visita/'.$id_visita);
             }
         }
         catch (Exception $e)

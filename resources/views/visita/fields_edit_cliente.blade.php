@@ -33,11 +33,17 @@
             </div>
 
             {{-- ======================= --}}
+
+            @php
+                use Carbon\Carbon;
+                $fechaNacTimeStamp = $editarVisita->fecha_nacimiento;
+                $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($editarVisita->fecha_nacimiento)->toDateString() : null;
+            @endphp
             
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
-                    {!! Form::date('fecha_nacimiento', isset($editarVisita) ? $editarVisita->fecha_nacimiento : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_cliente']) !!}
+                    {!! Form::date('fecha_nacimiento', isset($editarVisita) ? $fechaNacimiento  : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_cliente']) !!}
                 </div>
             </div>
 

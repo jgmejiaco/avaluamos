@@ -1,15 +1,17 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita_info_juridica_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_juridica']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
+            {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+            
             <h2 class="text-uppercase">INFORMACIÓN JURÍDICA</h2>
+
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="propietario_1" class="form-label text-uppercase">propietario 1<span class="text-danger">*</span></label>
                         {!! Form::text('propietario_1', null, ['class' => 'form-control text-uppercase', 'id' => 'propietario_1', 'required']) !!}
                     </div>
-                    {{-- {!! Form::hidden('id_solicitante', isset($usuario) ? $usuario->id_solicitante : null, ['class' => 'input100', 'id' => 'id_solicitante']) !!} --}}
                 </div>
 
                 {{-- ======================= --}}
@@ -17,7 +19,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="cedula_propietario_1" class="form-label text-uppercase">documento propietario 1<span class="text-danger">*</span></label>
-                        {!! Form::text('cedula_propietario_1', null, ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_1', 'required']) !!}
+                        {!! Form::text('doc_propietario_1', null, ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_1', 'required']) !!}
                     </div>
                 </div>
 
@@ -35,7 +37,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="cedula_propietario_2" class="form-label text-uppercase">documento propietario 2<span class="text-danger">*</span></label>
-                        {!! Form::text('cedula_propietario_2', null, ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_2', 'required']) !!}
+                        {!! Form::text('doc_propietario_2', null, ['class' => 'form-control text-uppercase', 'id' => 'cedula_propietario_2', 'required']) !!}
                     </div>
                 </div>
 
@@ -44,7 +46,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="matricula_inmueble" class="form-label text-uppercase">Matrícula Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::text('matricula_inmueble', null, ['class' => 'form-control', 'id' => 'matricula_inmueble', 'required']) !!}
+                        {!! Form::text('matricula_inmueble', null, ['class' => 'form-control text-uppercase', 'id' => 'matricula_inmueble', 'required']) !!}
                     </div>
                 </div>
 
@@ -53,7 +55,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="coeficiente_copropiedad" class="form-label text-uppercase">Coeficiente Copropiedad<span class="text-danger">*</span></label>
-                        {!! Form::text('coeficiente_copropiedad', null, ['class' => 'form-control', 'id' => 'coeficiente_copropiedad', 'required']) !!}
+                        {!! Form::text('coeficiente_copropiedad', null, ['class' => 'form-control text-uppercase', 'id' => 'coeficiente_copropiedad', 'required']) !!}
                     </div>
                 </div>
 
@@ -62,7 +64,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="certificado_libertad" class="form-label text-uppercase">Certificado Libertad<span class="text-danger">*</span></label>
-                        {!! Form::text('certificado_libertad', null, ['class' => 'form-control', 'id' => 'certificado_libertad', 'required']) !!}
+                        {!! Form::text('certificado_libertad', null, ['class' => 'form-control text-uppercase', 'id' => 'certificado_libertad', 'required']) !!}
                     </div>
                 </div>
 
@@ -71,8 +73,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="escritura_publica" class="form-label text-uppercase">Escritura Pública<span class="text-danger">*</span></label>
-                        {!! Form::text('escritura_publica', null, ['class' => 'form-control', 'id' => 'escritura_publica', 'required']) !!}
-                        {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                        {!! Form::text('escritura_publica', null, ['class' => 'form-control text-uppercase', 'id' => 'escritura_publica', 'required']) !!}
                     </div>
                 </div>
 
@@ -81,8 +82,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="notaria" class="form-label text-uppercase">Notaría<span class="text-danger">*</span></label>
-                        {!! Form::text('notaria', null, ['class' => 'form-control', 'id' => 'notaria', 'required']) !!}
-                        {{-- <span class="focus-input100" data-placeholder="Residence City"></span> --}}
+                        {!! Form::text('notaria', null, ['class' => 'form-control text-uppercase', 'id' => 'notaria', 'required']) !!}
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="impuesto_predial_anual" class="form-label text-uppercase">Impuesto Predial Anual<span class="text-danger">*</span></label>
-                        {!! Form::text('impuesto_predial_anual', null, ['class' => 'form-control', 'id' => 'impuesto_predial_anual', 'required']) !!}
+                        {!! Form::text('impuesto_predial_anual', null, ['class' => 'form-control text-uppercase', 'id' => 'impuesto_predial_anual', 'required']) !!}
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Info Jurídica" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Editar Info Jurídica" id="btn_guardar_visita">
             </div>
         </div>
     </div>
