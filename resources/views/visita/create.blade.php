@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Crear Visita')
 @section('css')
-    
+
 @stop
 
 {{-- ====================================================== --}}
@@ -41,22 +41,19 @@
 @section('scripts')
     <script>
         $( document ).ready(function() {
-            let select = $('.select2');
 
-            let seleccionar = $("<option>", {
-                value: "-1", // Valor de la opción
-                text: "Seleccionar..." // Texto visible de la opción
+            $('.select2').select2({
+                placeholder: 'Seleccionar...',
+                allowClear: true,
+                disabled: false
             });
-
-            // seleccionar.attr("selected", true);
-            // select.prepend(seleccionar);
 
             // ==============================================
             
             let referidoPorCreate = $("#id_referido_por").val()
             console.log(referidoPorCreate);
 
-            if (referidoPorCreate == 1) { // EMPRESA = 1
+            if (referidoPorCreate == "EMPRESA") { // EMPRESA = 1
                 $('#div_empresa_refiere').show('slow');
                 $('#empresa_que_refiere').attr('required');
 
@@ -65,7 +62,7 @@
 
                 $('#div_nombre_refiere').hide('slow');
                 $('#nombre_quien_refiere').removeAttr('required');
-            } else if (referidoPorCreate == 2) { // REDES SOCIALES = 2
+            } else if (referidoPorCreate == "REDES SOCIALES") { // REDES SOCIALES = 2
                 $('#div_red_social').show('slow');
                 $('#red_social').attr('required');
 
@@ -74,7 +71,7 @@
 
                 $('#div_empresa_refiere').hide('slow');
                 $('#empresa_que_refiere').removeAttr('required');
-            } else if (referidoPorCreate == 3) { // REFERIDOS = 3
+            } else if (referidoPorCreate == "REFERIDOS") { // REFERIDOS = 3
                 $('#div_nombre_refiere').show('slow');
                 $('#nombre_quien_refiere').attr('required');
 
@@ -83,7 +80,7 @@
 
                 $('#div_empresa_refiere').hide('slow');
                 $('#empresa_que_refiere').removeAttr('required');
-            } else if (referidoPorCreate == 4) { // WEB AVALUAMOS = 4
+            } else if (referidoPorCreate == "WEB AVALUAMOS") { // WEB AVALUAMOS = 4
                 $('#div_red_social').hide('slow');
                 $('#red_social').removeAttr('required');
                 $('#red_social').val('');
@@ -150,6 +147,8 @@
             $('#visitado').val(2);
             
             // ==============================================
+
+            
         }); // FIN Document Ready
 
         // ===============================================================

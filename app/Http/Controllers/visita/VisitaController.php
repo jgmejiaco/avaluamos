@@ -411,9 +411,12 @@ class VisitaController extends Controller
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
                     ->leftjoin('tipo_documento as id_tdoc_cliente','id_tdoc_cliente.id_tipo_documento','=','clientes.id_doc_cliente')
                     ->leftjoin('tipo_documento as id_tdoc_empresa','id_tdoc_empresa.id_tipo_documento','=','visitas.id_doc_empresa')
-                    ->leftjoin('pais','pais.id_pais','=','visitas.id_pais')
-                    ->leftjoin('departamento_estado','departamento_estado.id_departamento_estado','=','visitas.id_departamento')
-                    ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
+                    ->leftjoin('pais as cliente_pais','cliente_pais.id_pais','=','clientes.id_pais')
+                    ->leftjoin('pais as visita_pais','visita_pais.id_pais','=','visitas.id_pais')
+                    ->leftjoin('departamento_estado as cliente_dpto','cliente_dpto.id_departamento_estado','=','clientes.id_dpto_estado')
+                    ->leftjoin('departamento_estado as visita_dpto','visita_dpto.id_departamento_estado','=','visitas.id_departamento')
+                    ->leftjoin('ciudad as cliente_ciudad','cliente_ciudad.id_ciudad','=','clientes.id_ciudad')
+                    ->leftjoin('ciudad as visita_ciudad','visita_ciudad.id_ciudad','=','visitas.id_ciudad')
                     ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
                     ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
                     ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
@@ -436,6 +439,9 @@ class VisitaController extends Controller
                         'cli_email',
                         'clientes.id_tipo_persona',
                         'tipo_persona',
+                        'cliente_pais.id_pais as cli_pais',
+                        'cliente_dpto.id_departamento_estado as cli_dpto',
+                        'cliente_ciudad.id_ciudad as cli_ciudad',
                         'clientes.id_referido_por',
                         'referido_por',
                         'clientes.id_red_social',
@@ -448,12 +454,12 @@ class VisitaController extends Controller
                         'id_tdoc_empresa.decripcion_documento as empresa_tipo_doc',
                         'visitas.documento_empresa',
                         'visitas.objeto_avaluo',
-                        'visitas.id_pais',
-                        'descripcion_pais',
-                        'visitas.id_departamento',
-                        'descripcion_departamento',
-                        'visitas.id_ciudad',
-                        'descripcion_ciudad',
+                        'visita_pais.id_pais as visita_pais',
+                        'visita_pais.descripcion_pais',
+                        'visita_dpto.id_departamento_estado as id_vis_dpto',
+                        'visita_dpto.descripcion_departamento as vis_dpto',
+                        'visita_ciudad.id_ciudad as vis_ciudad',
+	                    'visita_ciudad.descripcion_ciudad',
                         'visitas.sector',
                         'visitas.cerca_de',
                         'visitas.barrio',

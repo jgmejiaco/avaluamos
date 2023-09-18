@@ -28,15 +28,11 @@
     <script>
         $( document ).ready(function()
         {
-            let select = $('.select2');
-
-            let seleccionar = $("<option>", {
-                value: "-1", // Valor de la opción
-                text: "Seleccionar..." // Texto visible de la opción
+            $('.select2').select2({
+                placeholder: 'Seleccionar...',
+                allowClear: true,
+                disabled: false
             });
-
-            // seleccionar.attr("selected", true);
-            // select.prepend(seleccionar);
 
             // ==============================================
 
@@ -121,7 +117,7 @@
                 let id_dirigido_a = $('#dirigido_a').val();
                 console.log(id_dirigido_a);
 
-                if (id_dirigido_a == "-1") {
+                if (id_dirigido_a == "-1" || id_dirigido_a == "") {
                     $('#tipo_doc_empresa').val('');
                     $('#doc_dirigido_a').val('');
                 } else {
@@ -141,6 +137,7 @@
 
                             if (respuesta != null) {
                                 $('#tipo_doc_empresa').val(respuesta.id_tipo_documento);
+                                // $('#tipo_doc_empresa').val(respuesta.decripcion_documento);
                                 $('#doc_dirigido_a').val(respuesta.numero_documento);
                             } else {
                                 $('#tipo_doc_empresa').val('');

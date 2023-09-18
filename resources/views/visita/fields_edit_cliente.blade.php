@@ -19,7 +19,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc', $tipo_documento, isset($editarVisita) ? $editarVisita->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($editarVisita) ? $editarVisita->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
                     <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
-                    {!! Form::select('tipo_persona', $tipo_persona, isset($editarVisita) ? $editarVisita->id_tipo_persona : null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'required']) !!}
+                    {!! Form::select('tipo_persona', collect(['' => 'Seleccionar...'])->union($tipo_persona), isset($editarVisita) ? $editarVisita->id_tipo_persona : null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'required']) !!}
                 </div>
             </div>
 
@@ -73,16 +73,16 @@
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="cli_pais" class="form-label text-uppercase">País residencia</label>
-                {!! Form::select('cli_pais', $paises, null, ['class' => 'form-control select2', 'id' => 'cli_pais']) !!}
+                {!! Form::select('cli_pais', collect(['' => 'Seleccionar...'])->union($paises), isset($editarVisita) ? $editarVisita->cli_pais : null, ['class' => 'form-control select2', 'id' => 'cli_pais']) !!}
             </div>
         </div>
         
         {{-- ======================= --}}
-        
+
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="cli_dpto" class="form-label text-uppercase">Departamento residencia</label>
-                {!! Form::select('cli_dpto', $departamentos, null, ['class' => 'form-control select2', 'id' => 'cli_dpto']) !!}
+                {!! Form::select('cli_dpto', collect(['' => 'Seleccionar...'])->union($departamentos), isset($editarVisita) ? $editarVisita->cli_dpto : null, ['class' => 'form-control select2', 'id' => 'cli_dpto']) !!}
             </div>
         </div>
         
@@ -91,7 +91,7 @@
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="cli_ciudad" class="form-label text-uppercase">Ciudad residencia</label>
-                {!! Form::select('cli_ciudad', $ciudades, null, ['class' => 'form-control select2', 'id' => 'cli_ciudad', 'required']) !!}
+                {!! Form::select('cli_ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($editarVisita) ? $editarVisita->cli_ciudad : null, ['class' => 'form-control select2', 'id' => 'cli_ciudad', 'required']) !!}
             </div>
         </div>
         
@@ -100,7 +100,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
-                    {!! Form::select('referido_por', $referido_por, isset($editarVisita) ? $editarVisita->id_referido_por : null, ['class' => 'form-control select2', 'id' => 'referido_por', 'required']) !!}
+                    {!! Form::select('referido_por', collect(['' => 'Seleccionar...'])->union($referido_por), isset($editarVisita) ? $editarVisita->id_referido_por : null, ['class' => 'form-control select2', 'id' => 'referido_por', 'required']) !!}
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
             <div class="col-12 col-md-3" id="div_red_social">
                 <div class="form-group">
                     <label for="red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
-                    {!! Form::select('red_social', $red_social, isset($editarVisita) ? $editarVisita->id_red_social : null, ['class' => 'form-control select2', 'id' => 'red_social']) !!}
+                    {!! Form::select('red_social', collect(['' => 'Seleccionar...'])->union($red_social), isset($editarVisita) ? $editarVisita->id_red_social : null, ['class' => 'form-control select2', 'id' => 'red_social']) !!}
                 </div>
             </div>
 

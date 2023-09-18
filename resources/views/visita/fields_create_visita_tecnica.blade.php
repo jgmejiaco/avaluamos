@@ -17,7 +17,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_nombres" class="form-label text-uppercase">Nombre Solicitante</label>
-                    {!! Form::text('cli_nombres', (isset($crearVisitaCliente) ? $crearVisitaCliente->cli_nombres : null), ['class' => 'form-control text-uppercase select2', 'id' => 'cli_nombres', 'readonly' => 'true']) !!}
+                    {!! Form::text('cli_nombres', (isset($crearVisitaCliente) ? $crearVisitaCliente->cli_nombres : null), ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
-                    {!! Form::select('id_doc_cliente', $tipo_documento, isset($crearVisitaCliente) ? $crearVisitaCliente->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'id_doc_cliente', 'readonly' => 'true']) !!}
+                    {!! Form::text('id_doc_cliente', isset($crearVisitaCliente) ? $crearVisitaCliente->cli_tipo_doc : null, ['class' => 'form-control', 'id' => 'id_doc_cliente', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -36,6 +36,24 @@
                 <div class="form-group">
                     <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente</label>
                     {!! Form::text('documento_cliente', isset($crearVisitaCliente) ? $crearVisitaCliente->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'readonly' => 'true']) !!}
+                </div>
+            </div>
+
+            {{-- ======================= --}}
+
+            @php
+                use Carbon\Carbon;
+            @endphp
+
+            @php
+                $fechaNacTimeStamp = $crearVisitaCliente->fecha_nacimiento;
+                $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($crearVisitaCliente->fecha_nacimiento)->format('d/m/Y') : null;
+            @endphp
+            
+            <div class="col-12 col-md-3">
+                <div class="form-group">
+                    <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
+                    {!! Form::text('fecha_nacimiento', isset($crearVisitaCliente) ? $fechaNacimiento : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -62,7 +80,7 @@
             <div class="col-12 col-md-3" id="div_correo">
                 <div class="form-group">
                     <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona</label>
-                    {!! Form::select('tipo_persona', $tipo_persona, isset($crearVisitaCliente) ? $crearVisitaCliente->tipo_persona : null, ['class' => 'form-control select2', 'id' => 'tipo_persona', 'readonly' => 'true']) !!}
+                    {!! Form::text('tipo_persona', isset($crearVisitaCliente) ? $crearVisitaCliente->tipo_persona : null, ['class' => 'form-control', 'id' => 'tipo_persona', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -71,7 +89,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="id_referido_por" class="form-label text-uppercase">Referido Por:</label>
-                    {!! Form::select('id_referido_por', $referido_por, isset($crearVisitaCliente) ? $crearVisitaCliente->id_referido_por : null, ['class' => 'form-control select2', 'id' => 'id_referido_por', 'readonly' => 'true']) !!}
+                    {!! Form::text('id_referido_por', isset($crearVisitaCliente) ? $crearVisitaCliente->referido_por : null, ['class' => 'form-control', 'id' => 'id_referido_por', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -80,7 +98,7 @@
             <div class="col-12 col-md-3" id="div_red_social">
                 <div class="form-group">
                     <label for="id_red_social" class="form-label text-uppercase">Red social</label>
-                    {!! Form::select('id_red_social', $red_social, isset($crearVisitaCliente) ? $crearVisitaCliente->id_red_social : null, ['class' => 'form-control select2', 'id' => 'id_red_social', 'readonly' => 'true']) !!}
+                    {!! Form::text('id_red_social', isset($crearVisitaCliente) ? $crearVisitaCliente->red_social : null, ['class' => 'form-control', 'id' => 'id_red_social', 'readonly' => 'true']) !!}
                 </div>
             </div>
 
@@ -111,29 +129,29 @@
         <hr style="border: 1px solid grey">
 
         <div class="row mb-2 mt-2" id="div_dirigido_a">
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-4" id="">
                 <div class="form-group">
                     <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('dirigido_a', $dirigido_a, null, ['class' => 'form-control select2', 'id' => 'dirigido_a', 'required']) !!}
+                    {!! Form::select('dirigido_a', collect(['' => 'Seleccionar...'])->union($dirigido_a), null, ['class' => 'form-control select2', 'id' => 'dirigido_a','required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-4">
                 <div class="form-group">
                     <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('tipo_doc_empresa', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
+                    {!! Form::select('tipo_doc_empresa', collect(['' => 'Seleccionar...'])->union($tipo_documento), null, ['class' => 'form-control', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-4">
                 <div class="form-group">
                     <label for="doc_dirigido_a" class="form-label text-uppercase">Documento Dirigido A
                         <span class="text-danger">*</span>
@@ -204,7 +222,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="pais" class="form-label text-uppercase">País</label>
-                    {!! Form::select('pais', $paises, null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
+                    {!! Form::select('pais', collect(['' => 'Seleccionar...'])->union($paises), null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
                 </div>
             </div>
 
@@ -213,7 +231,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="departamento" class="form-label text-uppercase">Departamento</label>
-                    {!! Form::select('departamento', $departamentos, null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
+                    {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
                 </div>
             </div>
 
@@ -224,7 +242,7 @@
                     <label for="ciudad" class="form-label text-uppercase">Municipio
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('ciudad', $ciudades, null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
+                    {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 
@@ -242,7 +260,7 @@
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
                     <label for="cerca_de" class="form-label text-uppercase">Cerca De</label>
-                    {!! Form::text('cerca_de', null, ['class' => 'form-control select2', 'id' => 'cerca_de']) !!}
+                    {!! Form::text('cerca_de', null, ['class' => 'form-control', 'id' => 'cerca_de']) !!}
                 </div>
             </div>
 
@@ -260,7 +278,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="unidad_edificio" class="form-label text-uppercase">Urb/Unidad/Edificio</label>
-                    {!! Form::text('unidad_edificio', null, ['class' => 'form-control select2', 'id' => 'unidad_edificio']) !!}
+                    {!! Form::text('unidad_edificio', null, ['class' => 'form-control', 'id' => 'unidad_edificio']) !!}
                 </div>
             </div>
 
@@ -281,7 +299,7 @@
                     <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('tipo_inmueble', $tipo_inmueble, null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
+                    {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
                 </div>
             </div>
 
@@ -299,7 +317,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="estrato" class="form-label text-uppercase">Estrato<span class="text-danger">*</span></label>
-                    {!! Form::select('estrato', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
+                    {!! Form::select('estrato', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
                 </div>
             </div>
 
@@ -317,7 +335,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_parqueaderos" class="form-label text-uppercase">Cantidad Parqueaderos</label>
-                    {!! Form::select('cant_parqueaderos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_parqueaderos']) !!}
+                    {!! Form::select('cant_parqueaderos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_parqueaderos']) !!}
                 </div>
             </div>
 
@@ -326,7 +344,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_cuarto_util" class="form-label text-uppercase">Cantidad Cuartos Útiles</label>
-                    {!! Form::select('cant_cuarto_util', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_cuarto_util']) !!}
+                    {!! Form::select('cant_cuarto_util', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_cuarto_util']) !!}
                 </div>
             </div>
 
@@ -335,7 +353,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_kioscos" class="form-label text-uppercase">Cantidad Kioscos</label>
-                    {!! Form::select('cant_kioscos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_kioscos']) !!}
+                    {!! Form::select('cant_kioscos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_kioscos']) !!}
                 </div>
             </div>
 
@@ -344,7 +362,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_piscinas" class="form-label text-uppercase">Cantidad Piscinas</label>
-                    {!! Form::select('cant_piscinas', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_piscinas']) !!}
+                    {!! Form::select('cant_piscinas', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_piscinas']) !!}
                 </div>
             </div>
 
@@ -353,7 +371,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_establos" class="form-label text-uppercase">Cantidad Establos</label>
-                    {!! Form::select('cant_establos', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_establos']) !!}
+                    {!! Form::select('cant_establos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_establos']) !!}
                 </div>
             </div>
 
@@ -362,7 +380,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cant_billares" class="form-label text-uppercase">Cantidad Billares</label>
-                    {!! Form::select('cant_billares', $indicador_numerico, null, ['class' => 'form-control select2', 'id' => 'cant_billares']) !!}
+                    {!! Form::select('cant_billares', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_billares']) !!}
                 </div>
             </div>
 
@@ -394,7 +412,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="latitud" class="form-label text-uppercase">Latitud</label>
-                    {!! Form::text('latitud', null, ['class' => 'form-control select2', 'id' => 'latitud']) !!}
+                    {!! Form::text('latitud', null, ['class' => 'form-control', 'id' => 'latitud']) !!}
                 </div>
             </div>
 
@@ -403,7 +421,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="longitud" class="form-label text-uppercase">Longitud</label>
-                    {!! Form::text('longitud', null, ['class' => 'form-control select2', 'id' => 'longitud']) !!}
+                    {!! Form::text('longitud', null, ['class' => 'form-control', 'id' => 'longitud']) !!}
                 </div>
             </div>
 
@@ -412,7 +430,7 @@
             <div class="col-12" id="">
                 <div class="form-group">
                     <label for="obser_visita_tecnica" class="form-label text-uppercase">Observaciones Visita Técnica Inmueble</label>
-                    {!! Form::textarea('obser_visita_tecnica', null, ['class' => 'form-control select2', 'id' => 'obser_visita_tecnica']) !!}
+                    {!! Form::textarea('obser_visita_tecnica', null, ['class' => 'form-control', 'id' => 'obser_visita_tecnica']) !!}
                 </div>
             </div>
             
@@ -423,7 +441,7 @@
                     <label for="visitado" class="form-label text-uppercase">Visitado
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('visitado', $si_no, 2, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
+                    {!! Form::select('visitado', collect(['' => 'Seleccionar...'])->union($si_no), 2, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
                 </div>
             </div>
 
@@ -432,7 +450,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="fecha_visita" class="form-label text-uppercase">Fecha Inspección</label>
-                    {!! Form::date('fecha_visita', null, ['class' => 'form-control select2', 'id' => 'fecha_visita']) !!}
+                    {!! Form::date('fecha_visita', null, ['class' => 'form-control', 'id' => 'fecha_visita']) !!}
                 </div>
             </div>
 
@@ -451,7 +469,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="visitador" class="form-label text-uppercase">visitador</label>
-                    {!! Form::select('visitador', $avaluador, null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador']) !!}
+                    {!! Form::select('visitador', collect(['' => 'Seleccionar...'])->union($avaluador), null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador']) !!}
                 </div>
             </div>
         </div> {{-- FIN div_ubicacion_detalles --}}
