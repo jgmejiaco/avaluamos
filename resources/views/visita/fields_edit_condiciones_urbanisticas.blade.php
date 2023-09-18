@@ -6,63 +6,63 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="valorizacion" class="form-label text-uppercase">valorización<span class="text-danger">*</span></label>
-                        {!! Form::select('valorizacion', $valorizacion, null, ['class' => 'form-control select2', 'id' => 'valorizacion', 'required']) !!}
+                        {!! Form::select('valorizacion', collect(['' => 'Seleccionar...'])->union($valorizacion), null, ['class' => 'form-control select2', 'id' => 'valorizacion', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="alumbrado_publico" class="form-label text-uppercase">alumbrado público<span class="text-danger">*</span></label>
-                        {!! Form::select('alumbrado_publico', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'alumbrado_publico', 'required']) !!}
+                        {!! Form::select('alumbrado_publico', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'alumbrado_publico', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="transporte" class="form-label text-uppercase">Transporte</label>
-                        {!! Form::select('transporte', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'transporte']) !!}
+                        {!! Form::select('transporte', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'transporte']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="orden_publico" class="form-label text-uppercase">orden público<span class="text-danger">*</span></label>
-                        {!! Form::select('orden_publico', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'orden_publico', 'required']) !!}
+                        {!! Form::select('orden_publico', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'orden_publico', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="seguridad" class="form-label text-uppercase">seguridad<span class="text-danger">*</span></label>
-                        {!! Form::select('seguridad', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'seguridad', 'required']) !!}
+                        {!! Form::select('seguridad', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'seguridad', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="salubridad" class="form-label text-uppercase">salubridad<span class="text-danger">*</span></label>
-                        {!! Form::select('salubridad', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'salubridad', 'required']) !!}
+                        {!! Form::select('salubridad', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'salubridad', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="vias" class="form-label text-uppercase">vías<span class="text-danger">*</span></label>
-                        {!! Form::select('vias', $calificacion_general, null, ['class' => 'form-control select2', 'id' => 'vias_acces
+                        {!! Form::select('vias', collect(['' => 'Seleccionar...'])->union($calificacion_general), null, ['class' => 'form-control select2', 'id' => 'vias_acces
                         o', 'required']) !!}
                     </div>
                 </div>
@@ -70,16 +70,16 @@
                 {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="tipo_vias" class="form-label text-uppercase">tipo de vías<span class="text-danger">*</span></label>
-                        {!! Form::select('tipo_vias', $tipo_vias, null, ['class' => 'form-control select2', 'id' => 'tipo_vias', 'required']) !!}
+                        {!! Form::select('tipo_vias', collect(['' => 'Seleccionar...'])->union($tipo_vias), null, ['class' => 'form-control select2', 'id' => 'tipo_vias', 'required']) !!}
                     </div>
                 </div>
                 
                 {{-- ======================= --}}
 
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="barrios_sectores" class="form-label text-uppercase">Barrios/Sectores<span class="text-danger">*</span></label>
                         {!! Form::textarea('barrios_sectores', null, ['class' => 'form-control', 'id' => 'barrios_sectores', 'required']) !!}
                     </div>
@@ -88,7 +88,7 @@
                 {{-- ======================= --}}
                 
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="tipo_edificaciones" class="form-label text-uppercase">tipo edificaciones<span class="text-danger">*</span></label>
                         {!! Form::textarea('tipo_edificaciones', null, ['class' => 'form-control', 'id' => 'tipo_edificaciones', 'required']) !!}
                     </div>
@@ -97,7 +97,7 @@
                 {{-- ======================= --}}
                 
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="form-group d-flex flex-column">
                         <label for="observaciones_condiciones_urbanisticas" class="form-label text-uppercase">Observaciones condiciones urbanisticas<span class="text-danger">*</span></label>
                         {!! Form::textarea('observaciones_condiciones_urbanisticas', null, ['class' => 'form-control', 'id' => 'observaciones_condiciones_urbanisticas', 'required']) !!}
                     </div>

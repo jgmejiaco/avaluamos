@@ -6,9 +6,9 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
-                    <div class="wrap-input100 validate-input" data-validate="Required">
-                        <label for="valor_estimado_inmueble" class="form-label text-uppercase" data-placeholder="valor_estimado_inmueble">Valor Estimado Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::text('valor_estimado_inmueble', null, ['class' => 'form-control select2', 'id' => 'valor_estimado_inmueble', 'required']) !!}
+                    <div class="form-group d-flex flex-column">
+                        <label for="valor_estimado_inmueble" class="form-label text-uppercase">Valor Estimado Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::text('valor_estimado_inmueble', null, ['class' => 'form-control', 'id' => 'valor_estimado_inmueble', 'required']) !!}
                     </div>
                 </div>
             </div>
