@@ -17,10 +17,10 @@ class ClienteUpdate implements Responsable
     public function toResponse($request)
     {
         $idCliente = request('id_cliente', null);
-        $cli_nombres = request('nombres', null);
+        $cli_nombres = strtoupper(request('nombres', null));
         $idTipoDocumentoCliente = request('id_doc_cliente', null);
         $documentoCliente = strtoupper(request('documento_cliente', null));
-        $fecha_nacimiento = request('fecha_nacimiento', null);
+        $fechaNacimiento = request('fecha_nacimiento', null);
         $cliCelular = request('cli_celular', null);
         $cliEmail = request('cli_email', null);
         $idTipoPersona = request('id_tipo_persona', null);
@@ -32,7 +32,15 @@ class ClienteUpdate implements Responsable
         $quienRefiereEdit = strtoupper(request('quien_refiere_edit', null));
         $empresaRefiereEdit = strtoupper(request('empresa_refiere_edit', null));
 
-        // ========================================================
+        // ==============================================================================
+        
+        if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
+            $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+        } else {
+            $fechaNacimiento = null;
+        }
+        
+        // ==============================
 
         DB::connection('mysql')->beginTransaction();
 
@@ -43,7 +51,7 @@ class ClienteUpdate implements Responsable
                             'cli_nombres' => $cli_nombres,
                             'id_doc_cliente' => $idTipoDocumentoCliente,
                             'documento_cliente' => $documentoCliente,
-                            'fecha_nacimiento' => $fecha_nacimiento,
+                            'fecha_nacimiento' => $fechaNacimiento,
                             'cli_celular' => $cliCelular,
                             'cli_email' => $cliEmail,
                             'id_tipo_persona' => $idTipoPersona,
@@ -70,6 +78,7 @@ class ClienteUpdate implements Responsable
                 return redirect()->to(route('cliente_potencial.index'));
             }
         } catch (Exception $e) {
+            dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Ha ocurrido un excepción, si el problema persiste, contacte a Soporte.');
             return back();

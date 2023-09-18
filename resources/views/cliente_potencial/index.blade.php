@@ -10,6 +10,9 @@
 {{-- ====================================================== --}}
 
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <div class="container-fluid p-5">
         <div class="row">
             <div class="col-12">
@@ -66,9 +69,15 @@
                                     @else {{-- WEB AVALUAMOS --}}
                                         <td><a href="https://www.avaluamos.com.co" class="text-primary" target="_blank" rel="noopener noreferrer">Avaluamos</a></td>
                                     @endif
+
+                                    @php
+                                        $fechaNacTimeStamp = $cliente->fecha_nacimiento;
+                                        $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($cliente->fecha_nacimiento)->toDateString() : null;
+                                        // dd($fechaNacimiento);
+                                    @endphp
                                     
                                     <td>
-                                        <button class="btn btn-warning" onclick="editarCliente('{{$cliente->id_cliente}}','{{$cliente->cli_nombres}}','{{$cliente->id_doc_cliente}}','{{$cliente->decripcion_documento}}','{{$cliente->documento_cliente}}','{{$cliente->cli_celular}}','{{$cliente->cli_email}}',{{$cliente->id_tipo_persona}},'{{$cliente->tipo_persona}}','{{$cliente->id_pais}}','{{$cliente->descripcion_pais}}','{{$cliente->id_departamento_estado}}','{{$cliente->descripcion_departamento}}','{{$cliente->id_ciudad}}','{{$cliente->descripcion_ciudad}}','{{$cliente->id_referido_por}}','{{$cliente->referido_por}}','{{$cliente->id_red_social}}','{{$cliente->red_social}}','{{$cliente->nombre_quien_refiere}}','{{$cliente->empresa_que_refiere}}')">Editar Cliente</button>
+                                        <button class="btn btn-warning" onclick="editarCliente('{{$cliente->id_cliente}}','{{$cliente->cli_nombres}}','{{$cliente->id_doc_cliente}}','{{$cliente->decripcion_documento}}','{{$cliente->documento_cliente}}','{{$fechaNacimiento}}','{{$cliente->cli_celular}}','{{$cliente->cli_email}}',{{$cliente->id_tipo_persona}},'{{$cliente->tipo_persona}}','{{$cliente->id_pais}}','{{$cliente->descripcion_pais}}','{{$cliente->id_departamento_estado}}','{{$cliente->descripcion_departamento}}','{{$cliente->id_ciudad}}','{{$cliente->descripcion_ciudad}}','{{$cliente->id_referido_por}}','{{$cliente->referido_por}}','{{$cliente->id_red_social}}','{{$cliente->red_social}}','{{$cliente->nombre_quien_refiere}}','{{$cliente->empresa_que_refiere}}')">Editar Cliente</button>
 
                                         <a href="{{route('crear_visita',$cliente->id_cliente)}}" class="btn btn-success">Crear Visita</a>
                                     </td>
@@ -147,7 +156,7 @@
         let referidosPor = @json($referido_por);
         let redesSociales = @json($red_social);
 
-        function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,cliCelular,cliEmail,idTipoPersona,tipoPersona,idPais,pais,idDpto,departamento,idCiudad,ciudad,idReferidoPor,referidoPor,idRedSocial,redSocial,quienRefiere,empresaRefiere) {
+        function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,fechaNacimiento,cliCelular,cliEmail,idTipoPersona,tipoPersona,idPais,pais,idDpto,departamento,idCiudad,ciudad,idReferidoPor,referidoPor,idRedSocial,redSocial,quienRefiere,empresaRefiere) {
             formEditarcliente = '';
 
             formEditarcliente += `
@@ -163,7 +172,7 @@
 
             formEditarcliente += `  <div class="form-group mt-5">
                                         <label class="form-label text-uppercase">Nombres</label>
-                                        <input type="text" class="form-control" name="nombres" value="${nombres}">
+                                        <input type="text" class="form-control text-uppercase" name="nombres" value="${nombres}">
                                     </div>
             `;
 
@@ -196,6 +205,14 @@
             formEditarcliente += `  <div class="form-group">
                                         <label class="form-label text-uppercase">Número Documento</label>
                                         <input type="text" class="form-control text-uppercase" name="documento_cliente" value="${documentoCliente}">
+                                    </div>
+            `;
+
+            // ====================================
+
+            formEditarcliente += `  <div class="form-group">
+                                        <label class="form-label text-uppercase">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" name="fecha_nacimiento" value="${fechaNacimiento}">
                                     </div>
             `;
 

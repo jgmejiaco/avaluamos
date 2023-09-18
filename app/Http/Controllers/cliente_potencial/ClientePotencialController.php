@@ -174,6 +174,8 @@ class ClientePotencialController extends Controller
                             'id_doc_cliente',
                             'decripcion_documento',
                             'documento_cliente',
+                            'fecha_nacimiento',
+                            // DB::raw('to_char(to_timestamp(fecha_nacimiento), \'DD/MM/YYYY\') as fecha_nacimiento'),
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
