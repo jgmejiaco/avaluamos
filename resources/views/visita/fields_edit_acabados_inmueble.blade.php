@@ -109,8 +109,8 @@
                 
                 <div class="col-12 col-md-3" id="div_telefono">
                     <div class="form-group d-flex flex-column">
-                        <label for="servicios_publicios" class="form-label text-uppercase">Servicios Públicos</label>
-                        {!! Form::select('servicios_publicios', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'servicios_publicios']) !!}
+                        <label for="servicios_publicos" class="form-label text-uppercase">Servicios Públicos</label>
+                        {!! Form::select('servicios_publicos', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'servicios_publicos']) !!}
                     </div>
                 </div>
 
