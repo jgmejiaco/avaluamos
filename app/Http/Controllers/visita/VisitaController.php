@@ -42,6 +42,10 @@ use App\Models\RedSocial;
 use App\Models\DirigidoA;
 use App\Models\Cliente;
 use App\Models\Visita;
+use App\Models\TipoPiso;
+use App\Models\TipoBanio;
+use App\Models\TipoCocina;
+use App\Models\TipoMeson;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
@@ -319,6 +323,10 @@ class VisitaController extends Controller
         view()->share('valorizacion', Valorizacion::orderBy('valorizacion', 'asc')->pluck('valorizacion', 'id_valorizacion'));
         view()->share('calificacion_general', CalificacionGeneral::orderBy('calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
         view()->share('tipo_vias', TipoVias::orderBy('tipo_vias', 'asc')->pluck('tipo_vias', 'id_tipo_vias'));
+        view()->share('tipo_piso', TipoPiso::orderBy('tipo_pisos', 'asc')->pluck('tipo_pisos', 'id_tipo_piso'));
+        view()->share('tipo_banio', TipoBanio::orderBy('tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
+        view()->share('tipo_cocina', TipoCocina::orderBy('tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
+        view()->share('tipo_meson', TipoMeson::orderBy('tipo_meson', 'asc')->pluck('tipo_meson', 'id_tipo_meson'));
     }
 
     // ==========================================================================

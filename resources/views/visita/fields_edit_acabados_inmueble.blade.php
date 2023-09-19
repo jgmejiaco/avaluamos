@@ -69,19 +69,48 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="div_telefono">
+                <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="servicios_publicios" class="form-label text-uppercase">Servicios Públicos</label>
-                        {!! Form::text('servicios_publicios', null, ['class' => 'form-control', 'id' => 'servicios_publicios']) !!}
+                        <label for="pisos" class="form-label text-uppercase">Pisos<span class="text-danger">*</span></label>
+                        {!! Form::select('pisos', collect(['' => 'Seleccionar...'])->union($tipo_piso), null, ['class' => 'form-control select2', 'id' => 'pisos', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3" id="">
+                    <div class="form-group d-flex flex-column">
+                        <label for="banios" class="form-label text-uppercase">Baños</label>
+                        {!! Form::select('banios', collect(['' => 'Seleccionar...'])->union($tipo_banio), null, ['class' => 'form-control select2', 'id' => 'banios']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cocina" class="form-label text-uppercase">Cocina<span class="text-danger">*</span></label>
+                        {!! Form::select('cocina', collect(['' => 'Seleccionar...'])->union($tipo_cocina), null, ['class' => 'form-control select2', 'id' => 'cocina', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
+
                 <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column" data-validate="Required">
-                        <label for="pisos" class="form-label text-uppercase">Pisos<span class="text-danger">*</span></label>
-                        {!! Form::text('pisos', null, ['class' => 'form-control text-uppercase', 'id' => 'pisos', 'required']) !!}
+                    <div class="form-group d-flex flex-column">
+                        <label for="meson" class="form-label text-uppercase">Mesón<span class="text-danger">*</span></label>
+                        {!! Form::select('meson', collect(['' => 'Seleccionar...'])->union($tipo_meson), null, ['class' => 'form-control select2', 'id' => 'meson', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3" id="div_telefono">
+                    <div class="form-group d-flex flex-column">
+                        <label for="servicios_publicios" class="form-label text-uppercase">Servicios Públicos</label>
+                        {!! Form::select('servicios_publicios', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'servicios_publicios']) !!}
                     </div>
                 </div>
 
@@ -90,61 +119,34 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="telefono" class="form-label text-uppercase">Teléfono</label>
-                        {!! Form::text('telefono', null, ['class' => 'form-control', 'id' => 'telefono']) !!}
+                        {!! Form::select('telefono', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'telefono']) !!}
                     </div>
                 </div>
                 
-                {{-- ======================= --}}
-                
-                <div class="col-12 col-md-3" id="">
-                    <div class="form-group d-flex flex-column">
-                        <label for="banios" class="form-label text-uppercase">Baños</label>
-                        {!! Form::text('banios', null, ['class' => 'form-control', 'id' => 'banios']) !!}
-                    </div>
-                </div>
-
                 {{-- ======================= --}}
 
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="energia" class="form-label text-uppercase">Energía</label>
-                        {!! Form::text('energia', null, ['class' => 'form-control', 'id' => 'energia']) !!}
+                        {!! Form::select('energia', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'energia']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column">
-                        <label for="cocina" class="form-label text-uppercase">Cocina<span class="text-danger">*</span></label>
-                        {!! Form::text('cocina', null, ['class' => 'form-control', 'id' => 'cocina', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
+                
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="agua" class="form-label text-uppercase">Agua<span class="text-danger">*</span></label>
-                        {!! Form::text('agua', null, ['class' => 'form-control', 'id' => 'agua', 'required']) !!}
+                        {!! Form::select('agua', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'agua', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column">
-                        <label for="meson" class="form-label text-uppercase">Mesón<span class="text-danger">*</span></label>
-                        {!! Form::text('meson', null, ['class' => 'form-control', 'id' => 'meson', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
+                
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="gas" class="form-label text-uppercase">Gas<span class="text-danger">*</span></label>
-                        {!! Form::text('gas', null, ['class' => 'form-control', 'id' => 'gas', 'required']) !!}
+                        {!! Form::select('gas', collect(['' => 'Seleccionar...'])->union($si_no), null, ['class' => 'form-control select2', 'id' => 'gas', 'required']) !!}
                     </div>
                 </div>
 
