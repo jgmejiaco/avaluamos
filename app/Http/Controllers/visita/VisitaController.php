@@ -46,6 +46,16 @@ use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
 use App\Http\Responsable\visita\VisitaInfoJuridicaUpdate;
+use App\Http\Responsable\visita\VisitaInfoInmuebleUpdate;
+use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
+use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
+// use App\Http\Responsable\visita\;
 
 class VisitaController extends Controller
 {
@@ -232,9 +242,38 @@ class VisitaController extends Controller
     public function visitaInfoJuridicaUpdate(Request $request)
     {
         // Si el usuario no esta autenticado, redireccionamos al login
-        
 
         return new VisitaInfoJuridicaUpdate();
+    }
+
+    //=========================================================
+    
+    public function visitaInfoInmuebleUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaInfoInmuebleUpdate();
+    }
+
+    //=========================================================
+    
+    public function visitaCaracteristicasInmuebleUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaCaracteristicasInmuebleUpdate();
+    }
+
+    //=========================================================
+    
+    public function visitaAcabadosInmuebleUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaAcabadosInmuebleUpdate();
     }
 
     //=========================================================

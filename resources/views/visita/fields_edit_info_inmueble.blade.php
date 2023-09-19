@@ -1,14 +1,15 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+        {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
             <h2 class="text-uppercase">información del inmueble</h2>
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
+                        <label for="id_tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::select('id_tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), null, ['class' => 'form-control select2', 'id' => 'id_tipo_inmueble', 'required']) !!}
                     </div>
                 </div>
 
@@ -16,8 +17,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="tipo_vivienda" class="form-label text-uppercase">Tipo Vivienda<span class="text-danger">*</span></label>
-                        {!! Form::select('tipo_vivienda', collect(['' => 'Seleccionar...'])->union($tipo_vivienda),null, ['class' => 'form-control select2', 'id' => 'tipo_vivienda', 'required']) !!}
+                        <label for="id_tipo_vivienda" class="form-label text-uppercase">Tipo Vivienda<span class="text-danger">*</span></label>
+                        {!! Form::select('id_tipo_vivienda', collect(['' => 'Seleccionar...'])->union($tipo_vivienda),null, ['class' => 'form-control select2', 'id' => 'id_tipo_vivienda', 'required']) !!}
                     </div>
                 </div>
 
@@ -25,8 +26,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="uso_inmueble" class="form-label text-uppercase">Uso Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::select('uso_inmueble', collect(['' => 'Seleccionar...'])->union($uso_inmueble), null, ['class' => 'form-control select2', 'id' => 'uso_inmueble', 'required']) !!}
+                        <label for="id_uso_inmueble" class="form-label text-uppercase">Uso Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::select('id_uso_inmueble', collect(['' => 'Seleccionar...'])->union($uso_inmueble), null, ['class' => 'form-control select2', 'id' => 'id_uso_inmueble', 'required']) !!}
                     </div>
                 </div>
 
@@ -34,22 +35,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="tipo_suelo" class="form-label text-uppercase">Tipo Suelo<span class="text-danger">*</span></label>
-                        {!! Form::select('tipo_suelo', collect(['' => 'Seleccionar...'])->union($tipo_suelo), null, ['class' => 'form-control select2', 'id' => 'tipo_suelo', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
-
-                {{-- @php
-                    use Carbon\Carbon;
-                    // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-                @endphp --}}
-
-                <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column">
-                        <label for="topografia" class="form-label text-uppercase">Topografía</label>
-                        {!! Form::select('topografia', collect(['' => 'Seleccionar...'])->union($topografia),null, ['class' => 'form-control select2', 'id' => 'topografia']) !!}
+                        <label for="id_tipo_suelo" class="form-label text-uppercase">Tipo Suelo<span class="text-danger">*</span></label>
+                        {!! Form::select('id_tipo_suelo', collect(['' => 'Seleccionar...'])->union($tipo_suelo), null, ['class' => 'form-control select2', 'id' => 'id_tipo_suelo', 'required']) !!}
                     </div>
                 </div>
 
@@ -57,8 +44,17 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="forma" class="form-label text-uppercase">Forma<span class="text-danger">*</span></label>
-                        {!! Form::select('forma', collect(['' => 'Seleccionar...'])->union($forma), null, ['class' => 'form-control select2', 'id' => 'forma', 'required']) !!}
+                        <label for="id_topografia" class="form-label text-uppercase">Topografía</label>
+                        {!! Form::select('id_topografia', collect(['' => 'Seleccionar...'])->union($topografia),null, ['class' => 'form-control select2', 'id' => 'id_topografia']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_forma" class="form-label text-uppercase">Forma<span class="text-danger">*</span></label>
+                        {!! Form::select('id_forma', collect(['' => 'Seleccionar...'])->union($forma), null, ['class' => 'form-control select2', 'id' => 'id_forma', 'required']) !!}
                     </div>
                 </div>
 
@@ -76,8 +72,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="valor_administracion" class="form-label text-uppercase">Valor Administracion<span class="text-danger">*</span></label>
-                        {!! Form::text('valor_administracion', null, ['class' => 'form-control', 'id' => 'valor_administracion', 'required']) !!}
+                        <label for="valor_administracion" class="form-label text-uppercase">Valor Administracion</label>
+                        {!! Form::text('valor_administracion', null, ['class' => 'form-control', 'id' => 'valor_administracion']) !!}
                     </div>
                 </div>
 
@@ -131,8 +127,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="area_libre_mcuadrado" class="form-label text-uppercase">Área Libre M<sup>2</sup><span class="text-danger">*</span></label>
-                        {!! Form::text('area_libre_mcuadrado', null, ['class' => 'form-control', 'id' => 'area_libre_mcuadrado', 'required']) !!}
+                        <label for="area_libre" class="form-label text-uppercase">Área Libre M<sup>2</sup><span class="text-danger">*</span></label>
+                        {!! Form::text('area_libre', null, ['class' => 'form-control', 'id' => 'area_libre', 'required']) !!}
                     </div>
                 </div>
 
@@ -140,8 +136,17 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="anio_cosntruccion" class="form-label text-uppercase">Año De Construcción<span class="text-danger">*</span></label>
-                        {!! Form::text('anio_cosntruccion', null, ['class' => 'form-control', 'id' => 'anio_cosntruccion', 'required']) !!}
+                        <label for="anios_construccion" class="form-label text-uppercase">Año De Construcción<span class="text-danger">*</span></label>
+                        {!! Form::text('anios_construccion', null, ['class' => 'form-control', 'id' => 'anios_construccion', 'required']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="anios_remodelacion" class="form-label text-uppercase">Año Remodelación<span class="text-danger">*</span></label>
+                        {!! Form::text('anios_remodelacion', null, ['class' => 'form-control', 'id' => 'anios_remodelacion', 'required']) !!}
                     </div>
                 </div>
 
@@ -158,8 +163,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="area_patios_vacio" class="form-label text-uppercase">Área Patios - vacio M<sup>2</sup><span class="text-danger">*</span></label>
-                        {!! Form::text('area_patios_vacio', null, ['class' => 'form-control', 'id' => 'area_patios_vacio', 'required']) !!}
+                        <label for="area_patios" class="form-label text-uppercase">Área Patios - vacio M<sup>2</sup><span class="text-danger">*</span></label>
+                        {!! Form::text('area_patios', null, ['class' => 'form-control', 'id' => 'area_patios', 'required']) !!}
                     </div>
                 </div>
 
@@ -167,21 +172,13 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="condicion_inmueble" class="form-label text-uppercase">Condición Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::select('condicion_inmueble', collect(['' => 'Seleccionar...'])->union($condicion_inmueble), null, ['class' => 'form-control select2', 'id' => 'condicion_inmueble', 'required']) !!}
+                        <label for="id_condicion_inmueble" class="form-label text-uppercase">Condición Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::select('id_condicion_inmueble', collect(['' => 'Seleccionar...'])->union($condicion_inmueble), null, ['class' => 'form-control select2', 'id' => 'id_condicion_inmueble', 'required']) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column">
-                        <label for="anio_remodelacion" class="form-label text-uppercase">Año Remodelación<span class="text-danger">*</span></label>
-                        {!! Form::text('anio_remodelacion', null, ['class' => 'form-control', 'id' => 'anio_remodelacion', 'required']) !!}
-                    </div>
-                </div>
-
-                {{-- ======================= --}}
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
@@ -194,8 +191,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="calificacion_fitto_corvini" class="form-label text-uppercase">CALIFICACIÓN (FITTO CORVINI)<span class="text-danger">*</span></label>
-                        {!! Form::select('calificacion_fitto_corvini', collect(['' => 'Seleccionar...'])->union($calificacion_fitto_corvini), null, ['class' => 'form-control select2', 'id' => 'calificacion_fitto_corvini', 'required']) !!}
+                        <label for="id_fitto_corvini" class="form-label text-uppercase">CALIFICACIÓN (FITTO CORVINI)<span class="text-danger">*</span></label>
+                        {!! Form::select('id_fitto_corvini', collect(['' => 'Seleccionar...'])->union($calificacion_fitto_corvini), null, ['class' => 'form-control select2', 'id' => 'id_fitto_corvini', 'required']) !!}
                     </div>
                 </div>
 
@@ -221,8 +218,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="vida permanente_anios" class="form-label text-uppercase">vida permanente en años<span class="text-danger">*</span></label>
-                        {!! Form::text('vida permanente_anios', null, ['class' => 'form-control', 'id' => 'vida permanente_anios', 'required']) !!}
+                        <label for="vida_permanente_anios" class="form-label text-uppercase">vida permanente en años<span class="text-danger">*</span></label>
+                        {!! Form::text('vida_permanente_anios', null, ['class' => 'form-control', 'id' => 'vida_permanente_anios', 'required']) !!}
                     </div>
                 </div>
 
@@ -232,8 +229,8 @@
 
                 <div class="col-12">
                     <div class="form-group d-flex flex-column">
-                        <label for="observaciones_info_inmueble" class="form-label text-uppercase">Observaciones Información Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::textarea('observaciones_info_inmueble', null, ['class' => 'form-control', 'id' => 'observaciones_info_inmueble', 'required']) !!}
+                        <label for="obs_info_inmueble" class="form-label text-uppercase">Observaciones Información Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::textarea('obs_info_inmueble', null, ['class' => 'form-control', 'id' => 'obs_info_inmueble', 'required']) !!}
                     </div>
                 </div>
             </div>

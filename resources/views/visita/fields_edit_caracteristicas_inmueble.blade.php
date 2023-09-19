@@ -1,14 +1,15 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita_caracteristicas_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_caracteristicas_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+        {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
             <h2 class="text-uppercase">CARACTERÍSTICAS DEL INMUEBLE</h2>
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="cocina" class="form-label text-uppercase">Cocina<span class="text-danger">*</span></label>
-                        {!! Form::select('cocina', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'select2', 'id' => 'cocina', 'required']) !!}
+                        <label for="cocinas" class="form-label text-uppercase">Cocina<span class="text-danger">*</span></label>
+                        {!! Form::select('cocinas', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'select2', 'id' => 'cocinas', 'required']) !!}
                     </div>
                 </div>
 
@@ -16,8 +17,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="numero_habitaciones" class="form-label text-uppercase">Número Habitaciones<span class="text-danger">*</span></label>
-                        {!! Form::select('numero_habitaciones', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'select2', 'id' => 'numero_habitaciones', 'required']) !!}
+                        <label for="habitaciones" class="form-label text-uppercase">Número Habitaciones<span class="text-danger">*</span></label>
+                        {!! Form::select('habitaciones', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'select2', 'id' => 'habitaciones', 'required']) !!}
                     </div>
                 </div>
 
@@ -25,8 +26,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="sala" class="form-label text-uppercase">Sala</label>
-                        {!! Form::select('sala', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'sala']) !!}
+                        <label for="salas" class="form-label text-uppercase">Sala</label>
+                        {!! Form::select('salas', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'salas']) !!}
                     </div>
                 </div>
 
@@ -34,8 +35,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="habitacion_servicio" class="form-label text-uppercase">Habitacion Servicio<span class="text-danger">*</span></label>
-                        {!! Form::select('habitacion_servicio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'habitacion_servicio', 'required']) !!}
+                        <label for="habitaciones_servicio" class="form-label text-uppercase">Habitacion Servicio<span class="text-danger">*</span></label>
+                        {!! Form::select('habitaciones_servicio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'habitaciones_servicio', 'required']) !!}
                     </div>
                 </div>
 
@@ -43,8 +44,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="comedor" class="form-label text-uppercase">Comedor<span class="text-danger">*</span></label>
-                        {!! Form::select('comedor', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'comedor', 'required']) !!}
+                        <label for="comedores" class="form-label text-uppercase">Comedor<span class="text-danger">*</span></label>
+                        {!! Form::select('comedores', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'comedores', 'required']) !!}
                     </div>
                 </div>
                 
@@ -52,8 +53,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="bano_servicio" class="form-label text-uppercase">Baño Servicio<span class="text-danger">*</span></label>
-                        {!! Form::select('bano_servicio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'bano_servicio', 'required']) !!}
+                        <label for="banios_servicio" class="form-label text-uppercase">Baño Servicio<span class="text-danger">*</span></label>
+                        {!! Form::select('banios_servicio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'banios_servicio', 'required']) !!}
                     </div>
                 </div>
 
@@ -61,8 +62,8 @@
                 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="balcon" class="form-label text-uppercase">Balcón<span class="text-danger">*</span></label>
-                        {!! Form::select('balcon', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'balcon', 'required']) !!}
+                        <label for="balcones" class="form-label text-uppercase">Balcón<span class="text-danger">*</span></label>
+                        {!! Form::select('balcones', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'balcones', 'required']) !!}
                     </div>
                 </div>
 
@@ -70,8 +71,8 @@
                 
                 <div class="col-12 col-md-3" id="div_telefono">
                     <div class="form-group d-flex flex-column">
-                        <label for="zona_ropas" class="form-label text-uppercase">Zona Ropas</label>
-                        {!! Form::select('zona_ropas', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'zona_ropas']) !!}
+                        <label for="zona_ropa" class="form-label text-uppercase">Zona Ropas</label>
+                        {!! Form::select('zona_ropa', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'zona_ropa']) !!}
                     </div>
                 </div>
 
@@ -79,8 +80,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="bano_social" class="form-label text-uppercase">Baño Social<span class="text-danger">*</span></label>
-                        {!! Form::select('bano_social', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'bano_social', 'required']) !!}
+                        <label for="banios_social" class="form-label text-uppercase">Baño Social<span class="text-danger">*</span></label>
+                        {!! Form::select('banios_social', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'banios_social', 'required']) !!}
                     </div>
                 </div>
 
@@ -88,8 +89,8 @@
                 
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
-                        <label for="estudio" class="form-label text-uppercase">Estudio</label>
-                        {!! Form::select('estudio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'estudio']) !!}
+                        <label for="estudios" class="form-label text-uppercase">Estudio</label>
+                        {!! Form::select('estudios', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'estudios']) !!}
                     </div>
                 </div>
                 
@@ -97,8 +98,8 @@
                 
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
-                        <label for="bano_privado" class="form-label text-uppercase">Baño Privado</label>
-                        {!! Form::select('bano_privado', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'bano_privado']) !!}
+                        <label for="banios_privado" class="form-label text-uppercase">Baño Privado</label>
+                        {!! Form::select('banios_privado', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'banios_privado']) !!}
                     </div>
                 </div>
 
@@ -124,8 +125,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="escalas_emergencia" class="form-label text-uppercase">Escalas Emergencia<span class="text-danger">*</span></label>
-                        {!! Form::select('escalas_emergencia', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'escalas_emergencia', 'required']) !!}
+                        <label for="escala_emergencia" class="form-label text-uppercase">Escalas Emergencia<span class="text-danger">*</span></label>
+                        {!! Form::select('escala_emergencia', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'escala_emergencia', 'required']) !!}
                     </div>
                 </div>
 
@@ -133,8 +134,8 @@
 
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="closet" class="form-label text-uppercase">Closet<span class="text-danger">*</span></label>
-                        {!! Form::select('closet', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'closet', 'required']) !!}
+                        <label for="closets" class="form-label text-uppercase">Closet<span class="text-danger">*</span></label>
+                        {!! Form::select('closets', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'closets', 'required']) !!}
                     </div>
                 </div>
 
@@ -151,8 +152,8 @@
 
                 <div class="col-12">
                     <div class="form-group d-flex flex-column" data-validate="State Is Required">
-                        <label for="observaciones_caracteristicas_inmueble" class="form-label text-uppercase">Observaciones Características del Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::textarea('observaciones_caracteristicas_inmueble', null, ['class' => 'form-control', 'id' => 'observaciones_caracteristicas_inmueble', 'required']) !!}
+                        <label for="obs_caract_inmueble" class="form-label text-uppercase">Observaciones Características del Inmueble<span class="text-danger">*</span></label>
+                        {!! Form::textarea('obs_caract_inmueble', null, ['class' => 'form-control', 'id' => 'obs_caract_inmueble', 'required']) !!}
                     </div>
                 </div>
             </div>

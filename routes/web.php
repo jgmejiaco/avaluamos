@@ -64,6 +64,16 @@ Route::get('editar_visita/{id}', 'visita\VisitaController@edit')->name('editar_v
 Route::post('visita_cliente_update', 'visita\VisitaController@visitaClienteUpdate')->name('visita_cliente_update');
 Route::post('visita_tecnica_update', 'visita\VisitaController@visitaTecnicaUpdate')->name('visita_tecnica_update');
 Route::post('visita_info_juridica_update', 'visita\VisitaController@visitaInfoJuridicaUpdate')->name('visita_info_juridica_update');
+Route::post('visita_info_inmueble_update', 'visita\VisitaController@visitaInfoInmuebleUpdate')->name('visita_info_inmueble_update');
+Route::post('visita_caracteristicas_inmueble_update', 'visita\VisitaController@visitaCaracteristicasInmuebleUpdate')->name('visita_caracteristicas_inmueble_update');
+Route::post('visita_acabados_inmueble_update', 'visita\VisitaController@visitaAcabadosInmuebleUpdate')->name('visita_acabados_inmueble_update');
+// Route::post('visita_calificacion_inmueble_update', 'visita\VisitaController@visitaCalificacionInmuebleUpdate')->name('visita_calificacion_inmueble_update');
+// Route::post('visita_dotacion_comunal_update', 'visita\VisitaController@visitaDotacionComunalUpdate')->name('visita_dotacion_comunal_update');
+// Route::post('visita_info_sector_update', 'visita\VisitaController@visitaInfoSectorUpdate')->name('visita_info_sector_update');
+// Route::post('visita_condi_urbanisticas_update', 'visita\VisitaController@visitaCondiUrbanisticasUpdate')->name('visita_condi_urbanisticas_update');
+// Route::post('visita_obser_generales_update', 'visita\VisitaController@visitaObserGeneralesUpdate')->name('visita_obser_generales_update');
+// Route::post('visita_reg_fotografico_update', 'visita\VisitaController@visitaRegFotograficoUpdate')->name('visita_reg_fotografico_update');
+// Route::post('visita_valor_estimado_update', 'visita\VisitaController@visitaValorEstimadoUpdate')->name('visita_valor_estimado_update');
 
 // ========================================================================
 
