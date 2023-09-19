@@ -39,14 +39,14 @@ class VisitaAcabadosInmuebleUpdate implements Responsable
         $idTipoMuro = request('id_tipo_muro', null);
         $idVentaneria = request('id_ventaneria', null);
         $idTipoTecho = request('id_tipo_techo', null);
-        $serviciosPublicios = request('servicios_publicios', null);
         $pisos = request('pisos', null);
-        $telefono = request('telefono', null);
         $banios = request('banios', null);
-        $energia = request('energia', null);
         $cocina = request('cocina', null);
-        $agua = request('agua', null);
         $meson = request('meson', null);
+        $serviciosPublicios = request('servicios_publicios', null);
+        $telefono = request('telefono', null);
+        $energia = request('energia', null);
+        $agua = request('agua', null);
         $gas = request('gas', null);
         $obsAcabadosInmueble = request('obs_acabados_inmueble', null);
 
