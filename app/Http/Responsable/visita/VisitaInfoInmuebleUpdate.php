@@ -38,7 +38,8 @@ class VisitaInfoInmuebleUpdate implements Responsable
         $idTipoSuelo = request('id_tipo_suelo', null);
         $idTopografia = request('id_topografia', null);
         $idForma = request('id_forma', null);
-        $numeroPisos = request('numero_pisos', null);
+        $pisosInmueble = request('pisos_inmueble', null);
+        $pisosEdificio = request('pisos_edificio', null);
         $valorAdministracion = request('valor_administracion', null);
         $barrio = strtoupper(request('barrio', null));
         $remodelado = request('remodelado', null);
@@ -72,7 +73,8 @@ class VisitaInfoInmuebleUpdate implements Responsable
                     'id_tipo_suelo' => $idTipoSuelo,
                     'id_topografia' => $idTopografia,
                     'id_forma' => $idForma,
-                    'numero_pisos' => $numeroPisos,
+                    'pisos_inmueble' => $pisosInmueble,
+                    'pisos_edificio' => $pisosEdificio,
                     'valor_administracion' => $valorAdministracion,
                     'barrio' => $barrio,
                     'remodelado' => $remodelado,
