@@ -451,6 +451,7 @@ class VisitaController extends Controller
                     ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
+                    ->leftjoin('info_inmueble','info_inmueble.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -510,6 +511,8 @@ class VisitaController extends Controller
                         'visitas.fecha_visita',
                         'visitas.hora_visita',
                         'visitas.id_visitador',
+                        'info_inmueble.pisos_inmueble',
+                        'info_inmueble.pisos_edificio',
                         DB::raw("CONCAT(nombres, ' ', apellidos) AS nombres_visitador")
                     )
                     ->where('visitas.id_visita', $idVisita)
