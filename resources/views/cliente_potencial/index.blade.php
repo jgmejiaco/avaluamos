@@ -73,7 +73,6 @@
                                     @php
                                         $fechaNacTimeStamp = $cliente->fecha_nacimiento;
                                         $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($cliente->fecha_nacimiento)->toDateString() : null;
-                                        // dd($fechaNacimiento);
                                     @endphp
                                     
                                     <td>

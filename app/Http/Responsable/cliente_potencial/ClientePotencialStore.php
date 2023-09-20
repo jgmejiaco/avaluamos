@@ -19,7 +19,7 @@ class ClientePotencialStore implements Responsable
     public function toResponse($request)
     {
         $cliNombres = strtoupper(request('nombre_solicitante', null));
-        $idDocCliente = strtoupper(request('id_doc_cliente', null));
+        $idDocCliente = request('id_doc_cliente', null);
         $documentoCliente = strtoupper(request('documento_cliente', null));
         $fechaNacimiento = request('fecha_nacimiento', null);
         $cliCelular = request('celular', null);
@@ -35,10 +35,26 @@ class ClientePotencialStore implements Responsable
 
         // ==============================================================================
 
+        if ($idDocCliente != "-1" || $idDocCliente != -1) {
+            $idDocCliente = request('id_doc_cliente', null);
+        } else {
+            $idDocCliente = null;
+        }
+
+        // ==============================
+        
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
             $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
         } else {
             $fechaNacimiento = null;
+        }
+
+        // ==============================
+        
+        if ($idTipoPersona != "-1" || $idTipoPersona != -1) {
+            $idTipoPersona = request('tipo_persona', null);
+        } else {
+            $idTipoPersona = null;
         }
 
         // ==============================
@@ -117,7 +133,6 @@ class ClientePotencialStore implements Responsable
         }
         catch (Exception $e)
         {
-            dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
