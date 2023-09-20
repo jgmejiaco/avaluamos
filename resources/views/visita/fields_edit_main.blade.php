@@ -17,9 +17,9 @@
                     <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
                 </li>
                 <!-- ================================== -->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#nav_info_juridica" id="nav_info_juridica_tab" data-toggle="tab" role="tab" aria-controls="nav_info_juridica">Info Jurídica</a>
-                </li>
+                </li> --}}
                 <!-- ================================== -->
                 <li class="nav-item">
                     <a class="nav-link" href="#nav_info_inmueble" id="nav_info_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_info_inmueble">Info Inmueble</a>
@@ -81,9 +81,9 @@
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN JURÍDICA" -->
-                <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab" tabindex="0">
+                {{-- <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab" tabindex="0">
                     @include('visita.fields_edit_info_juridica')
-                </div>
+                </div> --}}
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN INMUEBLE" -->

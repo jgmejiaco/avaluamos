@@ -72,12 +72,12 @@ class VisitaInfoJuridicaUpdate implements Responsable
             if($editarInfoJuridica) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Info Jurídica editada satisfactoriamente');
-                return redirect('editar_visita/'.$id_visita);
+                return redirect('editar_visita/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Error al editar la Información Jurídica, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$id_visita);
+                return redirect('editar_visita/'.$idVisita);
                 // return redirect('editar_visita/'.$id_visita.'/actualizar#nav-familiar');
             }
         }

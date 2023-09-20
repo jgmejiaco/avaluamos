@@ -12,7 +12,7 @@ use App\Models\Persona;
 use App\Models\Usuario;
 use Jenssegers\Date\Date;
 use App\Models\Visita;
-use App\Models\InfoJuridica;
+// use App\Models\InfoJuridica;
 use App\Models\InfoInmueble;
 use App\Models\CaracteristicasInmueble;
 use App\Models\AcabadosInmueble;
@@ -21,6 +21,7 @@ use App\Models\DotacionComunal;
 use App\Models\InfoSector;
 use App\Models\CondicionesUrbanisticas;
 use App\Models\ObservacionesGenerales;
+// use App\Models\EstadoConservacion;
 use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
 
@@ -38,6 +39,7 @@ class VisitaStore implements Responsable
         $pais = request('pais', null);
         $departamento = request('departamento', null);
         $ciudad = request('ciudad', null);
+        $comuna = request('comuna', null);
         $sector = strtoupper(request('sector', null));
         $cercaDe = strtoupper(request('cerca_de', null));
         $barrio = strtoupper(request('barrio', null));
@@ -47,12 +49,12 @@ class VisitaStore implements Responsable
         $area = doubleval(request('area', null));
         $estrato = request('estrato', null);
         $numeroInmueble = strtoupper(request('numero_inmueble', null));
-        $cantParqueaderos = request('cant_parqueaderos', null);
-        $cantCuartoUtil = request('cant_cuarto_util', null);
-        $cantKioscos = request('cant_kioscos', null);
-        $cantPiscinas = strtoupper(request('cant_piscinas', null));
-        $cantEstablos = request('cant_establos', null);
-        $cantBillares = request('cant_billares', null);
+        // $cantParqueaderos = request('cant_parqueaderos', null);
+        // $cantCuartoUtil = request('cant_cuarto_util', null);
+        // $cantKioscos = request('cant_kioscos', null);
+        // $cantPiscinas = strtoupper(request('cant_piscinas', null));
+        // $cantEstablos = request('cant_establos', null);
+        // $cantBillares = request('cant_billares', null);
         $porcentajeDescuento = request('porcentaje_descuento', null);
         $valorCotizacion = request('valor_cotizacion', null);
         $latitud = request('latitud', null);
@@ -96,52 +98,84 @@ class VisitaStore implements Responsable
         }
 
         // ==============================
-
-        if ($cantParqueaderos != "-1" || $cantParqueaderos != -1) {
-            $cantParqueaderos = request('cant_parqueaderos', null);
+        
+        if ($ciudad != "-1" || $ciudad != -1) {
+            $ciudad = request('ciudad', null);
         } else {
-            $cantParqueaderos = null;
-        }
-
-        // ==============================
-
-        if ($cantCuartoUtil != "-1" || $cantCuartoUtil != -1) {
-            $cantCuartoUtil = request('cant_cuarto_util', null);
-        } else {
-            $cantCuartoUtil = null;
-        }
-
-        // ==============================
-
-        if ($cantKioscos != "-1" || $cantKioscos != -1) {
-            $cantKioscos = request('cant_kioscos', null);
-        } else {
-            $cantKioscos = null;
-        }
-
-        // ==============================
-
-        if ($cantPiscinas != "-1" || $cantPiscinas != -1) {
-            $cantPiscinas = request('cant_piscinas', null);
-        } else {
-            $cantPiscinas = null;
-        }
-
-        // ==============================
-
-        if ($cantEstablos != "-1" || $cantEstablos != -1) {
-            $cantEstablos = request('cant_establos', null);
-        } else {
-            $cantEstablos = null;
+            $ciudad = null;
         }
 
         // ==============================
         
-        if ($cantBillares != "-1" || $cantBillares != -1) {
-            $cantBillares = request('cant_billares', null);
+        if ($comuna != "-1" || $comuna != -1) {
+            $comuna = request('comuna', null);
         } else {
-            $cantBillares = null;
+            $comuna = null;
         }
+
+        // ==============================
+        
+        if ($tipoInmueble != "-1" || $tipoInmueble != -1) {
+            $tipoInmueble = request('tipo_inmueble', null);
+        } else {
+            $tipoInmueble = null;
+        }
+
+        // ==============================
+        
+        if ($area != "0.0" || $area != 0.0) {
+            $area = request('area', null);
+        } else {
+            $area = null;
+        }
+
+        // ==============================
+
+        // if ($cantParqueaderos != "-1" || $cantParqueaderos != -1) {
+        //     $cantParqueaderos = request('cant_parqueaderos', null);
+        // } else {
+        //     $cantParqueaderos = null;
+        // }
+
+        // ==============================
+
+        // if ($cantCuartoUtil != "-1" || $cantCuartoUtil != -1) {
+        //     $cantCuartoUtil = request('cant_cuarto_util', null);
+        // } else {
+        //     $cantCuartoUtil = null;
+        // }
+
+        // ==============================
+
+        // if ($cantKioscos != "-1" || $cantKioscos != -1) {
+        //     $cantKioscos = request('cant_kioscos', null);
+        // } else {
+        //     $cantKioscos = null;
+        // }
+
+        // ==============================
+
+        // if ($cantPiscinas != "-1" || $cantPiscinas != -1) {
+        //     $cantPiscinas = request('cant_piscinas', null);
+        // } else {
+        //     $cantPiscinas = null;
+        // }
+
+        // ==============================
+
+        // if ($cantEstablos != "-1" || $cantEstablos != -1) {
+        //     $cantEstablos = request('cant_establos', null);
+        // } else {
+        //     $cantEstablos = null;
+        // }
+
+        // ==============================
+        
+        // if ($cantBillares != "-1" || $cantBillares != -1) {
+        //     $cantBillares = request('cant_billares', null);
+        // } else {
+        //     $cantBillares = null;
+        // }
 
         // ==============================
         
@@ -181,6 +215,7 @@ class VisitaStore implements Responsable
                 'id_pais' => $pais,
                 'id_departamento' => $departamento,
                 'id_ciudad' => $ciudad,
+                'id_comuna' => $comuna,
                 'sector' => $sector,
                 'cerca_de' => $cercaDe,
                 'barrio' => $barrio,
@@ -190,12 +225,12 @@ class VisitaStore implements Responsable
                 'area' => $area,
                 'id_estrato' => $estrato,
                 'numero_inmueble' => $numeroInmueble,
-                'id_cant_parqueaderos' => $cantParqueaderos,
-                'id_cant_cuarto_util' => $cantCuartoUtil,
-                'id_cant_kioskos' => $cantKioscos,
-                'id_cant_piscinas' => $cantPiscinas,
-                'id_cant_establos' => $cantEstablos,
-                'id_cant_billares' => $cantBillares,
+                // 'id_cant_parqueaderos' => $cantParqueaderos,
+                // 'id_cant_cuarto_util' => $cantCuartoUtil,
+                // 'id_cant_kioskos' => $cantKioscos,
+                // 'id_cant_piscinas' => $cantPiscinas,
+                // 'id_cant_establos' => $cantEstablos,
+                // 'id_cant_billares' => $cantBillares,
                 'latitud' => $latitud,
                 'longitud' => $longitud,
                 'porcentaje_descuento' => $porcentajeDescuento,
@@ -212,9 +247,9 @@ class VisitaStore implements Responsable
 
                 $idVisita = Visita::select('id_visita')->orderBy('id_visita', 'DESC')->first();
 
-                InfoJuridica::create([
-                    'id_visita' => $idVisita->id_visita,
-                ]);
+                // InfoJuridica::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
 
                 InfoInmueble::create([
                     'id_visita' => $idVisita->id_visita,
@@ -247,6 +282,10 @@ class VisitaStore implements Responsable
                 ObservacionesGenerales::create([
                     'id_visita' => $idVisita->id_visita,
                 ]);
+
+                // EstadoConservacion::create([
+                //     'id_visita' => $idVisita->id_visita,
+                // ]);
 
                 RegistroFotografico::create([
                     'id_visita' => $idVisita->id_visita,

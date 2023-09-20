@@ -149,6 +149,60 @@
                 </div>
 
                 {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_parqueaderos" class="form-label text-uppercase">Cantidad Parqueaderos</label>
+                        {!! Form::select('cant_parqueaderos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_parqueaderos']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_cuarto util" class="form-label text-uppercase">Cantidad Cuartos Útiles</label>
+                        {!! Form::select('cant_cuarto_util', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_cuarto util']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_kioscos" class="form-label text-uppercase">Cantidad Kioscos</label>
+                        {!! Form::select('cant_kioscos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_kioscos']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_piscinas" class="form-label text-uppercase">Cantidad Piscinas</label>
+                        {!! Form::select('cant_piscinas', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_piscinas']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_establos" class="form-label text-uppercase">Cantidad Establos</label>
+                        {!! Form::select('cant_establos', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_establos']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_billares" class="form-label text-uppercase">Cantidad Billares</label>
+                        {!! Form::select('cant_billares', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_billares']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
 
                 <div class="col-12">
                     <div class="form-group d-flex flex-column" data-validate="State Is Required">
