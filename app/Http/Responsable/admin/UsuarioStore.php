@@ -16,29 +16,18 @@ class UsuarioStore implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $nombres = request('nombres', null);
         $apellidos = request('apellidos', null);
-        $id_tipo_documento = request('id_tipo_documento', null);
-        $numero_documento = request('numero_documento', null);
-        $fecha_nacimiento = request('fecha_nacimiento', null);
-        $id_lugar_nacimiento = request('id_lugar_nacimiento', null);
+        $idTipoDocumento = request('id_tipo_documento', null);
+        $numeroDocumento = request('numero_documento', null);
         $correo = request('correo', null);
-        $direccion = request('direccion', null);
         $celular = request('celular', null);
-        $telefono_fijo = request('telefono_fijo', null);
-        $nombre_contacto = request('nombre_contacto', null);
-        $telefono_contacto = request('telefono_contacto', null);
-        $id_ciudad = request('id_ciudad', null);
-        $id_estado = request('id_estado', null);
-        $id_cargo = request('id_cargo', null);
-        $id_rol = request('id_rol', null);
+        $idEstado = request('id_estado', null);
+        $idCargo = request('id_cargo', null);
+        $idRol = request('id_rol', null);
         
-        // $usuarioShow = new UsuariosShow();
-
         // Consultamos si ya existe un usuario con la cedula ingresada
-        $consulta_cedula = Usuario::where('numero_documento', $numero_documento)->first();
+        $consulta_cedula = Usuario::where('numero_documento', $numeroDocumento)->first();
         
         if(isset($consulta_cedula) && !empty($consulta_cedula) && !is_null($consulta_cedula))
         {
@@ -59,45 +48,31 @@ class UsuarioStore implements Responsable
                 $complemento++;
             }
 
-            if (isset($fecha_nacimiento) && !is_null($fecha_nacimiento) && !empty($fecha_nacimiento)) {
-                $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
-                # code...
-            } else {
-                $fecha_nacimiento = null;
-            }
-            
-
+            // ===================================================================
 
             DB::connection('mysql')->beginTransaction();
 
             try {
 
-                $nuevo_usuario = Usuario::create([
+                $nuevoUsuario = Usuario::create([
                     'nombre_usuario' => $usuario.$complemento,
-                    'clave' => Hash::make($numero_documento),
+                    'clave' => Hash::make($numeroDocumento),
                     'clave_fallas' => 0,
                     'nombres' => strtoupper($nombres),
                     'apellidos' => strtoupper($apellidos),
-                    // 'id_tipo_documento' => $id_tipo_documento,
-                    'numero_documento' => $numero_documento,
-                    // 'fecha_nacimiento' => $fecha_nacimiento,
-                    // 'id_lugar_nacimiento' => $id_lugar_nacimiento,
+                    'id_tipo_documento' => $idTipoDocumento,
+                    'numero_documento' => $numeroDocumento,
+                    'id_estado' => $idEstado,
+                    'id_rol' => $idRol,
+                    'id_cargo' => $idCargo,
                     'correo' => $correo,
-                    // 'direccion' => $direccion,
                     'celular' => $celular,
-                    // 'telefono_fijo' => $telefono_fijo,
-                    // 'nombre_contacto' => $nombre_contacto,
-                    'telefono_contacto' => $telefono_contacto,
-                    // 'id_ciudad' => $id_ciudad,
-                    'id_estado' => $id_estado,
-                    'id_cargo' => $id_cargo,
-                    'id_rol' => $id_rol,
                 ]);
 
-                if($nuevo_usuario)
+                if($nuevoUsuario)
                 {
                     DB::connection('mysql')->commit();
-                    alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevo_usuario->usuario . ' y la clave es: ' . $numero_documento);
+                    alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevoUsuario->usuario . ' y la clave es: ' . $numeroDocumento);
                     return redirect()->to(route('administrador.index'));
 
                 } else {
@@ -117,6 +92,9 @@ class UsuarioStore implements Responsable
         }
     }
 
+    // ===================================================================
+    // ===================================================================
+
     private function consultaUsuario($usuario)
     {
         try
@@ -132,6 +110,9 @@ class UsuarioStore implements Responsable
             return back();
         }
     }
+
+    // ===================================================================
+    // ===================================================================
 
     private function quitarCaracteresEspeciales($cadena)
     {
