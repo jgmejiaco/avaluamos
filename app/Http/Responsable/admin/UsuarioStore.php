@@ -59,7 +59,14 @@ class UsuarioStore implements Responsable
                 $complemento++;
             }
 
-            $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
+            if (isset($fecha_nacimiento) && !is_null($fecha_nacimiento) && !empty($fecha_nacimiento)) {
+                $fecha_nacimiento = Date::parse($fecha_nacimiento)->timestamp;
+                # code...
+            } else {
+                $fecha_nacimiento = null;
+            }
+            
+
 
             DB::connection('mysql')->beginTransaction();
 
@@ -71,17 +78,17 @@ class UsuarioStore implements Responsable
                     'clave_fallas' => 0,
                     'nombres' => strtoupper($nombres),
                     'apellidos' => strtoupper($apellidos),
-                    'id_tipo_documento' => $id_tipo_documento,
+                    // 'id_tipo_documento' => $id_tipo_documento,
                     'numero_documento' => $numero_documento,
-                    'fecha_nacimiento' => $fecha_nacimiento,
-                    'id_lugar_nacimiento' => $id_lugar_nacimiento,
+                    // 'fecha_nacimiento' => $fecha_nacimiento,
+                    // 'id_lugar_nacimiento' => $id_lugar_nacimiento,
                     'correo' => $correo,
-                    'direccion' => $direccion,
+                    // 'direccion' => $direccion,
                     'celular' => $celular,
-                    'telefono_fijo' => $telefono_fijo,
-                    'nombre_contacto' => $nombre_contacto,
+                    // 'telefono_fijo' => $telefono_fijo,
+                    // 'nombre_contacto' => $nombre_contacto,
                     'telefono_contacto' => $telefono_contacto,
-                    'id_ciudad' => $id_ciudad,
+                    // 'id_ciudad' => $id_ciudad,
                     'id_estado' => $id_estado,
                     'id_cargo' => $id_cargo,
                     'id_rol' => $id_rol,

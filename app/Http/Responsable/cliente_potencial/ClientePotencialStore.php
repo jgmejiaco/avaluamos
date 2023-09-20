@@ -21,7 +21,7 @@ class ClientePotencialStore implements Responsable
         $cliNombres = strtoupper(request('nombre_solicitante', null));
         $idDocCliente = strtoupper(request('id_doc_cliente', null));
         $documentoCliente = strtoupper(request('documento_cliente', null));
-        $fechaNacimiento = request('fecha_nacimiento', null);
+        // $fechaNacimiento = request('fecha_nacimiento', null);
         $cliCelular = request('celular', null);
         $cliEmail = request('correo', null);
         $idTipoPersona = request('tipo_persona', null);
@@ -35,11 +35,11 @@ class ClientePotencialStore implements Responsable
 
         // ==============================================================================
         
-        if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
-            $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
-        } else {
-            $fechaNacimiento = null;
-        }
+        // if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
+        //     $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+        // } else {
+        //     $fechaNacimiento = null;
+        // }
         
         // ==============================
 
@@ -90,7 +90,7 @@ class ClientePotencialStore implements Responsable
                                 'cli_nombres' => $cliNombres,
                                 'id_doc_cliente' => $idDocCliente,
                                 'documento_cliente' => $documentoCliente,
-                                'fecha_nacimiento' => $fechaNacimiento,
+                                // 'fecha_nacimiento' => $fechaNacimiento,
                                 'cli_celular' => $cliCelular,
                                 'cli_email' => $cliEmail,
                                 'id_tipo_persona' => $idTipoPersona,
