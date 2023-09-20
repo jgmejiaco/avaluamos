@@ -46,6 +46,7 @@ use App\Models\TipoPiso;
 use App\Models\TipoBanio;
 use App\Models\TipoCocina;
 use App\Models\TipoMeson;
+use App\Models\Comuna;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
@@ -300,7 +301,7 @@ class VisitaController extends Controller
         view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
         view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
         view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
-        view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->pluck('nombres', 'id_usuario'));
+        view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->whereIn('id_rol', [1,2,4])->pluck('nombres', 'id_usuario'));
         view()->share('paises', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
         view()->share('departamentos', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
         view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
@@ -327,6 +328,7 @@ class VisitaController extends Controller
         view()->share('tipo_banio', TipoBanio::orderBy('tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
         view()->share('tipo_cocina', TipoCocina::orderBy('tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
         view()->share('tipo_meson', TipoMeson::orderBy('tipo_meson', 'asc')->pluck('tipo_meson', 'id_tipo_meson'));
+        view()->share('comunas', Comuna::orderBy('comuna', 'asc')->pluck('comuna', 'id_comuna'));
     }
 
     // ==========================================================================
@@ -416,6 +418,7 @@ class VisitaController extends Controller
                     )
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
+                    ->orderBy('visitas.id_visita', 'DESC')
                     ->get()
                     ->toArray();
     }
@@ -481,6 +484,7 @@ class VisitaController extends Controller
                         'visita_dpto.descripcion_departamento as vis_dpto',
                         'visita_ciudad.id_ciudad as vis_ciudad',
 	                    'visita_ciudad.descripcion_ciudad',
+	                    'visitas.id_comuna',
                         'visitas.sector',
                         'visitas.cerca_de',
                         'visitas.barrio',

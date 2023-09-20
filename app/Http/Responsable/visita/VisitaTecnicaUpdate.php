@@ -18,8 +18,6 @@ class VisitaTecnicaUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $idVisita = request('id_visita', null);
         $dirigidoA = request('dirigido_a', null);
         $tipoDocEmpresa = request('tipo_doc_empresa', null);
@@ -30,6 +28,7 @@ class VisitaTecnicaUpdate implements Responsable
         $pais = request('pais', null);
         $departamento = request('departamento', null);
         $ciudad = request('ciudad', null);
+        $comuna = request('comuna', null);
         $sector = strtoupper(request('sector', null));
         $cercaDe = strtoupper(request('cerca_de', null));
         $barrio = strtoupper(request('barrio', null));
@@ -93,6 +92,14 @@ class VisitaTecnicaUpdate implements Responsable
             $ciudad = request('ciudad', null);
         } else {
             $ciudad = null;
+        }
+
+        // ==============================
+        
+        if ($comuna != "-1" || $comuna != -1) {
+            $comuna = request('comuna', null);
+        } else {
+            $comuna = null;
         }
 
         // ==============================
@@ -197,6 +204,7 @@ class VisitaTecnicaUpdate implements Responsable
                     'id_pais' => $pais,
                     'id_departamento' => $departamento,
                     'id_ciudad' => $ciudad,
+                    'id_comuna' => $comuna,
                     'sector' => $sector,
                     'cerca_de' => $cercaDe,
                     'barrio' => $barrio,
@@ -226,12 +234,12 @@ class VisitaTecnicaUpdate implements Responsable
             if($editarVisitaTecnica) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Visita Técnica editada satisfactoriamente');
-                return redirect('editar_visita/'.$id_visita);
+                return redirect('editar_visita/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error al editar la visita, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$id_visita);
+                return redirect('editar_visita/'.$idVisita);
             }
         }
         catch (Exception $e)

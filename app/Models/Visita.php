@@ -30,6 +30,7 @@ class Visita extends Model
         'id_pais',
         'id_departamento',
         'id_ciudad',
+        'id_comuna',
         'sector',
         'cerca_de',
         'barrio',
