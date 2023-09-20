@@ -29,8 +29,6 @@ class VisitaCaracteristicasInmuebleUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $idVisita = request('id_visita', null);
         $cocinas = request('cocinas', null);
         $habitaciones = request('habitaciones', null);
@@ -48,6 +46,13 @@ class VisitaCaracteristicasInmuebleUpdate implements Responsable
         $escalaEmergencia = request('escala_emergencia', null);
         $closets = request('closets', null);
         $shutBasura = request('shut_basura', null);
+        $cantParqueaderos = request('cant_parqueaderos', null);
+        $cantCuartoUtil = request('cant_cuarto_util', null);
+        $cantKioscos = request('cant_kioscos', null);
+        $cantPiscinas = request('cant_piscinas', null);
+        $cantEstablos = request('cant_establos', null);
+        $cantBillares = request('cant_billares', null);
+        $cantAscensores = request('cant_ascensores', null);
         $obsCaractInmueble = request('obs_caract_inmueble', null);
 
         // ==============================================================================
@@ -74,6 +79,13 @@ class VisitaCaracteristicasInmuebleUpdate implements Responsable
                     'escala_emergencia' => $escalaEmergencia,
                     'closets' => $closets,
                     'shut_basura' => $shutBasura,
+                    'cant_parqueaderos' => $cantParqueaderos,
+                    'cant_cuarto_util' => $cantCuartoUtil,
+                    'cant_kioskos' => $cantKioscos,
+                    'cant_piscinas' => $cantPiscinas,
+                    'cant_establos' => $cantEstablos,
+                    'cant_billares' => $cantBillares,
+                    'cant_ascensores' => $cantAscensores,
                     'obs_caract_inmueble' => $obsCaractInmueble,
             ]);
 

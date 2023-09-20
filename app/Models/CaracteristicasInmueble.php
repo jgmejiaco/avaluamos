@@ -39,6 +39,13 @@ class CaracteristicasInmueble extends Model
         'escala_emergencia',
         'closets',
         'shut_basura',
+        'cant_parqueaderos',
+        'cant_cuarto_util',
+        'cant_kioskos',
+        'cant_piscinas',
+        'cant_establos',
+        'cant_billares',
+        'cant_ascensores',
         'obs_caract_inmueble'
     ];
 }

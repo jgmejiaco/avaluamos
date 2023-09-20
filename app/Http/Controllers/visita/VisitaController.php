@@ -394,12 +394,12 @@ class VisitaController extends Controller
                     ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
                     ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
                     ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
-                    ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
-                    ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
-                    ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
-                    ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
-                    ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
-                    ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
+                    // ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
+                    // ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
+                    // ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
+                    // ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
+                    // ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
+                    // ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->select(
@@ -443,12 +443,6 @@ class VisitaController extends Controller
                     ->leftjoin('ciudad as visita_ciudad','visita_ciudad.id_ciudad','=','visitas.id_ciudad')
                     ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
                     ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
-                    ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
-                    ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
-                    ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
-                    ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
-                    ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
-                    ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->leftjoin('info_inmueble','info_inmueble.id_visita','=','visitas.id_visita')
@@ -461,6 +455,30 @@ class VisitaController extends Controller
                     ->leftjoin('indicador_numerico as pisos_edificio','pisos_edificio.id_indicador_numerico','=','info_inmueble.pisos_edificio')
                     ->leftjoin('si_no as remodelado','remodelado.id_si_no','=','info_inmueble.remodelado')
                     ->leftjoin('condicion_inmueble','condicion_inmueble.id_condicion_inmueble','=','info_inmueble.id_condicion_inmueble')
+                    ->leftjoin('caracteristicas_inmueble','caracteristicas_inmueble.id_visita','=','visitas.id_visita')
+                    ->leftjoin('indicador_numerico as cocinas','cocinas.id_indicador_numerico','=','caracteristicas_inmueble.cocinas')
+                    ->leftjoin('indicador_numerico as habitaciones','habitaciones.id_indicador_numerico','=','caracteristicas_inmueble.habitaciones')
+                    ->leftjoin('indicador_numerico as salas','salas.id_indicador_numerico','=','caracteristicas_inmueble.salas')
+                    ->leftjoin('indicador_numerico as habitaciones_servicio','habitaciones_servicio.id_indicador_numerico','=','caracteristicas_inmueble.habitaciones_servicio')
+                    ->leftjoin('indicador_numerico as comedores','comedores.id_indicador_numerico','=','caracteristicas_inmueble.comedores')
+                    ->leftjoin('indicador_numerico as banios_servicio','banios_servicio.id_indicador_numerico','=','caracteristicas_inmueble.banios_servicio')
+                    ->leftjoin('indicador_numerico as banios_social','banios_social.id_indicador_numerico','=','caracteristicas_inmueble.banios_social')
+                    ->leftjoin('indicador_numerico as banios_privado','banios_privado.id_indicador_numerico','=','caracteristicas_inmueble.banios_privado')
+                    ->leftjoin('indicador_numerico as balcones','balcones.id_indicador_numerico','=','caracteristicas_inmueble.balcones')
+                    ->leftjoin('indicador_numerico as zona_ropa','zona_ropa.id_indicador_numerico','=','caracteristicas_inmueble.zona_ropa')
+                    ->leftjoin('indicador_numerico as estudios','estudios.id_indicador_numerico','=','caracteristicas_inmueble.estudios')
+                    ->leftjoin('indicador_numerico as patios','patios.id_indicador_numerico','=','caracteristicas_inmueble.patios')
+                    ->leftjoin('indicador_numerico as vestier','vestier.id_indicador_numerico','=','caracteristicas_inmueble.vestier')
+                    ->leftjoin('indicador_numerico as escala_emergencia','escala_emergencia.id_indicador_numerico','=','caracteristicas_inmueble.escala_emergencia')
+                    ->leftjoin('indicador_numerico as closets','closets.id_indicador_numerico','=','caracteristicas_inmueble.closets')
+                    ->leftjoin('indicador_numerico as shut_basura','shut_basura.id_indicador_numerico','=','caracteristicas_inmueble.shut_basura')
+                    ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','caracteristicas_inmueble.cant_parqueaderos')
+                    ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','caracteristicas_inmueble.cant_cuarto_util')
+                    ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','caracteristicas_inmueble.cant_kioskos')
+                    ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','caracteristicas_inmueble.cant_piscinas')
+                    ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','caracteristicas_inmueble.cant_establos')
+                    ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','caracteristicas_inmueble.cant_billares')
+                    ->leftjoin('indicador_numerico as ascensores','ascensores.id_indicador_numerico','=','caracteristicas_inmueble.cant_ascensores')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -505,12 +523,6 @@ class VisitaController extends Controller
                         'visitas.area',
                         'estrato.id_indicador_numerico as estrato',
                         'visitas.numero_inmueble',
-                        'parqueaderos.id_indicador_numerico as parqueaderos',
-                        'cuarto_util.id_indicador_numerico as cuarto_util',
-                        'kioskos.id_indicador_numerico as kioskos',
-                        'piscinas.id_indicador_numerico as piscinas',
-                        'establos.id_indicador_numerico as establos',
-                        'billares.id_indicador_numerico as billares',
                         'visitas.porcentaje_descuento',
                         'visitas.valor_cotizacion',
                         'visitas.latitud',
@@ -540,6 +552,37 @@ class VisitaController extends Controller
                         'info_inmueble.area_patios',
                         'info_inmueble.id_condicion_inmueble',
                         'info_inmueble.obs_info_inmueble',
+                        // 'parqueaderos.id_indicador_numerico as parqueaderos',
+                        // 'cuarto_util.id_indicador_numerico as cuarto_util',
+                        // 'kioskos.id_indicador_numerico as kioskos',
+                        // 'piscinas.id_indicador_numerico as piscinas',
+                        // 'establos.id_indicador_numerico as establos',
+                        // 'billares.id_indicador_numerico as billares',
+                        // 'ascensores.id_indicador_numerico as ascensores',
+                        'caracteristicas_inmueble.cocinas',
+                        'caracteristicas_inmueble.habitaciones',
+                        'caracteristicas_inmueble.salas',
+                        'caracteristicas_inmueble.habitaciones_servicio',
+                        'caracteristicas_inmueble.comedores',
+                        'caracteristicas_inmueble.banios_servicio',
+                        'caracteristicas_inmueble.banios_social',
+                        'caracteristicas_inmueble.banios_privado',
+                        'caracteristicas_inmueble.balcones',
+                        'caracteristicas_inmueble.zona_ropa',
+                        'caracteristicas_inmueble.estudios',
+                        'caracteristicas_inmueble.patios',
+                        'caracteristicas_inmueble.vestier',
+                        'caracteristicas_inmueble.escala_emergencia',
+                        'caracteristicas_inmueble.closets',
+                        'caracteristicas_inmueble.shut_basura',
+                        'caracteristicas_inmueble.cant_parqueaderos',
+                        'caracteristicas_inmueble.cant_cuarto_util',
+                        'caracteristicas_inmueble.cant_kioskos',
+                        'caracteristicas_inmueble.cant_piscinas',
+                        'caracteristicas_inmueble.cant_establos',
+                        'caracteristicas_inmueble.cant_billares',
+                        'caracteristicas_inmueble.cant_ascensores',
+                        'caracteristicas_inmueble.obs_caract_inmueble',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
