@@ -175,7 +175,6 @@ class ClientePotencialController extends Controller
                             'decripcion_documento',
                             'documento_cliente',
                             'fecha_nacimiento',
-                            // DB::raw('to_char(to_timestamp(fecha_nacimiento), \'DD/MM/YYYY\') as fecha_nacimiento'),
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
@@ -194,6 +193,7 @@ class ClientePotencialController extends Controller
                             'empresa_que_refiere'
                         )
                 ->whereNull('clientes.deleted_at')
+                ->orderBy('clientes.id_cliente', 'DESC')
                 ->get();
     }
 
