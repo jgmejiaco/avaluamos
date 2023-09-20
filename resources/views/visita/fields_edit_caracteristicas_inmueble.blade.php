@@ -203,6 +203,15 @@
                 </div>
 
                 {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="cant_ascensores" class="form-label text-uppercase">Cantidad Ascensores</label>
+                        {!! Form::select('cant_ascensores', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'cant_ascensores']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
 
                 <div class="col-12">
                     <div class="form-group d-flex flex-column" data-validate="State Is Required">
