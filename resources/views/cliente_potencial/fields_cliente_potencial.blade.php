@@ -12,7 +12,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
-                {!! Form::select('id_doc_cliente', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'id_doc_cliente', 'required']) !!}
+                {!! Form::select('id_doc_cliente', $tipo_documento, null, ['class' => 'form-control select2', 'id' => 'id_doc_cliente']) !!}
             </div>
         </div>
 
@@ -21,7 +21,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente</label>
-                {!! Form::text('documento_cliente', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'required']) !!}
+                {!! Form::text('documento_cliente', null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente']) !!}
             </div>
         </div>
 
@@ -84,7 +84,7 @@
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="municipio" class="form-label text-uppercase">Ciudad residencia</label>
-                {!! Form::select('municipio', $ciudades, null, ['class' => 'form-control select2', 'id' => 'municipio', 'required']) !!}
+                {!! Form::select('municipio', $ciudades, null, ['class' => 'form-control select2', 'id' => 'municipio']) !!}
             </div>
         </div>
         
