@@ -452,6 +452,15 @@ class VisitaController extends Controller
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->leftjoin('info_inmueble','info_inmueble.id_visita','=','visitas.id_visita')
+                    ->leftjoin('tipo_vivienda','tipo_vivienda.id_tipo_vivienda','=','info_inmueble.id_tipo_vivienda')
+                    ->leftjoin('uso_inmueble','uso_inmueble.id_uso_inmueble','=','info_inmueble.id_uso_inmueble')
+                    ->leftjoin('tipo_suelo','tipo_suelo.id_tipo_suelo','=','info_inmueble.id_tipo_suelo')
+                    ->leftjoin('topografia','topografia.id_topografia','=','info_inmueble.id_topografia')
+                    ->leftjoin('forma','forma.id_forma','=','info_inmueble.id_forma')
+                    ->leftjoin('indicador_numerico as pisos_inmueble','pisos_inmueble.id_indicador_numerico','=','info_inmueble.pisos_inmueble')
+                    ->leftjoin('indicador_numerico as pisos_edificio','pisos_edificio.id_indicador_numerico','=','info_inmueble.pisos_edificio')
+                    ->leftjoin('si_no as remodelado','remodelado.id_si_no','=','info_inmueble.remodelado')
+                    ->leftjoin('condicion_inmueble','condicion_inmueble.id_condicion_inmueble','=','info_inmueble.id_condicion_inmueble')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -511,9 +520,26 @@ class VisitaController extends Controller
                         'visitas.fecha_visita',
                         'visitas.hora_visita',
                         'visitas.id_visitador',
+                        DB::raw("CONCAT(nombres, ' ', apellidos) AS nombres_visitador"),
                         'info_inmueble.pisos_inmueble',
                         'info_inmueble.pisos_edificio',
-                        DB::raw("CONCAT(nombres, ' ', apellidos) AS nombres_visitador")
+                        'info_inmueble.id_tipo_vivienda',
+                        'info_inmueble.id_uso_inmueble',
+                        'info_inmueble.id_tipo_suelo',
+                        'info_inmueble.id_topografia',
+                        'info_inmueble.id_forma',
+                        'info_inmueble.pisos_inmueble',
+                        'info_inmueble.pisos_edificio',
+                        'info_inmueble.valor_administracion',
+                        'info_inmueble.altura',
+                        'info_inmueble.frente',
+                        'info_inmueble.fondo',
+                        'info_inmueble.remodelado',
+                        'info_inmueble.area_libre',
+                        'info_inmueble.anios_remodelacion',
+                        'info_inmueble.area_patios',
+                        'info_inmueble.id_condicion_inmueble',
+                        'info_inmueble.obs_info_inmueble',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
