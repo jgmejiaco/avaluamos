@@ -17,10 +17,6 @@
                     <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
                 </li>
                 <!-- ================================== -->
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#nav_info_juridica" id="nav_info_juridica_tab" data-toggle="tab" role="tab" aria-controls="nav_info_juridica">Info Jurídica</a>
-                </li> --}}
-                <!-- ================================== -->
                 <li class="nav-item">
                     <a class="nav-link" href="#nav_info_inmueble" id="nav_info_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_info_inmueble">Info Inmueble</a>
                 </li>
@@ -47,6 +43,10 @@
                 <!-- ================================== -->
                 <li class="nav-item">
                     <a class="nav-link" href="#nav_condiciones_urbanisticas" id="nav_condiciones_urbanisticas_tab" data-toggle="tab" role="tab" aria-controls="nav_condiciones_urbanisticas">Condiciones Urbanisticas</a>
+                </li>
+                <!-- ================================== -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#nav_estado_conservacion" id="nav_estado_conservacion_tab" data-toggle="tab" role="tab" aria-controls="nav_estado_conservacion">Estado Conservación</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
@@ -78,12 +78,6 @@
                 <div class="tab-pane" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
                     @include('visita.fields_edit_visita_tecnica')
                 </div>
-                <!-- ================================== -->
-                <!-- ================================== -->
-                <!-- CONTENIDO PESTAÑA "INFORMACIÓN JURÍDICA" -->
-                {{-- <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab" tabindex="0">
-                    @include('visita.fields_edit_info_juridica')
-                </div> --}}
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN INMUEBLE" -->
@@ -125,6 +119,12 @@
                 <!-- CONTENIDO PESTAÑA "CONDICIONES URBANISTICAS" -->
                 <div class="tab-pane" id="nav_condiciones_urbanisticas" role="tabpanel" aria-labelledby="nav_condiciones_urbanisticas_tab">
                     @include('visita.fields_edit_condiciones_urbanisticas')
+                </div>
+                <!-- ================================== -->
+                <!-- ================================== -->
+                <!-- CONTENIDO PESTAÑA "ESTADO DE CONSERVACIÓN" -->
+                <div class="tab-pane" id="nav_estado_conservacion" role="tabpanel" aria-labelledby="nav_estado_conservacion_tab" tabindex="0">
+                    @include('visita.fields_edit_estado_conservacion')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->

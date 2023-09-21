@@ -2,6 +2,7 @@
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
+            {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
             <h2 class="text-uppercase">REGISTRO FOTOGRÁFICO</h2>
 
             <div class="row mb-5">
@@ -9,6 +10,7 @@
                     <div class="form-group d-flex flex-column">
                         <label for="rf_fachada" class="form-label text-uppercase">Fachada</label>
                         {!! Form::file('rf_fachada', null, ['class' => 'form-control add-file', 'id' => 'rf_fachada']) !!}
+                        {{-- isset($editarVisita) ? $editarVisita->porteria_24 : null --}}
                     </div>
                 </div>
 

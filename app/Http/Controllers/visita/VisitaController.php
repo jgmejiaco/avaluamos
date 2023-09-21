@@ -56,11 +56,12 @@ use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaCalificacionInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaDotacionComunalUpdate;
-// use App\Http\Responsable\visita\VisitaInfoSectorUpdate;
-// use App\Http\Responsable\visita\VisitaCondiUrbanisticasUpdate;
-// use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
+use App\Http\Responsable\visita\VisitaInfoSectorUpdate;
+use App\Http\Responsable\visita\VisitaCondiUrbanisticasUpdate;
+use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
 // use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
-// use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
+use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
+use App\Http\Responsable\visita\VisitaEstadoConservacionUpdate;
 
 class VisitaController extends Controller
 {
@@ -303,33 +304,33 @@ class VisitaController extends Controller
 
     //=========================================================
     
-    // public function visitaInfoSectorUpdate(Request $request)
-    // {
-    //     // Si el usuario no esta autenticado, redireccionamos al login
+    public function visitaInfoSectorUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
         
 
-    //     return new VisitaInfoSectorUpdate();
-    // }
+        return new VisitaInfoSectorUpdate();
+    }
 
     //=========================================================
     
-    // public function visitaCondiUrbanisticasUpdate(Request $request)
-    // {
-    //     // Si el usuario no esta autenticado, redireccionamos al login
+    public function visitaCondiUrbanisticasUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
         
 
-    //     return new VisitaCondiUrbanisticasUpdate();
-    // }
+        return new VisitaCondiUrbanisticasUpdate();
+    }
 
     //=========================================================
     
-    // public function visitaObserGeneralesUpdate(Request $request)
-    // {
-    //     // Si el usuario no esta autenticado, redireccionamos al login
+    public function visitaObserGeneralesUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
         
 
-    //     return new VisitaObserGeneralesUpdate();
-    // }
+        return new VisitaObserGeneralesUpdate();
+    }
 
     //=========================================================
     
@@ -343,13 +344,23 @@ class VisitaController extends Controller
 
     //=========================================================
     
-    // public function visitaValorEstimadoUpdate(Request $request)
-    // {
-    //     // Si el usuario no esta autenticado, redireccionamos al login
+    public function visitaValorEstimadoUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
         
 
-    //     return new VisitaValorEstimadoUpdate();
-    // }
+        return new VisitaValorEstimadoUpdate();
+    }
+
+    //=========================================================
+    
+    public function visitaEstadoConservacionUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaEstadoConservacionUpdate();
+    }
 
     //=========================================================
     /**
@@ -551,6 +562,10 @@ class VisitaController extends Controller
                     ->leftjoin('acabados_inmueble','acabados_inmueble.id_visita','=','visitas.id_visita')
                     ->leftjoin('calificacion_inmueble','calificacion_inmueble.id_visita','=','visitas.id_visita')
                     ->leftjoin('dotacion_comunal','dotacion_comunal.id_visita','=','visitas.id_visita')
+                    ->leftjoin('condiciones_urbanisticas','condiciones_urbanisticas.id_visita','=','visitas.id_visita')
+                    ->leftjoin('info_sector','info_sector.id_visita','=','visitas.id_visita')
+                    ->leftjoin('observaciones_generales','observaciones_generales.id_visita','=','visitas.id_visita')
+                    ->leftjoin('valor_estimado_avaluo','valor_estimado_avaluo.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -710,6 +725,28 @@ class VisitaController extends Controller
                         'dotacion_comunal.restaurante',
                         'dotacion_comunal.squash',
                         'dotacion_comunal.obs_dotacion_comunal',
+                        'condiciones_urbanisticas.id_valorizacion',
+                        'condiciones_urbanisticas.cu_alumbrado_publico',
+                        'condiciones_urbanisticas.cu_transporte',
+                        'condiciones_urbanisticas.cu_orden_publico',
+                        'condiciones_urbanisticas.cu_seguridad',
+                        'condiciones_urbanisticas.cu_salubridad',
+                        'condiciones_urbanisticas.cu_vias',
+                        'condiciones_urbanisticas.id_tipo_vias',
+                        'condiciones_urbanisticas.cu_aceras',
+                        'condiciones_urbanisticas.cu_red_gas',
+                        'condiciones_urbanisticas.cu_red_telco',
+                        'condiciones_urbanisticas.cu_red_acueducto',
+                        'condiciones_urbanisticas.cu_red_alcantarillado',
+                        'condiciones_urbanisticas.cu_barrios_sectores',
+                        'condiciones_urbanisticas.cu_tipo_edificaciones',
+                        'condiciones_urbanisticas.obs_condiciones_urbanisticas',
+                        'info_sector.barrios_sectores',
+                        'info_sector.actividad_predominante',
+                        'info_sector.transporte',
+                        'info_sector.vias_acceso',
+                        'observaciones_generales.observaciones_generales',
+                        'valor_estimado_avaluo.valor_estimado_inmueble',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')

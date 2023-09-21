@@ -31,6 +31,11 @@ class CondicionesUrbanisticas extends Model
         'cu_salubridad',
         'cu_vias',
         'id_tipo_vias',
+        'cu_aceras',
+        'cu_red_gas',
+        'cu_red_telco',
+        'cu_red_acueducto',
+        'cu_red_alcantarillado',
         'cu_barrios_sectores',
         'cu_tipo_edificaciones',
         'obs_condiciones_urbanisticas'
