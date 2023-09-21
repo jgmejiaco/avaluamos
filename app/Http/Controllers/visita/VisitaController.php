@@ -55,12 +55,12 @@ use App\Http\Responsable\visita\VisitaInfoInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaCalificacionInmuebleUpdate;
-// use App\Http\Responsable\visita\;
-// use App\Http\Responsable\visita\;
-// use App\Http\Responsable\visita\;
-// use App\Http\Responsable\visita\;
-// use App\Http\Responsable\visita\;
-// use App\Http\Responsable\visita\;
+use App\Http\Responsable\visita\VisitaDotacionComunalUpdate;
+// use App\Http\Responsable\visita\VisitaInfoSectorUpdate;
+// use App\Http\Responsable\visita\VisitaCondiUrbanisticasUpdate;
+// use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
+// use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
+// use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
 
 class VisitaController extends Controller
 {
@@ -292,6 +292,66 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+
+    public function visitaDotacionComunalUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaDotacionComunalUpdate();
+    }
+
+    //=========================================================
+    
+    // public function visitaInfoSectorUpdate(Request $request)
+    // {
+    //     // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+    //     return new VisitaInfoSectorUpdate();
+    // }
+
+    //=========================================================
+    
+    // public function visitaCondiUrbanisticasUpdate(Request $request)
+    // {
+    //     // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+    //     return new VisitaCondiUrbanisticasUpdate();
+    // }
+
+    //=========================================================
+    
+    // public function visitaObserGeneralesUpdate(Request $request)
+    // {
+    //     // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+    //     return new VisitaObserGeneralesUpdate();
+    // }
+
+    //=========================================================
+    
+    // public function VvisitaRegFotograficoUpdate(Request $request)
+    // {
+    //     // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+    //     return new VisitaRegFotograficoUpdate();
+    // }
+
+    //=========================================================
+    
+    // public function visitaValorEstimadoUpdate(Request $request)
+    // {
+    //     // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+    //     return new VisitaValorEstimadoUpdate();
+    // }
+
+    //=========================================================
     /**
      * Remove the specified resource from storage.
      *
@@ -490,6 +550,7 @@ class VisitaController extends Controller
                     ->leftjoin('indicador_numerico as ascensores','ascensores.id_indicador_numerico','=','caracteristicas_inmueble.cant_ascensores')
                     ->leftjoin('acabados_inmueble','acabados_inmueble.id_visita','=','visitas.id_visita')
                     ->leftjoin('calificacion_inmueble','calificacion_inmueble.id_visita','=','visitas.id_visita')
+                    ->leftjoin('dotacion_comunal','dotacion_comunal.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -630,6 +691,25 @@ class VisitaController extends Controller
                         'calificacion_inmueble.cal_humedades',
                         'calificacion_inmueble.cal_patios',
                         'calificacion_inmueble.obs_calificacion_inmueble',
+                        'dotacion_comunal.porteria_24',
+                        'dotacion_comunal.parqueo_comun',
+                        'dotacion_comunal.juegos_infantiles',
+                        'dotacion_comunal.zona_mascotas',
+                        'dotacion_comunal.piscinas',
+                        'dotacion_comunal.zonas_verdes',
+                        'dotacion_comunal.sauna',
+                        'dotacion_comunal.salon_social',
+                        'dotacion_comunal.turco',
+                        'dotacion_comunal.canchas',
+                        'dotacion_comunal.gimnasio',
+                        'dotacion_comunal.playground',
+                        'dotacion_comunal.barbecue',
+                        'dotacion_comunal.supermercado',
+                        'dotacion_comunal.sala_cine',
+                        'dotacion_comunal.cafeteria',
+                        'dotacion_comunal.restaurante',
+                        'dotacion_comunal.squash',
+                        'dotacion_comunal.obs_dotacion_comunal',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
