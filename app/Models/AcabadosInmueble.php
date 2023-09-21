@@ -39,6 +39,7 @@ class AcabadosInmueble extends Model
         'agua',
         'meson',
         'gas',
+        'patios',
         'obs_acabados_inmueble'
     ];
 }

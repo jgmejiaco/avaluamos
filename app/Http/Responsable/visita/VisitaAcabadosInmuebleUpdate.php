@@ -29,8 +29,6 @@ class VisitaAcabadosInmuebleUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $idVisita = request('id_visita', null);
         $idSistemaConstructivo = request('id_sistema_constructivo', null);
         $portonPrincipal = request('porton_principal', null);
@@ -48,6 +46,7 @@ class VisitaAcabadosInmuebleUpdate implements Responsable
         $energia = request('energia', null);
         $agua = request('agua', null);
         $gas = request('gas', null);
+        $patios = request('patios', null);
         $obsAcabadosInmueble = request('obs_acabados_inmueble', null);
 
         // ==============================================================================
@@ -74,6 +73,7 @@ class VisitaAcabadosInmuebleUpdate implements Responsable
                     'agua' => $agua,
                     'meson' => $meson,
                     'gas' => $gas,
+                    'patios' => $patios,
                     'obs_acabados_inmueble' => $obsAcabadosInmueble
             ]);
 

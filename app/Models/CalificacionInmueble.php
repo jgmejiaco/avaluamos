@@ -39,6 +39,7 @@ class CalificacionInmueble extends Model
         'cal_distribucion',
         'cal_zona_ropas',
         'cal_humedades',
+        'cal_patios',
         'obs_calificacion_inmueble'
     ];
 }

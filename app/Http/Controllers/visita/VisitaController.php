@@ -54,7 +54,7 @@ use App\Http\Responsable\visita\VisitaInfoJuridicaUpdate;
 use App\Http\Responsable\visita\VisitaInfoInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
-// use App\Http\Responsable\visita\;
+use App\Http\Responsable\visita\VisitaCalificacionInmuebleUpdate;
 // use App\Http\Responsable\visita\;
 // use App\Http\Responsable\visita\;
 // use App\Http\Responsable\visita\;
@@ -283,6 +283,15 @@ class VisitaController extends Controller
 
     //=========================================================
 
+    public function visitaCalificacionInmuebleUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
+        
+
+        return new VisitaCalificacionInmuebleUpdate();
+    }
+
+    //=========================================================
     /**
      * Remove the specified resource from storage.
      *
@@ -322,7 +331,7 @@ class VisitaController extends Controller
         view()->share('condicion_inmueble', CondicionInmueble::orderBy('condicion_inmueble', 'asc')->pluck('condicion_inmueble', 'id_condicion_inmueble'));
         view()->share('calificacion_fitto_corvini', FittoCorvini::orderBy('fitto_corvini', 'asc')->pluck('fitto_corvini', 'id_fitto_corvini'));
         view()->share('valorizacion', Valorizacion::orderBy('valorizacion', 'asc')->pluck('valorizacion', 'id_valorizacion'));
-        view()->share('calificacion_general', CalificacionGeneral::orderBy('calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
+        view()->share('calificacion_general', CalificacionGeneral::orderBy('id_calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
         view()->share('tipo_vias', TipoVias::orderBy('tipo_vias', 'asc')->pluck('tipo_vias', 'id_tipo_vias'));
         view()->share('tipo_piso', TipoPiso::orderBy('tipo_pisos', 'asc')->pluck('tipo_pisos', 'id_tipo_piso'));
         view()->share('tipo_banio', TipoBanio::orderBy('tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
@@ -479,6 +488,8 @@ class VisitaController extends Controller
                     ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','caracteristicas_inmueble.cant_establos')
                     ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','caracteristicas_inmueble.cant_billares')
                     ->leftjoin('indicador_numerico as ascensores','ascensores.id_indicador_numerico','=','caracteristicas_inmueble.cant_ascensores')
+                    ->leftjoin('acabados_inmueble','acabados_inmueble.id_visita','=','visitas.id_visita')
+                    ->leftjoin('calificacion_inmueble','calificacion_inmueble.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -583,6 +594,42 @@ class VisitaController extends Controller
                         'caracteristicas_inmueble.cant_billares',
                         'caracteristicas_inmueble.cant_ascensores',
                         'caracteristicas_inmueble.obs_caract_inmueble',
+                        'acabados_inmueble.id_sistema_constructivo',
+                        'acabados_inmueble.porton_principal',
+                        'acabados_inmueble.id_tipo_fachada',
+                        'acabados_inmueble.puertas',
+                        'acabados_inmueble.id_tipo_muro',
+                        'acabados_inmueble.id_ventaneria',
+                        'acabados_inmueble.id_tipo_techo',
+                        'acabados_inmueble.servicios_publicos',
+                        'acabados_inmueble.pisos',
+                        'acabados_inmueble.telefono',
+                        'acabados_inmueble.banios',
+                        'acabados_inmueble.energia',
+                        'acabados_inmueble.cocina',
+                        'acabados_inmueble.agua',
+                        'acabados_inmueble.meson',
+                        'acabados_inmueble.gas',
+                        'acabados_inmueble.patios',
+                        'acabados_inmueble.obs_acabados_inmueble',
+                        'calificacion_inmueble.cal_estructura',
+                        'calificacion_inmueble.cal_porton_ppal',
+                        'calificacion_inmueble.cal_fachada',
+                        'calificacion_inmueble.cal_puertas',
+                        'calificacion_inmueble.cal_muros',
+                        'calificacion_inmueble.cal_ventaneria',
+                        'calificacion_inmueble.cal_techos',
+                        'calificacion_inmueble.cal_carpinteria',
+                        'calificacion_inmueble.cal_pisos',
+                        'calificacion_inmueble.cal_ventilacion',
+                        'calificacion_inmueble.cal_cocina',
+                        'calificacion_inmueble.cal_iluminacion',
+                        'calificacion_inmueble.cal_banios',
+                        'calificacion_inmueble.cal_distribucion',
+                        'calificacion_inmueble.cal_zona_ropas',
+                        'calificacion_inmueble.cal_humedades',
+                        'calificacion_inmueble.cal_patios',
+                        'calificacion_inmueble.obs_calificacion_inmueble',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
