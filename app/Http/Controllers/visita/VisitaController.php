@@ -412,8 +412,8 @@ class VisitaController extends Controller
         view()->share('calificacion_general', CalificacionGeneral::orderBy('id_calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
         view()->share('tipo_vias', TipoVias::orderBy('tipo_vias', 'asc')->pluck('tipo_vias', 'id_tipo_vias'));
         view()->share('tipo_piso', TipoPiso::orderBy('tipo_pisos', 'asc')->pluck('tipo_pisos', 'id_tipo_piso'));
-        view()->share('tipo_banio', TipoBanio::orderBy('tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
-        view()->share('tipo_cocina', TipoCocina::orderBy('tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
+        view()->share('tipo_banio', TipoBanio::orderBy('id_tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
+        view()->share('tipo_cocina', TipoCocina::orderBy('id_tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
         view()->share('tipo_meson', TipoMeson::orderBy('tipo_meson', 'asc')->pluck('tipo_meson', 'id_tipo_meson'));
         view()->share('comunas', Comuna::orderBy('comuna', 'asc')->pluck('comuna', 'id_comuna'));
         view()->share('factor_calidad', FactorCalidad::orderBy('factor_calidad', 'asc')->pluck('factor_calidad', 'id_factor_calidad'));
@@ -507,7 +507,10 @@ class VisitaController extends Controller
                         'estrato.indicador_numerico as estrato',
                         'visitas.porcentaje_descuento',
                         'visitas.valor_cotizacion',
-                        'descripcion_si_no'
+                        'descripcion_si_no',
+                        'fecha_visita',
+                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita), "%d-%m-%Y") as fecha_visita'),
+                        DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe')
                     )
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
@@ -786,7 +789,6 @@ class VisitaController extends Controller
         return FactorPendiente::select('valor_pendiente')
                                 ->where('id_factor_pendiente', $id_factor_pendiente)
                                 ->first();
-
     }
     
     // ==========================================================================
@@ -799,7 +801,6 @@ class VisitaController extends Controller
         return FactorUbicacion::select('valor_ubicacion')
                                 ->where('id_factor_ubicacion', $id_factor_ubicacion)
                                 ->first();
-
     }
     
     // ==========================================================================

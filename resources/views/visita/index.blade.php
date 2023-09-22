@@ -7,6 +7,9 @@
 {{-- ====================================================== --}}
 
 @section('content')
+    {{-- @php
+        use Carbon\Carbon;
+    @endphp --}}
     <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-12">
@@ -41,6 +44,8 @@
                                 <th>% Descuento</th>
                                 <th>Valor Cotización</th>
                                 <th>Estado Visitado</th>
+                                <th>Fecha Visita</th>
+                                <th>Fecha Informe</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -59,6 +64,8 @@
                                     <td>{{$visita->porcentaje_descuento}}</td>
                                     <td>{{$visita->valor_cotizacion}}</td>
                                     <td>{{$visita->descripcion_si_no}}</td>
+                                    <td>{{$visita->fecha_visita}}</td>
+                                    <td>{{$visita->fecha_informe}}</td>
                                     <td>
                                         <a href="{{route('editar_visita',$visita->id_visita)}}" class="btn btn-info" id="ver_cliente">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
