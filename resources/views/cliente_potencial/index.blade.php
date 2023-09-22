@@ -169,9 +169,9 @@
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group mt-5">
-                                        <label class="form-label text-uppercase">Nombres</label>
-                                        <input type="text" class="form-control text-uppercase" name="nombres" value="${nombres}">
+            formEditarcliente += `  <div class="form-group mt-3 d-flex align-items-center">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Nombres</label>
+                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="nombres" value="${nombres}">
                                     </div>
             `;
 
@@ -179,9 +179,9 @@
 
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento</label>
-                            <select class="form-control select2" id="id_doc_cliente" name="id_doc_cliente">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="id_tipo_documento" class="form-label text-uppercase fs-5 w-100 1-md-50">Tipo Documento</label>
+                            <select class="form-control select2 w-100 1-md-50" id="id_doc_cliente" name="id_doc_cliente">
             `;
                                 if (idDocCliente == null || idDocCliente == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -201,32 +201,32 @@
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group">
-                                        <label class="form-label text-uppercase">Número Documento</label>
-                                        <input type="text" class="form-control text-uppercase" name="documento_cliente" value="${documentoCliente}">
+            formEditarcliente += `  <div class="form-group d-flex align-items-center">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Número Documento</label>
+                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="documento_cliente" value="${documentoCliente}">
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group">
-                                        <label class="form-label text-uppercase">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control" name="fecha_nacimiento" value="${fechaNacimiento}">
+            formEditarcliente += `  <div class="form-group d-flex align-items-center">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control w-100 1-md-50" name="fecha_nacimiento" value="${fechaNacimiento}">
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group">
-                                        <label class="form-label text-uppercase">Celular</label>
-                                        <input type="text" class="form-control" name="cli_celular" value="${cliCelular}">
+            formEditarcliente += `  <div class="form-group d-flex align-items-center">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Celular</label>
+                                        <input type="text" class="form-control w-100 1-md-50" name="cli_celular" value="${cliCelular}">
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group">
-                                        <label class="form-label text-uppercase">Correo</label>
+            formEditarcliente += `  <div class="form-group d-flex align-items-center">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Correo</label>
                                         <input type="text" class="form-control" name="cli_email" value="${cliEmail}">
                                     </div>
             `;
@@ -235,9 +235,9 @@
 
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="id_tipo_persona" class="form-label text-uppercase">Tipo Persona</label>
-                            <select class="form-control select2" id="id_tipo_persona" name="id_tipo_persona">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="id_tipo_persona" class="form-label text-uppercase fs-5 w-100 1-md-50">Tipo Persona</label>
+                            <select class="form-control select2 w-100 1-md-50" id="id_tipo_persona" name="id_tipo_persona">
             `;
                                 if (idTipoPersona == null || idTipoPersona == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -259,9 +259,9 @@
             
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="pais_edit" class="form-label text-uppercase">País residencia</label>
-                            <select class="form-control select2" id="pais_edit" name="pais_edit">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="pais_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">País residencia</label>
+                            <select class="form-control select2 w-100 1-md-50" id="pais_edit" name="pais_edit">
             `;
                                 if (idPais == null || idPais == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -283,9 +283,9 @@
             
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="dpto_edit" class="form-label text-uppercase">departamento residencia</label>
-                            <select class="form-control select2" id="dpto_edit" name="dpto_edit">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="dpto_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">departamento residencia</label>
+                            <select class="form-control select2 w-100 1-md-50" id="dpto_edit" name="dpto_edit">
             `;
                                 if (idDpto == null || idDpto == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -307,9 +307,9 @@
             
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="ciudad_edit" class="form-label text-uppercase">Ciudad Residencia</label>
-                            <select class="form-control select2" id="ciudad_edit" name="ciudad_edit">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="ciudad_edit" class="form-label text-uppercase fs-35 w-100 1-md-50">Ciudad Residencia</label>
+                            <select class="form-control select2 w-100 1-md-50" id="ciudad_edit" name="ciudad_edit">
             `;
                                 if (idCiudad == null || idCiudad == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -333,9 +333,9 @@
             
             formEditarcliente += `
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="referido_por_edit" class="form-label text-uppercase">Referido por</label>
-                            <select class="form-control select2" id="referido_por_edit" name="referido_por_edit">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="referido_por_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Referido por</label>
+                            <select class="form-control select2 w-100 1-md-50" id="referido_por_edit" name="referido_por_edit">
             `;
                                 if (idReferidoPor == null || idReferidoPor == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -357,9 +357,9 @@
             
             formEditarcliente += `
                     <div class="col-12" id="div_red_social_edit">
-                        <div class="form-group">
-                            <label for="red_social_edit" class="form-label text-uppercase">Red Social</label>
-                            <select class="form-control select2" id="red_social_edit" name="red_social_edit">
+                        <div class="form-group d-flex align-items-center">
+                            <label for="red_social_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Red Social</label>
+                            <select class="form-control select2 w-100 1-md-50" id="red_social_edit" name="red_social_edit">
             `;
                                 if (idRedSocial == null || redSocial == "") {
                                     formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
@@ -379,17 +379,17 @@
 
             // ====================================
             
-            formEditarcliente += `  <div class="form-group" id="div_quien_refiere_edit">
-                                        <label class="form-label text-uppercase">Nombre Quien refiere</label>
-                                        <input type="text" class="form-control text-uppercase" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
+            formEditarcliente += `  <div class="form-group d-flex align-items-center" id="div_quien_refiere_edit">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Nombre Quien refiere</label>
+                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
                                     </div>
             `;
 
             // ====================================
             
-            formEditarcliente += `  <div class="form-group" id="div_empresa_refiere_edit">
-                                        <label class="form-label text-uppercase">Empresa que refiere</label>
-                                        <input type="text" class="form-control text-uppercase" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
+            formEditarcliente += `  <div class="form-group d-flex align-items-center" id="div_empresa_refiere_edit">
+                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Empresa que refiere</label>
+                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
                                     </div>
             `;
 
@@ -424,34 +424,39 @@
                 cancelButtonAriaLabel: 'Thumbs down',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
+                width: 400,
+                padding: '2em',
             });
 
             // ===========================================================
-            
-            console.log(idReferidoPor);
 
-            if (idReferidoPor == 1) { // EMPRESA
-                $('#div_empresa_refiere_edit').show('slow');
-                $('#div_red_social_edit').hide();
-                $('#div_quien_refiere_edit').hide();
-            } else if (idReferidoPor == 2) { // REDES SOCIALES
-                $('#div_red_social_edit').show('slow');
-                $('#div_empresa_refiere_edit').hide();
-                $('#div_quien_refiere_edit').hide();
-                
-            } else if (idReferidoPor == 3) { // REFERIDOS
-                $('#div_quien_refiere_edit').show('slow');
-                $('#div_red_social_edit').hide();
-                $('#div_empresa_refiere_edit').hide();
-            } else if (idReferidoPor == 4)  { // WEB AVALUAMOS
-                $('#div_quien_refiere_edit').hide();
-                $('#div_red_social_edit').hide();
-                $('#div_empresa_refiere_edit').hide();
-            } else {
-                $('#div_quien_refiere_edit').hide();
-                $('#div_red_social_edit').hide();
-                $('#div_empresa_refiere_edit').hide();
-            }
+            // $(document).ready(function()
+            // {
+                console.log(idReferidoPor);
+
+                if (idReferidoPor == 1) { // EMPRESA
+                    $('#div_empresa_refiere_edit').show('slow');
+                    $('#div_red_social_edit').hide();
+                    $('#div_quien_refiere_edit').hide();
+                } else if (idReferidoPor == 2) { // REDES SOCIALES
+                    $('#div_red_social_edit').show('slow');
+                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_quien_refiere_edit').hide();
+                    
+                } else if (idReferidoPor == 3) { // REFERIDOS
+                    $('#div_quien_refiere_edit').show('slow');
+                    $('#div_red_social_edit').hide();
+                    $('#div_empresa_refiere_edit').hide();
+                } else if (idReferidoPor == 4)  { // WEB AVALUAMOS
+                    $('#div_quien_refiere_edit').hide();
+                    $('#div_red_social_edit').hide();
+                    $('#div_empresa_refiere_edit').hide();
+                } else {
+                    $('#div_quien_refiere_edit').hide();
+                    $('#div_red_social_edit').hide();
+                    $('#div_empresa_refiere_edit').hide();
+                }
+            // })
 
             // ===========================================================
 
