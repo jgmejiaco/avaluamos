@@ -10,7 +10,6 @@
                     <div class="form-group d-flex flex-column">
                         <label for="id_factor_calidad" class="form-label text-uppercase">Factor de calidad</label>
                         {!! Form::select('id_factor_calidad', collect(['' => 'Seleccionar...'])->union($factor_calidad), isset($editarVisita) ? $editarVisita->id_factor_calidad : null, ['class' => 'form-control select2', 'id' => 'id_factor_calidad']) !!}
-                        {{-- isset($editarVisita) ? $editarVisita->valor_estimado_inmueble : null --}}
                     </div>
                 </div>
 
@@ -43,7 +42,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3" id="div_valor_pendiente">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_pendiente" class="form-label text-uppercase">Valor de pendiente</label>
                         {!! Form::text('valor_pendiente', isset($editarVisita) ? $editarVisita->valor_pendiente : null, ['class' => 'form-control', 'id' => 'valor_pendiente']) !!}
@@ -61,7 +60,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3" id="div_valor_ubicacion">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_ubicacion" class="form-label text-uppercase">Valor de ubicación</label>
                         {!! Form::text('valor_ubicacion', isset($editarVisita) ? $editarVisita->valor_ubicacion : null, ['class' => 'form-control', 'id' => 'valor_ubicacion']) !!}

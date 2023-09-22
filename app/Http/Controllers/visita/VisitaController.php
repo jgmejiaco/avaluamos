@@ -68,6 +68,7 @@ use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
 // use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
 use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
 use App\Http\Responsable\visita\VisitaEstadoConservacionUpdate;
+use PhpParser\Node\Expr\FuncCall;
 
 class VisitaController extends Controller
 {
@@ -775,6 +776,32 @@ class VisitaController extends Controller
                     ->first();
     }
 
+    // ==========================================================================
+    
+    public function consultarFactorPendiente()
+    {
+        $id_factor_pendiente = request('id_factor_pendiente', null);
+        // dd($id_factor_pendiente);
+
+        return FactorPendiente::select('valor_pendiente')
+                                ->where('id_factor_pendiente', $id_factor_pendiente)
+                                ->first();
+
+    }
+    
+    // ==========================================================================
+    
+    public function consultarFactorUbicacion()
+    {
+        $id_factor_ubicacion = request('id_factor_ubicacion', null);
+        // dd($id_factor_pendiente);
+
+        return FactorUbicacion::select('valor_ubicacion')
+                                ->where('id_factor_ubicacion', $id_factor_ubicacion)
+                                ->first();
+
+    }
+    
     // ==========================================================================
 
     public function validarVariablesSesion()

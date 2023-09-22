@@ -568,7 +568,7 @@
             });
 
             // ====================================
-
+            
             $('input[name=rf_balcon3]').filestyle({
                 input: false,
                 buttonName: "btn-rounded btn-success",
@@ -577,6 +577,26 @@
                 size : 'md',
                 iconName: "mdi mdi-folder"
             });
+            
+            // ====================================
+
+            let id_factor_pendiente = $('#id_factor_pendiente').val();
+            
+            if (id_factor_pendiente == "" || id_factor_pendiente == null) {
+                $('#div_valor_pendiente').hide('slow');
+            } else {
+                $('#div_valor_pendiente').show('slow');
+            }
+
+            // ====================================
+
+            let id_factor_ubicacion = $('#id_factor_ubicacion').val();
+
+            if (id_factor_ubicacion == "" || id_factor_ubicacion == null) {
+                $('#div_valor_ubicacion').hide('slow');
+            } else {
+                $('#div_valor_ubicacion').show('slow');
+            }
         });
 
         // ======================================================
@@ -652,6 +672,73 @@
                     $('#id_referido_por').attr('required');
                 }
             });
+
+            // ==============================================
+
+            $('#id_factor_pendiente').on('change', function () {
+                let id_factor_pendiente = $('#id_factor_pendiente').val();
+
+                if (id_factor_pendiente == "" || id_factor_pendiente == "-1") {
+                    $('#div_valor_pendiente').hide('slow');
+                    $('#valor_pendiente').val('');
+                    $('#valor_pendiente').removeAttr('required');
+                } else {
+                    $.ajax({
+                        url: "{{route('consultar_factor_pendiente')}}",
+                        type: "POST",
+                        dataType: "JSON",
+                        data:{
+                            '_token': "{{ csrf_token() }}",
+                            'id_factor_pendiente': id_factor_pendiente
+                        },
+                        success: function(respuesta) {
+                            if (respuesta != null) {
+                                $('#div_valor_pendiente').show('slow');
+                                $('#valor_pendiente').val(respuesta.valor_pendiente);
+                                $('#valor_pendiente').attr('required');
+                            } else {
+                                $('#div_valor_pendiente').hide('slow');
+                                $('#valor_pendiente').val('');
+                                $('#valor_pendiente').removeAttr('required');
+                            }
+                        }
+                    });
+                }
+            });
+
+            // ==============================================
+            
+            $('#id_factor_ubicacion').on('change', function () {
+                let id_factor_ubicacion = $('#id_factor_ubicacion').val();
+                if (id_factor_ubicacion == "" || id_factor_ubicacion == "-1") {
+                    $('#div_valor_ubicacion').hide('slow');
+                    $('#valor_ubicacion').val('');
+                    $('#valor_ubicacion').removeAttr('required');
+                } else {
+                    $.ajax({
+                        url: "{{route('consultar_factor_ubicacion')}}",
+                        type: "POST",
+                        dataType: "JSON",
+                        data:{
+                            '_token': "{{ csrf_token() }}",
+                            'id_factor_ubicacion': id_factor_ubicacion
+                        },
+                        success: function(respuesta) {
+                            if (respuesta != null) {
+                                $('#div_valor_ubicacion').show('slow');
+                                $('#valor_ubicacion').val(respuesta.valor_ubicacion);
+                                $('#valor_ubicacion').attr('required');
+                            } else {
+                                $('#div_valor_ubicacion').hide('slow');
+                                $('#valor_ubicacion').val('');
+                                $('#valor_ubicacion').removeAttr('required');
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // ==============================================
 
     </script>
 @endsection

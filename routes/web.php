@@ -75,6 +75,8 @@ Route::post('visita_obser_generales_update', 'visita\VisitaController@visitaObse
 // Route::post('visita_reg_fotografico_update', 'visita\VisitaController@visitaRegFotograficoUpdate')->name('visita_reg_fotografico_update');
 Route::post('visita_valor_estimado_update', 'visita\VisitaController@visitaValorEstimadoUpdate')->name('visita_valor_estimado_update');
 Route::post('visita_estado_conservacion_update', 'visita\VisitaController@visitaEstadoConservacionUpdate')->name('visita_estado_conservacion_update');
+Route::post('consultar_factor_pendiente', 'visita\VisitaController@consultarFactorPendiente')->name('consultar_factor_pendiente');
+Route::post('consultar_factor_ubicacion', 'visita\VisitaController@consultarFactorUbicacion')->name('consultar_factor_ubicacion');
 
 // ========================================================================
 
