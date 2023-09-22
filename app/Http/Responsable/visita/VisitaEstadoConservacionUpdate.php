@@ -12,7 +12,14 @@ class VisitaEstadoConservacionUpdate implements Responsable
     public function toResponse($request)
     {
         $idVisita = request('id_visita', null);
-        $valorEstimadoInmueble = request('valor_estimado_inmueble', null);
+        $idFactorCalidad = request('id_factor_calidad', null);
+        $idFactorZona = request('id_factor_zona', null);
+        $idFactorTiempo = request('id_factor_tiempo', null);
+        $idFactorPendiente = request('id_factor_pendiente', null);
+        $valorPendiente = request('valor_pendiente', null);
+        $idFactorUbicacion = request('id_factor_ubicacion', null);
+        $valorUbicacion = request('valor_ubicacion', null);
+        $idEstadoConservacionOpciones = request('id_estado_conservacion_opciones', null);
 
         // ==============================================================================
         // ==============================================================================
@@ -20,19 +27,26 @@ class VisitaEstadoConservacionUpdate implements Responsable
         DB::connection('mysql')->beginTransaction();
 
         try {
-            $editarValorEstimadoInmueble = EstadoConservacion::where('id_visita', $idVisita)
+            $editarEstadoConservacion = EstadoConservacion::where('id_visita', $idVisita)
                 ->update([
-                    'valor_estimado_inmueble' => $valorEstimadoInmueble,
+                    'id_factor_calidad' => $idFactorCalidad,
+                    'id_factor_zona' => $idFactorZona,
+                    'id_factor_tiempo' => $idFactorTiempo,
+                    'id_factor_pendiente' => $idFactorPendiente,
+                    'valor_pendiente' => $valorPendiente,
+                    'id_factor_ubicacion' => $idFactorUbicacion,
+                    'valor_ubicacion' => $valorUbicacion,
+                    'id_estado_conservacion_opciones' => $idEstadoConservacionOpciones,
             ]);
 
-            if($editarValorEstimadoInmueble) {
+            if($editarEstadoConservacion) {
                 DB::connection('mysql')->commit();
-                alert()->success('Proceso Exitoso', 'Valor Estimado Avalúo editado satisfactoriamente');
+                alert()->success('Proceso Exitoso', 'Estado de Conservación editado satisfactoriamente');
                 return redirect('editar_visita/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Error al editar el Valor Estimado Avalúo, por favor contacte a Soporte.');
+                alert()->error('Error', 'Error al editar el Estado de Conservación, por favor contacte a Soporte.');
                 return redirect('editar_visita/'.$idVisita);
                 // return redirect('editar_visita/'.$id_visita.'/actualizar#nav-familiar');
             }

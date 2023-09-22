@@ -52,7 +52,7 @@ use App\Models\FactorZona;
 use App\Models\FactorTiempo;
 use App\Models\FactorPendiente;
 use App\Models\FactorUbicacion;
-use App\Models\EstadoConservacion;
+use App\Models\EstadoConservacionOpciones;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
@@ -420,7 +420,7 @@ class VisitaController extends Controller
         view()->share('factor_tiempo', FactorTiempo::orderBy('id_factor_tiempo', 'asc')->pluck('factor_tiempo', 'id_factor_tiempo'));
         view()->share('factor_pendiente', FactorPendiente::orderBy('id_factor_pendiente', 'asc')->pluck('factor_pendiente', 'id_factor_pendiente'));
         view()->share('factor_ubicacion', FactorUbicacion::orderBy('id_factor_ubicacion', 'asc')->pluck('factor_ubicacion', 'id_factor_ubicacion'));
-        view()->share('estado_conservacion', EstadoConservacion::orderBy('estado_conservacion', 'asc')->pluck('estado_conservacion', 'id_estado_conservacion'));
+        view()->share('estado_conservacion_opciones', EstadoConservacionOpciones::orderBy('estado_conservacion_opciones', 'asc')->pluck('estado_conservacion_opciones', 'id_estado_conservacion_opciones'));
     }
 
     // ==========================================================================
@@ -578,6 +578,7 @@ class VisitaController extends Controller
                     ->leftjoin('info_sector','info_sector.id_visita','=','visitas.id_visita')
                     ->leftjoin('observaciones_generales','observaciones_generales.id_visita','=','visitas.id_visita')
                     ->leftjoin('valor_estimado_avaluo','valor_estimado_avaluo.id_visita','=','visitas.id_visita')
+                    ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -759,6 +760,14 @@ class VisitaController extends Controller
                         'info_sector.vias_acceso',
                         'observaciones_generales.observaciones_generales',
                         'valor_estimado_avaluo.valor_estimado_inmueble',
+                        'estado_conservacion.id_factor_calidad',
+                        'estado_conservacion.id_factor_zona',
+                        'estado_conservacion.id_factor_tiempo',
+                        'estado_conservacion.id_factor_pendiente',
+                        'estado_conservacion.valor_pendiente',
+                        'estado_conservacion.id_factor_ubicacion',
+                        'estado_conservacion.valor_ubicacion',
+                        'estado_conservacion.id_estado_conservacion_opciones'
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')

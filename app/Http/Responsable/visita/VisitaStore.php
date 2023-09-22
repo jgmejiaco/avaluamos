@@ -12,7 +12,6 @@ use App\Models\Persona;
 use App\Models\Usuario;
 use Jenssegers\Date\Date;
 use App\Models\Visita;
-// use App\Models\InfoJuridica;
 use App\Models\InfoInmueble;
 use App\Models\CaracteristicasInmueble;
 use App\Models\AcabadosInmueble;
@@ -21,7 +20,7 @@ use App\Models\DotacionComunal;
 use App\Models\InfoSector;
 use App\Models\CondicionesUrbanisticas;
 use App\Models\ObservacionesGenerales;
-// use App\Models\EstadoConservacion;
+use App\Models\EstadoConservacion;
 use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
 
@@ -247,10 +246,6 @@ class VisitaStore implements Responsable
 
                 $idVisita = Visita::select('id_visita')->orderBy('id_visita', 'DESC')->first();
 
-                // InfoJuridica::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
-
                 InfoInmueble::create([
                     'id_visita' => $idVisita->id_visita,
                 ]);
@@ -283,9 +278,9 @@ class VisitaStore implements Responsable
                     'id_visita' => $idVisita->id_visita,
                 ]);
 
-                // EstadoConservacion::create([
-                //     'id_visita' => $idVisita->id_visita,
-                // ]);
+                EstadoConservacion::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
 
                 RegistroFotografico::create([
                     'id_visita' => $idVisita->id_visita,
