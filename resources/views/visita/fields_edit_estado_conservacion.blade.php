@@ -8,8 +8,72 @@
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="valor_estimado_inmueble" class="form-label text-uppercase">Valor Estimado Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::text('valor_estimado_inmueble', isset($editarVisita) ? $editarVisita->valor_estimado_inmueble : null, ['class' => 'form-control', 'id' => 'valor_estimado_inmueble', 'required']) !!}
+                        <label for="id_factor_calidad" class="form-label text-uppercase">Factor de calidad</label>
+                        {!! Form::select('id_factor_calidad', collect(['' => 'Seleccionar...'])->union($factor_calidad), null, ['class' => 'form-control select2', 'id' => 'id_factor_calidad']) !!}
+                        {{-- isset($editarVisita) ? $editarVisita->valor_estimado_inmueble : null --}}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_factor_zona" class="form-label text-uppercase">Factor de zona</label>
+                        {!! Form::select('id_factor_zona', collect(['' => 'Seleccionar...'])->union($factor_zona), null, ['class' => 'form-control select2', 'id' => 'id_factor_zona']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_factor_tiempo" class="form-label text-uppercase">Factor de tiempo a vía ppal</label>
+                        {!! Form::select('id_factor_tiempo', collect(['' => 'Seleccionar...'])->union($factor_tiempo), null, ['class' => 'form-control select2', 'id' => 'id_factor_tiempo']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_factor_pendiente" class="form-label text-uppercase">Factor de pendiente</label>
+                        {!! Form::select('id_factor_pendiente', collect(['' => 'Seleccionar...'])->union($factor_pendiente), null, ['class' => 'form-control select2', 'id' => 'id_factor_pendiente']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="valor_pendiente" class="form-label text-uppercase">Valor de pendiente</label>
+                        {!! Form::text('valor_pendiente', null, ['class' => 'form-control', 'id' => 'valor_pendiente']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_factor_ubicacion" class="form-label text-uppercase">Factor de ubicación</label>
+                        {!! Form::select('id_factor_ubicacion', collect(['' => 'Seleccionar...'])->union($factor_ubicacion), null, ['class' => 'form-control select2', 'id' => 'id_factor_ubicacion']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+                
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="valor_ubicacion" class="form-label text-uppercase">Valor de ubicación</label>
+                        {!! Form::text('valor_ubicacion', null, ['class' => 'form-control', 'id' => 'valor_ubicacion']) !!}
+                    </div>
+                </div>
+
+                {{-- ======================= --}}
+
+                <div class="col-12 col-md-3">
+                    <div class="form-group d-flex flex-column">
+                        <label for="id_estado_conservacion" class="form-label text-uppercase">estado de conservación</label>
+                        {!! Form::select('id_factor_conservacion', collect(['' => 'Seleccionar...'])->union($estado_conservacion), null, ['class' => 'form-control select2', 'id' => 'id_factor_conservacion']) !!}
                     </div>
                 </div>
             </div>

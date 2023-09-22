@@ -47,6 +47,12 @@ use App\Models\TipoBanio;
 use App\Models\TipoCocina;
 use App\Models\TipoMeson;
 use App\Models\Comuna;
+use App\Models\FactorCalidad;
+use App\Models\FactorZona;
+use App\Models\FactorTiempo;
+use App\Models\FactorPendiente;
+use App\Models\FactorUbicacion;
+use App\Models\EstadoConservacion;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
@@ -409,6 +415,12 @@ class VisitaController extends Controller
         view()->share('tipo_cocina', TipoCocina::orderBy('tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
         view()->share('tipo_meson', TipoMeson::orderBy('tipo_meson', 'asc')->pluck('tipo_meson', 'id_tipo_meson'));
         view()->share('comunas', Comuna::orderBy('comuna', 'asc')->pluck('comuna', 'id_comuna'));
+        view()->share('factor_calidad', FactorCalidad::orderBy('factor_calidad', 'asc')->pluck('factor_calidad', 'id_factor_calidad'));
+        view()->share('factor_zona', FactorZona::orderBy('factor_zona', 'asc')->pluck('factor_zona', 'id_factor_zona'));
+        view()->share('factor_tiempo', FactorTiempo::orderBy('id_factor_tiempo', 'asc')->pluck('factor_tiempo', 'id_factor_tiempo'));
+        view()->share('factor_pendiente', FactorPendiente::orderBy('id_factor_pendiente', 'asc')->pluck('factor_pendiente', 'id_factor_pendiente'));
+        view()->share('factor_ubicacion', FactorUbicacion::orderBy('id_factor_ubicacion', 'asc')->pluck('factor_ubicacion', 'id_factor_ubicacion'));
+        view()->share('estado_conservacion', EstadoConservacion::orderBy('estado_conservacion', 'asc')->pluck('estado_conservacion', 'id_estado_conservacion'));
     }
 
     // ==========================================================================

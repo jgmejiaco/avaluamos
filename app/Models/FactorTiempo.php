@@ -12,24 +12,16 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
-class EstadoConservacion extends Model
+class FactorTiempo extends Model
 {
     use SoftDeletes;
 
     protected $connection = 'mysql';
-    protected $table = 'estado_conservacion';
-    protected $primaryKey = 'id_estado_conservacion';
+    protected $table = 'factor_tiempo';
+    protected $primaryKey = 'id_factor_tiempo';
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'estado_conservacion',
-        'id_visita',
-        'id_factor_calidad',
-        'id_factor_zona',
-        'id_factor_tiempo',
-        'id_factor_pendiente',
-        'valor_pendiente',
-        'id_factor_ubicacion',
-        'valor_ubicacion'
+        'factor_tiempo'
     ];
 }
