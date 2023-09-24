@@ -128,21 +128,37 @@
                 "scrollX": true,
             });
             // CIERRE DataTable LISTA CLIENTES
+
+            // ===========================================================
+            // ===========================================================
+
+            let select = $('.select2');
+
+            let seleccionar = $("<option>", {
+                value: "-1", // Valor de la opción
+                text: "Seleccionar..." // Texto visible de la opción
+            });
+
+            seleccionar.attr("selected", true);
+            select.prepend(seleccionar);
+
+            // ===========================================================
+            // ===========================================================
         });
 
         
         // ===========================================================
         // ===========================================================
 
-        let select = $('.select2');
+        // let select = $('.select2');
 
-        let seleccionar = $("<option>", {
-            value: "-1", // Valor de la opción
-            text: "Seleccionar..." // Texto visible de la opción
-        });
+        // let seleccionar = $("<option>", {
+        //     value: "-1", // Valor de la opción
+        //     text: "Seleccionar..." // Texto visible de la opción
+        // });
 
-        seleccionar.attr("selected", true);
-        select.prepend(seleccionar);
+        // seleccionar.attr("selected", true);
+        // select.prepend(seleccionar);
 
         // ===========================================================
         // ===========================================================
@@ -155,7 +171,9 @@
         let referidosPor = @json($referido_por);
         let redesSociales = @json($red_social);
 
-        function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,fechaNacimiento,cliCelular,cliEmail,idTipoPersona,tipoPersona,idPais,pais,idDpto,departamento,idCiudad,ciudad,idReferidoPor,referidoPor,idRedSocial,redSocial,quienRefiere,empresaRefiere) {
+        function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,fechaNacimiento,cliCelular,cliEmail,idTipoPersona,tipoPersona,idPais,pais,idDpto,departamento,idCiudad,ciudad,idReferidoPor,referidoPor,idRedSocial,redSocial,quienRefiere,empresaRefiere)
+        {
+
             formEditarcliente = '';
 
             formEditarcliente += `
@@ -308,7 +326,7 @@
             formEditarcliente += `
                     <div class="col-12">
                         <div class="form-group d-flex align-items-center">
-                            <label for="ciudad_edit" class="form-label text-uppercase fs-35 w-100 1-md-50">Ciudad Residencia</label>
+                            <label for="ciudad_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Ciudad Residencia</label>
                             <select class="form-control select2 w-100 1-md-50" id="ciudad_edit" name="ciudad_edit">
             `;
                                 if (idCiudad == null || idCiudad == "") {
@@ -411,7 +429,6 @@
 
             // ===========================================================
             
-
             Swal.fire({
                 title: '<strong>EDICIÓN BÁSICA</strong>',
                 icon: 'info',
@@ -424,7 +441,7 @@
                 cancelButtonAriaLabel: 'Thumbs down',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                width: 400,
+                width: 600,
                 padding: '2em',
             });
 
@@ -442,7 +459,6 @@
                     $('#div_red_social_edit').show('slow');
                     $('#div_empresa_refiere_edit').hide();
                     $('#div_quien_refiere_edit').hide();
-                    
                 } else if (idReferidoPor == 3) { // REFERIDOS
                     $('#div_quien_refiere_edit').show('slow');
                     $('#div_red_social_edit').hide();
@@ -456,7 +472,7 @@
                     $('#div_red_social_edit').hide();
                     $('#div_empresa_refiere_edit').hide();
                 }
-            // })
+            // }
 
             // ===========================================================
 
