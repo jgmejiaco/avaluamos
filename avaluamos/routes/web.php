@@ -34,6 +34,7 @@ Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
 
 // RUTAS DEL ADMINISTRADOR
 Route::resource('administrador', 'admin\AdministradorController');
+Route::post('editar_usuario', 'admin\AdministradorController@update')->name('editar_usuario');
 
 // ========================================================================
 

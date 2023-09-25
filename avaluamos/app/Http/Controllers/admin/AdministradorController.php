@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Usuarios;
-use App\Models\Persona;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Cargo;
@@ -15,6 +14,7 @@ use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Http\Responsable\admin\UsuarioStore;
+use App\Http\Responsable\admin\UsuarioUpdate;
 
 class AdministradorController extends Controller
 {
@@ -113,12 +113,12 @@ class AdministradorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+    //  * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-       
+        return new UsuarioUpdate();
     }
 
     // ==========================================================================
@@ -155,14 +155,22 @@ class AdministradorController extends Controller
                             ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
                             ->leftjoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
                             ->leftjoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
-                            ->select('usuarios.nombre_usuario',
+                            ->leftjoin('estado', 'estado.id_estado', '=', 'usuarios.id_estado')
+                            ->select('usuarios.id_usuario',
+                                    'usuarios.nombre_usuario',
                                     'usuarios.nombres',
                                     'usuarios.apellidos',
+                                    'tipo_documento.id_tipo_documento',
                                     'tipo_documento.decripcion_documento',
                                     'usuarios.numero_documento',
                                     'usuarios.correo',
+                                    'usuarios.celular',
+                                    'rol.id_rol',
                                     'rol.nombre_rol',
-                                    'cargo.descripcion_cargo'
+                                    'cargo.id_cargo',
+                                    'cargo.descripcion_cargo',
+                                    'estado.id_estado',
+                                    'estado.descripcion_estado',
                                     )
                             ->get()
                             ->toarray();
