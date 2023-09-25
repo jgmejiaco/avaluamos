@@ -29,8 +29,8 @@ class ClienteUpdate implements Responsable
         $ciudadEdit = request('ciudad_edit', null);
         $referidoPorEdit = request('referido_por_edit', null);
         $redSocialEdit = request('red_social_edit', null);
-        $quienRefiereEdit = strtoupper(request('quien_refiere_edit', null));
-        $empresaRefiereEdit = strtoupper(request('empresa_refiere_edit', null));
+        $quienRefiereEdit = request('quien_refiere_edit', null);
+        $empresaRefiereEdit = request('empresa_refiere_edit', null);
 
         // ==============================================================================
         
