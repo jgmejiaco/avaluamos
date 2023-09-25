@@ -66,8 +66,12 @@
                                         <td>{{$cliente->red_social}}</td>
                                     @elseif($cliente->id_referido_por == 3) {{-- REFERIDOS --}}
                                         <td>{{$cliente->nombre_quien_refiere}}</td>
-                                    @else {{-- WEB AVALUAMOS --}}
-                                        <td><a href="https://www.avaluamos.com.co" class="text-primary" target="_blank" rel="noopener noreferrer">Avaluamos</a></td>
+                                    @elseif($cliente->id_referido_por == 4) {{-- WEB AVALUAMOS  --}}
+                                        <td>
+                                            <a href="https://www.avaluamos.com.co" class="text-primary" target="_blank">Avaluamos</a>
+                                        </td>
+                                    @else {{-- Vacío --}}
+                                        <td></td>
                                     @endif
 
                                     @php
@@ -93,6 +97,7 @@
 {{-- ====================================================== --}}
 
 @section('scripts')
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('DataTables/datatables.min.js')}}"></script>
     <script src="{{asset('DataTables/Buttons-2.3.4/js/buttons.html5.min.js')}}"></script>
 
@@ -132,6 +137,12 @@
             // ===========================================================
             // ===========================================================
 
+            // $('.select2').select2({
+            //     placeholder: 'Seleccionar...',
+            //     allowClear: true,
+            //     disabled: false
+            // });
+
             let select = $('.select2');
 
             let seleccionar = $("<option>", {
@@ -141,24 +152,7 @@
 
             seleccionar.attr("selected", true);
             select.prepend(seleccionar);
-
-            // ===========================================================
-            // ===========================================================
         });
-
-        
-        // ===========================================================
-        // ===========================================================
-
-        // let select = $('.select2');
-
-        // let seleccionar = $("<option>", {
-        //     value: "-1", // Valor de la opción
-        //     text: "Seleccionar..." // Texto visible de la opción
-        // });
-
-        // seleccionar.attr("selected", true);
-        // select.prepend(seleccionar);
 
         // ===========================================================
         // ===========================================================
@@ -173,7 +167,6 @@
 
         function editarCliente(idCliente,nombres,idDocCliente,TipoDocumento,documentoCliente,fechaNacimiento,cliCelular,cliEmail,idTipoPersona,tipoPersona,idPais,pais,idDpto,departamento,idCiudad,ciudad,idReferidoPor,referidoPor,idRedSocial,redSocial,quienRefiere,empresaRefiere)
         {
-
             formEditarcliente = '';
 
             formEditarcliente += `
@@ -187,227 +180,200 @@
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group mt-3 d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Nombres</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="nombres" value="${nombres}">
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column">
+                                            <label class="form-label text-uppercase fs-5">Nombres</label>
+                                            <input type="text" class="form-control text-uppercase" name="nombres" value="${nombres}">
+                                        </div>
+                                        
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column">
+                                                <label class="form-label text-uppercase fs-5">Tipo Documento</label>
+                                                <select class="form-control select2" id="id_doc_cliente" name="id_doc_cliente">
+            `;
+        
+                                                    if (idDocCliente == null || idDocCliente == "") {
+                                                        formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                    } else {
+                                                        formEditarcliente += `<option value="${idDocCliente}" selected >${TipoDocumento}</option>`;
+                                                    }
+                                
+                                                    $.each(tipo_documento, function(idDoc, tipDoc){
+                                                        formEditarcliente += ' <option value="'+idDoc+'">'+tipDoc+'</option>';
+                                                    });
+
+            formEditarcliente += `
+                                                </select>
+                                        </div>
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="id_tipo_documento" class="form-label text-uppercase fs-5 w-100 1-md-50">Tipo Documento</label>
-                            <select class="form-control select2 w-100 1-md-50" id="id_doc_cliente" name="id_doc_cliente">
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">Número Documento</label>
+                                            <input type="text" class="form-control text-uppercase" name="documento_cliente" value="${documentoCliente}">
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group d-flex flex-column align-items-center">
+                                                <label class="form-label text-uppercase fs-5">Fecha Nacimiento</label>
+                                                <input type="date" class="form-control" name="fecha_nacimiento" value="${fechaNacimiento}">
+                                            </div>
+                                        </div>
+                                    </div>
             `;
-                                if (idDocCliente == null || idDocCliente == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idDocCliente}" selected >${TipoDocumento}</option>`;
-                                }
-            
-                                $.each(tipo_documento, function(idDoc, tipDoc){
-                                    formEditarcliente += ' <option value="'+idDoc+'">'+tipDoc+'</option>';
-                                });
-
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
+        
             // ====================================
 
-            formEditarcliente += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Número Documento</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="documento_cliente" value="${documentoCliente}">
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">Celular</label>
+                                            <input type="text" class="form-control" name="cli_celular" value="${cliCelular}">
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group d-flex flex-column align-items-center">
+                                                <label class="form-label text-uppercase fs-5">Correo</label>
+                                                <input type="text" class="form-control" name="cli_email" value="${cliEmail}">
+                                            </div>
+                                        </div>
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control w-100 1-md-50" name="fecha_nacimiento" value="${fechaNacimiento}">
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">Tipo Persona</label>
+                                            <select class="form-control select2" id="id_tipo_persona" name="id_tipo_persona">
+            `;
+                                                if (idTipoPersona == null || idTipoPersona == "") {
+                                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                } else {
+                                                    formEditarcliente += `<option value="${idTipoPersona}" selected >${tipoPersona}</option>`;
+                                                }
+                            
+                                                $.each(tipo_persona, function(idTipPersona, tipPersona){
+                                                    formEditarcliente += ' <option value="'+idTipPersona+'">'+tipPersona+'</option>';
+                                                });
+            formEditarcliente += `
+                                            </select>
+                                        </div>
+            `;
+
+            formEditarcliente += `
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">País residencia</label>
+                                            <select class="form-control select2" id="pais_edit" name="pais_edit">
+            `;
+                                                if (idPais == null || idPais == "") {
+                                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                } else {
+                                                    formEditarcliente += `<option value="${idPais}" selected >${pais}</option>`;
+                                                }
+                            
+                                                $.each(paises, function(id_pais, d_pais){
+                                                    formEditarcliente += ' <option value="'+id_pais+'">'+d_pais+'</option>';
+                                                });
+
+            formEditarcliente += `
+                                            </select>
+                                        </div>
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Celular</label>
-                                        <input type="text" class="form-control w-100 1-md-50" name="cli_celular" value="${cliCelular}">
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">departamento residencia</label>
+                                            <select class="form-control select2" id="dpto_edit" name="dpto_edit">
+            `;
+                                                if (idDpto == null || idDpto == "") {
+                                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                } else {
+                                                    formEditarcliente += `<option value="${idDpto}" selected >${departamento}</option>`;
+                                                }
+                            
+                                                $.each(departamentos, function(id_dpto, dpto){
+                                                    formEditarcliente += ' <option value="'+id_dpto+'">'+dpto+'</option>';
+                                                });
+            formEditarcliente += `
+                                            </select>
+                                        </div>
+            `;
+
+            formEditarcliente += `
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">Ciudad Residencia</label>
+                                            <select class="form-control select2" id="ciudad_edit" name="ciudad_edit">
+            `;
+                                                if (idCiudad == null || idCiudad == "") {
+                                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                } else {
+                                                    formEditarcliente += `<option value="${idCiudad}" selected >${ciudad}</option>`;
+                                                }
+                            
+                                                $.each(ciudades, function(id_ciudad, d_ciudad){
+                                                    formEditarcliente += ' <option value="'+id_ciudad+'">'+d_ciudad+'</option>';
+                                                });
+
+            formEditarcliente += `
+                                            </select>
+                                        </div>
                                     </div>
             `;
 
             // ====================================
 
-            formEditarcliente += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Correo</label>
-                                        <input type="text" class="form-control" name="cli_email" value="${cliEmail}">
-                                    </div>
+            formEditarcliente += `  <div class="form-group mt-3 row">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column align-items-center">
+                                            <label class="form-label text-uppercase fs-5">Referido por</label>
+                                            <select class="form-control select2" id="referido_por_edit" name="referido_por_edit">
             `;
+                                                if (idReferidoPor == null || idReferidoPor == "") {
+                                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                                } else {
+                                                    formEditarcliente += `<option value="${idReferidoPor}" selected >${referidoPor}</option>`;
+                                                }
 
-            // ====================================
+                                                $.each(referidosPor, function(id_referido, d_referido){
+                                                    formEditarcliente += ' <option value="'+id_referido+'">'+d_referido+'</option>';
+                                                });
+            formEditarcliente += `
+                                            </select>
+                                        </div>
+            `;
 
             formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="id_tipo_persona" class="form-label text-uppercase fs-5 w-100 1-md-50">Tipo Persona</label>
-                            <select class="form-control select2 w-100 1-md-50" id="id_tipo_persona" name="id_tipo_persona">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column" id="div_edit_red_social">
+                                            <label class="form-label text-uppercase fs-5">Red Social</label>
+                                            <select class="form-control select2" id="red_social_edit" name="red_social_edit">
             `;
-                                if (idTipoPersona == null || idTipoPersona == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idTipoPersona}" selected >${tipoPersona}</option>`;
-                                }
-            
-                                $.each(tipo_persona, function(idTipPersona, tipPersona){
-                                    formEditarcliente += ' <option value="'+idTipPersona+'">'+tipPersona+'</option>';
-                                });
+                                            if (idRedSocial == null || redSocial == "") {
+                                                formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
+                                            } else {
+                                                formEditarcliente += `<option value="${idRedSocial}" selected >${redSocial}</option>`;
+                                            }
+
+                                            $.each(redesSociales, function(id_red, d_red){
+                                                formEditarcliente += ' <option value="'+id_red+'">'+d_red+'</option>';
+                                            });
 
             formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
+                                            </select>
+                                        </div>
 
-            // ====================================
-            
-            formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="pais_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">País residencia</label>
-                            <select class="form-control select2 w-100 1-md-50" id="pais_edit" name="pais_edit">
-            `;
-                                if (idPais == null || idPais == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idPais}" selected >${pais}</option>`;
-                                }
-            
-                                $.each(paises, function(id_pais, d_pais){
-                                    formEditarcliente += ' <option value="'+id_pais+'">'+d_pais+'</option>';
-                                });
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column" id="div_edit_quien_refiere">
+                                            <label class="form-label text-uppercase fs-5">Nombre Quien refiere</label>
+                                            <input type="text" class="form-control" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
+                                        </div>
 
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="dpto_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">departamento residencia</label>
-                            <select class="form-control select2 w-100 1-md-50" id="dpto_edit" name="dpto_edit">
-            `;
-                                if (idDpto == null || idDpto == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idDpto}" selected >${departamento}</option>`;
-                                }
-            
-                                $.each(departamentos, function(id_dpto, dpto){
-                                    formEditarcliente += ' <option value="'+id_dpto+'">'+dpto+'</option>';
-                                });
-
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="ciudad_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Ciudad Residencia</label>
-                            <select class="form-control select2 w-100 1-md-50" id="ciudad_edit" name="ciudad_edit">
-            `;
-                                if (idCiudad == null || idCiudad == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idCiudad}" selected >${ciudad}</option>`;
-                                }
-            
-                                $.each(ciudades, function(id_ciudad, d_ciudad){
-                                    formEditarcliente += ' <option value="'+id_ciudad+'">'+d_ciudad+'</option>';
-                                });
-
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-           
-            
-            formEditarcliente += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="referido_por_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Referido por</label>
-                            <select class="form-control select2 w-100 1-md-50" id="referido_por_edit" name="referido_por_edit">
-            `;
-                                if (idReferidoPor == null || idReferidoPor == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idReferidoPor}" selected >${referidoPor}</option>`;
-                                }
-            
-                                $.each(referidosPor, function(id_referido, d_referido){
-                                    formEditarcliente += ' <option value="'+id_referido+'">'+d_referido+'</option>';
-                                });
-
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarcliente += `
-                    <div class="col-12" id="div_red_social_edit">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="red_social_edit" class="form-label text-uppercase fs-5 w-100 1-md-50">Red Social</label>
-                            <select class="form-control select2 w-100 1-md-50" id="red_social_edit" name="red_social_edit">
-            `;
-                                if (idRedSocial == null || redSocial == "") {
-                                    formEditarcliente += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarcliente += `<option value="${idRedSocial}" selected >${redSocial}</option>`;
-                                }
-            
-                                $.each(redesSociales, function(id_red, d_red){
-                                    formEditarcliente += ' <option value="'+id_red+'">'+d_red+'</option>';
-                                });
-
-            formEditarcliente += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarcliente += `  <div class="form-group d-flex align-items-center" id="div_quien_refiere_edit">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Nombre Quien refiere</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="quien_refiere_edit" id="quien_refiere_edit" value="${quienRefiere}">
-                                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarcliente += `  <div class="form-group d-flex align-items-center" id="div_empresa_refiere_edit">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Empresa que refiere</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
+                                        <div class="form-group col-12 col-md-6 d-flex flex-column" id="div_edit_empresa_refiere">
+                                            <label class="form-label text-uppercase fs-5">Empresa que refiere</label>
+                                            <input type="text" class="form-control" name="empresa_refiere_edit" id="empresa_refiere_edit" value="${empresaRefiere}">
+                                        </div>
                                     </div>
             `;
 
@@ -447,32 +413,30 @@
 
             // ===========================================================
 
-            // $(document).ready(function()
-            // {
-                console.log(idReferidoPor);
-
-                if (idReferidoPor == 1) { // EMPRESA
-                    $('#div_empresa_refiere_edit').show('slow');
-                    $('#div_red_social_edit').hide();
-                    $('#div_quien_refiere_edit').hide();
-                } else if (idReferidoPor == 2) { // REDES SOCIALES
-                    $('#div_red_social_edit').show('slow');
-                    $('#div_empresa_refiere_edit').hide();
-                    $('#div_quien_refiere_edit').hide();
-                } else if (idReferidoPor == 3) { // REFERIDOS
-                    $('#div_quien_refiere_edit').show('slow');
-                    $('#div_red_social_edit').hide();
-                    $('#div_empresa_refiere_edit').hide();
-                } else if (idReferidoPor == 4)  { // WEB AVALUAMOS
-                    $('#div_quien_refiere_edit').hide();
-                    $('#div_red_social_edit').hide();
-                    $('#div_empresa_refiere_edit').hide();
+            $(document).ready(function()
+            {
+                if (idReferidoPor == 1 || idReferidoPor == "1") { // EMPRESA
+                    $('#div_edit_empresa_refiere').removeClass('ocultar');
+                    $('#div_edit_red_social').addClass('ocultar');
+                    $('#div_edit_quien_refiere').addClass('ocultar');
+                } else if (idReferidoPor == 2 || idReferidoPor == "2") { // REDES SOCIALES
+                    $('#div_edit_red_social').removeClass('ocultar');
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
+                    $('#div_edit_quien_refiere').addClass('ocultar');
+                } else if (idReferidoPor == 3 || idReferidoPor == "3") { // REFERIDOS
+                    $('#div_edit_quien_refiere').removeClass('ocultar');
+                    $('#div_edit_red_social').addClass('ocultar');
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
+                } else if (idReferidoPor == 4 || idReferidoPor == "4")  { // WEB AVALUAMOS
+                    $('#div_edit_quien_refiere').addClass('ocultar');
+                    $('#div_edit_red_social').addClass('ocultar');
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                 } else {
-                    $('#div_quien_refiere_edit').hide();
-                    $('#div_red_social_edit').hide();
-                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_edit_quien_refiere').addClass('ocultar');
+                    $('#div_edit_red_social').addClass('ocultar');
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                 }
-            // }
+            });
 
             // ===========================================================
 
@@ -480,66 +444,66 @@
                 let idReferidoPorVal = $('#referido_por_edit').val();
 
                 if (idReferidoPorVal == 1) { // EMPRESA
-                    $('#div_empresa_refiere_edit').show('slow');
+                    $('#div_edit_empresa_refiere').removeClass('ocultar');
                     $('#empresa_refiere_edit').attr('required');
                     
-                    $('#div_red_social_edit').hide();
+                    $('#div_edit_red_social').addClass('ocultar');
                     $('#red_social_edit').removeAttr('required');
                     $('#red_social_edit').val('');
 
-                    $('#div_quien_refiere_edit').hide();
+                    $('#div_edit_quien_refiere').addClass('ocultar');
                     $('#quien_refiere_edit').removeAttr('required');
                     $('#quien_refiere_edit').val('');
                 } else if (idReferidoPorVal == 2) { // REDES SOCIALES
-                    $('#div_red_social_edit').show('slow');
+                    $('#div_edit_red_social').removeClass('ocultar');
                     $('#red_social_edit').attr('required');
 
-                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                     $('#empresa_refiere_edit').removeAttr('required');
                     $('#empresa_refiere_edit').val('');
 
-                    $('#div_quien_refiere_edit').hide();
+                    $('#div_edit_quien_refiere').addClass('ocultar');
                     $('#quien_refiere_edit').removeAttr('required');
                     $('#quien_refiere_edit').val('');
                 } else if (idReferidoPorVal == 3) { // REFERIDOS
-                    $('#div_quien_refiere_edit').show('slow');
+                    $('#div_edit_quien_refiere').removeClass('ocultar');
                     $('#quien_refiere_edit').attr('required');
                     
-                    $('#div_red_social_edit').hide();
+                    $('#div_edit_red_social').addClass('ocultar');
                     $('#red_social_edit').removeAttr('required');
                     $('#red_social_edit').val('');
 
-                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                     $('#empresa_refiere_edit').removeAttr('required');
                     $('#empresa_refiere_edit').val('');
                 } else if (idReferidoPorVal == 4)  { // WEB AVALUAMOS
-                    $('#div_quien_refiere_edit').hide();
+                    $('#div_edit_quien_refiere').addClass('ocultar');
                     $('#quien_refiere_edit').removeAttr('required');
                     $('#quien_refiere_edit').val('');
                     
-                    $('#div_red_social_edit').hide();
+                    $('#div_edit_red_social').addClass('ocultar');
                     $('#red_social_edit').removeAttr('required');
                     $('#red_social_edit').val('');
 
-                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                     $('#empresa_refiere_edit').removeAttr('required');
                     $('#empresa_refiere_edit').val('');
                 } else {
-                    $('#div_quien_refiere_edit').hide();
+                    $('#div_edit_quien_refiere').addClass('ocultar');
                     $('#quien_refiere_edit').removeAttr('required');
                     $('#quien_refiere_edit').val('');
                     
-                    $('#div_red_social_edit').hide();
+                    $('#div_edit_red_social').addClass('ocultar');
                     $('#red_social_edit').removeAttr('required');
                     $('#red_social_edit').val('');
 
-                    $('#div_empresa_refiere_edit').hide();
+                    $('#div_edit_empresa_refiere').addClass('ocultar');
                     $('#empresa_refiere_edit').removeAttr('required');
                     $('#empresa_refiere_edit').val('');
 
                     $('#referido_por_edit').attr('required');
                 }
-            })
+            });
         }
     </script>
 @endsection
