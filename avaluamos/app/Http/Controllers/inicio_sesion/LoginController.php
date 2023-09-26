@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Responsable\inicio_sesion\LoginStore;
 use Exception;
 use Illuminate\Support\Facades\Session;
+use App\Traits\MetodosTrait;
 
 class LoginController extends Controller
 {
+    use MetodosTrait;
     /**
      * Display a listing of the resource.
      *
@@ -27,12 +29,23 @@ class LoginController extends Controller
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
-                $this->shareData();
-                return view('inicio_sesion.login');
+                // $this->shareData();
+                // return view('inicio_sesion.login');
         //     }
         // } catch (Exception $e) {
         //     // dd($e);
         //     alert()->error("Ha ocurrido un error!");
+        // }
+        // $vista = 'inicio_sesion.login';
+        // $checkConnection = $this->checkDatabaseConnection($vista);
+        // dd($checkConnection);
+
+        // if($checkConnection->getName() == "db_conexion") {
+            // return view('db_conexion');
+        // } else {
+            $this->shareData();
+            // return view($vista);
+            return view('inicio_sesion.login');
         // }
     }
 

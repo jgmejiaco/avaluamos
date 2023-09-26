@@ -25,6 +25,9 @@ Route::get('/', function () {
 
 // });
 
+// RUTA COMPROBAR CONEXIÓN BASE DE DATOS
+Route::get('check_db_conexion', 'inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
+
 // Rutas del Login
 Route::resource('login', 'inicio_sesion\LoginController');
 Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_usuario');

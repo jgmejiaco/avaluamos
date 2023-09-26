@@ -21,8 +21,7 @@
     <div class="row p-t-30">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="tabla_ususuarios">
-                    {{-- <table class="table table-striped table-bordered table-hover dt-button" id="tabla_ususuarios"> --}}
+                <table class="table table-striped table-bordered w-100" id="tabla_ususuarios">
                     <thead>
                         <tr class="header-table">
                             <th>Id</th>
@@ -36,14 +35,10 @@
                             <th>Rol</th>
                             <th>Estado</th>
                             <th>Editar</th>
-                            <th>Actualizar Clave</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($usuarios as $usuario)
-                        {{-- @php
-                            dd($usuario);
-                        @endphp --}}
                             <tr>
                                 <td>{{$usuario->id_usuario}}</td>
                                 <td>{{$usuario->nombre_usuario}}</td>
@@ -54,16 +49,12 @@
                                 <td>{{$usuario->correo}}</td>
                                 <td>{{$usuario->descripcion_cargo}}</td>
                                 <td>{{$usuario->nombre_rol}}</td>
-                                <td>estado</td>
+                                <td>{{$usuario->descripcion_estado}}</td>
                                 
                                 <td>
                                     <button class="btn btn-primary" onclick="editarUsuario('{{$usuario->id_usuario}}','{{$usuario->nombre_usuario}}','{{$usuario->nombres}}','{{$usuario->apellidos}}','{{$usuario->id_tipo_documento}}','{{$usuario->decripcion_documento}}','{{$usuario->numero_documento}}','{{$usuario->correo}}','{{$usuario->celular}}','{{$usuario->id_cargo}}','{{$usuario->descripcion_cargo}}','{{$usuario->id_rol}}','{{$usuario->nombre_rol}}','{{$usuario->id_estado}}','{{$usuario->descripcion_estado}}')">
                                         <i class="fa fa-pencil" aria-hidden="true">Editar</i>
                                     </button>
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-info" title="Update Password" id=""><i class="fa fa-key" aria-hidden="true"></i>actualizar clave</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -72,8 +63,6 @@
             </div>
         </div>
     </div>
-
-    {{-- @include('administrador.modal') --}}
 
     {{-- <div id="loaderGif" class="ocultar">
         <img src="{{asset('img/processing.gif')}}" alt="processing">
@@ -306,7 +295,7 @@
                 cancelButtonAriaLabel: 'Thumbs down',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                // width: 600,
+                width: 400,
                 padding: '2em',
             });
         }
