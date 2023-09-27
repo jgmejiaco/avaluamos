@@ -26,8 +26,7 @@ class LoginController extends Controller
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) &&
-                $sesion[3] != true)
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
             {
                 return redirect()->to(route('inicio'));
                 // return view('inicio_sesion.login');
@@ -160,7 +159,9 @@ class LoginController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect()->to(route('login'));
+            // return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
+            // return view('inicio_sesion.login');
 
         } catch (Exception $e) {
             alert()->error('Error','An error has occurred, try again, if the problem persists contact support.');

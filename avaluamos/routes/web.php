@@ -25,6 +25,11 @@ Route::get('/', function () {
 
 // });
 
+Route::middleware(['auth'])->group(function () {
+    // Route::get('/administrador', 'AdministradorController@index')->name('admin.index');
+    // Otras rutas protegidas aquí...
+});
+
 // RUTA COMPROBAR CONEXIÓN BASE DE DATOS
 Route::get('check_db_conexion', 'inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
 
@@ -88,3 +93,4 @@ Route::post('consultar_factor_ubicacion', 'visita\VisitaController@consultarFact
 Route::resource('calendario', 'calendario\CalendarioController');
 
 // ========================================================================
+// });

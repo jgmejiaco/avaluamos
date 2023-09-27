@@ -23,8 +23,7 @@ class PermisosController extends Controller
 
         //     if (empty($sesion[0]) || is_null($sesion[0]) &&
         //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
@@ -49,8 +48,7 @@ class PermisosController extends Controller
 
         //     if (empty($sesion[0]) || is_null($sesion[0]) &&
         //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
         //     {
         //         return redirect()->to(route('inicio'));
         //     } else {
@@ -75,14 +73,13 @@ class PermisosController extends Controller
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
         //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
+        //    empty($sesion[2]) || is_null($sesion[2]) && !$sesion[2])
         // {
         //     return redirect()->to(route('home'));
         // } else {
         //     return new UsuarioStore();
         // }
-        return new VisitaStore();
+        return new PermisoStore();
     }
 
     /**
@@ -97,8 +94,7 @@ class PermisosController extends Controller
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
         //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
+        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
         // {
         //     return redirect()->to(route('home'));
         // } else {
@@ -124,8 +120,7 @@ class PermisosController extends Controller
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
         //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
+        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
         // {
         //     return redirect()->to(route('home'));
         // } else {
@@ -149,8 +144,7 @@ class PermisosController extends Controller
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
         //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
+        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
         // {
         //     return redirect()->to(route('home'));
         // } else {
@@ -170,8 +164,7 @@ class PermisosController extends Controller
 
         // if(empty($sesion[0]) || is_null($sesion[0]) &&
         //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
+        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
         // {
         //     return redirect()->to(route('home'));
         // } else {

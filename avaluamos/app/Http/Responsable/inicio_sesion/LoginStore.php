@@ -13,8 +13,8 @@ class LoginStore implements Responsable
 {
     public function toResponse($request)
     {
-        DB::connection()->getPDO();
-	    DB::connection()->getDatabaseName();
+        // DB::connection()->getPDO();
+	    // DB::connection()->getDatabaseName();
 
         $usuario = request('usuario', null);
         $clave = request('clave', null);
