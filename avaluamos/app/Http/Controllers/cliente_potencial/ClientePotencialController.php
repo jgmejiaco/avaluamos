@@ -120,7 +120,11 @@ class ClientePotencialController extends Controller
             $cliente = $this->consultarClienteIndividual($idCliente);
 
             if ($cliente) {
-                $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
+                if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
+                    $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
+                } else {
+                    $cliente->fecha_nacimiento = null;
+                }
             }
 
             $this->shareData();

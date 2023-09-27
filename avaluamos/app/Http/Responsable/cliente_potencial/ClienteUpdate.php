@@ -12,7 +12,6 @@ class ClienteUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
         $idCliente = request('id_cliente', null);
         $nombreSolicitante = strtoupper(request('nombre_solicitante', null));
         $idDocCliente = request('id_doc_cliente', null);
@@ -37,8 +36,6 @@ class ClienteUpdate implements Responsable
             $fechaNacimiento = null;
         }
 
-        // dd($fechaNacimiento);
-        
         // ==============================
 
         DB::connection('mysql')->beginTransaction();

@@ -2,16 +2,10 @@
 
 namespace App\Http\Responsable\cliente_potencial;
 
-use App\User;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Jenssegers\Date\Date;
-use App\Models\Usuario;
-use App\Models\DirigidoA;
-use App\Models\ReferidoPor;
 use App\Models\Cliente;
 
 class ClientePotencialStore implements Responsable
@@ -34,67 +28,11 @@ class ClientePotencialStore implements Responsable
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
-
-        if ($idDocCliente != "-1" || $idDocCliente != -1) {
-            $idDocCliente = request('id_doc_cliente', null);
-        } else {
-            $idDocCliente = null;
-        }
-
-        // ==============================
         
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
             $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
         } else {
             $fechaNacimiento = null;
-        }
-
-        // ==============================
-        
-        if ($idTipoPersona != "-1" || $idTipoPersona != -1) {
-            $idTipoPersona = request('tipo_persona', null);
-        } else {
-            $idTipoPersona = null;
-        }
-
-        // ==============================
-
-        if ($idPais != "-1" || $idPais != -1) {
-            $idPais = request('pais', null);
-        } else {
-            $idPais = null;
-        }
-
-        // ==============================
-
-        if ($idDepartamento != "-1" || $idDepartamento != -1) {
-            $idDepartamento = request('departamento', null);
-        } else {
-            $idDepartamento = null;
-        }
-
-        // ==============================
-
-        if ($idCiudad != "-1" || $idCiudad != -1) {
-            $idCiudad = request('municipio', null);
-        } else {
-            $idCiudad = null;
-        }
-
-        // ==============================
-
-        if ($idReferidoPor != "-1" || $idReferidoPor != -1) {
-            $idReferidoPor = request('id_referido_por', null);
-        } else {
-            $idReferidoPor = null;
-        }
-
-        // ==============================
-
-        if ($idRedSocial != "-1" || $idRedSocial != -1) {
-            $idRedSocial = request('id_red_social', null);
-        } else {
-            $idRedSocial = null;
         }
 
         // ==============================================================================
