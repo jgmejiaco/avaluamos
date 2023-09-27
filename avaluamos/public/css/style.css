@@ -3326,6 +3326,6 @@ div label input {margin-right: 100px;}
 	margin-bottom: 1em;
 }
 
-/* .form-control {
-	height: 28px !important;
-} */
+.swal2-container{
+	margin-top: 5em !important;
+}

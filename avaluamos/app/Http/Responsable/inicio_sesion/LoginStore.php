@@ -50,7 +50,7 @@ class LoginStore implements Responsable
 
             // ===================================
 
-            if(Hash::check($clave, $user->clave)) {
+            if(Hash::check($user, $user->clave)) {
                 // dd($user);
                 // CREAMOS LAS VAIABLES DE SESIÓN
                 

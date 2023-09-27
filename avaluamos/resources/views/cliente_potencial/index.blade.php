@@ -408,7 +408,7 @@
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 width: 600,
-                padding: '2em',
+                padding: '2em'
             });
 
             // ===========================================================
