@@ -13,6 +13,7 @@ use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
+use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\admin\UsuarioStore;
 use App\Http\Responsable\admin\UsuarioUpdate;
 
@@ -25,23 +26,25 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        // try {
-            // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
+            // dd($sesion);
 
-            // if (empty($sesion[0]) || is_null($sesion[0]) &&
-            //     empty($sesion[1]) || is_null($sesion[1]) &&
-            //     empty($sesion[2]) || is_null($sesion[2]) &&
-            //     empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-            // {
-            //     return redirect()->to(route('inicio'));
-            // } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                $sesion[3] != true)
+            {
+                // return redirect()->to(route('login_usuario'));
+                return view('inicio_sesion.login');
+            } else {
                 $this->shareData();
                 return view('administrador.index');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
     }
 
     // ==========================================================================
@@ -185,21 +188,21 @@ class AdministradorController extends Controller
 
     public function validarVariablesSesion()
     {
-        // $variablesSesion =[];
+        $variablesSesion =[];
 
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
+        $idUsuario = session('id_usuario');
+        array_push($variablesSesion, $idUsuario);
 
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
+        $usuario = session('usuario');
+        array_push($variablesSesion, $usuario);
 
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
+        $rolUsuario = session('id_rol');
+        array_push($variablesSesion, $rolUsuario);
 
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
+        $sesionIniciada = session('sesion_iniciada');
+        array_push($variablesSesion, $sesionIniciada);
 
-        // return $variablesSesion;
+        return $variablesSesion;
     }
 
     // ==========================================================================

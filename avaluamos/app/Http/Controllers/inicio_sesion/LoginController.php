@@ -4,9 +4,10 @@ namespace App\Http\Controllers\inicio_sesion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Responsable\inicio_sesion\LoginStore;
 use Exception;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\admin\AdministradorController;
+use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Traits\MetodosTrait;
 
 class LoginController extends Controller
@@ -19,33 +20,43 @@ class LoginController extends Controller
      */
     public function index()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
-                // $this->shareData();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) &&
+                $sesion[3] != true)
+            {
+                return redirect()->to(route('inicio'));
                 // return view('inicio_sesion.login');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            } else {
+                // $vista = 'inicio_sesion.login';
+                // $checkConnection = $this->checkDatabaseConnection($vista);
+                // // dd($checkConnection);
+
+                // if($checkConnection->getName() == "db_conexion") {
+                //     return view('db_conexion');
+                // } else {
+                //     // return view($vista);
+                //     return view('inicio_sesion.login');
+                // }
+                return view('inicio_sesion.login');
+            }
+        } catch (Exception $e) {
+            // dd($e);
+            alert()->error("Ha ocurrido un error!");
+        }
         // $vista = 'inicio_sesion.login';
         // $checkConnection = $this->checkDatabaseConnection($vista);
-        // dd($checkConnection);
+        // // dd($checkConnection);
 
         // if($checkConnection->getName() == "db_conexion") {
-            // return view('db_conexion');
+        //     return view('db_conexion');
         // } else {
-            $this->shareData();
-            // return view($vista);
-            return view('inicio_sesion.login');
+        //     // return view($vista);
+        //     return view('inicio_sesion.login');
         // }
     }
 

@@ -6,12 +6,16 @@ use App\User;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 
 class LoginStore implements Responsable
 {
     public function toResponse($request)
     {
+        DB::connection()->getPDO();
+	    DB::connection()->getDatabaseName();
+
         $usuario = request('usuario', null);
         $clave = request('clave', null);
 
@@ -26,6 +30,7 @@ class LoginStore implements Responsable
         // ==================================================
 
         $user = $this->consultarUsuario($usuario);
+        // dd($user);
         // dd($user->id_usuario);
         if(isset($user) && !empty($user) && !is_null($user)) {
             $contarClaveErronea = $user->clave_fallas;
@@ -46,6 +51,7 @@ class LoginStore implements Responsable
             // ===================================
 
             if(Hash::check($clave, $user->clave)) {
+                // dd($user);
                 // CREAMOS LAS VAIABLES DE SESIÓN
                 
                 if($user->id_rol == 1 || $user->id_rol == "1") {
@@ -59,9 +65,9 @@ class LoginStore implements Responsable
                     return back();
                 }
             } else {
-                $contClaveErronea += 1;
-                $this->actualizarClaveFallas($user->id_usuario, $contClaveErronea);
-                alert()->error('Error','Invalid Credentials');
+                $contarClaveErronea += 1;
+                $this->actualizarClaveFallas($user->id_usuario, $contarClaveErronea);
+                alert()->error('Error','Credenciales Inválidas');
                 return back();
             }
         } else {
@@ -73,15 +79,18 @@ class LoginStore implements Responsable
     // ==================================================
     // ==================================================
     // ==================================================
-
+    
     private function crearVariablesSesion($user)
     {
+        // dd($user);
         // Creamos las variables de sesion
         session()->put('id_usuario', $user->id_usuario);
         session()->put('usuario', $user->nombre_usuario);
         session()->put('id_rol', $user->id_rol);
         session()->put('sesion_iniciada', true);
     }
+
+    // ==================================================
 
     private function consultarUsuario($usuario)
     {

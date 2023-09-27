@@ -4,9 +4,8 @@ namespace App\Http\Controllers\cliente_potencial;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\admin\AdministradorController;
 use Exception;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
@@ -31,24 +30,22 @@ class ClientePotencialController extends Controller
     public function index(Request $request)
     {
         // try {
-        //     $sesion = $this->validarVariablesSesion();
+        //      $adminCtrl = new AdministradorController();
+        //      $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
-        //     {
-        //         return redirect()->to(route('login'));
+        //      if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //          empty($sesion[1]) || is_null($sesion[1]) &&
+        //          empty($sesion[2]) || is_null($sesion[2]) &&
+        //          empty($sesion[3]) || is_null($sesion[3]) && $sesion[3] != true)
+        //      {
+        //          return redirect()->to(route('login'));
         //     } else {
-                // $clientes = Cliente::all()->toArray();
-                $clientes = $this->consultarClientes();
-                // dd($clientes);
-
-                $this->shareData();
-                return view('cliente_potencial.index', compact('clientes'));
+                    // $clientes = Cliente::all()->toArray();
+                    $clientes = $this->consultarClientes();
+                    $this->shareData();
+                    return view('cliente_potencial.index', compact('clientes'));
         //     }
         // } catch (Exception $e) {
-        //     // dd($e);
         //     alert()->error("Ha ocurrido un error!");
         // }
     }
