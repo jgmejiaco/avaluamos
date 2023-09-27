@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Usuarios;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Cargo;
@@ -182,6 +181,29 @@ class AdministradorController extends Controller
        }
     }
 
+    // ==========================================================================
+
+    public function verificarDocumento()
+    {
+        $usuidTipoDocumento = request('usuidTipoDocumento', null);
+        $usuNumeroDocumento = request('usuNumeroDocumento', null);
+
+        try {
+            $verificarDocumento = Usuario::select('id_tipo_documento', 'numero_documento')
+                        ->where('id_tipo_documento', $usuidTipoDocumento)
+                        ->where('numero_documento', $usuNumeroDocumento)
+                        ->first();
+
+            if(isset($verificarDocumento) && !is_null($verificarDocumento) && !empty($verificarDocumento)) {
+                return response()->json('existe_documento');
+            } else {
+                return response()->json('no_existe_documento');
+            }
+        } catch (Exception $e) {
+            return response()->json("error_exception");
+        }
+    }
+    
     // ==========================================================================
 
     public function validarVariablesSesion()

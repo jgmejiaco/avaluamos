@@ -53,16 +53,6 @@
                 disabled: false
             });
             
-            // let select = $('.select2');
-
-            // let seleccionar = $("<option>", {
-            //     value: "-1", // Valor de la opción
-            //     text: "Seleccionar..." // Texto visible de la opción
-            // });
-
-            // seleccionar.attr("selected", true);
-            // select.prepend(seleccionar);
-
             // ==============================================
 
             $('#div_red_social').hide();
@@ -135,6 +125,40 @@
                     $('#id_referido_por').attr('required');
                 }
             });
+
+            // ==============================================
+
+            $('#celular').blur(function () {
+                let cliCelular = $('#celular').val();
+
+                $.ajax({
+                    url: "{{route('verificar_celular')}}",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'cliCelular': cliCelular
+                    },
+                    success: function (respuesta) {
+                        if (respuesta == "existe_cli_celular") {
+                            Swal.fire(
+                                'Cuidado!',
+                                'Este número de celular ya existe!',
+                                'warning'
+                            )
+                            $('#celular').val('');
+                        }
+
+                        if (respuesta == "error_exception") {
+                            Swal.fire(
+                                'Error!',
+                                'No fue posible consultar el celular, intente nuevamente!',
+                                'error'
+                            )
+                        }
+                    }
+                });
+            })
         });
     </script>
 @endsection

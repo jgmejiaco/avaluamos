@@ -1,11 +1,11 @@
-<div id="div_formulario_creacion_usuario" class="border border-dark-subtle w-75 mx-auto p-5 rounded-4">
+<div id="div_form_crear_usuario" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
     <div class="row mb-5">
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="nombres" class="form-label">Nombres
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::text('nombres', old('nombres'), ['class' => 'form-control text-uppercase', 'id' => 'nombres', 'required']) !!}
+                {!! Form::text('nombres', null, ['class' => 'form-control text-uppercase', 'id' => 'nombres', 'required']) !!}
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <label for="id_cargo" class="form-label">Cargo
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_cargo', $cargo, null, ['class' => 'form-control select2', 'id' => 'id_cargo', 'required']) !!}
+                {!! Form::select('id_cargo', collect(['' => 'Seleccionar...'])->union($cargo), null, ['class' => 'form-control select2', 'id' => 'id_cargo', 'required']) !!}
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <label for="id_rol" class="form-label">Rol
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_rol', $rol, null, ['class' => 'form-control select2', 'id' => 'id_rol', 'required']) !!}
+                {!! Form::select('id_rol', collect(['' => 'Seleccionar...'])->union($rol), null, ['class' => 'form-control select2', 'id' => 'id_rol', 'required']) !!}
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <label for="id_tipo_documento" class="form-label">Tipo de Documento
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_tipo_documento', $descripcion_documento, null, ['class' => 'form-control select2', 'id' => 'id_tipo_documento', 'required']) !!}
+                {!! Form::select('id_tipo_documento', collect(['' => 'Seleccionar...'])->union($descripcion_documento), null, ['class' => 'form-control select2', 'id' => 'id_tipo_documento', 'required']) !!}
             </div>
         </div>
 
@@ -96,7 +96,7 @@
                 <label for="estado" class="form-label" data-placeholder="Estado">Estado
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_estado', $estado, null, ['class' => 'form-control select2', 'id' => 'id_estado', 'required']) !!}
+                {!! Form::select('id_estado', collect(['' => 'Seleccionar...'])->union($estado), null, ['class' => 'form-control select2', 'id' => 'id_estado', 'required']) !!}
             </div>
         </div>
     </div>

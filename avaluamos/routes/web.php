@@ -43,6 +43,7 @@ Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
 // RUTAS DEL ADMINISTRADOR
 Route::resource('administrador', 'admin\AdministradorController');
 Route::post('editar_usuario', 'admin\AdministradorController@update')->name('editar_usuario');
+Route::post('verificar_documento', 'admin\AdministradorController@verificarDocumento')->name('verificar_documento');
 
 // ========================================================================
 
@@ -55,7 +56,7 @@ Route::resource('permisos', 'permisos\PermisosController');
 Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
 Route::get('ver_cliente/{id}', 'cliente_potencial\ClientePotencialController@show')->name('ver_cliente');
 Route::get('editar_cliente/{idCliente}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
-// Route::post('update_cliente', 'cliente_potencial\ClientePotencialController@update')->name('update_cliente');
+Route::post('verificar_celular', 'cliente_potencial\ClientePotencialController@verificarCelular')->name('verificar_celular');
 
 // ========================================================================
 

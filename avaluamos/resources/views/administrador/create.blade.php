@@ -43,18 +43,49 @@
     <script>
         $( document ).ready(function()
         {
-            window.$(".select2").prepend(new Option("Seleccione ...", "-1"));
-            // window.$(".select2").append(new Option("Select Contact...", "-1"));
+            $('.select2').select2({
+                placeholder: 'Seleccionar...',
+                allowClear: true,
+                disabled: false
+            });
+            
+            // ==============================================
+            
+            $('#numero_documento').blur(function () {
+                let usuidTipoDocumento = $('#id_tipo_documento').val();
+                let usuNumeroDocumento = $('#numero_documento').val();
+                
+                $.ajax({
+                    url: "{{route('verificar_documento')}}",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'usuidTipoDocumento': usuidTipoDocumento,
+                        'usuNumeroDocumento': usuNumeroDocumento,
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta);
 
-            // $('.select2').select2({
-            //     'placeholder':'Seleccionar...'
-            // });
+                        if (respuesta == "existe_documento") {
+                            Swal.fire(
+                                'Cuidado!',
+                                'Este tipo y número de documento ya existe!',
+                                'warning'
+                            )
+                            $('#numero_documento').val('');
+                        }
 
-            // $('.select2').select2().trigger('chosen:updated');
-
-            // $("#nombres").trigger('focus');
-            // $("#id_tipo_documento").trigger('focus');
-            // $("#numero_documento").trigger('focus');
+                        if (respuesta == "error_exception") {
+                            Swal.fire(
+                                'Error!',
+                                'No fue posible consultar el documento, intente nuevamente!',
+                                'error'
+                            )
+                        }
+                    }
+                });
+            })
         });
     </script>
 @endsection

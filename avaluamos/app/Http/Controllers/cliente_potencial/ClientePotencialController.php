@@ -251,6 +251,27 @@ class ClientePotencialController extends Controller
     }
 
     // ========================================================
+    
+    public function verificarCelular()
+    {
+        $cliCelular = request('cliCelular', null);
+
+        try {
+            $verificarCliCelular = Cliente::select('cli_celular')
+                                    ->where('cli_celular', $cliCelular)
+                                    ->first();
+
+            if(isset($verificarCliCelular) && !is_null($verificarCliCelular) && !empty($verificarCliCelular)) {
+                return response()->json('existe_cli_celular');
+            } else {
+                return response()->json('no_existe_cli_celular');
+            }
+        } catch (Exception $e) {
+            return response()->json("error_exception");
+        }
+    }
+    
+    // ========================================================
 
     public function validarVariablesSesion()
     {

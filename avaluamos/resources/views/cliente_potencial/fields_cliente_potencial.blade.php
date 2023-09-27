@@ -33,9 +33,6 @@
         </div>
 
         {{-- ======================= --}}
-        {{-- @php
-            dd($cliente->fecha_nacimiento);
-        @endphp --}}
         
         <div class="col-12 col-md-3">
             <div class="form-group">
