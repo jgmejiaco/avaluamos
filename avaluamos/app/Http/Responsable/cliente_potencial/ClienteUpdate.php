@@ -2,35 +2,32 @@
 
 namespace App\Http\Responsable\cliente_potencial;
 
-use App\User;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Date\Date;
-use App\Models\Usuario;
-use App\Models\DirigidoA;
 use App\Models\Cliente;
 
 class ClienteUpdate implements Responsable
 {
     public function toResponse($request)
     {
+        // dd($request);
         $idCliente = request('id_cliente', null);
-        $cli_nombres = strtoupper(request('nombres', null));
-        $idTipoDocumentoCliente = request('id_doc_cliente', null);
-        $documentoCliente = strtoupper(request('documento_cliente', null));
+        $nombreSolicitante = strtoupper(request('nombre_solicitante', null));
+        $idDocCliente = request('id_doc_cliente', null);
+        $documentoCliente = request('documento_cliente', null);
         $fechaNacimiento = request('fecha_nacimiento', null);
-        $cliCelular = request('cli_celular', null);
-        $cliEmail = request('cli_email', null);
-        $idTipoPersona = request('id_tipo_persona', null);
-        $paisEdit = request('pais_edit', null);
-        $dptoEdit = request('dpto_edit', null);
-        $ciudadEdit = request('ciudad_edit', null);
-        $referidoPorEdit = request('referido_por_edit', null);
-        $redSocialEdit = request('red_social_edit', null);
-        $quienRefiereEdit = request('quien_refiere_edit', null);
-        $empresaRefiereEdit = request('empresa_refiere_edit', null);
+        $celular = request('celular', null);
+        $correo = request('correo', null);
+        $tipoPersona = request('tipo_persona', null);
+        $pais = request('pais', null);
+        $departamento = request('departamento', null);
+        $municipio = request('municipio', null);
+        $idReferidoPor = request('id_referido_por', null);
+        $idRedSocial = request('id_red_social', null);
+        $nombreQuienRefiere = request('nombre_quien_refiere', null);
+        $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
         
@@ -39,6 +36,8 @@ class ClienteUpdate implements Responsable
         } else {
             $fechaNacimiento = null;
         }
+
+        // dd($fechaNacimiento);
         
         // ==============================
 
@@ -48,20 +47,20 @@ class ClienteUpdate implements Responsable
             $editarCliente = Cliente::where('id_cliente', $idCliente)
                     ->update(
                         [
-                            'cli_nombres' => $cli_nombres,
-                            'id_doc_cliente' => $idTipoDocumentoCliente,
+                            'cli_nombres' => $nombreSolicitante,
+                            'id_doc_cliente' => $idDocCliente,
                             'documento_cliente' => $documentoCliente,
                             'fecha_nacimiento' => $fechaNacimiento,
-                            'cli_celular' => $cliCelular,
-                            'cli_email' => $cliEmail,
-                            'id_tipo_persona' => $idTipoPersona,
-                            'id_pais' => $paisEdit,
-                            'id_dpto_estado' => $dptoEdit,
-                            'id_ciudad' => $ciudadEdit,
-                            'id_referido_por' => $referidoPorEdit,
-                            'id_red_social' => $redSocialEdit,
-                            'nombre_quien_refiere' => $quienRefiereEdit,
-                            'empresa_que_refiere' => $empresaRefiereEdit,
+                            'cli_celular' => $celular,
+                            'cli_email' => $correo,
+                            'id_tipo_persona' => $tipoPersona,
+                            'id_pais' => $pais,
+                            'id_dpto_estado' => $departamento,
+                            'id_ciudad' => $municipio,
+                            'id_referido_por' => $idReferidoPor,
+                            'id_red_social' => $idRedSocial,
+                            'nombre_quien_refiere' => $nombreQuienRefiere,
+                            'empresa_que_refiere' => $empresaQueRefiere,
                         ]
                     );
 

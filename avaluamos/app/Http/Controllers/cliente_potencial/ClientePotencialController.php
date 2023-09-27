@@ -105,12 +105,31 @@ class ClientePotencialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idCliente)
     {
-        // dd($id);
-        // $cliente = $this->consultarClienteIndividual($id);
-        // $this->shareData();
-        // return view('cliente_potencial.cliente_historial', compact('cliente'));
+        // dd($idCliente);
+        // try {
+        //     $sesion = $this->validarVariablesSesion();
+
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+        //     {
+        //         return redirect()->to(route('inicio_sesion.login'));
+        //     } else {
+            $cliente = $this->consultarClienteIndividual($idCliente);
+
+            if ($cliente) {
+                $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
+            }
+
+            $this->shareData();
+            return view('cliente_potencial.edit', compact('cliente'));
+        //     }
+        // } catch (Exception $e) {
+        //     // dd($e);
+        //     alert()->error("Ha ocurrido un error!");
+        // }
     }
 
     /**
@@ -197,17 +216,30 @@ class ClientePotencialController extends Controller
     public function consultarClienteIndividual($idcliente)
     {
         return DB::table('clientes')
-                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                 ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
+                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                ->leftjoin('pais', 'pais.id_pais', '=', 'clientes.id_pais')
+                ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'clientes.id_dpto_estado')
+                ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
+                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
+                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
                 ->select(   'id_cliente',
                             'cli_nombres',
                             'id_doc_cliente',
                             'decripcion_documento',
                             'documento_cliente',
+                            'fecha_nacimiento',
                             'cli_celular',
                             'cli_email',
                             'clientes.id_tipo_persona',
                             'tipo_persona',
+                            'clientes.id_pais',
+                            'clientes.id_dpto_estado',
+                            'clientes.id_ciudad',
+                            'clientes.id_referido_por',
+                            'clientes.id_red_social',
+                            'nombre_quien_refiere',
+                            'empresa_que_refiere',
                         )
                 ->where('id_cliente', $idcliente)
                 ->whereNull('clientes.deleted_at')
