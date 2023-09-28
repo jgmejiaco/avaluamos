@@ -99,6 +99,9 @@ class VisitaController extends Controller
         // }
     }
 
+    // =================================================================
+    // =================================================================
+
     /**
      * Show the form for creating a new resource.
      *
@@ -126,6 +129,9 @@ class VisitaController extends Controller
         }
     }
 
+    // =================================================================
+    // =================================================================
+
     /**
      * Store a newly created resource in storage.
      *
@@ -147,6 +153,9 @@ class VisitaController extends Controller
         // }
         return new VisitaStore();
     }
+
+    // =================================================================
+    // =================================================================
 
     /**
      * Display the specified resource.
@@ -175,6 +184,9 @@ class VisitaController extends Controller
         // }
     }
 
+    // =================================================================
+    // =================================================================
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -200,6 +212,9 @@ class VisitaController extends Controller
             
     }
 
+    // =================================================================
+    // =================================================================
+
     /**
      * Update the specified resource in storage.
      *
@@ -212,7 +227,8 @@ class VisitaController extends Controller
         
     }
 
-    //=========================================================
+    // =================================================================
+    // =================================================================
 
     public function visitaClienteUpdate(Request $request)
     {
@@ -231,6 +247,7 @@ class VisitaController extends Controller
         // }
     }
 
+    //=========================================================
     //=========================================================
 
     public function visitaTecnicaUpdate(Request $request)
@@ -251,6 +268,7 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
 
     public function visitaInfoJuridicaUpdate(Request $request)
     {
@@ -259,6 +277,7 @@ class VisitaController extends Controller
         return new VisitaInfoJuridicaUpdate();
     }
 
+    //=========================================================
     //=========================================================
     
     public function visitaInfoInmuebleUpdate(Request $request)
@@ -270,6 +289,7 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
     
     public function visitaCaracteristicasInmuebleUpdate(Request $request)
     {
@@ -279,6 +299,7 @@ class VisitaController extends Controller
         return new VisitaCaracteristicasInmuebleUpdate();
     }
 
+    //=========================================================
     //=========================================================
     
     public function visitaAcabadosInmuebleUpdate(Request $request)
@@ -290,6 +311,7 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
 
     public function visitaCalificacionInmuebleUpdate(Request $request)
     {
@@ -299,6 +321,7 @@ class VisitaController extends Controller
         return new VisitaCalificacionInmuebleUpdate();
     }
 
+    //=========================================================
     //=========================================================
 
     public function visitaDotacionComunalUpdate(Request $request)
@@ -310,6 +333,7 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
     
     public function visitaInfoSectorUpdate(Request $request)
     {
@@ -319,6 +343,7 @@ class VisitaController extends Controller
         return new VisitaInfoSectorUpdate();
     }
 
+    //=========================================================
     //=========================================================
     
     public function visitaCondiUrbanisticasUpdate(Request $request)
@@ -330,6 +355,7 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
     
     public function visitaObserGeneralesUpdate(Request $request)
     {
@@ -339,6 +365,7 @@ class VisitaController extends Controller
         return new VisitaObserGeneralesUpdate();
     }
 
+    //=========================================================
     //=========================================================
     
     // public function VvisitaRegFotograficoUpdate(Request $request)
@@ -350,6 +377,7 @@ class VisitaController extends Controller
     // }
 
     //=========================================================
+    //=========================================================
     
     public function visitaValorEstimadoUpdate(Request $request)
     {
@@ -359,6 +387,7 @@ class VisitaController extends Controller
         return new VisitaValorEstimadoUpdate();
     }
 
+    //=========================================================
     //=========================================================
     
     public function visitaEstadoConservacionUpdate(Request $request)
@@ -370,6 +399,8 @@ class VisitaController extends Controller
     }
 
     //=========================================================
+    //=========================================================
+
     /**
      * Remove the specified resource from storage.
      *
@@ -380,6 +411,9 @@ class VisitaController extends Controller
     {
         
     }
+
+    //=========================================================
+    //=========================================================
 
     private function shareData()
     {
@@ -424,7 +458,8 @@ class VisitaController extends Controller
         view()->share('estado_conservacion_opciones', EstadoConservacionOpciones::orderBy('estado_conservacion_opciones', 'asc')->pluck('estado_conservacion_opciones', 'id_estado_conservacion_opciones'));
     }
 
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
 
     public function cliVisitaCreate($clienteId)
     {
@@ -455,7 +490,8 @@ class VisitaController extends Controller
                 ->first();
     }
 
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
 
     public function consultarEmpresa(Request $request)
     {
@@ -474,7 +510,8 @@ class VisitaController extends Controller
         return response()->json($consultarEmpresa);
     }
 
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
 
     public function visitasIndex()
     {
@@ -487,12 +524,6 @@ class VisitaController extends Controller
                     ->leftjoin('ciudad','ciudad.id_ciudad','=','visitas.id_ciudad')
                     ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
                     ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
-                    // ->leftjoin('indicador_numerico as parqueaderos','parqueaderos.id_indicador_numerico','=','visitas.id_cant_parqueaderos')
-                    // ->leftjoin('indicador_numerico as cuarto_util','cuarto_util.id_indicador_numerico','=','visitas.id_cant_cuarto_util')
-                    // ->leftjoin('indicador_numerico as kioskos','kioskos.id_indicador_numerico','=','visitas.id_cant_kioskos')
-                    // ->leftjoin('indicador_numerico as piscinas','piscinas.id_indicador_numerico','=','visitas.id_cant_piscinas')
-                    // ->leftjoin('indicador_numerico as establos','establos.id_indicador_numerico','=','visitas.id_cant_establos')
-                    // ->leftjoin('indicador_numerico as billares','billares.id_indicador_numerico','=','visitas.id_cant_billares')
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->select(
@@ -519,7 +550,8 @@ class VisitaController extends Controller
                     ->toArray();
     }
 
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
 
     public function editarVisita($idVisita)
     {
@@ -583,6 +615,7 @@ class VisitaController extends Controller
                     ->leftjoin('observaciones_generales','observaciones_generales.id_visita','=','visitas.id_visita')
                     ->leftjoin('valor_estimado_avaluo','valor_estimado_avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
+                    ->leftjoin('registro_fotografico','registro_fotografico.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',
@@ -656,13 +689,6 @@ class VisitaController extends Controller
                         'info_inmueble.area_patios',
                         'info_inmueble.id_condicion_inmueble',
                         'info_inmueble.obs_info_inmueble',
-                        // 'parqueaderos.id_indicador_numerico as parqueaderos',
-                        // 'cuarto_util.id_indicador_numerico as cuarto_util',
-                        // 'kioskos.id_indicador_numerico as kioskos',
-                        // 'piscinas.id_indicador_numerico as piscinas',
-                        // 'establos.id_indicador_numerico as establos',
-                        // 'billares.id_indicador_numerico as billares',
-                        // 'ascensores.id_indicador_numerico as ascensores',
                         'caracteristicas_inmueble.cocinas',
                         'caracteristicas_inmueble.habitaciones',
                         'caracteristicas_inmueble.salas',
@@ -771,7 +797,46 @@ class VisitaController extends Controller
                         'estado_conservacion.valor_pendiente',
                         'estado_conservacion.id_factor_ubicacion',
                         'estado_conservacion.valor_ubicacion',
-                        'estado_conservacion.id_estado_conservacion_opciones'
+                        'estado_conservacion.id_estado_conservacion_opciones',
+                        'registro_fotografico.rf_fachada',
+                        'registro_fotografico.rf_entrada',
+                        'registro_fotografico.rf_sala1',
+                        'registro_fotografico.rf_sala2',
+                        'registro_fotografico.rf_sala3',
+                        'registro_fotografico.rf_comedor1',
+                        'registro_fotografico.rf_comedor2',
+                        'registro_fotografico.rf_comedor3',
+                        'registro_fotografico.rf_cocina1',
+                        'registro_fotografico.rf_cocina2',
+                        'registro_fotografico.rf_cocina3',
+                        'registro_fotografico.rf_habitacion1',
+                        'registro_fotografico.rf_habitacion2',
+                        'registro_fotografico.rf_habitacion3',
+                        'registro_fotografico.rf_habitacion4',
+                        'registro_fotografico.rf_habitacion5',
+                        'registro_fotografico.rf_habitacion6',
+                        'registro_fotografico.rf_habitacion7',
+                        'registro_fotografico.rf_bano1',
+                        'registro_fotografico.rf_bano2',
+                        'registro_fotografico.rf_bano3',
+                        'registro_fotografico.rf_patio1',
+                        'registro_fotografico.rf_patio2',
+                        'registro_fotografico.rf_patio3',
+                        'registro_fotografico.rf_estudio1',
+                        'registro_fotografico.rf_estudio2',
+                        'registro_fotografico.rf_estudio3',
+                        'registro_fotografico.rf_cuarto_util1',
+                        'registro_fotografico.rf_cuarto_util2',
+                        'registro_fotografico.rf_cuarto_util3',
+                        'registro_fotografico.rf_pasillo1',
+                        'registro_fotografico.rf_pasillo2',
+                        'registro_fotografico.rf_pasillo3',
+                        'registro_fotografico.rf_zona_ropa1',
+                        'registro_fotografico.rf_zona_ropa2',
+                        'registro_fotografico.rf_zona_ropa3',
+                        'registro_fotografico.rf_balcon1',
+                        'registro_fotografico.rf_balcon2',
+                        'registro_fotografico.rf_balcon3',
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
@@ -779,7 +844,8 @@ class VisitaController extends Controller
                     ->first();
     }
 
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
     
     public function consultarFactorPendiente()
     {
@@ -791,7 +857,8 @@ class VisitaController extends Controller
                                 ->first();
     }
     
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
     
     public function consultarFactorUbicacion()
     {
@@ -803,7 +870,8 @@ class VisitaController extends Controller
                                 ->first();
     }
     
-    // ==========================================================================
+    //=========================================================
+    //=========================================================
 
     public function validarVariablesSesion()
     {

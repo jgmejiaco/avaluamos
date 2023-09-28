@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['middleware_avaluamos'])->group(function () {
+// Route::middleware(['middleware_avaluamos'])->group(function () {
 // Route::middleware(['auth'])->group(function () {
 // Route::group(['auth'], function () {
 // Route::group(['middleware' => ['auth', 'password_expired']], function () {
@@ -87,4 +87,4 @@ Route::middleware(['middleware_avaluamos'])->group(function () {
     Route::resource('calendario', 'calendario\CalendarioController');
 
     // ========================================================================
-});
+// });

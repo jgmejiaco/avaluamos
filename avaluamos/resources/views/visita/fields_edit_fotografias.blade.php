@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['visita_reg_fotografico_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_fotografias']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
