@@ -65,7 +65,7 @@ use App\Http\Responsable\visita\VisitaDotacionComunalUpdate;
 use App\Http\Responsable\visita\VisitaInfoSectorUpdate;
 use App\Http\Responsable\visita\VisitaCondiUrbanisticasUpdate;
 use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
-// use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
+use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
 use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
 use App\Http\Responsable\visita\VisitaEstadoConservacionUpdate;
 use PhpParser\Node\Expr\FuncCall;
@@ -368,13 +368,13 @@ class VisitaController extends Controller
     //=========================================================
     //=========================================================
     
-    // public function VvisitaRegFotograficoUpdate(Request $request)
-    // {
-    //     // Si el usuario no esta autenticado, redireccionamos al login
+    public function visitaRegFotograficoUpdate(Request $request)
+    {
+        // Si el usuario no esta autenticado, redireccionamos al login
         
 
-    //     return new VisitaRegFotograficoUpdate();
-    // }
+        return new VisitaRegFotograficoUpdate();
+    }
 
     //=========================================================
     //=========================================================
