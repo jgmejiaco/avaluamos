@@ -19,47 +19,7 @@ class VisitaRegFotograficoUpdate implements Responsable
     {
         $idVisita = request('id_visita', null);
         $idCliente = request('id_cliente', null);
-        // $rfFachada = request('rf_fachada', null);
-        // $rfEntrada = request('rf_entrada', null);
-        // $rfSala1 = request('rf_sala1', null);
-        // $rfSala2 = request('rf_sala2', null);
-        // $rfSala3 = request('rf_sala3', null);
-        // $rfComedor1 = request('rf_comedor1', null);
-        // $rfComedor2 = request('rf_comedor2', null);
-        // $rfComedor3 = request('rf_comedor3', null);
-        // $rfCocina1 = request('rf_cocina1', null);
-        // $rfCocina2 = request('rf_cocina2', null);
-        // $rfCocina3 = request('rf_cocina3', null);
-        // $rfHabitacion1 = request('rf_habitacion1', null);
-        // $rfHabitacion2 = request('rf_habitacion2', null);
-        // $rfHabitacion3 = request('rf_habitacion3', null);
-        // $rfHabitacion4 = request('rf_habitacion4', null);
-        // $rfHabitacion5 = request('rf_habitacion5', null);
-        // $rfHabitacion6 = request('rf_habitacion6', null);
-        // $rfHabitacion7 = request('rf_habitacion7', null);
-        // $rfBano1 = request('rf_bano1', null);
-        // $rfBano2 = request('rf_bano2', null);
-        // $rfBano3 = request('rf_bano3', null);
-        // $rfPatio1 = request('rf_patio1', null);
-        // $rfPatio2 = request('rf_patio2', null);
-        // $rfPatio3 = request('rf_patio3', null);
-        // $rfEstudio1 = request('rf_estudio1', null);
-        // $rfEstudio2 = request('rf_estudio2', null);
-        // $rfEstudio3 = request('rf_estudio3', null);
-        // $rfCuartoUtil1 = request('rf_cuarto_util1', null);
-        // $rfCuartoUtil2 = request('rf_cuarto_util2', null);
-        // $rfCuartoUtil3 = request('rf_cuarto_util3', null);
-        // $rfPasillo1 = request('rf_pasillo1', null);
-        // $rfPasillo2 = request('rf_pasillo2', null);
-        // $rfPasillo3 = request('rf_pasillo3', null);
-        // $rfZonaRopa1 = request('rf_zona_ropa1', null);
-        // $rfZonaRopa2 = request('rf_zona_ropa2', null);
-        // $rfZonaRopa3 = request('rf_zona_ropa3', null);
-        // $rfBalcon1 = request('rf_balcon1', null);
-        // $rfBalcon2 = request('rf_balcon2', null);
-        // $rfBalcon3 = request('rf_balcon3', null);
 
-        // ==============================================================================
         // ==============================================================================
         // ==============================================================================
 
@@ -71,7 +31,6 @@ class VisitaRegFotograficoUpdate implements Responsable
             $fechaActual = Carbon::now();
             $fechaActual = $fechaActual->format('d-m-Y_H:m:s');
             $baseFileName = "vis({$idVisita})_cli({$idCliente})_".$fechaActual;
-            // dd($request, $baseFileName);
 
             $carpetaArchivos = '/upfiles/visita';
 
