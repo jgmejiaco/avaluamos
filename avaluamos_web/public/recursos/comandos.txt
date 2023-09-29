@@ -1,0 +1,113 @@
+Tutorial Base de Datos Remota
+https://www.youtube.com/watch?v=TzqDZCTCdXA
+
+//========================================================================================//
+
+Instalación de proyecto con laravel: https://laravel.com/docs/7.x
+composer create-project --prefer-dist laravel/laravel:^7.0 jgmc_digital // con la versión de laravel
+
+//========================================================================================//
+
+PS D:\WWW\avaluamos> composer --version
+Composer version 2.3.5 2022-04-13 16:43:00
+
+PS D:\WWW\avaluamos> php --version
+PHP 7.4.1 (cli) (built: Jan 20 2020 22:21:57) ( ZTS Visual C++ 2017 x86 )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+
+PS D:\WWW\avaluamos> php artisan --version
+Laravel Framework 7.30.6
+
+//========================================================================================//
+
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ composer create-project laravel/laravel nombre_proyecto ?????????????????????????
+
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ composer create-project --prefer-dist laravel/laravel mi-proyecto^"7.0.*" ?????????????????????????
+
+//========================================================================================//
+
+Ir a la ruta => C:\MAMP\bin\php\php7.4.1, biscar el archivo php.init, buscar el archivo ("extension=php_pdo_mysql.dll"), si está, se descomenta, de no estar, se incluye (siempre descomentado)
+
+//========================================================================================//
+
+Correr el servidor
+http://127.0.0.1:8000
+php artisan serve
+
+//========================================================================================//
+
+Crear el hipervínculo del storage
+
+PS D:\WWW\avaluamos> php artisan storage:link
+The [D:\WWW\avaluamos\public\storage] link has been connected to [D:\WWW\avaluamos\storage\app/public].
+The links have been created.
+
+//========================================================================================//
+
+Crear el Repo en Github y luego subirlo
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jgmejiaco/avaluamos.git
+git push -u origin main
+
+//========================================================================================//
+
+php artisan migrate
+php artisan migrate:rollback --step=1
+php artisan create_nombre_tabla
+php artisan add_nombre_columna
+
+//========================================================================================//
+
+composer require realrashid/sweet-alert
+
+//========================================================================================//
+
+composer require laravelcollective/html
+
+Es para que acepte ls sgte sintaxis de los formualrios
+{{-- {!! Form::open(['method' => 'POST', 'route' => ['administrador.store'], 'class' => 'login100-form validate-form', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!} --}}
+    @csrf
+
+        @include('administrador.fields')
+
+{{-- {!! Form::close() !!} --}}
+
+//========================================================================================//
+
+Instalar el sweet alert para los alert de php en controller y reponses
+composer require realrashid/sweet-alert
+php artisan vendor:publish --provider="RealRashid\SweetAlert\SweetAlertServiceProvider"
+
+@include('sweetalert::alert') en el layout
+
+//========================================================================================//
+
+Sirve para cambiar nombres y tipos de datos de las columnas de la BD por medio de las migraciones
+
+composer require doctrine/dbal:^2.12.1
+composer require doctrine/dbal
+composer require doctrine/dbal laravel/framework ^7.30.6
+
+composer require doctrine/dbal:2.*
+
+//========================================================================================//
+
+Crear la UI, Interfaz de usuario de la autenticación, ingresando en el "package.json" las dependencias Bootstrap, jquery y popper, además de las carpetas "auth" del controlador (Homecontroller) y vistas (auth/home), cambia si existe o crea layouts/app.blade, nuevas rutas, nuevas migraciones (password_resets)
+php artisan ui bootstrap --auth
+
+https://diegooo.com/laravel-ui-autenticacion-de-laravel-8/
+
+
+
+php artisan migrate
+php artisan serve => http://127.0.0.1:8000/
+
+
+
+prueba nueva rama desarrollo
+prueba nueva rama jgmc
