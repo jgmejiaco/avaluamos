@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="">
-                <a href="{{route('inicio')}}" title="SALIR">
+                <a href="{{route('logout')}}" title="SALIR">
                     <i class="fa fa-sign-out fa-3x" aria-hidden="false"></i>
                 </a>
             </div>

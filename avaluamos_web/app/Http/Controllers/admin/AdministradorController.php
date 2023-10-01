@@ -27,7 +27,6 @@ class AdministradorController extends Controller
     {
         try {
             $sesion = $this->validarVariablesSesion();
-            // dd($sesion);
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -40,8 +39,8 @@ class AdministradorController extends Controller
                 return view('administrador.index');
             }
         } catch (Exception $e) {
-            // dd($e);
             alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
         }
     }
 
@@ -170,7 +169,7 @@ class AdministradorController extends Controller
                                     'cargo.id_cargo',
                                     'cargo.descripcion_cargo',
                                     'estado.id_estado',
-                                    'estado.descripcion_estado',
+                                    'estado.descripcion_estado'
                                     )
                             ->get()
                             ->toarray();

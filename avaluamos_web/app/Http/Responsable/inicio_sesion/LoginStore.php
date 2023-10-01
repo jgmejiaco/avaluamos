@@ -13,13 +13,8 @@ class LoginStore implements Responsable
 {
     public function toResponse($request)
     {
-        // DB::connection()->getPDO();
-	    // DB::connection()->getDatabaseName();
-
         $usuario = request('usuario', null);
         $clave = request('clave', null);
-
-        // ==================================================
 
         if(!isset($usuario) || empty($usuario) || is_null($usuario) || !isset($clave) || empty($clave) || is_null($clave))
         {
@@ -27,11 +22,8 @@ class LoginStore implements Responsable
             return back();
         }
 
-        // ==================================================
-
         $user = $this->consultarUsuario($usuario);
-        // dd($user);
-        // dd($user->id_usuario);
+      
         if(isset($user) && !empty($user) && !is_null($user)) {
             $contarClaveErronea = $user->clave_fallas;
 
@@ -40,19 +32,13 @@ class LoginStore implements Responsable
                 $this->inactivarUsuario($user->id_usuario);
             }
 
-            // ===================================
-
             if($user->id_estado == 2)
             {
                 alert()->error('Error','El usuario ' . $usuario . ' está inactivo, por favor contacte al administrador');
                 return back();
             }
 
-            // ===================================
-
             if(Hash::check($clave, $user->clave)) {
-                // dd($user);
-                // CREAMOS LAS VAIABLES DE SESIÓN
                 
                 if($user->id_rol == 1 || $user->id_rol == "1") {
                     // ROL ADMINISTRADOR
@@ -82,7 +68,6 @@ class LoginStore implements Responsable
     
     private function crearVariablesSesion($user)
     {
-        // dd($user);
         // Creamos las variables de sesion
         session()->put('id_usuario', $user->id_usuario);
         session()->put('usuario', $user->nombre_usuario);

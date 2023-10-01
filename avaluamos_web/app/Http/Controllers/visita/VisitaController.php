@@ -836,7 +836,7 @@ class VisitaController extends Controller
                         'registro_fotografico.rf_zona_ropa3',
                         'registro_fotografico.rf_balcon1',
                         'registro_fotografico.rf_balcon2',
-                        'registro_fotografico.rf_balcon3',
+                        'registro_fotografico.rf_balcon3'
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
@@ -858,12 +858,10 @@ class VisitaController extends Controller
     }
     
     //=========================================================
-    //=========================================================
     
     public function consultarFactorUbicacion()
     {
         $id_factor_ubicacion = request('id_factor_ubicacion', null);
-        // dd($id_factor_pendiente);
 
         return FactorUbicacion::select('valor_ubicacion')
                                 ->where('id_factor_ubicacion', $id_factor_ubicacion)
