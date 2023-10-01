@@ -26,27 +26,41 @@ class VisitaRegFotograficoUpdate implements Responsable
         DB::connection('mysql')->beginTransaction();
 
         try {
-            // $usu_usuario = Cliente::select('cli_cliente')->where('usu_codigo', $usuario_oculto)->get()->first();
-
             $fechaActual = Carbon::now();
             $fechaActual = $fechaActual->format('d-m-Y_H:m:s');
             $baseFileName = "vis({$idVisita})_cli({$idCliente})_".$fechaActual;
 
-            $carpetaArchivos = '/upfiles/visita';
+            // $carpetaArchivos = '/upfiles/visita';
+            // $carpetaArchivos = storage_path('app/public/');
+            $carpetaArchivos = storage_path('/upfiles/visita');
 
             $rfFachada= '';
             if ($request->hasFile('rf_fachada')) {
                 $rfFachada = $this->upfileWithName($baseFileName, $carpetaArchivos, $request, 'rf_fachada', 'fachada');
+                // $rfFachada = $this->uploadFile($request, 'xml_evento', $carpeta_archivos);
+                // !Storage::exists($factura->ruta_archivo) ?: Storage::delete($factura->ruta_archivo);
+                // $rfFachada = $this->uploadFile($request, 'archivo', 'upfilesspe/contabilidad/facturas');
+                // $poliza = storage_path('app/public/'. $archivos_poliza[0]['archivo']);
+
+                // if(file_exists($archivo_matricula)){
+                //     unlink($archivo_matricula);
+                // }
+
             } else {
                 $rfFachada = null;
             }
 
-            // dd($rfFachada, $baseFileName);
+            $rfEntrada= '';
+            if ($request->hasFile('rf_entrada')) {
+                $rfEntrada = $this->upfileWithName($baseFileName, $carpetaArchivos, $request, 'rf_entrada', 'entrada');
+            } else {
+                $rfEntrada = null;
+            }
 
             $editarRegFotografico = RegistroFotografico::where('id_visita',$idVisita)
                 ->update([
                     'rf_fachada' => $rfFachada,
-                    // 'rf_entrada' => $rfEntrada,
+                    'rf_entrada' => $rfEntrada,
                     // 'rf_sala1' => $rfSala1,
                     // 'rf_sala2' => $rfSala2,
                     // 'rf_sala3' => $rfSala3,
@@ -85,7 +99,6 @@ class VisitaRegFotograficoUpdate implements Responsable
                     // 'rf_balcon2' => $rfBalcon2,
                     // 'rf_balcon3' => $rfBalcon3,
                 ]);
-
             if($editarRegFotografico) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Registro fotográfico editado satisfactoriamente');
