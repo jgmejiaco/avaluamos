@@ -30,9 +30,9 @@ class VisitaRegFotograficoUpdate implements Responsable
             $fechaActual = $fechaActual->format('d-m-Y_H:m:s');
             $baseFileName = "vis({$idVisita})_cli({$idCliente})_".$fechaActual;
 
-            // $carpetaArchivos = '/upfiles/visita';
+            $carpetaArchivos = '/upfiles/visita';
             // $carpetaArchivos = storage_path('app/public/');
-            $carpetaArchivos = storage_path('/upfiles/visita');
+            // $carpetaArchivos = storage_path('/upfiles/visita');
 
             $rfFachada= '';
             if ($request->hasFile('rf_fachada')) {
