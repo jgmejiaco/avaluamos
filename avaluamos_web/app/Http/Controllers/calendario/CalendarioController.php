@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
+use App\Http\Controllers\admin\AdministradorController;
 
 class CalendarioController extends Controller
 {
@@ -20,22 +21,23 @@ class CalendarioController extends Controller
      */
     public function index(Request $request)
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 // $this->shareData();
                 return view('calendario.index');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     /**
@@ -115,7 +117,7 @@ class CalendarioController extends Controller
         //     alert()->success('Mantenimiento a Infraestructura creado correctamente.');
         //     return redirect('/compras/cronograma_mtto_infra');
         // }
-        // catch (Exception $e) 
+        // catch (Exception $e)
         // {
         //     dd($e);
         //     DB::connection('compras')->rollBack();
@@ -131,7 +133,7 @@ class CalendarioController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
@@ -191,7 +193,7 @@ class CalendarioController extends Controller
         
         //==============================================================//
 
-        // try 
+        // try
         // {
         //     if(!Auth::check())
         //     {
@@ -224,7 +226,7 @@ class CalendarioController extends Controller
         //         return back();
         //     }
         // }
-        // catch (Exception $e) 
+        // catch (Exception $e)
         // {
         //     dd($e);
         //     DB::connection('compras')->rollBack();
@@ -248,50 +250,46 @@ class CalendarioController extends Controller
 
     // ========================================================
 
-    public function consultarMttoInfraestructura()
+    public function consultarVisitasCalendario()
     {
-        // try {
-        //     $consulta_evento_infra = DB::table('compras.cronograma_infraestructura')
-        //                             ->leftjoin('public.sedes', 'sedes.sed_codigo', '=', 'cronograma_infraestructura.sed_codigo')
-        //                             ->leftjoin('public.usuarios', 'usuarios.usu_codigo', '=', 'cronograma_infraestructura.usu_codigo')
-        //                             ->leftjoin('compras.tickets', 'tickets.tic_codigo', '=', 'cronograma_infraestructura.tic_codigo')
-        //                             ->leftjoin('compras.tipo_categorias', 'tipo_categorias.id_tipo_categoria', '=', 'cronograma_infraestructura.id_tipo_categoria')
-        //                             ->leftjoin('polizas.tipo_mantenimiento', 'tipo_mantenimiento.id_tipo_mtto', '=', 'cronograma_infraestructura.id_tipo_mtto')
-        //                             ->leftjoin('facturacion.proveedores', 'proveedores.id_proveedor', '=', 'cronograma_infraestructura.id_proveedor')
-        //                             ->select(
-        //                                 DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_programado), \'YYYY-MM-DD\') as fecha_programado'),
-        //                                 DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_ejecutado), \'YYYY-MM-DD\') as fecha_ejecutado'),
-        //                                 DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_proximo), \'YYYY-MM-DD\') as fecha_proximo'),'usuarios.usu_usuario','sedes.sed_descripcion','tipo_categorias.descripcion_categoria','tickets.tic_codigo','tipo_mantenimiento.mtto_descripcion','proveedores.razon_social', 'cronograma_infraestructura.id_infra_cronograma','tipo_categorias.color_categoria')
-        //                             ->get();
+        try {
+            $consultarVisitasCalendario = DB::table('calendario')
+                                    ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
+                                    ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
+                                    ->select(
+                                        'id_visita_calendario',
+                                        'nombre_cliente',
+                                        'municipio',
+                                        'fecha_visita_calendario',
+                                        'visita_cumplida'
+                                    )
+                                    ->get();
 
-        //     $arrayEventos = array();
+            $arrayVisitasCalendario = array();
 
-        //     foreach ($consulta_evento_infra as $value)
-        //     {
+            foreach ($consultarVisitasCalendario as $visita)
+            {
+                if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && $visita->visita_cumplida && !empty($visita->visita_cumplida)) {
+                    $colorVisita = "#449D44";
+                } else {
+                    $colorVisita = "#EC971F";
+                }
 
-        //         if (isset($value->color_categoria) && !is_null($value->color_categoria) && !empty($value->color_categoria)) {
-        //             $color_evento = $value->color_categoria;
-        //         } else {
-        //             $color_evento = "#111F90";
-        //         }
+                array_push($arrayVisitasCalendario,
+                    array(
+                        "id" => $visita->id_visita_calendario,
+                        "title" => $visita->nombre_cliente . "\n" . $visita->municipio,
+                        "start" => $visita->fecha_visita_calendario,
+                        "color" => $colorVisita,
+                    )
+                );
+            }
 
-        //         array_push($arrayEventos,
-        //             array(
-        //                 "id" => $value->id_infra_cronograma,
-        //                 "title" => $value->sed_descripcion . "\n" . $value->descripcion_categoria,
-        //                 "start" => $value->fecha_programado,
-        //                 "color" => $color_evento,
-        //             )
-        //         );
-        //     }
-
-        //     // dd($arrayEventos);
-
-        //     return response()->json(["eventos" => $arrayEventos]);
-        // } 
-        // catch (Exception $th) {
-        //     dd($th);
-        // }
+            return response()->json(["visitas_calendario" => $arrayVisitasCalendario]);
+        }
+        catch (Exception $e) {
+            dd($e);
+        }
     }
 
     // ========================================================
@@ -318,28 +316,11 @@ class CalendarioController extends Controller
     //         // dd($consulta_evento_infra_edicion);
 
     //         return response()->json($consulta_evento_infra_edicion);
-    //     } 
+    //     }
     //     catch (Exception $th) {
     //         dd($th);
     //     }
     // }
 
-    public function validarVariablesSesion()
-    {
-        // $variablesSesion =[];
-
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
-
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
-
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
-
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
-
-        // return $variablesSesion;
-    }
+    
 }
