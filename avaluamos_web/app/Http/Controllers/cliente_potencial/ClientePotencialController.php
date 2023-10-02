@@ -29,24 +29,24 @@ class ClientePotencialController extends Controller
      */
     public function index(Request $request)
     {
-        // try {
-        //      $adminCtrl = new AdministradorController();
-        //      $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //      if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //          empty($sesion[1]) || is_null($sesion[1]) &&
-        //          empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //      {
-        //          return redirect()->to(route('login'));
-        //     } else {
-                    // $clientes = Cliente::all()->toArray();
-                    $clientes = $this->consultarClientes();
-                    $this->shareData();
-                    return view('cliente_potencial.index', compact('clientes'));
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $clientes = $this->consultarClientes();
+                $this->shareData();
+                return view('cliente_potencial.index', compact('clientes'));
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -56,22 +56,23 @@ class ClientePotencialController extends Controller
      */
     public function create()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio_sesion.login'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $this->shareData();
                 return view('cliente_potencial.create');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -94,9 +95,24 @@ class ClientePotencialController extends Controller
      */
     public function show($id)
     {
-        $cliente = $this->consultarClienteIndividual($id);
-        $this->shareData();
-        return view('cliente_potencial.cliente_historial', compact('cliente'));
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $cliente = $this->consultarClienteIndividual($id);
+                $this->shareData();
+                return view('cliente_potencial.cliente_historial', compact('cliente'));
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -107,33 +123,33 @@ class ClientePotencialController extends Controller
      */
     public function edit($idCliente)
     {
-        // dd($idCliente);
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio_sesion.login'));
-        //     } else {
-            $cliente = $this->consultarClienteIndividual($idCliente);
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $cliente = $this->consultarClienteIndividual($idCliente);
 
-            if ($cliente) {
-                if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
-                    $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
-                } else {
-                    $cliente->fecha_nacimiento = null;
+                if ($cliente) {
+                    if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
+                        $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
+                    } else {
+                        $cliente->fecha_nacimiento = null;
+                    }
                 }
-            }
 
-            $this->shareData();
-            return view('cliente_potencial.edit', compact('cliente'));
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+                $this->shareData();
+                return view('cliente_potencial.edit', compact('cliente'));
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -145,7 +161,23 @@ class ClientePotencialController extends Controller
      */
     public function update(Request $request)
     {
-        return new ClienteUpdate();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new ClienteUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
+        // return new ClienteUpdate();
     }
 
     // ========================================================
@@ -270,27 +302,4 @@ class ClientePotencialController extends Controller
             return response()->json("error_exception");
         }
     }
-    
-    // ========================================================
-
-    public function validarVariablesSesion()
-    {
-        // $variablesSesion =[];
-
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
-
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
-
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
-
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
-
-        // return $variablesSesion;
-    }
-
-    
 }

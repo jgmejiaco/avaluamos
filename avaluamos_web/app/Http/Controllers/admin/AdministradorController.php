@@ -32,7 +32,6 @@ class AdministradorController extends Controller
                 empty($sesion[1]) || is_null($sesion[1]) &&
                 empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
             {
-                // return redirect()->to(route('login_usuario'));
                 return view('inicio_sesion.login');
             } else {
                 $this->shareData();
@@ -53,17 +52,22 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $sesion = $this->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        // {
-        //     return redirect()->to(route('inicio'));
-        // } else {
-            $this->shareData();
-            return view('administrador.create');
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $this->shareData();
+                return view('administrador.create');
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     // ==========================================================================
@@ -76,8 +80,22 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        
-        return new UsuarioStore();
+        try {
+            $sesion = $this->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new UsuarioStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
+        // return new UsuarioStore();
     }
 
     // ==========================================================================
@@ -117,7 +135,22 @@ class AdministradorController extends Controller
      */
     public function update(Request $request)
     {
-        return new UsuarioUpdate();
+        try {
+            $sesion = $this->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new UsuarioUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
+        // return new UsuarioUpdate();
     }
 
     // ==========================================================================
@@ -223,50 +256,4 @@ class AdministradorController extends Controller
 
         return $variablesSesion;
     }
-
-    // ==========================================================================
-
-    // public function tipos_documento()
-    // {
-        
-    // }
-
-    // ==========================================================================
-
-    
-    // ==========================================================================
-
-    
-
-    // ==========================================================================
-
-    
-
-    // ==========================================================================
-
-    
-
-    // ==========================================================================
-
-    
-
-    // ==========================================================================
-
-    
-
-    // ==========================================================================
-
-    // public function cambiarEstadoUsuario(Request $request)
-    // {
-        
-    // }
-
-    // ==========================================================================
-
-    // public function actualizarClave(Request $request)
-    // {
-        
-    // }
-
-    
 }

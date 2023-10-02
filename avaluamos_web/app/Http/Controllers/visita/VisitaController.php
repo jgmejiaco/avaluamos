@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Usuarios;
+use App\Http\Controllers\admin\AdministradorController;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Cargo;
@@ -79,24 +80,24 @@ class VisitaController extends Controller
      */
     public function index()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $todasVisitas = $this->visitasIndex();
                 $this->shareData();
                 return view('visita.index', compact('todasVisitas'));
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     // =================================================================
@@ -110,19 +111,20 @@ class VisitaController extends Controller
     public function create($clienteId)
     {
         try {
-            // $sesion = $this->validarVariablesSesion();
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-            // if (empty($sesion[0]) || is_null($sesion[0]) &&
-            //     empty($sesion[1]) || is_null($sesion[1]) &&
-            //     empty($sesion[2]) || is_null($sesion[2]) &&
-            //     empty($sesion[3]) || is_null($sesion[3]) && $sesion[3])
-            // {
-            //     return redirect()->to(route('inicio'));
-            // } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
                 $this->shareData();
                 
                 return view('visita.create',compact('crearVisitaCliente'));
+            }
         } catch (Exception $e) {
             alert()->error('Error', 'Error al consultar el cliente para crear la visita, por favor contacte a Soporte.');
             return back();
@@ -140,18 +142,22 @@ class VisitaController extends Controller
      */
     public function store(Request $request)
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     return new VisitaStore();
-        // }
-        return new VisitaStore();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     // =================================================================
@@ -165,23 +171,7 @@ class VisitaController extends Controller
      */
     public function show($id)
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) &&
-        //         empty($sesion[3]) || is_null($sesion[3]) && $sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
-                // $this->shareData();
-                // return view('visita.edit');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+        // 
     }
 
     // =================================================================
@@ -195,21 +185,24 @@ class VisitaController extends Controller
      */
     public function edit($idVisita)
     {
-        // dd($idVisita);
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-            $editarVisita = $this->editarVisita($idVisita);
-            $this->shareData();
-            return view('visita.edit', compact('editarVisita'));
-        // }
-            
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $editarVisita = $this->editarVisita($idVisita);
+                $this->shareData();
+                return view('visita.edit', compact('editarVisita'));
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     // =================================================================
@@ -232,19 +225,22 @@ class VisitaController extends Controller
 
     public function visitaClienteUpdate(Request $request)
     {
-        // dd($request, $id);
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-            return new VisitaClienteUpdate();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaClienteUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -252,19 +248,22 @@ class VisitaController extends Controller
 
     public function visitaTecnicaUpdate(Request $request)
     {
-        // dd($request, $id);
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) &&
-        //    $sesion[2] != true)
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-            return new VisitaTecnicaUpdate();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaTecnicaUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -272,9 +271,22 @@ class VisitaController extends Controller
 
     public function visitaInfoJuridicaUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaInfoJuridicaUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaInfoJuridicaUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -282,10 +294,22 @@ class VisitaController extends Controller
     
     public function visitaInfoInmuebleUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaInfoInmuebleUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaInfoInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -293,10 +317,22 @@ class VisitaController extends Controller
     
     public function visitaCaracteristicasInmuebleUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaCaracteristicasInmuebleUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaCaracteristicasInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -304,10 +340,22 @@ class VisitaController extends Controller
     
     public function visitaAcabadosInmuebleUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaAcabadosInmuebleUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaAcabadosInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -315,10 +363,22 @@ class VisitaController extends Controller
 
     public function visitaCalificacionInmuebleUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaCalificacionInmuebleUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaCalificacionInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -326,10 +386,22 @@ class VisitaController extends Controller
 
     public function visitaDotacionComunalUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaDotacionComunalUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaDotacionComunalUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -337,10 +409,22 @@ class VisitaController extends Controller
     
     public function visitaInfoSectorUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaInfoSectorUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaInfoSectorUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -348,10 +432,22 @@ class VisitaController extends Controller
     
     public function visitaCondiUrbanisticasUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaCondiUrbanisticasUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaCondiUrbanisticasUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -359,10 +455,22 @@ class VisitaController extends Controller
     
     public function visitaObserGeneralesUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaObserGeneralesUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaObserGeneralesUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -370,10 +478,22 @@ class VisitaController extends Controller
     
     public function visitaRegFotograficoUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaRegFotograficoUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaRegFotograficoUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -381,10 +501,22 @@ class VisitaController extends Controller
     
     public function visitaValorEstimadoUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaValorEstimadoUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaValorEstimadoUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -392,10 +524,22 @@ class VisitaController extends Controller
     
     public function visitaEstadoConservacionUpdate(Request $request)
     {
-        // Si el usuario no esta autenticado, redireccionamos al login
-        
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        return new VisitaEstadoConservacionUpdate();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new VisitaEstadoConservacionUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -850,7 +994,6 @@ class VisitaController extends Controller
     public function consultarFactorPendiente()
     {
         $id_factor_pendiente = request('id_factor_pendiente', null);
-        // dd($id_factor_pendiente);
 
         return FactorPendiente::select('valor_pendiente')
                                 ->where('id_factor_pendiente', $id_factor_pendiente)
@@ -866,27 +1009,5 @@ class VisitaController extends Controller
         return FactorUbicacion::select('valor_ubicacion')
                                 ->where('id_factor_ubicacion', $id_factor_ubicacion)
                                 ->first();
-    }
-    
-    //=========================================================
-    //=========================================================
-
-    public function validarVariablesSesion()
-    {
-        // $variablesSesion =[];
-
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
-
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
-
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
-
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
-
-        // return $variablesSesion;
     }
 }

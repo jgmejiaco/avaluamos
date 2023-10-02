@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Rol;
 use App\Http\Responsable\permisos\PermisoStore;
+use App\Http\Controllers\admin\AdministradorController;
 
 class PermisosController extends Controller
 {
@@ -18,22 +19,23 @@ class PermisosController extends Controller
      */
     public function index()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $this->shareData();
                 return view('permisos.index');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -43,22 +45,23 @@ class PermisosController extends Controller
      */
     public function create()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $this->shareData();
                 return view('permisos.create');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -69,17 +72,22 @@ class PermisosController extends Controller
      */
     public function store(Request $request)
     {
-        // $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && !$sesion[2])
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     return new UsuarioStore();
-        // }
-        return new PermisoStore();
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new PermisoStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -90,22 +98,7 @@ class PermisosController extends Controller
      */
     public function show($id)
     {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuario = User::find($id);
-        //     view()->share('usuario', $usuario);
-        //     $this->shareData();
-        //     return view('administrador.show');
-        // }
-
-        $this->shareData();
-        // return view('visita.edit');
+        
     }
 
     /**
@@ -116,19 +109,7 @@ class PermisosController extends Controller
      */
     public function edit($id)
     {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     $usuario = User::find($id);
-        //     view()->share('usuario', $usuario);
-        //     $this->shareData();
-        //     return view('administrador.edit');
-        // }
+        
     }
 
     /**
@@ -140,16 +121,7 @@ class PermisosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-        //     return new UsuariosUpdate();
-        // }
+        
     }
 
     /**
@@ -160,16 +132,7 @@ class PermisosController extends Controller
      */
     public function destroy($id)
     {
-        // $sesion = $this->validarVariablesSesion();
-
-        // if(empty($sesion[0]) || is_null($sesion[0]) &&
-        //    empty($sesion[1]) || is_null($sesion[1]) &&
-        //    empty($sesion[2]) || is_null($sesion[2]) && $sesion[2])
-        // {
-        //     return redirect()->to(route('home'));
-        // } else {
-
-        // }
+       
     }
 
     private function shareData()
@@ -183,22 +146,5 @@ class PermisosController extends Controller
     // ==========================================================================
 
 
-    public function validarVariablesSesion()
-    {
-        // $variablesSesion =[];
-
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
-
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
-
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
-
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
-
-        // return $variablesSesion;
-    }
+    
 }

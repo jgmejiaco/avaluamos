@@ -15,6 +15,7 @@ use App\Models\SiNo;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
 use App\Models\DirigidoA;
+use App\Http\Controllers\admin\AdministradorController;
 
 class DirigidoEmpresaController extends Controller
 {
@@ -25,23 +26,24 @@ class DirigidoEmpresaController extends Controller
      */
     public function index(Request $request)
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('login'));
-        //     } else {
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
                 $this->shareData();
                 $empresas = $this->consultarEmpresasIndex();
                 return view('dirigido_empresa.index', compact('empresas'));
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
@@ -51,22 +53,7 @@ class DirigidoEmpresaController extends Controller
      */
     public function create()
     {
-        // try {
-        //     $sesion = $this->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return redirect()->to(route('inicio_sesion.login'));
-        //     } else {
-                // $this->shareData();
-                // return view('dirigido_empresa.create');
-        //     }
-        // } catch (Exception $e) {
-        //     // dd($e);
-        //     alert()->error("Ha ocurrido un error!");
-        // }
+        //
     }
 
     /**
@@ -77,7 +64,23 @@ class DirigidoEmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        return new DirigidoEmpresaStore();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new DirigidoEmpresaStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
+        // return new DirigidoEmpresaStore();
     }
 
     /**
@@ -111,8 +114,23 @@ class DirigidoEmpresaController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request);
-        return new DirigidoEmpresaUpdate();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new DirigidoEmpresaUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
+        // return new DirigidoEmpresaUpdate();
     }
 
     // ========================================================
@@ -159,8 +177,6 @@ class DirigidoEmpresaController extends Controller
         $idTipoDocumento = request('id_tipo_documento', null);
         $numeroDocumento = request('numero_documento', null);
 
-        // dd($idTipoDocumento, $numeroDocumento);
-
         try {
             $validarEmpresa = DirigidoA::select('id_dirigido_a',
                                                 'dirigido_a',
@@ -181,27 +197,4 @@ class DirigidoEmpresaController extends Controller
             return response()->json("error_exception");
         }
     }
-
-    // ========================================================
-
-    public function validarVariablesSesion()
-    {
-        // $variablesSesion =[];
-
-        // $idUsuario = session('id_usuario');
-        // array_push($variablesSesion, $idUsuario);
-
-        // $username = session('usuario');
-        // array_push($variablesSesion, $username);
-
-        // $rolUsuario = session('id_rol');
-        // array_push($variablesSesion, $rolUsuario);
-
-        // $sesionIniciada = session('sesion_iniciada');
-        // array_push($variablesSesion, $sesionIniciada);
-
-        // return $variablesSesion;
-    }
-
-    
 }
