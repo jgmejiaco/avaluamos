@@ -83,8 +83,22 @@ class ClientePotencialController extends Controller
      */
     public function store(Request $request)
     {
-        return new ClientePotencialStore();
-        // dd($request);
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new ClientePotencialStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     /**

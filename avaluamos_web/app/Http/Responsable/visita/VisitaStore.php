@@ -48,12 +48,6 @@ class VisitaStore implements Responsable
         $area = doubleval(request('area', null));
         $estrato = request('estrato', null);
         $numeroInmueble = strtoupper(request('numero_inmueble', null));
-        // $cantParqueaderos = request('cant_parqueaderos', null);
-        // $cantCuartoUtil = request('cant_cuarto_util', null);
-        // $cantKioscos = request('cant_kioscos', null);
-        // $cantPiscinas = strtoupper(request('cant_piscinas', null));
-        // $cantEstablos = request('cant_establos', null);
-        // $cantBillares = request('cant_billares', null);
         $porcentajeDescuento = request('porcentaje_descuento', null);
         $valorCotizacion = request('valor_cotizacion', null);
         $latitud = request('latitud', null);
@@ -130,54 +124,6 @@ class VisitaStore implements Responsable
 
         // ==============================
 
-        // if ($cantParqueaderos != "-1" || $cantParqueaderos != -1) {
-        //     $cantParqueaderos = request('cant_parqueaderos', null);
-        // } else {
-        //     $cantParqueaderos = null;
-        // }
-
-        // ==============================
-
-        // if ($cantCuartoUtil != "-1" || $cantCuartoUtil != -1) {
-        //     $cantCuartoUtil = request('cant_cuarto_util', null);
-        // } else {
-        //     $cantCuartoUtil = null;
-        // }
-
-        // ==============================
-
-        // if ($cantKioscos != "-1" || $cantKioscos != -1) {
-        //     $cantKioscos = request('cant_kioscos', null);
-        // } else {
-        //     $cantKioscos = null;
-        // }
-
-        // ==============================
-
-        // if ($cantPiscinas != "-1" || $cantPiscinas != -1) {
-        //     $cantPiscinas = request('cant_piscinas', null);
-        // } else {
-        //     $cantPiscinas = null;
-        // }
-
-        // ==============================
-
-        // if ($cantEstablos != "-1" || $cantEstablos != -1) {
-        //     $cantEstablos = request('cant_establos', null);
-        // } else {
-        //     $cantEstablos = null;
-        // }
-
-        // ==============================
-        
-        // if ($cantBillares != "-1" || $cantBillares != -1) {
-        //     $cantBillares = request('cant_billares', null);
-        // } else {
-        //     $cantBillares = null;
-        // }
-
-        // ==============================
-        
         if ($visitado != "-1" || $visitado != -1) {
             $visitado = request('visitado', null);
         } else {
@@ -199,6 +145,7 @@ class VisitaStore implements Responsable
         } else {
             $fechaVisita = null;
         }
+        
         // ==============================================================================
         // ==============================================================================
 

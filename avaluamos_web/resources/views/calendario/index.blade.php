@@ -4,11 +4,18 @@
     {{-- <link rel="stylesheet" href="{{asset('assets/plugins/daterangepicker/daterangepicker.css')}}" /> --}}
     {{-- <link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}"/> --}}
     {{-- <link rel="stylesheet" href="{{asset('css/chosen.min.css')}}"> --}}
-    {{-- <style>
+
+    <style>
+        .fs-14 {
+            font-size: 14px;
+        }
         .select2-container{
             z-index: 99999 !important;
         }
-    </style> --}}
+    </style>
+
+    <!-- Bootstrap 5.2.3-->
+    <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" >
 
     {{-- INICIO CSS FULL CALENDAR "LOCAL" --}}
     <link rel="stylesheet" href="{{asset('fullcalendar/css/fullcalendar.min.css')}}" />
@@ -76,7 +83,6 @@
     {{-- ===================================================== --}}
 
     <script>
-
         $(document).ready(function () {
 
             $.ajaxSetup({
@@ -84,6 +90,9 @@
                     'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            let tipoInmuebles = @json($tipo_inmueble);
+            let ciudades = @json($ciudades);
 
             // ===============================================
             // ===============================================
@@ -94,8 +103,6 @@
                 dataType: 'JSON',
                 success:function(response)
                 {
-                    // visitasCalendario = response.visitas_calendario;
-
                     if (response.visitas_calendario == []) {
                         visitasCalendario = '/full-calender';
                     } else {
@@ -114,8 +121,21 @@
                             center:'title',
                             right:'month,agendaWeek,agendaDay'
                         },
-                        // events:'/full-calender',
                         events: visitasCalendario,
+                        // events: [
+                        //     {
+                        //         id: '1',
+                        //         title: 'visita 1',
+                        //         start: '2023-10-10',
+                        //         color: '#EC971F'
+                        //     },
+                        //     {
+                        //         id: '2',
+                        //         title: 'visita 2',
+                        //         start: '2023-10-11',
+                        //         color: '#EC971F'
+                        //     },
+                        // ],
                         selectable:true,
                         selectHelper: true,
                         eventRender: function (event, element) {}, // Renderiza el Calendario
@@ -124,6 +144,25 @@
                         defaultView: 'month',
                         firstDay: 1, // Monday (0=sunday)
                         weekNumbers: true,
+                        allDaySlot: false, // true, false
+                        eventLimit: true,
+                        eventDurationEditable: true,
+                        weekends: true, // show (true) the weekend or not (false)
+                        weekType: 'agendaWeek',
+                        dayType: 'agendaDay',
+                        eventOverlap: true,
+                        nowIndicator:true,
+                        disableDragging: false,
+                        disableResizing: false,
+                        lazyFetching: false, // Don't change this to true or month view wont work.
+                        filter: false,
+                        quickSave: false,
+                        fixedWeekCount: 'true', // true, false
+                        slotEventOverlap: true,
+                        slotLabelFormat: 'h:mma',
+                        slotDuration: "00:15:00",
+                        slotLabelInterval: 10,
+                        buttonIcons:false,
                         
                         // ===============================================
 
@@ -154,123 +193,129 @@
                                 let formCalendarioVisita = '';
 
                                 formCalendarioVisita += `
-                                    {!! Form::open(['method' => 'POST', 'id'=>'form_calendario_visita', 'class'=>'form-material', 'accept-charset' => 'UTF-8' ]) !!}
+                                    {!! Form::open(['method' => 'POST', 'route' => ['calendario.store'], 'id'=>'form_calendario_visita', 'class'=>'form-material mt-3', 'accept-charset' => 'UTF-8' ]) !!}
                                     @csrf
                                 `;
 
                                 // =============================================
                                 
                                 formCalendarioVisita += `
-                                    <input name="fecha_visita" type="text" class="form-control" id="fecha_visita" value="${fechaVisita}">
+                                    <input name="fecha_visita" type="hidden" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
                                 `;
 
                                 // =============================================
                                 
                                 formCalendarioVisita += `
-                                        <div class="row mt-5">
-                                            <div class="d-flex justify-content-around">
-                                                <label for="nombre_cliente" class="">Cliente a visitar
+                                        <div class="row mt-2">
+                                            <div class="form-group d-flex flex-column">
+                                                <label for="nombre_cliente" class="fs-14">Nombre cliente
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input name="nombre_cliente" type="text" class="form-control w-100 w-md-50" id="nombre_cliente">
+                                                <input name="nombre_cliente" type="text" class="form-control" id="nombre_cliente" required>
+                                            </div>
+                                        </div>
+                                `;
+
+                                // =============================================
+                                
+                                formCalendarioVisita += `
+                                        <div class="row mt-12">
+                                            <div class="form-group d-flex flex-column">
+                                                <label for="celular" class="fs-14">Celular
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="celular" type="text" class="form-control" id="celular" required>
                                             </div>
                                         </div>
                                 `;
 
                                 // =============================================
 
-                                // formCalendarioVisita += `
-                                //     <div class="row">
-                                //         <div class="col-md-12">
-                                //             <label for="id_tipo_categoria" style="font-size:20px;" class="d-flex mt-5">Tipo Categoria<span class="text-danger">*</span></label>
-                                //             <select class="form-control form-control-line select2 chosen swal" id="id_tipo_categoria" name="id_tipo_categoria" required>
-                                //                 <option value="" selected >Seleccione Categoria...</option>
-                                // `;
-                                //         $.each(tipo_categoria, function(id_categoria, categoria_infra){
-                                //             formCalendarioVisita += ' <option value="'+id_categoria+'">'+categoria_infra+'</option>'
-                                //         });
-                                // formCalendarioVisita += `
-                                //             </select>
-                                //         </div>
-                                //     </div>
-                                // `;
-
-                                // =============================================
-
-                                // formCalendarioVisita += `
-                                //     <div class="row ocultar" id="div_segaut_codigo_create">
-                                //         <div class="col-md-12">
-                                //             <label for="segaut_codigo_create" style="font-size:20px;" class="d-flex mt-5">Placa<span class="text-danger">*</span></label>
-                                //             <select class="form-control form-control-line select2 chosen swal" id="segaut_codigo_create" name="segaut_codigo_create" required>
-                                //                 <option value="" selected >Seleccione Placa...</option>
-                                // `;
-                                //         $.each(placa, function(id_placa, placa){
-                                //             formCalendarioVisita += ' <option value="'+id_placa+'">'+placa+'</option>'
-                                //         });
-                                // formCalendarioVisita += `
-                                //             </select>
-                                //         </div>
-                                //     </div>
-                                // `;
-
-                                // =============================================
-
-                                // formCalendarioVisita += `
-                                //     <div class="row">
-                                //         <div class="col-md-12">
-                                //             <label for="sed_codigo" style="font-size:20px;" class="d-flex mt-5">Sede<span class="text-danger">*</span></label>
-                                //             <select class="form-control form-control-line select2 chosen swal" id="sed_codigo" name="sed_codigo" required>
-                                //                 <option value="" selected >Seleccione Sede...</option>
-                                // `;
-                                //         $.each(sede, function(id_sede, sede){
-                                //             formCalendarioVisita += ' <option value="'+id_sede+'">'+sede+'</option>'
-                                //         });
-                                // formCalendarioVisita += `
-                                //             </select>
-                                //         </div>
-                                //     </div>
-                                // `;
-
-                                // =============================================
-
-                                // formCalendarioVisita += `
-                                //     <div class="row">
-                                //         <div class="col-md-12">
-                                //             <label for="id_tipo_mtto" style="font-size:20px;" class="d-flex mt-5">Tipo Mantenimiento<span class="text-danger">*</span></label>
-                                //             <select class="form-control form-control-line select2 chosen swal" id="id_tipo_mtto" name="id_tipo_mtto" required>
-                                //                 <option value="" selected >Seleccione Tipo Mtto...</option>
-                                // `;
-                                //         $.each(tipo_mantenimiento, function(id_mtto, mtto){
-                                //             formCalendarioVisita += ' <option value="'+id_mtto+'">'+mtto+'</option>'
-                                //         });
-                                // formCalendarioVisita += `
-                                //             </select>
-                                //         </div>
-                                //     </div>
-                                // `;
-
-                                // =============================================
-
-                                // formCalendarioVisita += `
-                                //     <div class="row">
-                                //         <div class="col-md-12">
-                                //             <label for="id_proveedor" style="font-size:20px;" class="d-flex mt-5">Proveedor</label>
-                                //             <select class="form-control form-control-line select2 chosen swal" id="id_proveedor" name="id_proveedor">
-                                //                 <option value="" selected >Seleccione Proveedor...</option>
-                                // `;
-                                //         $.each(proveedores, function(id_proveedor, proveedor){
-                                //             formCalendarioVisita += ' <option value="'+id_proveedor+'">'+proveedor+'</option>'
-                                //         });
-                                // formCalendarioVisita += `
-                                //             </select>
-                                //         </div>
-                                //     </div>
-                                // `;
+                                formCalendarioVisita += `
+                                    <div class="row mt-2">
+                                        <div class="form-group d-flex flex-column">
+                                            <label for="tipo_inmueble" class="fs-14">Tipo Inmueble
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="form-control" id="tipo_inmueble" name="tipo_inmueble" required>
+                                                <option value="" selected >Seleccione...</option>
+                                `;
+                                        $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
+                                            formCalendarioVisita += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
+                                        });
+                                formCalendarioVisita += `
+                                            </select>
+                                        </div>
+                                    </div>
+                                `;
 
                                 // =============================================
 
                                 formCalendarioVisita += `
-                                    <input type="submit" class="btn btn-primary mt-5" value="Crear Visita">
+                                    <div class="row mt-2">
+                                        <div class="form-group d-flex flex-column">
+                                            <label for="ciudad" class="fs-14">Municipio
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="form-control" id="ciudad" name="ciudad" required>
+                                                <option value="" selected >Seleccione...</option>
+                                `;
+                                        $.each(ciudades, function(idCiudad, ciudad){
+                                            formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                        });
+                                formCalendarioVisita += `
+                                            </select>
+                                        </div>
+                                    </div>
+                                `;
+
+                                // =============================================
+
+                                formCalendarioVisita += `
+                                        <div class="row mt-12">
+                                            <div class="form-group d-flex flex-column">
+                                                <label for="barrio" class="fs-14">Barrio
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="barrio" type="text" class="form-control" id="barrio" required>
+                                            </div>
+                                        </div>
+                                `;
+
+                                // =============================================
+                                
+                                formCalendarioVisita += `
+                                        <div class="row mt-12">
+                                            <div class="form-group d-flex flex-column">
+                                                <label for="direccion" class="fs-14">Dirección
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="direccion" type="text" class="form-control" id="direccion" required>
+                                            </div>
+                                        </div>
+                                `;
+
+                                // =============================================
+                                
+                                formCalendarioVisita += `
+                                    <div class="row mt-2">
+                                        <div class="form-group d-flex flex-column">
+                                            <label for="visitado" class="fs-14">visitado
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="form-control" id="visitado" name="visitado" required>
+                                                <option value="" selected >Seleccione...</option>
+                                                <option value="true">Visitado</option>
+                                                <option value="false">No visitado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                `;
+
+                                // =============================================
+
+                                formCalendarioVisita += `
+                                    <input type="submit" class="btn btn-primary mt-3" value="Crear Visita">
                                 `;
 
                                 // =============================================
@@ -294,6 +339,7 @@
                                     cancelButtonAriaLabel: 'Thumbs down',
                                     allowOutsideClick: false,
                                     padding:'3em',
+                                    position: 'bottom',
                                 });
 
                                 //=======================================//
@@ -369,6 +415,7 @@
                         // EDITAR
                         eventClick:function(event)
                         {
+                            console.log(`id de la visita ${event.id}`);
                             // if(confirm("Are you sure you want to remove it?"))
                             // {
                             //     var id = event.id;

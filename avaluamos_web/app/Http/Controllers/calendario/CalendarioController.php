@@ -11,6 +11,10 @@ use Exception;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
 use App\Http\Controllers\admin\AdministradorController;
+use App\Http\Responsable\calendario\CalendarioStore;
+use App\Http\Responsable\calendario\CalendarioUpdate;
+use App\Models\TipoInmueble;
+use App\Models\Ciudad;
 
 class CalendarioController extends Controller
 {
@@ -31,7 +35,7 @@ class CalendarioController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                // $this->shareData();
+                $this->shareData();
                 return view('calendario.index');
             }
         } catch (Exception $e) {
@@ -39,6 +43,8 @@ class CalendarioController extends Controller
             return back();
         }
     }
+
+    // ======================================================================
 
     /**
      * Show the form for creating a new resource.
@@ -50,6 +56,8 @@ class CalendarioController extends Controller
         //
     }
 
+    // ======================================================================
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,72 +66,25 @@ class CalendarioController extends Controller
      */
     public function store(Request $request)
     {
-        // try 
-        // {
-        //     DB::connection('compras')->beginTransaction();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     //==============================================================//
-            
-        //     if(!Auth::check())
-        //     {
-        //         return redirect()->to(route('login'));
-        //         exit;
-        //     }
-            
-        //     //==============================================================//
-
-        //     $this->validate($request, [
-        //         // 'fecha_mtto_programado' => 'required',
-        //     ]);
-
-        //     //==============================================================//
-
-        //     $fecha_mtto_programado = Carbon::parse(request('fecha_mtto_programado', null));
-        //     $fecha_mtto_programado_meses = Carbon::parse(request('fecha_mtto_programado', null));
-        //     $id_tipo_categoria = request('id_tipo_categoria', null );
-        //     $segaut_codigo_create = request('segaut_codigo_create', null );
-        //     $id_tipo_mtto = request('id_tipo_mtto', null);
-        //     $sed_codigo = request('sed_codigo', null);
-        //     $id_proveedor = request('id_proveedor', null);
-        //     $usu_codigo = auth()->user()->usu_codigo;
-
-        //     // dd($segaut_codigo_create);
-
-        //     $frecuencia_mtto_categoria = TipoCategoria::select('frecuencia_mtto')->where('id_tipo_categoria', $id_tipo_categoria)->first();
-            
-        //     if ( isset($frecuencia_mtto_categoria->frecuencia_mtto) && !is_null($frecuencia_mtto_categoria->frecuencia_mtto) && !empty($frecuencia_mtto_categoria->frecuencia_mtto) )
-        //     {
-        //         $fecha_mtto_proximo = $fecha_mtto_programado_meses->addMonths($frecuencia_mtto_categoria->frecuencia_mtto);
-        //     }
-        //     else
-        //     {
-        //         $fecha_mtto_proximo = $fecha_mtto_programado;
-        //     }
-
-        //     //==============================================================/
-
-        //     $registro = CronogramaInfraestructura::create([
-        //         'fecha_mtto_programado' => $fecha_mtto_programado->timestamp,
-        //         'fecha_mtto_proximo' => $fecha_mtto_proximo->timestamp,
-        //         'usu_codigo' => $usu_codigo,
-        //         'id_tipo_categoria' => $id_tipo_categoria,
-        //         'segaut_codigo' => $segaut_codigo_create,
-        //         'sed_codigo' => $sed_codigo,
-        //         'id_tipo_mtto' => $id_tipo_mtto,
-        //         'id_proveedor' => $id_proveedor,
-        //     ]);
-        //     DB::connection('compras')->commit();
-
-        //     alert()->success('Mantenimiento a Infraestructura creado correctamente.');
-        //     return redirect('/compras/cronograma_mtto_infra');
-        // }
-        // catch (Exception $e)
-        // {
-        //     dd($e);
-        //     DB::connection('compras')->rollBack();
-        //     alert()->error('Ha ocurrido un error, íntente de nuevo si el problema persiste, contacte el área de sistemas.');
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new CalendarioStore();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
+
+    // ======================================================================
 
     /**
      * Display the specified resource.
@@ -136,6 +97,8 @@ class CalendarioController extends Controller
         //
     }
 
+    // ======================================================================
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -147,6 +110,8 @@ class CalendarioController extends Controller
         //
     }
 
+    // ======================================================================
+
     /**
      * Update the specified resource in storage.
      *
@@ -156,83 +121,8 @@ class CalendarioController extends Controller
      */
     public function update(Request $request)
     {
-        // DB::connection('compras')->beginTransaction();
-
-        //==============================================================//
-
-        // $id_infra_cronograma_editar = request('id_infra_cronograma_editar', null);
-        // $id_tipo_categoria_editar = request('id_tipo_categoria_editar', null);
-        // $id_placa_editar = request('id_placa_editar', null);
-        // $sed_codigo_editar = request('sed_codigo_editar', null);
-        // $id_tipo_mtto_editar = request('id_tipo_mtto_editar', null);
-        // $id_proveedor_editar = request('id_proveedor_editar', null);
-        // $fecha_mtto_programado_editar = Carbon::parse(request('fecha_mtto_programado_editar', null));
-        // $fecha_mtto_programado_editar_meses = Carbon::parse(request('fecha_mtto_programado_editar', null));
-        // $segaut_codigo_editar = request('segaut_codigo_editar', null);
         
-        // $frecuencia_mtto_categoria = TipoCategoria::select('frecuencia_mtto')->where('id_tipo_categoria', $id_tipo_categoria_editar)->first();
-
-        // if ( isset($frecuencia_mtto_categoria->frecuencia_mtto) && !is_null($frecuencia_mtto_categoria->frecuencia_mtto) && !empty($frecuencia_mtto_categoria->frecuencia_mtto) )
-        // {
-        //     $fecha_mtto_proximo_editar = $fecha_mtto_programado_editar_meses->addMonths($frecuencia_mtto_categoria->frecuencia_mtto);
-        // }
-        // else {
-        //     $fecha_mtto_proximo_editar = $fecha_mtto_programado_editar;
-        // }
-
-        //===============================
-
-        // $fecha_mtto_ejecutado_editar = Carbon::parse(request('fecha_mtto_ejecutado_editar', null));
-        
-        // if ( $fecha_mtto_programado_editar == $fecha_mtto_ejecutado_editar )
-        // {
-        //     $fecha_mtto_ejecutado_editar = $fecha_mtto_programado_editar->timestamp;
-        // } else {
-        //     $fecha_mtto_ejecutado_editar = null;
-        // }
-        
-        //==============================================================//
-
-        // try
-        // {
-        //     if(!Auth::check())
-        //     {
-        //         return redirect()->to(route('login'));
-        //         exit;
-        //     }
-            
-        //     //==============================================================//
-
-        //     $evento_update = DB::table('compras.cronograma_infraestructura')
-        //                     ->where('id_infra_cronograma', $id_infra_cronograma_editar)
-        //                     ->update([
-        //                         'id_tipo_categoria' => $id_tipo_categoria_editar,
-        //                         'sed_codigo' => $sed_codigo_editar,
-        //                         'id_tipo_mtto' => $id_tipo_mtto_editar,
-        //                         'id_proveedor' => $id_proveedor_editar,
-        //                         'fecha_mtto_ejecutado' => $fecha_mtto_ejecutado_editar,
-        //                         'fecha_mtto_proximo' => $fecha_mtto_proximo_editar->timestamp,
-        //                         'segaut_codigo' => $segaut_codigo_editar,
-        //                     ]);
-
-        //     if ($evento_update) {
-        //         DB::connection('compras')->commit();
-        //         alert()->success('Evento editado correctamente');
-        //         return back();
-
-        //     }else {
-        //         DB::connection("compras")->rollback();
-        //         alert()->error('Ha ocurrido un error editando el evento');
-        //         return back();
-        //     }
-        // }
-        // catch (Exception $e)
-        // {
-        //     dd($e);
-        //     DB::connection('compras')->rollBack();
-        //     alert()->error('Ha ocurrido un error, intente de nuevo si el problema persiste, contacte el área de sistemas.');
-        //     return back();
-        // }
+       
     }
 
     // ========================================================
@@ -250,6 +140,18 @@ class CalendarioController extends Controller
 
     // ========================================================
 
+    //=========================================================
+    //=========================================================
+
+    private function shareData()
+    {
+        view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
+        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+    }
+
+    //=========================================================
+    //=========================================================
+
     public function consultarVisitasCalendario()
     {
         try {
@@ -260,7 +162,8 @@ class CalendarioController extends Controller
                                         'id_visita_calendario',
                                         'nombre_cliente',
                                         'municipio',
-                                        'fecha_visita_calendario',
+                                        'descripcion_ciudad',
+                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
                                         'visita_cumplida'
                                     )
                                     ->get();
@@ -269,7 +172,7 @@ class CalendarioController extends Controller
 
             foreach ($consultarVisitasCalendario as $visita)
             {
-                if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && $visita->visita_cumplida && !empty($visita->visita_cumplida)) {
+                 if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && $visita->visita_cumplida && !empty($visita->visita_cumplida) && $visita->visita_cumplida!= 0) {
                     $colorVisita = "#449D44";
                 } else {
                     $colorVisita = "#EC971F";
@@ -278,7 +181,7 @@ class CalendarioController extends Controller
                 array_push($arrayVisitasCalendario,
                     array(
                         "id" => $visita->id_visita_calendario,
-                        "title" => $visita->nombre_cliente . "\n" . $visita->municipio,
+                        "title" => "\n". $visita->nombre_cliente ."\n". $visita->descripcion_ciudad,
                         "start" => $visita->fecha_visita_calendario,
                         "color" => $colorVisita,
                     )
