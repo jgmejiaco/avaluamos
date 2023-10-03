@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responsable\visita;
+namespace App\Http\Responsable\calendario;
 
 use App\User;
 use Exception;
@@ -8,27 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Persona;
-use App\Models\Usuario;
-use Jenssegers\Date\Date;
-use App\Models\Visita;
-use App\Models\InfoJuridica;
-use App\Models\InfoInmueble;
-use App\Models\CaracteristicasInmueble;
-use App\Models\AcabadosInmueble;
-use App\Models\CalificacionInmueble;
-use App\Models\DotacionComunal;
-use App\Models\InfoSector;
-use App\Models\CondicionesUrbanisticas;
-use App\Models\ObservacionesGenerales;
-use App\Models\RegistroFotografico;
-use App\Models\ValorEstimadoAvaluo;
+use App\Models\Calendario;
 
 class CalendarioUpdate implements Responsable
 {
     public function toResponse($request)
     {
+        dd($request);
         $idVisita = request('id_visita', null);
         $idSistemaConstructivo = request('id_sistema_constructivo', null);
         $portonPrincipal = request('porton_principal', null);
@@ -55,7 +41,7 @@ class CalendarioUpdate implements Responsable
         DB::connection('mysql')->beginTransaction();
 
         try {
-            $editarAcabadosInmueble = AcabadosInmueble::where('id_visita', $idVisita)
+            $editarAcabadosInmueble = Calendario::where('id_visita', $idVisita)
                 ->update([
                     'id_sistema_constructivo' => $idSistemaConstructivo,
                     'porton_principal' => $portonPrincipal,

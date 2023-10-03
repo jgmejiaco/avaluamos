@@ -86,6 +86,8 @@ use Illuminate\Support\Facades\Route;
     // RUTAS DEL CALENDARIO
     Route::resource('calendario', 'calendario\CalendarioController');
     Route::post('consultar_visitas_calendario', 'calendario\CalendarioController@consultarVisitasCalendario')->name('consultar_visitas_calendario');
+    Route::post('consultar_visita_calendario', 'calendario\CalendarioController@consultarVisitaCalendario')->name('consultar_visita_calendario');
+    Route::get('editar_visita_calendario', 'calendario\CalendarioController@update')->name('editar_visita_calendario');
 
     // ========================================================================
 // });

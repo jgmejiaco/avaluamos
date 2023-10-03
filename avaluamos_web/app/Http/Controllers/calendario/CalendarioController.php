@@ -121,8 +121,22 @@ class CalendarioController extends Controller
      */
     public function update(Request $request)
     {
-        
-       
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new CalendarioUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     // ========================================================
@@ -181,7 +195,7 @@ class CalendarioController extends Controller
                 array_push($arrayVisitasCalendario,
                     array(
                         "id" => $visita->id_visita_calendario,
-                        "title" => "\n". $visita->nombre_cliente ."\n". $visita->descripcion_ciudad,
+                        "title" => "\n". $visita->nombre_cliente ." - ". $visita->descripcion_ciudad,
                         "start" => $visita->fecha_visita_calendario,
                         "color" => $colorVisita,
                     )
@@ -191,39 +205,45 @@ class CalendarioController extends Controller
             return response()->json(["visitas_calendario" => $arrayVisitasCalendario]);
         }
         catch (Exception $e) {
-            dd($e);
+            alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
+            return back();
         }
     }
 
     // ========================================================
 
-    // public function consultarEventoInfraEdicion(Request $request)
-    // {
-    //     try {
-    //         $consulta_evento_infra_edicion = DB::table('compras.cronograma_infraestructura')
-    //                                 ->leftjoin('public.sedes', 'sedes.sed_codigo', '=', 'cronograma_infraestructura.sed_codigo')
-    //                                 ->leftjoin('public.usuarios', 'usuarios.usu_codigo', '=', 'cronograma_infraestructura.usu_codigo')
-    //                                 ->leftjoin('compras.tickets', 'tickets.tic_codigo', '=', 'cronograma_infraestructura.tic_codigo')
-    //                                 ->leftjoin('compras.tipo_categorias', 'tipo_categorias.id_tipo_categoria', '=', 'cronograma_infraestructura.id_tipo_categoria')
-    //                                 ->leftjoin('polizas.tipo_mantenimiento', 'tipo_mantenimiento.id_tipo_mtto', '=', 'cronograma_infraestructura.id_tipo_mtto')
-    //                                 ->leftjoin('facturacion.proveedores', 'proveedores.id_proveedor', '=', 'cronograma_infraestructura.id_proveedor')
-    //                                 ->leftjoin('polizas.seguro_vehiculo', 'seguro_vehiculo.segaut_codigo', '=', 'cronograma_infraestructura.segaut_codigo')
-    //                                 ->select(
-    //                                     DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_programado), \'YYYY-MM-DD\') as fecha_programado'),
-    //                                     DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_ejecutado), \'YYYY-MM-DD\') as fecha_ejecutado'),
-    //                                     DB::raw('to_char(to_timestamp(cronograma_infraestructura.fecha_mtto_proximo), \'YYYY-MM-DD\') as fecha_proximo'),
-    //                                     'usuarios.usu_usuario','sedes.sed_codigo','sedes.sed_descripcion','tipo_categorias.descripcion_categoria','tickets.tic_codigo','tipo_mantenimiento.id_tipo_mtto','tipo_mantenimiento.mtto_descripcion','proveedores.razon_social', 'proveedores.id_proveedor', 'cronograma_infraestructura.id_infra_cronograma', 'tipo_categorias.id_tipo_categoria', 'tipo_categorias.frecuencia_mtto','tickets.tic_codigo', 'seguro_vehiculo.segaut_codigo', 'seguro_vehiculo.placa','tipo_categorias.color_categoria')
-    //                                 ->where('id_infra_cronograma', $request->id_infra_cronograma)
-    //                                 ->first();
+    public function consultarVisitaCalendario(Request $request)
+    {
+        $idVisitaCalendario = request('id_visita_calendario', null);
+        // dd($idVisitaCalendario);
 
-    //         // dd($consulta_evento_infra_edicion);
+        try {
+            $consultarVisitaCalendario = DB::table('calendario')
+                                    ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
+                                    ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
+                                    ->select(
+                                        'id_visita_calendario',
+                                        'nombre_cliente',
+                                        'celular',
+                                        'calendario.tipo_inmueble as t_inmueble',
+                                        'tipo_inmueble.tipo_inmueble',
+                                        'municipio',
+                                        'descripcion_ciudad',
+                                        'calendario.barrio',
+                                        'calendario.direccion',
+                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d") as fecha_visita_calendario'),
+                                        'visita_cumplida'
+                                    )
+                                    ->where('id_visita_calendario', $idVisitaCalendario)
+                                    ->first();
 
-    //         return response()->json($consulta_evento_infra_edicion);
-    //     }
-    //     catch (Exception $th) {
-    //         dd($th);
-    //     }
-    // }
+            return response()->json($consultarVisitaCalendario);
+        }
+        catch (Exception $e) {
+            alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
+            return back();
+        }
+    }
 
     
 }

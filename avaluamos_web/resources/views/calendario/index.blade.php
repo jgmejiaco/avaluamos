@@ -9,6 +9,21 @@
         .fs-14 {
             font-size: 14px;
         }
+
+        .flex-row-edit {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .flex-column-edit {
+            display: flex;
+            flex-direction: column;
+            width: 47%;
+        }
+
+        /* .w-100 {
+            width: 100% !important;
+        } */
         .select2-container{
             z-index: 99999 !important;
         }
@@ -48,7 +63,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card">
-                        <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
+                        <div class="card-header d-flex flex-md-row justify-content-between align-items-center">
                             <h4 class="card-title text-themecolor m-t-10 pointer mostrar_ocultar_campos">Cronograma</h4>
                         </div>
                         {{-- ======================== --}}
@@ -144,25 +159,25 @@
                         defaultView: 'month',
                         firstDay: 1, // Monday (0=sunday)
                         weekNumbers: true,
-                        allDaySlot: false, // true, false
-                        eventLimit: true,
-                        eventDurationEditable: true,
-                        weekends: true, // show (true) the weekend or not (false)
-                        weekType: 'agendaWeek',
-                        dayType: 'agendaDay',
+                        eventLimit: false,
+                        // allDaySlot: false, // true, false
+                        // eventDurationEditable: true,
+                        // weekends: true, // show (true) the weekend or not (false)
+                        // weekType: 'agendaWeek',
+                        // dayType: 'agendaDay',
                         eventOverlap: true,
                         nowIndicator:true,
                         disableDragging: false,
                         disableResizing: false,
-                        lazyFetching: false, // Don't change this to true or month view wont work.
-                        filter: false,
-                        quickSave: false,
+                        // lazyFetching: false, // Don't change this to true or month view wont work.
+                        // filter: false,
+                        // quickSave: false,
                         fixedWeekCount: 'true', // true, false
                         slotEventOverlap: true,
                         slotLabelFormat: 'h:mma',
                         slotDuration: "00:15:00",
-                        slotLabelInterval: 10,
-                        buttonIcons:false,
+                        slotLabelInterval: 5,
+                        // buttonIcons:true,
                         
                         // ===============================================
 
@@ -328,6 +343,8 @@
                             
                                 swal({
                                     title: '<strong>AGENDAMIENTO</strong>',
+                                    icon: 'warning',
+                                    type: 'warning',
                                     html: formCalendarioVisita,
                                     showCancelButton: false,
                                     cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
@@ -385,54 +402,194 @@
                                     type: 'error'
                                 });
                             }
-                
-                            // if(title)
-                            // {
-                            //     var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-                
-                            //     var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-                
-                            //     $.ajax({
-                            //         url:"/full-calender/action",
-                            //         type:"POST",
-                            //         data:{
-                            //             title: title,
-                            //             start: start,
-                            //             end: end,
-                            //             type: 'add'
-                            //         },
-                            //         success:function(data)
-                            //         {
-                            //             calendar.fullCalendar('refetchEvents');
-                            //             alert("Event Created Successfully");
-                            //         }
-                            //     })
-                            // }
                         },
 
                         // ===============================================
-                        
+                        // 'route'=>['calendario.update',${idVisita}],
                         // EDITAR
-                        eventClick:function(event)
+                        eventClick:function(visita)
                         {
-                            console.log(`id de la visita ${event.id}`);
-                            // if(confirm("Are you sure you want to remove it?"))
-                            // {
-                            //     var id = event.id;
-                            //     $.ajax({
-                            //         url:"/full-calender/action",
-                            //         type:"POST",
-                            //         data:{
-                            //             id:id,
-                            //             type:"delete"
-                            //         },
-                            //         success:function(response)
-                            //         {
-                            //             calendar.fullCalendar('refetchEvents');
-                            //             alert("Event Deleted Successfully");
-                            //         }
-                            //     })
-                            // }
+                            console.log(`id de la visita ${visita.id}`);
+                            idVisita = visita.id;
+
+                            $.ajax({
+                                url: "{{route('consultar_visita_calendario')}}",
+                                type: 'POST',
+                                dataType: 'JSON',
+                                data:{'id_visita_calendario':idVisita},
+                                success:function(response)
+                                {
+                                    console.log(response.id_visita_calendario);
+                                    let formCalendarioVisitaEditar = '';
+
+                                    formCalendarioVisitaEditar += `
+                                    {!! Form::open(['method' => 'POST', 'id'=>'form_calendario_visita_editar', 'class'=>'form-material','route'=>['editar_visita_calendario'],  'accept-charset' => 'UTF-8']) !!}
+                                    @csrf
+                                    `;
+                                        // =============================================
+                                        
+                                        formCalendarioVisitaEditar += `<input name="id_visita_calendario_editar" type="hidden" id="id_visita_calendario_editar" value="${response.id_visita_calendario}"><br>`;
+
+                                        // =============================================
+
+                                        formCalendarioVisitaEditar += `
+                                            <div class="flex-row-edit mt-2">
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="nombre_cliente_editar" class="fs-14">Nombre cliente
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input name="nombre_cliente_editar" type="text" class="form-control" id="nombre_cliente_editar" value="${response.nombre_cliente}" required>
+                                                </div>
+
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="celular_editar" class="fs-14">Celular
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input name="celular_editar" type="text" class="form-control" id="celular_editar" value="${response.celular}" required>
+                                                </div>
+                                            </div>
+                                        `;
+
+                                        // =============================================
+
+                                        formCalendarioVisitaEditar += `
+                                            <div class="flex-row-edit mt-2">
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="tipo_inmueble_editar" class="fs-14">Tipo Inmueble
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-control w-100" id="tipo_inmueble_editar" name="tipo_inmueble_editar" required>
+                                                        <option value="${response.t_inmueble}" selected >${response.tipo_inmueble}</option>
+                                        `;
+                                                        $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
+                                                            formCalendarioVisitaEditar += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
+                                                        });
+                                        formCalendarioVisitaEditar += `
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="ciudad_editar" class="fs-14">Municipio
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
+                                                        <option value="${response.municipio}" selected >${response.descripcion_ciudad}</option>
+                                        `;
+                                                        $.each(ciudades, function(idCiudad, ciudad){
+                                                            formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                                        });
+                                        formCalendarioVisitaEditar += `
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        `;
+
+                                        // =============================================
+
+                                        formCalendarioVisitaEditar += `
+                                            <div class="flex-row-edit mt-2">
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="barrio_editar" class="fs-14">Barrio
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input name="barrio_editar" type="text" class="form-control" id="barrio_editar" value="${response.barrio}" required>
+                                                </div>
+
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="direccion_editar" class="fs-14">Dirección
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input name="direccion_editar" type="text" class="form-control" id="direccion_editar" value="${response.direccion}" required>
+                                                </div>
+                                            </div>
+                                        `;
+
+                                        // =============================================
+                                        
+                                        formCalendarioVisitaEditar += `
+                                            <div class="flex-row-edit mt-2">
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="fecha_visita_editar" class="fs-14">Fecha Visita
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="date" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
+                                                </div>
+
+                                                <div class="form-group flex-column-edit">
+                                                    <label for="visitado_editar" class="fs-14">visitado
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-control" id="visitado_editar" name="visitado_editar" required>
+                                                        <option value="${response.visita_cumplida}" selected >${response.visita_cumplida}</option>
+                                                        <option value="0">Visitado</option>
+                                                        <option value="1">No visitado</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        `;
+
+                                        // =============================================
+
+                                    formCalendarioVisitaEditar += `
+                                        <input type="submit" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
+                                    `;
+
+                                    // =============================================
+                                    
+                                    formCalendarioVisitaEditar += `
+                                        {!! Form::close() !!}
+                                    `;
+
+                                    // =============================================
+
+                                    swal({
+                                        icon: 'info',
+                                        type: 'info',
+                                        title: '<strong>Editar Visita</strong>',
+                                        html: formCalendarioVisitaEditar,
+                                        showCancelButton: false,
+                                        cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
+                                        showCloseButton: true,
+                                        focusConfirm: false,
+                                        showConfirmButton: false,
+                                        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Guardar!',
+                                        confirmButtonAriaLabel: 'Thumbs up, great!',
+                                        cancelButtonAriaLabel: 'Thumbs down',
+                                        allowOutsideClick: false,
+                                        padding:'2em',
+                                        position: 'center',
+                                        width: 500,
+                                    });
+
+                                    // INICIO - Estilo Calendario
+                                    // let minDate = moment().subtract(120, 'years');
+                                    // optionsDatePicker.timePicker24Hour = false;
+                                    // optionsDatePicker.locale.format='DD-MM-YYYY';
+                                    // optionsDatePicker.timePicker = false;
+                                    // optionsDatePicker.autoUpdateInput = false;
+                                    // optionsDatePicker.minDate = minDate.format('DD-MM-YYYY');
+                                    // optionsDatePicker.drops = 'up';
+                                    // FIN - Estilo Calendario
+                                    
+                                    // $('.datapicker').daterangepicker(optionsDatePicker).on('apply.daterangepicker', function(ev, picker) {
+                                    //     $(this).val(picker.startDate.format('DD-MM-YYYY'));
+                                    // });
+
+                                    // $('.fecha_mtto_ejecutado_editar').val('');
+
+                                    //=======================================//
+
+                                    // $('.chosen.swal').select2({});
+
+                                    // =============================================
+
+                                    
+
+                                    // =============================================
+
+                                    
+                                }
+                            });
                         },
 
                         // ===============================================
