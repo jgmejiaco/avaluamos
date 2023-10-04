@@ -1,8 +1,7 @@
 @extends('layouts.app')
-{{-- @section('title', 'Avaluamos') --}}
+@section('title', 'Inicio')
 @section('css')
-    <style>
-    </style>
+    
 @endsection
 
 {{-- ============================================================================================ --}}
@@ -13,7 +12,7 @@
     {{-- Bread crumb and right sidebar toggle --}}
     {{-- <div class="row page-titles"> --}}
         {{-- <div class="col-md-5 col-8 align-self-center"> --}}
-            <h3 class="text-themecolor m-b-0 m-t-0">Inicio Avaluamos</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">Home</h3>
         {{-- </div> --}}
     {{-- </div> --}}
     {{-- End Bread crumb and right sidebar toggle --}}

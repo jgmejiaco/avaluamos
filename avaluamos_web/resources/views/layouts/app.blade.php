@@ -60,9 +60,9 @@
             <div class="row">
                 {{-- ===================================== --}}
                 @if(Request()->path() == '/' || Request()->path() == "login")
-                    <div class="col-12 p-0">
+                    {{-- <div class="col-12 p-0"> --}}
                         @include('layouts.topbar_login')
-                    </div>
+                    {{-- </div> --}}
                 @else
                     @include('layouts.topbar')
                 @endif

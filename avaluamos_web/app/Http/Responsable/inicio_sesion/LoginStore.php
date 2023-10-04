@@ -2,11 +2,9 @@
 
 namespace App\Http\Responsable\inicio_sesion;
 
-use App\User;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 
 class LoginStore implements Responsable
@@ -43,7 +41,9 @@ class LoginStore implements Responsable
                 if($user->id_rol == 1 || $user->id_rol == "1") {
                     // ROL ADMINISTRADOR
                     $this->crearVariablesSesion($user);
-                    return redirect()->to(route('administrador.index'));
+                    // return redirect()->to(route('administrador.index'));
+                    // return redirect()->to(route('home'));
+                    return view('home');
                 }
                 else {
                     // Si el rol es diferente a los mencionados, mostramos mensaje

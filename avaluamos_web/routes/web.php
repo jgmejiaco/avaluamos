@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/', function () {
         return view('inicio_sesion.login');
+        // return view('home');
     })->name('inicio');
 
     // RUTA COMPROBAR CONEXIÓN BASE DE DATOS
@@ -30,6 +31,11 @@ use Illuminate\Support\Facades\Route;
     Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_usuario');
     Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
 
+    // ========================================================================
+    
+    // RUTA AL INICIAR SESIÓN
+    Route::resource('home', 'HomeController');
+    
     // ========================================================================
 
     // RUTAS DEL ADMINISTRADOR
