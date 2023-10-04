@@ -302,7 +302,7 @@
                                     cancelButtonAriaLabel: 'Thumbs down',
                                     allowOutsideClick: false,
                                     padding:'2em',
-                                    position: 'center',
+                                    position: 'bottom',
                                     width: 500,
                                 });
 
@@ -557,7 +557,7 @@
                                         cancelButtonAriaLabel: 'Thumbs down',
                                         allowOutsideClick: false,
                                         padding:'2em',
-                                        position: 'center',
+                                        position: 'bottom',
                                         width: 500,
                                     });
 
