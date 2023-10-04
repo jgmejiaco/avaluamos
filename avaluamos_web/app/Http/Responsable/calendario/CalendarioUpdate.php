@@ -35,7 +35,7 @@ class CalendarioUpdate implements Responsable
         if ($visitadoEditar != null || $visitadoEditar != "") {
             $visitadoEditar = request('visitado_editar', null);
         } else {
-            $visitadoEditar = null;
+            $visitadoEditar = 2;
         }
 
         // ==============================================================================

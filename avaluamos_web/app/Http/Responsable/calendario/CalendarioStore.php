@@ -34,7 +34,7 @@ class CalendarioStore implements Responsable
         if ($visitado != null || $visitado != "") {
             $visitado = request('visitado', null);
         } else {
-            $visitado = null;
+            $visitado = 2;
         }
        
         // ==============================================================================

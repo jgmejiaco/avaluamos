@@ -135,7 +135,7 @@
                         header:{
                             left:'prev,next today',
                             center:'title',
-                            right:'month,agendaWeek,agendaDay'
+                            right:'month,agendaWeek,agendaDay',
                         },
                         events: visitasCalendario,
                         selectable:true,
@@ -143,30 +143,13 @@
                         eventRender: function (event, element) {}, // Renderiza el Calendario
                         editable:true,
                         locale: 'es',
-                        defaultView: 'month',
                         firstDay: 1, // Monday (0=sunday)
                         weekNumbers: true,
-                        eventLimit: false,
                         timezone: 'America/Bogota',
-                        // allDaySlot: false, // true, false
-                        // eventDurationEditable: true,
-                        // weekends: true, // show (true) the weekend or not (false)
-                        // weekType: 'agendaWeek',
-                        // dayType: 'agendaDay',
-                        // eventOverlap: true,
-                        // nowIndicator:true,
-                        // disableDragging: false,
-                        // disableResizing: false,
-                        // lazyFetching: false, // Don't change this to true or month view wont work.
-                        // filter: false,
-                        // quickSave: false,
-                        // fixedWeekCount: 'true', // true, false
-                        // slotEventOverlap: true,
-                        // slotLabelFormat: 'h:mm',
-                        // slotDuration: "00:15:00",
-                        // slotLabelInterval: 5,
-                        // buttonIcons:true,
-                        
+                        timeFormat: 'h:mm a',
+                        defaultView: 'month',
+                        eventLimit: false,
+
                         // ===============================================
 
                         // CREAR VISITA
@@ -677,12 +660,12 @@
                         // ========================================================================================
                         // ========================================================================================
 
-                        eventResize: function(event, delta)
-                        {
-                            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-                            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-                            var title = event.title;
-                            var id = event.id;
+                        // eventResize: function(event, delta)
+                        // {
+                            // var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                            // var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                            // var title = event.title;
+                            // var id = event.id;
                             // $.ajax({
                             //     url:"/full-calender/action",
                             //     type:"POST",
@@ -699,7 +682,7 @@
                             //         alert("Event Updated Successfully");
                             //     }
                             // })
-                        },
+                        // },
 
                         // ========================================================================================
                         // ========================================================================================
@@ -707,12 +690,12 @@
                         // ========================================================================================
                         // ========================================================================================
 
-                        eventDrop: function(event, delta)
-                        {
-                            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-                            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-                            var title = event.title;
-                            var id = event.id;
+                        // eventDrop: function(event, delta)
+                        // {
+                            // var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                            // var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                            // var title = event.title;
+                            // var id = event.id;
                             // $.ajax({
                             //     url:"/full-calender/action",
                             //     type:"POST",
@@ -729,7 +712,7 @@
                             //         alert("Event Updated Successfully");
                             //     }
                             // })
-                        },
+                        // },
                     }); // FIN Full Calendar
                 } // FIN Succes (response.visitasCalendario)
             }); // FIN AJAX
