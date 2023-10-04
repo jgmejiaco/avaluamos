@@ -38,18 +38,18 @@ class LoginStore implements Responsable
 
             if(Hash::check($clave, $user->clave)) {
                 
-                if($user->id_rol == 1 || $user->id_rol == "1") {
+                // if($user->id_rol == 1 || $user->id_rol == "1") {
                     // ROL ADMINISTRADOR
                     $this->crearVariablesSesion($user);
-                    // return redirect()->to(route('administrador.index'));
+                    return redirect()->to(route('administrador.index'));
                     // return redirect()->to(route('home'));
-                    return view('home');
-                }
-                else {
-                    // Si el rol es diferente a los mencionados, mostramos mensaje
-                    alert()->error('Error','El usuario ' . $usuario . ' tiene un rol inválido!');
-                    return back();
-                }
+                    // return view('home');
+                // }
+                // else {
+                //     // Si el rol es diferente a los mencionados, mostramos mensaje
+                //     alert()->error('Error','El usuario ' . $usuario . ' tiene un rol inválido!');
+                //     return back();
+                // }
             } else {
                 $contarClaveErronea += 1;
                 $this->actualizarClaveFallas($user->id_usuario, $contarClaveErronea);
