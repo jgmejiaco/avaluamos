@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use Carbon\Carbon;
+use Jenssegers\Date\Date;
 use Illuminate\Support\Facades\DB;
 use App\Models\Calendario;
 
@@ -14,26 +15,33 @@ class CalendarioUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        dd($request);
-        $idVisita = request('id_visita', null);
-        $idSistemaConstructivo = request('id_sistema_constructivo', null);
-        $portonPrincipal = request('porton_principal', null);
-        $idTipoFachada = request('id_tipo_fachada', null);
-        $puertas = request('puertas', null);
-        $idTipoMuro = request('id_tipo_muro', null);
-        $idVentaneria = request('id_ventaneria', null);
-        $idTipoTecho = request('id_tipo_techo', null);
-        $pisos = request('pisos', null);
-        $banios = request('banios', null);
-        $cocina = request('cocina', null);
-        $meson = request('meson', null);
-        $serviciosPublicios = request('servicios_publicos', null);
-        $telefono = request('telefono', null);
-        $energia = request('energia', null);
-        $agua = request('agua', null);
-        $gas = request('gas', null);
-        $patios = request('patios', null);
-        $obsAcabadosInmueble = request('obs_acabados_inmueble', null);
+        // dd($request);
+
+        $idVisitaEditar = request('id_visita_calendario_editar', null);
+        $fechaVisitaEditar = request('fecha_visita_editar', null);
+        $nombreClienteEditar = request('nombre_cliente_editar', null);
+        $celularEditar = request('celular_editar', null);
+        $tipoInmuebleEditar = request('tipo_inmueble_editar', null);
+        $ciudadEditar = request('ciudad_editar', null);
+        $barrioEditar = request('barrio_editar', null);
+        $direccionEditar = request('direccion_editar', null);
+        $visitadoEditar = request('visitado_editar', null);
+
+        // ==============================================================================
+        
+        if (isset($fechaVisitaEditar) && !is_null($fechaVisitaEditar) && !empty($fechaVisitaEditar)) {
+            $fechaVisitaEditar = Date::parse($fechaVisitaEditar)->timestamp;
+        } else {
+            $fechaVisitaEditar = null;
+        }
+
+        // ==============================================================================
+
+        if ($visitadoEditar == "false" || $visitadoEditar == null) {
+            $visitadoEditar = false;
+        } else {
+            $visitadoEditar = true;
+        }
 
         // ==============================================================================
         // ==============================================================================
@@ -41,38 +49,28 @@ class CalendarioUpdate implements Responsable
         DB::connection('mysql')->beginTransaction();
 
         try {
-            $editarAcabadosInmueble = Calendario::where('id_visita', $idVisita)
+            $editarVisitaCalendario = Calendario::where('id_visita_calendario', $idVisitaEditar)
                 ->update([
-                    'id_sistema_constructivo' => $idSistemaConstructivo,
-                    'porton_principal' => $portonPrincipal,
-                    'id_tipo_fachada' => $idTipoFachada,
-                    'puertas' => $puertas,
-                    'id_tipo_muro' => $idTipoMuro,
-                    'id_ventaneria' => $idVentaneria,
-                    'id_tipo_techo' => $idTipoTecho,
-                    'servicios_publicos' => $serviciosPublicios,
-                    'pisos' => $pisos,
-                    'telefono' => $telefono,
-                    'banios' => $banios,
-                    'energia' => $energia,
-                    'cocina' => $cocina,
-                    'agua' => $agua,
-                    'meson' => $meson,
-                    'gas' => $gas,
-                    'patios' => $patios,
-                    'obs_acabados_inmueble' => $obsAcabadosInmueble
+                    'fecha_visita_calendario' => $fechaVisitaEditar,
+                    'nombre_cliente' => $nombreClienteEditar,
+                    'celular' => $celularEditar,
+                    'tipo_inmueble' => $tipoInmuebleEditar,
+                    'municipio' => $ciudadEditar,
+                    'barrio' => $barrioEditar,
+                    'direccion' => $direccionEditar,
+                    'visita_cumplida' => $visitadoEditar,
             ]);
 
-            if($editarAcabadosInmueble) {
+            if($editarVisitaCalendario) {
                 DB::connection('mysql')->commit();
-                alert()->success('Proceso Exitoso', 'Acabados Inmueble editado satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                alert()->success('Proceso Exitoso', 'Visita editada satisfactoriamente');
+                // return redirect('calendario');
+                return redirect()->to(route('calendario.index'));
 
             } else {
                 DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Error al editar los Acabados Inmueble, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
-                // return redirect('editar_visita/'.$id_visita.'/actualizar#nav-familiar');
+                alert()->error('Error', 'Error al editar la visita, por favor contacte a Soporte.');
+                return redirect()->to(route('calendario.index'));
             }
         }
         catch (Exception $e)

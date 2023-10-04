@@ -64,7 +64,7 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-header d-flex flex-md-row justify-content-between align-items-center">
-                            <h4 class="card-title text-themecolor m-t-10 pointer mostrar_ocultar_campos">Cronograma</h4>
+                            <h4 class="card-title text-themecolor m-t-10 pointer mostrar_ocultar_campos">Agendamiento</h4>
                         </div>
                         {{-- ======================== --}}
                         <div class="card-body">
@@ -108,6 +108,7 @@
 
             let tipoInmuebles = @json($tipo_inmueble);
             let ciudades = @json($ciudades);
+            let siNo = @json($si_no);
 
             // ===============================================
             // ===============================================
@@ -137,20 +138,6 @@
                             right:'month,agendaWeek,agendaDay'
                         },
                         events: visitasCalendario,
-                        // events: [
-                        //     {
-                        //         id: '1',
-                        //         title: 'visita 1',
-                        //         start: '2023-10-10',
-                        //         color: '#EC971F'
-                        //     },
-                        //     {
-                        //         id: '2',
-                        //         title: 'visita 2',
-                        //         start: '2023-10-11',
-                        //         color: '#EC971F'
-                        //     },
-                        // ],
                         selectable:true,
                         selectHelper: true,
                         eventRender: function (event, element) {}, // Renderiza el Calendario
@@ -160,23 +147,24 @@
                         firstDay: 1, // Monday (0=sunday)
                         weekNumbers: true,
                         eventLimit: false,
+                        timezone: 'America/Bogota',
                         // allDaySlot: false, // true, false
                         // eventDurationEditable: true,
                         // weekends: true, // show (true) the weekend or not (false)
                         // weekType: 'agendaWeek',
                         // dayType: 'agendaDay',
-                        eventOverlap: true,
-                        nowIndicator:true,
-                        disableDragging: false,
-                        disableResizing: false,
+                        // eventOverlap: true,
+                        // nowIndicator:true,
+                        // disableDragging: false,
+                        // disableResizing: false,
                         // lazyFetching: false, // Don't change this to true or month view wont work.
                         // filter: false,
                         // quickSave: false,
-                        fixedWeekCount: 'true', // true, false
-                        slotEventOverlap: true,
-                        slotLabelFormat: 'h:mma',
-                        slotDuration: "00:15:00",
-                        slotLabelInterval: 5,
+                        // fixedWeekCount: 'true', // true, false
+                        // slotEventOverlap: true,
+                        // slotLabelFormat: 'h:mma',
+                        // slotDuration: "00:15:00",
+                        // slotLabelInterval: 5,
                         // buttonIcons:true,
                         
                         // ===============================================
@@ -215,7 +203,7 @@
                                 // =============================================
                                 
                                 formCalendarioVisita += `
-                                    <input name="fecha_visita" type="hidden" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
+                                    <input name="fecha_visita" type="text" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
                                 `;
 
                                 // =============================================
@@ -311,17 +299,20 @@
                                 `;
 
                                 // =============================================
-                                
+
                                 formCalendarioVisita += `
                                     <div class="row mt-2">
                                         <div class="form-group d-flex flex-column">
-                                            <label for="visitado" class="fs-14">visitado
+                                            <label for="visitado" class="fs-14">Visitado
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <select class="form-control" id="visitado" name="visitado" required>
                                                 <option value="" selected >Seleccione...</option>
-                                                <option value="true">Visitado</option>
-                                                <option value="false">No visitado</option>
+                                `;
+                                        $.each(siNo, function(idSiNo, dSiNo){
+                                            formCalendarioVisita += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
+                                        });
+                                formCalendarioVisita += `
                                             </select>
                                         </div>
                                     </div>
@@ -505,14 +496,14 @@
                                         `;
 
                                         // =============================================
-                                        
+                                    
                                         formCalendarioVisitaEditar += `
                                             <div class="flex-row-edit mt-2">
                                                 <div class="form-group flex-column-edit">
                                                     <label for="fecha_visita_editar" class="fs-14">Fecha Visita
                                                         <span class="text-danger">*</span>
                                                     </label>
-                                                    <input type="date" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
+                                                    <input type="datetime-local" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
                                                 </div>
 
                                                 <div class="form-group flex-column-edit">
@@ -520,9 +511,12 @@
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <select class="form-control" id="visitado_editar" name="visitado_editar" required>
-                                                        <option value="${response.visita_cumplida}" selected >${response.visita_cumplida}</option>
-                                                        <option value="0">Visitado</option>
-                                                        <option value="1">No visitado</option>
+                                                        <option value="${response.visita_cumplida}" selected >${response.descripcion_si_no}</option>
+                                        `;
+                                                        $.each(siNo, function(idSiNo, dSiNo){
+                                                            formCalendarioVisitaEditar += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
+                                                        });
+                                        formCalendarioVisitaEditar += `
                                                     </select>
                                                 </div>
                                             </div>
@@ -530,11 +524,11 @@
 
                                         // =============================================
 
-                                    formCalendarioVisitaEditar += `
-                                        <input type="submit" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
-                                    `;
+                                        formCalendarioVisitaEditar += `
+                                            <input type="submit" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
+                                        `;
 
-                                    // =============================================
+                                        // =============================================
                                     
                                     formCalendarioVisitaEditar += `
                                         {!! Form::close() !!}

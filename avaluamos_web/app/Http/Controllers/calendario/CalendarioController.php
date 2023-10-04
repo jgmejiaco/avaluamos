@@ -15,6 +15,7 @@ use App\Http\Responsable\calendario\CalendarioStore;
 use App\Http\Responsable\calendario\CalendarioUpdate;
 use App\Models\TipoInmueble;
 use App\Models\Ciudad;
+use App\Models\SiNo;
 
 class CalendarioController extends Controller
 {
@@ -161,6 +162,7 @@ class CalendarioController extends Controller
     {
         view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
         view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+        view()->share('si_no', SiNo::orderBy('descripcion_si_no', 'asc')->whereIn('id_si_no', [1,2])->pluck('descripcion_si_no', 'id_si_no'));
     }
 
     //=========================================================
@@ -172,6 +174,7 @@ class CalendarioController extends Controller
             $consultarVisitasCalendario = DB::table('calendario')
                                     ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
                                     ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
+                                    ->leftjoin('si_no', 'si_no.id_si_no', '=', 'calendario.visita_cumplida')
                                     ->select(
                                         'id_visita_calendario',
                                         'nombre_cliente',
@@ -186,7 +189,7 @@ class CalendarioController extends Controller
 
             foreach ($consultarVisitasCalendario as $visita)
             {
-                 if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && $visita->visita_cumplida && !empty($visita->visita_cumplida) && $visita->visita_cumplida!= 0) {
+                 if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && !empty($visita->visita_cumplida) && $visita->visita_cumplida == 1) {
                     $colorVisita = "#449D44";
                 } else {
                     $colorVisita = "#EC971F";
@@ -212,15 +215,15 @@ class CalendarioController extends Controller
 
     // ========================================================
 
-    public function consultarVisitaCalendario(Request $request)
+    public function consultarVisitaCalendario()
     {
         $idVisitaCalendario = request('id_visita_calendario', null);
-        // dd($idVisitaCalendario);
 
         try {
             $consultarVisitaCalendario = DB::table('calendario')
                                     ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
                                     ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
+                                    ->leftjoin('si_no', 'si_no.id_si_no', '=', 'calendario.visita_cumplida')
                                     ->select(
                                         'id_visita_calendario',
                                         'nombre_cliente',
@@ -231,8 +234,9 @@ class CalendarioController extends Controller
                                         'descripcion_ciudad',
                                         'calendario.barrio',
                                         'calendario.direccion',
-                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d") as fecha_visita_calendario'),
-                                        'visita_cumplida'
+                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
+                                        'calendario.visita_cumplida',
+                                        'si_no.descripcion_si_no'
                                     )
                                     ->where('id_visita_calendario', $idVisitaCalendario)
                                     ->first();
@@ -244,6 +248,4 @@ class CalendarioController extends Controller
             return back();
         }
     }
-
-    
 }

@@ -31,8 +31,4 @@ class Calendario extends Model
         'direccion',
         'visita_cumplida',
     ];
-
-    protected $casts = [
-        'visita_cumplida' => 'boolean',
-    ];
 }
