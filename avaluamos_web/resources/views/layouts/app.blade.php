@@ -58,13 +58,20 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                @include('layouts.topbar')
+                {{-- ===================================== --}}
+                @if(Request()->path() == '/' || Request()->path() == "login")
+                    <div class="col-12 p-0">
+                        @include('layouts.topbar_login')
+                    </div>
+                @else
+                    @include('layouts.topbar')
+                @endif
+
+                {{-- ===================================== --}}
 
                 <div class="flex-center position-ref full-height">
                     <div class="content">
-
                         @yield('content')
-
                     </div>
                 </div>
             </div>

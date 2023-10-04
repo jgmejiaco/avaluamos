@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-5 d-flex justify-content-center">
+    <div class="container-fluid mt-5 d-flex justify-content-center align-items-center">
         <form class="" method="post" action="{{route('login.store')}}" autocomplete="off">
             @csrf
             <div class="mb-5">
