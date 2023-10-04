@@ -2,11 +2,8 @@
 
 namespace App\Http\Responsable\calendario;
 
-use App\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
-use Carbon\Carbon;
 use Jenssegers\Date\Date;
 use Illuminate\Support\Facades\DB;
 use App\Models\Calendario;
@@ -15,8 +12,6 @@ class CalendarioUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
         $idVisitaEditar = request('id_visita_calendario_editar', null);
         $fechaVisitaEditar = request('fecha_visita_editar', null);
         $nombreClienteEditar = request('nombre_cliente_editar', null);
@@ -37,10 +32,10 @@ class CalendarioUpdate implements Responsable
 
         // ==============================================================================
 
-        if ($visitadoEditar == "false" || $visitadoEditar == null) {
-            $visitadoEditar = false;
+        if ($visitadoEditar != null || $visitadoEditar != "") {
+            $visitadoEditar = request('visitado_editar', null);
         } else {
-            $visitadoEditar = true;
+            $visitadoEditar = null;
         }
 
         // ==============================================================================
@@ -61,24 +56,21 @@ class CalendarioUpdate implements Responsable
                     'visita_cumplida' => $visitadoEditar,
             ]);
 
+            // =============================
+
             if($editarVisitaCalendario) {
                 DB::connection('mysql')->commit();
-                alert()->success('Proceso Exitoso', 'Visita editada satisfactoriamente');
-                // return redirect('calendario');
-                return redirect()->to(route('calendario.index'));
+                return response()->json("visita_editada");
 
             } else {
                 DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Error al editar la visita, por favor contacte a Soporte.');
-                return redirect()->to(route('calendario.index'));
+                return response()->json("visita_no_editada");
             }
         }
         catch (Exception $e)
         {
-            dd($e);
             DB::connection('mysql')->rollback();
-            alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
-            return back();
+            return response()->json("error_exception");
         }
     }
 }

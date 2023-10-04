@@ -180,7 +180,7 @@ class CalendarioController extends Controller
                                         'nombre_cliente',
                                         'municipio',
                                         'descripcion_ciudad',
-                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
+                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %h:%i") as fecha_visita_calendario'),
                                         'visita_cumplida'
                                     )
                                     ->get();

@@ -162,7 +162,7 @@
                         // quickSave: false,
                         // fixedWeekCount: 'true', // true, false
                         // slotEventOverlap: true,
-                        // slotLabelFormat: 'h:mma',
+                        // slotLabelFormat: 'h:mm',
                         // slotDuration: "00:15:00",
                         // slotLabelInterval: 5,
                         // buttonIcons:true,
@@ -195,77 +195,54 @@
 
                                 let formCalendarioVisita = '';
 
-                                formCalendarioVisita += `
-                                    {!! Form::open(['method' => 'POST', 'route' => ['calendario.store'], 'id'=>'form_calendario_visita', 'class'=>'form-material mt-3', 'accept-charset' => 'UTF-8' ]) !!}
-                                    @csrf
-                                `;
-
                                 // =============================================
-                                
-                                formCalendarioVisita += `
-                                    <input name="fecha_visita" type="text" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
-                                `;
 
-                                // =============================================
-                                
                                 formCalendarioVisita += `
-                                        <div class="row mt-2">
-                                            <div class="form-group d-flex flex-column">
-                                                <label for="nombre_cliente" class="fs-14">Nombre cliente
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="nombre_cliente" type="text" class="form-control" id="nombre_cliente" required>
-                                            </div>
+                                    <div class="flex-row-edit mt-2">
+                                        <div class="form-group flex-column-edit">
+                                            <label for="nombre_cliente" class="fs-14">Nombre cliente
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="nombre_cliente" type="text" class="form-control" id="nombre_cliente" required>
                                         </div>
-                                `;
 
-                                // =============================================
-                                
-                                formCalendarioVisita += `
-                                        <div class="row mt-12">
-                                            <div class="form-group d-flex flex-column">
-                                                <label for="celular" class="fs-14">Celular
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="celular" type="text" class="form-control" id="celular" required>
-                                            </div>
+                                        <div class="form-group flex-column-edit">
+                                            <label for="celular" class="fs-14">Celular
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="celular" type="text" class="form-control" id="celular" required>
                                         </div>
+                                    </div>
                                 `;
 
                                 // =============================================
 
                                 formCalendarioVisita += `
-                                    <div class="row mt-2">
-                                        <div class="form-group d-flex flex-column">
+                                    <div class="flex-row-edit mt-2">
+                                        <div class="form-group flex-column-edit">
                                             <label for="tipo_inmueble" class="fs-14">Tipo Inmueble
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <select class="form-control" id="tipo_inmueble" name="tipo_inmueble" required>
+                                            <select class="form-control w-100" id="tipo_inmueble" name="tipo_inmueble" required>
                                                 <option value="" selected >Seleccione...</option>
                                 `;
-                                        $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
-                                            formCalendarioVisita += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
-                                        });
+                                                $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
+                                                    formCalendarioVisita += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
+                                                });
                                 formCalendarioVisita += `
                                             </select>
                                         </div>
-                                    </div>
-                                `;
 
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="row mt-2">
-                                        <div class="form-group d-flex flex-column">
+                                        <div class="form-group flex-column-edit">
                                             <label for="ciudad" class="fs-14">Municipio
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <select class="form-control" id="ciudad" name="ciudad" required>
+                                            <select class="form-control w-100" id="ciudad" name="ciudad" required>
                                                 <option value="" selected >Seleccione...</option>
                                 `;
-                                        $.each(ciudades, function(idCiudad, ciudad){
-                                            formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
-                                        });
+                                                $.each(ciudades, function(idCiudad, ciudad){
+                                                    formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                                });
                                 formCalendarioVisita += `
                                             </select>
                                         </div>
@@ -275,43 +252,44 @@
                                 // =============================================
 
                                 formCalendarioVisita += `
-                                        <div class="row mt-12">
-                                            <div class="form-group d-flex flex-column">
-                                                <label for="barrio" class="fs-14">Barrio
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="barrio" type="text" class="form-control" id="barrio" required>
-                                            </div>
+                                    <div class="flex-row-edit mt-2">
+                                        <div class="form-group flex-column-edit">
+                                            <label for="barrio" class="fs-14">Barrio
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="barrio" type="text" class="form-control" id="barrio" required>
                                         </div>
+
+                                        <div class="form-group flex-column-edit">
+                                            <label for="direccion" class="fs-14">Dirección
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="direccion" type="text" class="form-control" id="direccion" required>
+                                        </div>
+                                    </div>
                                 `;
 
                                 // =============================================
-                                
+                            
                                 formCalendarioVisita += `
-                                        <div class="row mt-12">
-                                            <div class="form-group d-flex flex-column">
-                                                <label for="direccion" class="fs-14">Dirección
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="direccion" type="text" class="form-control" id="direccion" required>
-                                            </div>
+                                    <div class="flex-row-edit mt-2">
+                                        <div class="form-group flex-column-edit">
+                                            <label for="fecha_visita" class="fs-14">Fecha Visita
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="datetime-local" name="fecha_visita" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
                                         </div>
-                                `;
 
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="row mt-2">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="visitado" class="fs-14">Visitado
+                                        <div class="form-group flex-column-edit">
+                                            <label for="visitado" class="fs-14">visitado
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <select class="form-control" id="visitado" name="visitado" required>
                                                 <option value="" selected >Seleccione...</option>
                                 `;
-                                        $.each(siNo, function(idSiNo, dSiNo){
-                                            formCalendarioVisita += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
-                                        });
+                                                $.each(siNo, function(idSiNo, dSiNo){
+                                                    formCalendarioVisita += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
+                                                });
                                 formCalendarioVisita += `
                                             </select>
                                         </div>
@@ -319,15 +297,9 @@
                                 `;
 
                                 // =============================================
-
+                                
                                 formCalendarioVisita += `
-                                    <input type="submit" class="btn btn-primary mt-3" value="Crear Visita">
-                                `;
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    {!! Form::close() !!}
+                                    <input type="button" class="btn btn-primary mt-3" id="btn_crear_visita_calendario" value="Crear Visita">
                                 `;
 
                                 // =============================================
@@ -346,11 +318,70 @@
                                     confirmButtonAriaLabel: 'Thumbs up, great!',
                                     cancelButtonAriaLabel: 'Thumbs down',
                                     allowOutsideClick: false,
-                                    padding:'3em',
-                                    position: 'bottom',
+                                    padding:'2em',
+                                    position: 'center',
+                                    width: 500,
                                 });
 
                                 //=======================================//
+
+                                $('#btn_crear_visita_calendario').on('click', function () {
+                                    let fechaVisita = $('#fecha_visita').val();
+                                    let nombreCliente = $('#nombre_cliente').val();
+                                    let celular = $('#celular').val();
+                                    let tipoInmueble = $('#tipo_inmueble').val();
+                                    let ciudad = $('#ciudad').val();
+                                    let barrio = $('#barrio').val();
+                                    let direccion = $('#direccion').val();
+                                    let visitado = $('#visitado').val();
+
+                                    $.ajax({
+                                        url: "{{route('calendario.store')}}",
+                                        type: "POST",
+                                        dataType: "JSON",
+                                        data: {
+                                            '_token': "{{ csrf_token() }}",
+                                            'fecha_visita':fechaVisita,
+                                            'nombre_cliente':nombreCliente,
+                                            'celular':celular,
+                                            'tipo_inmueble':tipoInmueble,
+                                            'ciudad':ciudad,
+                                            'barrio':barrio,
+                                            'direccion':direccion,
+                                            'visitado':visitado
+                                        },
+                                        success: function (respuesta) {
+                                            if (respuesta == "visita_creada") {
+                                                Swal.fire(
+                                                    'Bien!',
+                                                    'La visita ha sido creada satisfacoriamente!',
+                                                    'success'
+                                                );
+                                                window.location.reload();
+                                            }
+
+                                            if (respuesta == "visita_no_creada") {
+                                                Swal.fire(
+                                                    'Precacuión!',
+                                                    'La visita NO ha sido creada!',
+                                                    'warning'
+                                                )
+                                                window.location.reload();
+                                            }
+
+                                            if (respuesta == "error_exception") {
+                                                Swal.fire(
+                                                    'Erro!',
+                                                    'Error de Excepción, por favor contacte a soporte!',
+                                                    'error'
+                                                )
+                                                window.location.reload();
+                                            }
+                                        }
+                                    });
+                                });
+
+                                // =============================================
 
                                 // $('.chosen.swal').select2({});
 
@@ -395,8 +426,12 @@
                             }
                         },
 
-                        // ===============================================
-                        // 'route'=>['calendario.update',${idVisita}],
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+
                         // EDITAR
                         eventClick:function(visita)
                         {
@@ -413,125 +448,113 @@
                                     console.log(response.id_visita_calendario);
                                     let formCalendarioVisitaEditar = '';
 
+                                    formCalendarioVisitaEditar += `<input name="id_visita_calendario_editar" type="hidden" id="id_visita_calendario_editar" value="${response.id_visita_calendario}"><br>`;
+
+                                    // =============================================
+
                                     formCalendarioVisitaEditar += `
-                                    {!! Form::open(['method' => 'POST', 'id'=>'form_calendario_visita_editar', 'class'=>'form-material','route'=>['editar_visita_calendario'],  'accept-charset' => 'UTF-8']) !!}
-                                    @csrf
+                                        <div class="flex-row-edit mt-2">
+                                            <div class="form-group flex-column-edit">
+                                                <label for="nombre_cliente_editar" class="fs-14">Nombre cliente
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="nombre_cliente_editar" type="text" class="form-control" id="nombre_cliente_editar" value="${response.nombre_cliente}" required>
+                                            </div>
+
+                                            <div class="form-group flex-column-edit">
+                                                <label for="celular_editar" class="fs-14">Celular
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="celular_editar" type="text" class="form-control" id="celular_editar" value="${response.celular}" required>
+                                            </div>
+                                        </div>
                                     `;
-                                        // =============================================
-                                        
-                                        formCalendarioVisitaEditar += `<input name="id_visita_calendario_editar" type="hidden" id="id_visita_calendario_editar" value="${response.id_visita_calendario}"><br>`;
 
-                                        // =============================================
+                                    // =============================================
 
-                                        formCalendarioVisitaEditar += `
-                                            <div class="flex-row-edit mt-2">
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="nombre_cliente_editar" class="fs-14">Nombre cliente
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input name="nombre_cliente_editar" type="text" class="form-control" id="nombre_cliente_editar" value="${response.nombre_cliente}" required>
-                                                </div>
-
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="celular_editar" class="fs-14">Celular
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input name="celular_editar" type="text" class="form-control" id="celular_editar" value="${response.celular}" required>
-                                                </div>
-                                            </div>
-                                        `;
-
-                                        // =============================================
-
-                                        formCalendarioVisitaEditar += `
-                                            <div class="flex-row-edit mt-2">
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="tipo_inmueble_editar" class="fs-14">Tipo Inmueble
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select class="form-control w-100" id="tipo_inmueble_editar" name="tipo_inmueble_editar" required>
-                                                        <option value="${response.t_inmueble}" selected >${response.tipo_inmueble}</option>
-                                        `;
-                                                        $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
-                                                            formCalendarioVisitaEditar += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
-                                                        });
-                                        formCalendarioVisitaEditar += `
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="ciudad_editar" class="fs-14">Municipio
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
-                                                        <option value="${response.municipio}" selected >${response.descripcion_ciudad}</option>
-                                        `;
-                                                        $.each(ciudades, function(idCiudad, ciudad){
-                                                            formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
-                                                        });
-                                        formCalendarioVisitaEditar += `
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        `;
-
-                                        // =============================================
-
-                                        formCalendarioVisitaEditar += `
-                                            <div class="flex-row-edit mt-2">
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="barrio_editar" class="fs-14">Barrio
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input name="barrio_editar" type="text" class="form-control" id="barrio_editar" value="${response.barrio}" required>
-                                                </div>
-
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="direccion_editar" class="fs-14">Dirección
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input name="direccion_editar" type="text" class="form-control" id="direccion_editar" value="${response.direccion}" required>
-                                                </div>
-                                            </div>
-                                        `;
-
-                                        // =============================================
-                                    
-                                        formCalendarioVisitaEditar += `
-                                            <div class="flex-row-edit mt-2">
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="fecha_visita_editar" class="fs-14">Fecha Visita
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input type="datetime-local" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
-                                                </div>
-
-                                                <div class="form-group flex-column-edit">
-                                                    <label for="visitado_editar" class="fs-14">visitado
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select class="form-control" id="visitado_editar" name="visitado_editar" required>
-                                                        <option value="${response.visita_cumplida}" selected >${response.descripcion_si_no}</option>
-                                        `;
-                                                        $.each(siNo, function(idSiNo, dSiNo){
-                                                            formCalendarioVisitaEditar += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
-                                                        });
-                                        formCalendarioVisitaEditar += `
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        `;
-
-                                        // =============================================
-
-                                        formCalendarioVisitaEditar += `
-                                            <input type="submit" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
-                                        `;
-
-                                        // =============================================
-                                    
                                     formCalendarioVisitaEditar += `
-                                        {!! Form::close() !!}
+                                        <div class="flex-row-edit mt-2">
+                                            <div class="form-group flex-column-edit">
+                                                <label for="tipo_inmueble_editar" class="fs-14">Tipo Inmueble
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="form-control w-100" id="tipo_inmueble_editar" name="tipo_inmueble_editar" required>
+                                                    <option value="${response.t_inmueble}" selected >${response.tipo_inmueble}</option>
+                                    `;
+                                                    $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
+                                                        formCalendarioVisitaEditar += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
+                                                    });
+                                    formCalendarioVisitaEditar += `
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group flex-column-edit">
+                                                <label for="ciudad_editar" class="fs-14">Municipio
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
+                                                    <option value="${response.municipio}" selected >${response.descripcion_ciudad}</option>
+                                    `;
+                                                    $.each(ciudades, function(idCiudad, ciudad){
+                                                        formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                                    });
+                                    formCalendarioVisitaEditar += `
+                                                </select>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    // =============================================
+
+                                    formCalendarioVisitaEditar += `
+                                        <div class="flex-row-edit mt-2">
+                                            <div class="form-group flex-column-edit">
+                                                <label for="barrio_editar" class="fs-14">Barrio
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="barrio_editar" type="text" class="form-control" id="barrio_editar" value="${response.barrio}" required>
+                                            </div>
+
+                                            <div class="form-group flex-column-edit">
+                                                <label for="direccion_editar" class="fs-14">Dirección
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input name="direccion_editar" type="text" class="form-control" id="direccion_editar" value="${response.direccion}" required>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    // =============================================
+                                
+                                    formCalendarioVisitaEditar += `
+                                        <div class="flex-row-edit mt-2">
+                                            <div class="form-group flex-column-edit">
+                                                <label for="fecha_visita_editar" class="fs-14">Fecha Visita
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="datetime-local" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
+                                            </div>
+
+                                            <div class="form-group flex-column-edit">
+                                                <label for="visitado_editar" class="fs-14">visitado
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="form-control" id="visitado_editar" name="visitado_editar" required>
+                                                    <option value="${response.visita_cumplida}" selected >${response.descripcion_si_no}</option>
+                                    `;
+                                                    $.each(siNo, function(idSiNo, dSiNo){
+                                                        formCalendarioVisitaEditar += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
+                                                    });
+                                    formCalendarioVisitaEditar += `
+                                                </select>
+                                            </div>
+                                        </div>
+                                    `;
+
+                                    // =============================================
+
+                                    formCalendarioVisitaEditar += `
+                                        <input type="button" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
                                     `;
 
                                     // =============================================
@@ -554,6 +577,68 @@
                                         position: 'center',
                                         width: 500,
                                     });
+
+                                    //=======================================//
+
+                                    $('#btnEditarVisita').on('click', function () {
+                                        let idVisitaCalendarioEditar = $('#id_visita_calendario_editar').val();
+                                        let nombreClienteEditar = $('#nombre_cliente_editar').val();
+                                        let celularEditar = $('#celular_editar').val();
+                                        let tipoInmuebleEditar = $('#tipo_inmueble_editar').val();
+                                        let ciudadEditar = $('#ciudad_editar').val();
+                                        let barrioEditar = $('#barrio_editar').val();
+                                        let direccionEditar = $('#direccion_editar').val();
+                                        let fechaVisitaEditar = $('#fecha_visita_editar').val();
+                                        let visitadoEditar = $('#visitado_editar').val();
+
+                                        $.ajax({
+                                            url: "{{route('editar_visita_calendario')}}",
+                                            type: "POST",
+                                            dataType: "JSON",
+                                            data: {
+                                                '_token': "{{ csrf_token() }}",
+                                                'id_visita_calendario_editar':idVisitaCalendarioEditar,
+                                                'nombre_cliente_editar':nombreClienteEditar,
+                                                'celular_editar':celularEditar,
+                                                'tipo_inmueble_editar':tipoInmuebleEditar,
+                                                'ciudad_editar':ciudadEditar,
+                                                'barrio_editar':barrioEditar,
+                                                'direccion_editar':direccionEditar,
+                                                'fecha_visita_editar':fechaVisitaEditar,
+                                                'visitado_editar':visitadoEditar
+                                            },
+                                            success: function (respuesta) {
+                                                if (respuesta == "visita_editada") {
+                                                    Swal.fire(
+                                                        'Bien!',
+                                                        'La visita ha sido editada satisfacoriamente!',
+                                                        'success'
+                                                    );
+                                                    window.location.reload();
+                                                }
+
+                                                if (respuesta == "visita_no_editada") {
+                                                    Swal.fire(
+                                                        'Precacuión!',
+                                                        'La visita NO ha sido editada!',
+                                                        'warning'
+                                                    )
+                                                    window.location.reload();
+                                                }
+
+                                                if (respuesta == "error_exception") {
+                                                    Swal.fire(
+                                                        'Erro!',
+                                                        'Error de Excepción, por favor contacte a soporte!',
+                                                        'error'
+                                                    )
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        });
+                                    });
+
+                                    // =============================================
 
                                     // INICIO - Estilo Calendario
                                     // let minDate = moment().subtract(120, 'years');
@@ -586,7 +671,11 @@
                             });
                         },
 
-                        // ===============================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
 
                         eventResize: function(event, delta)
                         {
@@ -612,7 +701,11 @@
                             // })
                         },
 
-                        // ===============================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
+                        // ========================================================================================
 
                         eventDrop: function(event, delta)
                         {

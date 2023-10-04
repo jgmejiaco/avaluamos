@@ -55,22 +55,16 @@ class CalendarioStore implements Responsable
 
             if($visitaCalendario) {
                 DB::connection('mysql')->commit();
-                alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
-                // return redirect()->to(route('calendario.index'));
-                return redirect('calendario');
+                return response()->json("visita_creada");
             } else {
                 DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Error al crear la visita, por favor contacte a Soporte.');
-                // return redirect()->to(route('calendario.index'));
-                return redirect('calendario');
+                return response()->json("visita_no_creada");
             }
         }
         catch (Exception $e)
         {
-            dd($e);
             DB::connection('mysql')->rollback();
-            alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
-            return back();
+            return response()->json("error_exception");
         }
     }
 }
