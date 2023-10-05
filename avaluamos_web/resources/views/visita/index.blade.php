@@ -71,8 +71,8 @@
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
                                         </a>
 
-                                        <a href="{{route('crear_avaluo',$visita->id_visita)}}" class="btn btn-success mt-3" id="crear_avaluo">
-                                            <i class="fa fa-key" aria-hidden="true"></i> Cear Avalúo
+                                        <a href="{{route('ver_avaluo',$visita->id_visita)}}" class="btn btn-success mt-3" id="ver_avaluo">
+                                            <i class="fa fa-key" aria-hidden="true"></i> Gestionar Avalúo
                                         </a>
                                     </td>
                                 </tr>

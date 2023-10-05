@@ -110,26 +110,26 @@ class AvaluoController extends Controller
      */
     public function create($idVisita)
     {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+        // try {
+        //     $adminCtrl = new AdministradorController();
+        //     $sesion = $adminCtrl->validarVariablesSesion();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                // $crearVisitaAvaluo = $this->cliVisitaAvaluo($idVisita);
-                $this->shareData();
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+        //     {
+        //         return view('inicio_sesion.login');
+        //     } else {
+        //         // $crearVisitaAvaluo = $this->cliVisitaAvaluo($idVisita);
+        //         $this->shareData();
                 
-                // return view('avaluo.create',compact('crearVisitaAvaluo'));
-                return view('avaluo.create');
-            }
-        } catch (Exception $e) {
-            alert()->error('Error', 'Error al consultar la visita para crear el avalúo, por favor contacte a Soporte.');
-            return back();
-        }
+        //         // return view('avaluo.create',compact('crearVisitaAvaluo'));
+        //         return view('avaluo.create');
+        //     }
+        // } catch (Exception $e) {
+        //     alert()->error('Error', 'Error al consultar la visita para crear el avalúo, por favor contacte a Soporte.');
+        //     return back();
+        // }
     }
 
     // =================================================================
@@ -186,24 +186,25 @@ class AvaluoController extends Controller
      */
     public function edit($idVisita)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         $editarVisita = $this->editarVisita($idVisita);
-        //         $this->shareData();
-        //         return view('visita.edit', compact('editarVisita'));
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                $editarVisita = $this->editarVisita($idVisita);
+                $this->shareData();
+                // return view('avaluo.edit', compact('editarVisita'));
+                return view('avaluo.edit');
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     // =================================================================

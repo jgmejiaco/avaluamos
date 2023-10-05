@@ -27,7 +27,7 @@
                     <div class="tab-content p-0">
                         <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" CREACIÓN -->
                         <div class="tab-pane active" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab">
-                             @include('avaluo.fields_create_avaluo_visita_tecnica')
+                             {{-- @include('avaluo.fields_create_avaluo_visita_tecnica') --}}
                         </div>
                     </div>
                 </div>
