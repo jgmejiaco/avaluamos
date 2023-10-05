@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
     // ========================================================================
     
     // RUTA AL INICIAR SESIÓN
-    Route::resource('home', 'HomeController');
+    Route::resource('home', 'home\HomeController');
     
     // ========================================================================
 

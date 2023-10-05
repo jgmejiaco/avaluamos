@@ -60,9 +60,7 @@
             <div class="row">
                 {{-- ===================================== --}}
                 @if(Request()->path() == '/' || Request()->path() == "login")
-                    {{-- <div class="col-12 p-0"> --}}
-                        @include('layouts.topbar_login')
-                    {{-- </div> --}}
+                    @include('layouts.topbar_login')
                 @else
                     @include('layouts.topbar')
                 @endif
@@ -96,8 +94,6 @@
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
         
         <!-- SCRIPTS -->
-        
-
         @include('sweetalert::alert')
     </body>
 </html>

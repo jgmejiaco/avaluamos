@@ -9,13 +9,13 @@
 {{-- ============================================================================================ --}}
 
 @section('content')
-    {{-- Bread crumb and right sidebar toggle --}}
-    {{-- <div class="row page-titles"> --}}
-        {{-- <div class="col-md-5 col-8 align-self-center"> --}}
-            <h3 class="text-themecolor m-b-0 m-t-0">Home</h3>
-        {{-- </div> --}}
-    {{-- </div> --}}
-    {{-- End Bread crumb and right sidebar toggle --}}
+    <div class="row vw-100">
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+            <h3 class="mb-5">Bienvenid@ al gestor Administrativo</h3>
+
+            <img src="{{asset('imagenes/home4.jpg')}}" alt="home">
+        </div>
+    </div>
 @endsection
 
 {{-- ============================================================================================ --}}
