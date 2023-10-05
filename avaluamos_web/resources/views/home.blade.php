@@ -9,8 +9,8 @@
 {{-- ============================================================================================ --}}
 
 @section('content')
-    <div class="row vw-100">
-        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+    <div class="row vh-75 mt-auto mb-auto">
+        <div class="d-flex flex-column justify-content-center align-items-center">
             <h3 class="mb-5">Bienvenid@ al gestor Administrativo</h3>
 
             <img src="{{asset('imagenes/home4.jpg')}}" alt="home">

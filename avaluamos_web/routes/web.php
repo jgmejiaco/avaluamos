@@ -96,4 +96,11 @@ use Illuminate\Support\Facades\Route;
     Route::post('editar_visita_calendario', 'calendario\CalendarioController@update')->name('editar_visita_calendario');
 
     // ========================================================================
+
+    // RUTAS AVALÚO
+    Route::resource('avaluos', 'avaluo\AvaluoController');
+    Route::get('crear_avaluo/{idVisita}', 'avaluo\AvaluoController@create')->name('crear_avaluo');
+
+    // ========================================================================
+// });
 // });

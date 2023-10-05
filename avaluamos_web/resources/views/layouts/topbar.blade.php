@@ -35,7 +35,7 @@
                             <ul class="dropdown-menu">
                                 {{-- <li><a class="dropdown-item" href="/cotizador">Cotización</a></li> --}}
                                 <li><a class="dropdown-item" href="/visita">Visitas</a></li>
-                                <li><a class="dropdown-item" href="/informe">Generar Avalúo</a></li>
+                                <li><a class="dropdown-item" href="/avaluos">Avalúos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
