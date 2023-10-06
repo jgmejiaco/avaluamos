@@ -52,6 +52,9 @@
                         {{-- ============================== --}}
                         <tbody>
                             @foreach ($todasVisitas as $visita)
+                                {{-- @php
+                                    dd($visita->id_avaluo);
+                                @endphp --}}
                                 <tr>
                                     <td>{{$visita->id_visita}}</td>
                                     <td>{{$visita->cli_nombres}}</td>
@@ -71,8 +74,8 @@
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
                                         </a>
 
-                                        <a href="{{route('ver_avaluo',$visita->id_visita)}}" class="btn btn-success mt-3" id="ver_avaluo">
-                                            <i class="fa fa-key" aria-hidden="true"></i> Gestionar Avalúo
+                                        <a href="{{route('calcular_avaluo',$visita->id_avaluo)}}" class="btn btn-success mt-3" id="calcular_avaluo">
+                                            <i class="fa fa-key" aria-hidden="true"></i> Calcular Avalúo
                                         </a>
                                     </td>
                                 </tr>

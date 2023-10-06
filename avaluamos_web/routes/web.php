@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\Route;
 
     // RUTAS AVALÚO
     Route::resource('avaluos', 'avaluo\AvaluoController');
-    Route::get('ver_avaluo/{idVisita}', 'avaluo\AvaluoController@edit')->name('ver_avaluo');
+    Route::get('calcular_avaluo/{idAvaluo}', 'avaluo\AvaluoController@edit')->name('calcular_avaluo');
 
     // ========================================================================
 // });

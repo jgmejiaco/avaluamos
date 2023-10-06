@@ -660,6 +660,7 @@ class VisitaController extends Controller
     public function visitasIndex()
     {
         return DB::table('visitas')
+                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
                     ->leftjoin('tipo_documento','tipo_documento.id_tipo_documento','=','visitas.id_doc_empresa')
@@ -685,7 +686,8 @@ class VisitaController extends Controller
                         'descripcion_si_no',
                         'fecha_visita',
                         DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita), "%d-%m-%Y") as fecha_visita'),
-                        DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe')
+                        DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe'),
+                        'avaluo.id_avaluo'
                     )
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
@@ -700,6 +702,7 @@ class VisitaController extends Controller
     public function editarVisita($idVisita)
     {
         return DB::table('visitas')
+                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
@@ -980,7 +983,8 @@ class VisitaController extends Controller
                         'registro_fotografico.rf_zona_ropa3',
                         'registro_fotografico.rf_balcon1',
                         'registro_fotografico.rf_balcon2',
-                        'registro_fotografico.rf_balcon3'
+                        'registro_fotografico.rf_balcon3',
+                        'avaluo.id_avaluo'
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')

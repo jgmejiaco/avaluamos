@@ -184,7 +184,7 @@ class AvaluoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($idVisita)
+    public function edit($idAvaluo)
     {
         try {
             $adminCtrl = new AdministradorController();
@@ -196,7 +196,7 @@ class AvaluoController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $editarVisita = $this->editarVisita($idVisita);
+                $editarVisita = $this->editarVisita($idAvaluo);
                 $this->shareData();
                 // return view('avaluo.edit', compact('editarVisita'));
                 return view('avaluo.edit');
