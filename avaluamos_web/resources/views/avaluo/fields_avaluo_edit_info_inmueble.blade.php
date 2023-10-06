@@ -1,7 +1,7 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
-        {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+        {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
             <h2 class="text-uppercase">información del inmueble</h2>
 
@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_tipo_vivienda" class="form-label text-uppercase">Tipo Vivienda<span class="text-danger">*</span></label>
-                        {!! Form::select('id_tipo_vivienda', collect(['' => 'Seleccionar...'])->union($tipo_vivienda), isset($editarVisita) ? $editarVisita->id_tipo_vivienda : null, ['class' => 'form-control select2', 'id' => 'id_tipo_vivienda', 'required']) !!}
+                        {!! Form::select('id_tipo_vivienda', collect(['' => 'Seleccionar...'])->union($tipo_vivienda), isset($calcularAvaluo) ? $calcularAvaluo->id_tipo_vivienda : null, ['class' => 'form-control select2', 'id' => 'id_tipo_vivienda', 'required']) !!}
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_uso_inmueble" class="form-label text-uppercase">Uso Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::select('id_uso_inmueble', collect(['' => 'Seleccionar...'])->union($uso_inmueble), isset($editarVisita) ? $editarVisita->id_uso_inmueble : null, ['class' => 'form-control select2', 'id' => 'id_uso_inmueble', 'required']) !!}
+                        {!! Form::select('id_uso_inmueble', collect(['' => 'Seleccionar...'])->union($uso_inmueble), isset($calcularAvaluo) ? $calcularAvaluo->id_uso_inmueble : null, ['class' => 'form-control select2', 'id' => 'id_uso_inmueble', 'required']) !!}
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_tipo_suelo" class="form-label text-uppercase">Tipo Suelo<span class="text-danger">*</span></label>
-                        {!! Form::select('id_tipo_suelo', collect(['' => 'Seleccionar...'])->union($tipo_suelo), isset($editarVisita) ? $editarVisita->id_tipo_suelo : null, ['class' => 'form-control select2', 'id' => 'id_tipo_suelo', 'required']) !!}
+                        {!! Form::select('id_tipo_suelo', collect(['' => 'Seleccionar...'])->union($tipo_suelo), isset($calcularAvaluo) ? $calcularAvaluo->id_tipo_suelo : null, ['class' => 'form-control select2', 'id' => 'id_tipo_suelo', 'required']) !!}
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_topografia" class="form-label text-uppercase">Topografía</label>
-                        {!! Form::select('id_topografia', collect(['' => 'Seleccionar...'])->union($topografia), isset($editarVisita) ? $editarVisita->id_topografia : null, ['class' => 'form-control select2', 'id' => 'id_topografia']) !!}
+                        {!! Form::select('id_topografia', collect(['' => 'Seleccionar...'])->union($topografia), isset($calcularAvaluo) ? $calcularAvaluo->id_topografia : null, ['class' => 'form-control select2', 'id' => 'id_topografia']) !!}
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_forma" class="form-label text-uppercase">Forma<span class="text-danger">*</span></label>
-                        {!! Form::select('id_forma', collect(['' => 'Seleccionar...'])->union($forma), isset($editarVisita) ? $editarVisita->id_forma : null, ['class' => 'form-control select2', 'id' => 'id_forma', 'required']) !!}
+                        {!! Form::select('id_forma', collect(['' => 'Seleccionar...'])->union($forma), isset($calcularAvaluo) ? $calcularAvaluo->id_forma : null, ['class' => 'form-control select2', 'id' => 'id_forma', 'required']) !!}
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="pisos_inmueble" class="form-label text-uppercase">Número Pisos Inmueble</label>
-                        {!! Form::select('pisos_inmueble', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($editarVisita) ? $editarVisita->pisos_inmueble : null, ['class' => 'form-control select2', 'id' => 'pisos_inmueble']) !!}
+                        {!! Form::select('pisos_inmueble', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($calcularAvaluo) ? $calcularAvaluo->pisos_inmueble : null, ['class' => 'form-control select2', 'id' => 'pisos_inmueble']) !!}
                     </div>
                 </div>
                 
@@ -72,7 +72,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="pisos_edificio" class="form-label text-uppercase">Número Pisos Edificio</label>
-                        {!! Form::select('pisos_edificio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($editarVisita) ? $editarVisita->pisos_edificio : null, ['class' => 'form-control select2', 'id' => 'pisos_edificio']) !!}
+                        {!! Form::select('pisos_edificio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($calcularAvaluo) ? $calcularAvaluo->pisos_edificio : null, ['class' => 'form-control select2', 'id' => 'pisos_edificio']) !!}
                     </div>
                 </div>
                 
@@ -81,7 +81,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_administracion" class="form-label text-uppercase">Valor Administracion</label>
-                        {!! Form::text('valor_administracion', isset($editarVisita) ? $editarVisita->valor_administracion : null, ['class' => 'form-control', 'id' => 'valor_administracion']) !!}
+                        {!! Form::text('valor_administracion', isset($calcularAvaluo) ? $calcularAvaluo->valor_administracion : null, ['class' => 'form-control', 'id' => 'valor_administracion']) !!}
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="altura" class="form-label text-uppercase">Altura</label>
-                        {!! Form::text('altura', isset($editarVisita) ? $editarVisita->altura : null, ['class' => 'form-control', 'id' => 'altura']) !!}
+                        {!! Form::text('altura', isset($calcularAvaluo) ? $calcularAvaluo->altura : null, ['class' => 'form-control', 'id' => 'altura']) !!}
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="frente" class="form-label text-uppercase">Frente</label>
-                        {!! Form::text('frente', isset($editarVisita) ? $editarVisita->frente : null, ['class' => 'form-control', 'id' => 'frente']) !!}
+                        {!! Form::text('frente', isset($calcularAvaluo) ? $calcularAvaluo->frente : null, ['class' => 'form-control', 'id' => 'frente']) !!}
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="fondo" class="form-label text-uppercase">Fondo</label>
-                        {!! Form::text('fondo', isset($editarVisita) ? $editarVisita->fondo : null, ['class' => 'form-control text-uppercase', 'id' => 'fondo']) !!}
+                        {!! Form::text('fondo', isset($calcularAvaluo) ? $calcularAvaluo->fondo : null, ['class' => 'form-control text-uppercase', 'id' => 'fondo']) !!}
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@
                 <div class="col-12 col-md-3" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="remodelado" class="form-label text-uppercase">Remodelado</label>
-                        {!! Form::select('remodelado', collect(['' => 'Seleccionar...'])->union($si_no), isset($editarVisita) ? $editarVisita->remodelado : null, ['class' => 'form-control select2', 'id' => 'remodelado']) !!}
+                        {!! Form::select('remodelado', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->remodelado : null, ['class' => 'form-control select2', 'id' => 'remodelado']) !!}
                     </div>
                 </div>
                 
@@ -137,7 +137,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="area_libre" class="form-label text-uppercase">Área Libre M<sup>2</sup></label>
-                        {!! Form::text('area_libre', isset($editarVisita) ? $editarVisita->area_libre : null, ['class' => 'form-control', 'id' => 'area_libre']) !!}
+                        {!! Form::text('area_libre', isset($calcularAvaluo) ? $calcularAvaluo->area_libre : null, ['class' => 'form-control', 'id' => 'area_libre']) !!}
                     </div>
                 </div>
 
@@ -155,7 +155,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="anios_remodelacion" class="form-label text-uppercase">Año Remodelación</label>
-                        {!! Form::text('anios_remodelacion', isset($editarVisita) ? $editarVisita->anios_remodelacion : null, ['class' => 'form-control', 'id' => 'anios_remodelacion']) !!}
+                        {!! Form::text('anios_remodelacion', isset($calcularAvaluo) ? $calcularAvaluo->anios_remodelacion : null, ['class' => 'form-control', 'id' => 'anios_remodelacion']) !!}
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="area_patios" class="form-label text-uppercase">Área Patios - vacio M<sup>2</sup></label>
-                        {!! Form::text('area_patios', isset($editarVisita) ? $editarVisita->area_patios : null, ['class' => 'form-control', 'id' => 'area_patios']) !!}
+                        {!! Form::text('area_patios', isset($calcularAvaluo) ? $calcularAvaluo->area_patios : null, ['class' => 'form-control', 'id' => 'area_patios']) !!}
                     </div>
                 </div>
 
@@ -182,7 +182,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_condicion_inmueble" class="form-label text-uppercase">Condición Inmueble</label>
-                        {!! Form::select('id_condicion_inmueble', collect(['' => 'Seleccionar...'])->union($condicion_inmueble), isset($editarVisita) ? $editarVisita->id_condicion_inmueble : null, ['class' => 'form-control select2', 'id' => 'id_condicion_inmueble']) !!}
+                        {!! Form::select('id_condicion_inmueble', collect(['' => 'Seleccionar...'])->union($condicion_inmueble), isset($calcularAvaluo) ? $calcularAvaluo->id_condicion_inmueble : null, ['class' => 'form-control select2', 'id' => 'id_condicion_inmueble']) !!}
                     </div>
                 </div>
 
@@ -238,7 +238,7 @@
                 <div class="col-12">
                     <div class="form-group d-flex flex-column">
                         <label for="obs_info_inmueble" class="form-label text-uppercase">Observaciones Información Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::textarea('obs_info_inmueble',  isset($editarVisita) ? $editarVisita->obs_info_inmueble : null, ['class' => 'form-control', 'id' => 'obs_info_inmueble', 'required']) !!}
+                        {!! Form::textarea('obs_info_inmueble',  isset($calcularAvaluo) ? $calcularAvaluo->obs_info_inmueble : null, ['class' => 'form-control', 'id' => 'obs_info_inmueble', 'required']) !!}
                     </div>
                 </div>
             </div>

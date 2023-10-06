@@ -184,7 +184,7 @@ class AvaluoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($idAvaluo)
+    public function edit($idVisita)
     {
         try {
             $adminCtrl = new AdministradorController();
@@ -196,14 +196,14 @@ class AvaluoController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $calcularAvaluo = $this->calcularAvaluo($idAvaluo);
+                $calcularAvaluo = $this->calcularAvaluo($idVisita);
                 $this->shareData();
-                // return view('avaluo.edit', compact('calcularAvaluo'));
-                return view('avaluo.edit');
+                return view('avaluo.edit', compact('calcularAvaluo'));
+                // return view('avaluo.edit');
             }
         } catch (Exception $e) {
             dd($e);
-            alert()->error("Ha ocurrido un error!");
+            alert()->error("Error Exception!");
             return back();
         }
     }
@@ -703,7 +703,7 @@ class AvaluoController extends Controller
     //=========================================================
     //=========================================================
 
-    public function calcularAvaluo($idAvaluo)
+    public function calcularAvaluo($idVisita)
     {
         return DB::table('visitas')
                     // ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
@@ -768,7 +768,7 @@ class AvaluoController extends Controller
                     ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
                     ->leftjoin('registro_fotografico','registro_fotografico.id_visita','=','visitas.id_visita')
                     ->select(
-                        'avaluo.id_avaluo',
+                        // 'avaluo.id_avaluo',
                         'visitas.id_visita',
                         'clientes.id_cliente',
                         'cli_nombres',
@@ -990,10 +990,9 @@ class AvaluoController extends Controller
                         'registro_fotografico.rf_balcon2',
                         'registro_fotografico.rf_balcon3',
                     )
-                    ->where('avaluo.id_avaluo', $idAvaluo)
+                    ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
-                    ->whereNull('avaluo.deleted_at')
                     ->first();
     }
 

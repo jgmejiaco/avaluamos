@@ -33,7 +33,7 @@
                     <table class="table table-striped table-bordered w-100" id="tbl_avaluos">
                         <thead>
                             <tr class="header-table">
-                                <th>ID Avalúo</th>
+                                <th>ID Visita</th>
                                 <th>Cliente</th>
                                 <th>Dirigido A</th>
                                 <th>Objeto Avalúo</th>
@@ -56,34 +56,21 @@
                             @endphp --}}
                             @foreach ($avaluosIndex as $avaluo)
                                 <tr>
-                                    {{-- <td>id_avaluo</td> --}}
-                                    <td>{{$avaluo->id_avaluo}}</td>
-                                    {{-- <td>Cliente</td> --}}
+                                    <td>{{$avaluo->id_visita}}</td>
                                     <td>{{$avaluo->cli_nombres}}</td>
-                                    {{-- <td>Dirigido A</td> --}}
                                     <td>{{$avaluo->dirigido_a}}</td>
-                                    {{-- <td>Objeto Avalúo</td> --}}
                                     <td>{{$avaluo->objeto_avaluo}}</td>
-                                    {{-- <td>Ciudad</td> --}}
                                     <td>{{$avaluo->descripcion_ciudad}}</td>
-                                    {{-- <td>Tipo Inmueble</td> --}}
                                     <td>{{$avaluo->tipo_inmueble}}</td>
-                                    {{-- <td>Área</td> --}}
                                     <td>{{$avaluo->area}}</td>
-                                    {{-- <td>Estrato</td> --}}
                                     <td>{{$avaluo->estrato}}</td>
-                                    {{-- <td>% Descuento</td> --}}
                                     <td>{{$avaluo->porcentaje_descuento}}</td>
-                                    {{-- <td>Valor Cotización</td> --}}
                                     <td>{{$avaluo->valor_cotizacion}}</td>
-                                    {{-- <td>Estado Visitado</td> --}}
                                     <td>{{$avaluo->descripcion_si_no}}</td>
-                                    {{-- <td>Fecha Visita</td> --}}
                                     <td>{{$avaluo->fecha_visita}}</td>
-                                    {{-- <td>Fecha Informe</td> --}}
                                     <td>{{$avaluo->fecha_informe}}</td>
                                     <td>
-                                        <a href="{{route('calcular_avaluo',$avaluo->id_avaluo)}}" class="btn btn-info mt-3" id="calcular_avaluo">
+                                        <a href="{{route('calcular_avaluo',$avaluo->id_visita)}}" class="btn btn-info mt-3" id="calcular_avaluo">
                                             <i class="fa fa-key" aria-hidden="true"></i> Calcular Avalúo
                                         </a>
                                     </td>

@@ -76,13 +76,13 @@
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "VISITA TÉCNICA" -->
                 <div class="tab-pane" id="nav_visita_tecnica" role="tabpanel" aria-labelledby="nav_visita_tecnica_tab" tabindex="0">
-                    {{-- @include('avaluo.fields_avaluo_edit_visita_tecnica') --}}
+                    @include('avaluo.fields_avaluo_edit_visita_tecnica')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN INMUEBLE" -->
                 <div class="tab-pane" id="nav_info_inmueble" role="tabpanel" aria-labelledby="nav_info_inmueble_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_info_inmueble') --}}
+                    @include('avaluo.fields_avaluo_edit_info_inmueble')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
