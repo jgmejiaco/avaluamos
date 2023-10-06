@@ -89,10 +89,10 @@ class AvaluoController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                // $todasVisitas = $this->visitasIndex();
+                $avaluosIndex = $this->avaluosIndex();
                 $this->shareData();
-                // return view('avaluo.index', compact('todasVisitas'));
-                return view('avaluo.index');
+                return view('avaluo.index', compact('avaluosIndex'));
+                // return view('avaluo.index');
             }
         } catch (Exception $e) {
             alert()->error("Error Exception!");
@@ -196,12 +196,13 @@ class AvaluoController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $editarVisita = $this->editarVisita($idAvaluo);
+                $calcularAvaluo = $this->calcularAvaluo($idAvaluo);
                 $this->shareData();
-                // return view('avaluo.edit', compact('editarVisita'));
+                // return view('avaluo.edit', compact('calcularAvaluo'));
                 return view('avaluo.edit');
             }
         } catch (Exception $e) {
+            dd($e);
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -659,9 +660,10 @@ class AvaluoController extends Controller
     //=========================================================
     //=========================================================
 
-    public function visitasIndex()
+    public function avaluosIndex()
     {
         return DB::table('visitas')
+                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
                     ->leftjoin('tipo_documento','tipo_documento.id_tipo_documento','=','visitas.id_doc_empresa')
@@ -673,6 +675,7 @@ class AvaluoController extends Controller
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->select(
+                        'avaluo.id_avaluo',
                         'visitas.id_cliente',
                         'visitas.id_visita',
                         'clientes.cli_nombres',
@@ -687,10 +690,11 @@ class AvaluoController extends Controller
                         'descripcion_si_no',
                         'fecha_visita',
                         DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita), "%d-%m-%Y") as fecha_visita'),
-                        DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe')
+                        DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe'),
                     )
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
+                    ->where('visitas.id_visitado',1)
                     ->orderBy('visitas.id_visita', 'DESC')
                     ->get()
                     ->toArray();
@@ -699,9 +703,10 @@ class AvaluoController extends Controller
     //=========================================================
     //=========================================================
 
-    public function editarVisita($idVisita)
+    public function calcularAvaluo($idAvaluo)
     {
         return DB::table('visitas')
+                    // ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
@@ -763,6 +768,7 @@ class AvaluoController extends Controller
                     ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
                     ->leftjoin('registro_fotografico','registro_fotografico.id_visita','=','visitas.id_visita')
                     ->select(
+                        'avaluo.id_avaluo',
                         'visitas.id_visita',
                         'clientes.id_cliente',
                         'cli_nombres',
@@ -982,11 +988,12 @@ class AvaluoController extends Controller
                         'registro_fotografico.rf_zona_ropa3',
                         'registro_fotografico.rf_balcon1',
                         'registro_fotografico.rf_balcon2',
-                        'registro_fotografico.rf_balcon3'
+                        'registro_fotografico.rf_balcon3',
                     )
-                    ->where('visitas.id_visita', $idVisita)
+                    ->where('avaluo.id_avaluo', $idAvaluo)
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')
+                    ->whereNull('avaluo.deleted_at')
                     ->first();
     }
 

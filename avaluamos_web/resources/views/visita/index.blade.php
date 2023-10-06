@@ -73,10 +73,6 @@
                                         <a href="{{route('editar_visita',$visita->id_visita)}}" class="btn btn-info" id="ver_cliente">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
                                         </a>
-
-                                        <a href="{{route('calcular_avaluo',$visita->id_avaluo)}}" class="btn btn-success mt-3" id="calcular_avaluo">
-                                            <i class="fa fa-key" aria-hidden="true"></i> Calcular Avalúo
-                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

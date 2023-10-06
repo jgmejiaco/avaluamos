@@ -200,6 +200,7 @@ class VisitaController extends Controller
                 return view('visita.edit', compact('editarVisita'));
             }
         } catch (Exception $e) {
+            dd($e);
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -702,7 +703,6 @@ class VisitaController extends Controller
     public function editarVisita($idVisita)
     {
         return DB::table('visitas')
-                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
@@ -984,7 +984,6 @@ class VisitaController extends Controller
                         'registro_fotografico.rf_balcon1',
                         'registro_fotografico.rf_balcon2',
                         'registro_fotografico.rf_balcon3',
-                        'avaluo.id_avaluo'
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
