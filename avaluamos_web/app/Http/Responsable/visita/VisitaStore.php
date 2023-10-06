@@ -23,6 +23,7 @@ use App\Models\ObservacionesGenerales;
 use App\Models\EstadoConservacion;
 use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
+use App\Models\Avaluo;
 
 class VisitaStore implements Responsable
 {
@@ -193,6 +194,10 @@ class VisitaStore implements Responsable
 
                 $idVisita = Visita::select('id_visita')->orderBy('id_visita', 'DESC')->first();
 
+                Avaluo::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
+
                 InfoInmueble::create([
                     'id_visita' => $idVisita->id_visita,
                 ]);
@@ -237,6 +242,7 @@ class VisitaStore implements Responsable
                     'id_visita' => $idVisita->id_visita,
                 ]);
 
+                
                 alert()->success('Proceso Exitoso', 'Visita creada satisfactoriamente');
                 return redirect()->to(route('visita.index'));
 

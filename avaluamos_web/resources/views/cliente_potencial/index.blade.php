@@ -74,15 +74,8 @@
                                         <td></td>
                                     @endif
 
-                                    {{-- @php
-                                        $fechaNacTimeStamp = $cliente->fecha_nacimiento;
-                                        $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($cliente->fecha_nacimiento)->toDateString() : null;
-                                    @endphp --}}
-                                    
                                     <td>
-                                        {{-- <button class="btn btn-warning" onclick="editarCliente('{{$cliente->id_cliente}}','{{$cliente->cli_nombres}}','{{$cliente->id_doc_cliente}}','{{$cliente->decripcion_documento}}','{{$cliente->documento_cliente}}','{{$fechaNacimiento}}','{{$cliente->cli_celular}}','{{$cliente->cli_email}}',{{$cliente->id_tipo_persona}},'{{$cliente->tipo_persona}}','{{$cliente->id_pais}}','{{$cliente->descripcion_pais}}','{{$cliente->id_departamento_estado}}','{{$cliente->descripcion_departamento}}','{{$cliente->id_ciudad}}','{{$cliente->descripcion_ciudad}}','{{$cliente->id_referido_por}}','{{$cliente->referido_por}}','{{$cliente->id_red_social}}','{{$cliente->red_social}}','{{$cliente->nombre_quien_refiere}}','{{$cliente->empresa_que_refiere}}')">Editar Cliente</button> --}}
-
-                                        <a href="{{route('editar_cliente',$cliente->id_cliente)}}" class="btn btn-warning">Editar Visita</a>
+                                        <a href="{{route('editar_cliente',$cliente->id_cliente)}}" class="btn btn-warning">Editar Cliente</a>
 
                                         <a href="{{route('crear_visita',$cliente->id_cliente)}}" class="btn btn-success">Crear Visita</a>
                                     </td>
@@ -135,15 +128,6 @@
                 "scrollX": true,
             });
             // CIERRE DataTable LISTA CLIENTES
-
-            // ===========================================================
-            // ===========================================================
-
-            // $('.select2').select2({
-            //     placeholder: 'Seleccionar...',
-            //     allowClear: true,
-            //     disabled: false
-            // });
         });
     </script>
 @endsection
