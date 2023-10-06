@@ -88,61 +88,61 @@
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "CARACTERÍSTICAS INMUEBLE" -->
                 <div class="tab-pane" id="nav_caracteristicas_inmueble" role="tabpanel" aria-labelledby="nav_caracteristicas_inmueble_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_caracteristicas_inmueble') --}}
+                    @include('avaluo.fields_avaluo_edit_caracteristicas_inmueble')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "ACABADOS INMUEBLE" -->
                 <div class="tab-pane" id="nav_acabados_inmueble" role="tabpanel" aria-labelledby="nav_acabados_inmueble_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_acabados_inmueble') --}}
+                    @include('avaluo.fields_avaluo_edit_acabados_inmueble')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "CALIFICACIÓN INMUEBLE" -->
                 <div class="tab-pane" id="nav_calificacion_inmueble" role="tabpanel" aria-labelledby="nav_calificacion_inmueble_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_calificacion_inmueble') --}}
+                    @include('avaluo.fields_avaluo_edit_calificacion_inmueble')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "EQUIPAMIENTO Y DOTACIÓN COMUNAL" -->
                 <div class="tab-pane" id="nav_dotacion_comunal" role="tabpanel" aria-labelledby="nav_dotacion_comunal_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_dotacion_comunal') --}}
+                    @include('avaluo.fields_avaluo_edit_dotacion_comunal')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN DEL SECTOR" -->
                 <div class="tab-pane" id="nav_info_sector" role="tabpanel" aria-labelledby="nav_info_sector_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_info_sector') --}}
+                    @include('avaluo.fields_avaluo_edit_info_sector')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "CONDICIONES URBANISTICAS" -->
                 <div class="tab-pane" id="nav_condiciones_urbanisticas" role="tabpanel" aria-labelledby="nav_condiciones_urbanisticas_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_condiciones_urbanisticas') --}}
+                    @include('avaluo.fields_avaluo_edit_condiciones_urbanisticas')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "ESTADO DE CONSERVACIÓN" -->
                 <div class="tab-pane" id="nav_estado_conservacion" role="tabpanel" aria-labelledby="nav_estado_conservacion_tab" tabindex="0">
-                    {{-- @include('avaluo.fields_avaluo_edit_estado_conservacion') --}}
+                    @include('avaluo.fields_avaluo_edit_estado_conservacion')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "OBSERVACIONES GENERALES" -->
                 <div class="tab-pane" id="nav_observaciones_generales" role="tabpanel" aria-labelledby="nav_observaciones_generales_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_observaciones_generales') --}}
+                    @include('avaluo.fields_avaluo_edit_observaciones_generales')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "REGISTRO FOTOGRÁFICO" -->
                 <div class="tab-pane" id="nav_fotografias" role="tabpanel" aria-labelledby="nav_fotografias_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_fotografias') --}}
+                    @include('avaluo.fields_avaluo_edit_fotografias')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->
                 <!-- CONTENIDO PESTAÑA "VALOR ESTIMADO AVALÚO" -->
                 <div class="tab-pane" id="nav_valor_estimado_avaluo" role="tabpanel" aria-labelledby="nav_valor_estimado_avaluo_tab">
-                    {{-- @include('avaluo.fields_avaluo_edit_valor_estimado_avaluo') --}}
+                    @include('avaluo.fields_avaluo_edit_valor_estimado_avaluo')
                 </div>
             </div>
         </div>
