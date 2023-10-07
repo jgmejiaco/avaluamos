@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/', function () {
         return view('inicio_sesion.login');
-        // return view('home');
     })->name('inicio');
 
     // RUTA COMPROBAR CONEXIÓN BASE DE DATOS
@@ -52,7 +51,7 @@ use Illuminate\Support\Facades\Route;
 
     // RUTAS DEL CLIENTE
     Route::resource('cliente_potencial', 'cliente_potencial\ClientePotencialController');
-    Route::get('ver_cliente/{id}', 'cliente_potencial\ClientePotencialController@show')->name('ver_cliente');
+    // Route::get('ver_cliente/{id}', 'cliente_potencial\ClientePotencialController@show')->name('ver_cliente');
     Route::get('editar_cliente/{idCliente}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
     Route::post('verificar_celular', 'cliente_potencial\ClientePotencialController@verificarCelular')->name('verificar_celular');
 

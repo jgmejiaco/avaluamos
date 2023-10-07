@@ -702,6 +702,8 @@ class VisitaController extends Controller
 
     public function editarVisita($idVisita)
     {
+        
+
         return DB::table('visitas')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
