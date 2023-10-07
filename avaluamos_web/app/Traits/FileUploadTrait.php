@@ -67,14 +67,19 @@ trait FileUploadTrait
         $filename = null;
         if (!is_null($files) && !empty($files)) {
 
-            $filename = $_FILES['rf_fachada']['name'];
-            $tmpName = $_FILES['rf_fachada']['tmp_name'];
+            $filename = $_FILES[$nameField]['name'];
+            $tmpName = $_FILES[$nameField]['tmp_name'];
             $extension = $extension = pathinfo($filename, PATHINFO_EXTENSION);
             $nameFile = "{$baseFileName}_{$prefix}.{$extension}";
-            $mover_foto = move_uploaded_file($tmpName, "$folder/$nameFile");
+            $mover_foto = move_uploaded_file($tmpName, storage_path("$folder/$nameFile"));
+
+            if($mover_foto)
+            {
+                return "/storage/$folder/$nameFile";
+            }
         }
 
-        return $mover_foto;
+        return null;
     }
 
     public function uploadFile($request, $name, $folder)

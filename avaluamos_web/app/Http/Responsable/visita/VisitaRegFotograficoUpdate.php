@@ -26,10 +26,10 @@ class VisitaRegFotograficoUpdate implements Responsable
 
         try {
             $fechaActual = Carbon::now();
-            $fechaActual = $fechaActual->format('d-m-Y H:m:s');
+            $fechaActual = $fechaActual->format('d-m-Y H:i:s');
             $baseFileName = "vis({$idVisita})_cli({$idCliente})_".Carbon::parse($fechaActual)->timestamp;
 
-            $carpetaArchivos = storage_path('app\public\upfiles\visita\\');
+            $carpetaArchivos = 'app/public/upfiles/visita';
 
             $rfFachada= '';
             if ($request->hasFile('rf_fachada')) {
@@ -42,7 +42,7 @@ class VisitaRegFotograficoUpdate implements Responsable
 
             $rfEntrada= '';
             if ($request->hasFile('rf_entrada')) {
-                $rfEntrada = $this->upfileWithName($baseFileName, $carpetaArchivos, $request, 'rf_entrada', 'entrada');
+                $rfEntrada = $this->upfileWithName($baseFileName, $carpetaArchivos, $_FILES, 'rf_entrada', 'entrada');
             } else {
                 $rfEntrada = null;
             }
