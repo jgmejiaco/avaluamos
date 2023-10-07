@@ -983,7 +983,7 @@ class VisitaController extends Controller
                         'registro_fotografico.rf_zona_ropa3',
                         'registro_fotografico.rf_balcon1',
                         'registro_fotografico.rf_balcon2',
-                        'registro_fotografico.rf_balcon3',
+                        'registro_fotografico.rf_balcon3'
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')

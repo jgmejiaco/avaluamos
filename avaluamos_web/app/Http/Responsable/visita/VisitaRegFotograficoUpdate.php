@@ -21,30 +21,20 @@ class VisitaRegFotograficoUpdate implements Responsable
         $idCliente = request('id_cliente', null);
 
         // ==============================================================================
-        // ==============================================================================
 
         DB::connection('mysql')->beginTransaction();
 
         try {
             $fechaActual = Carbon::now();
-            $fechaActual = $fechaActual->format('d-m-Y_H:m:s');
-            $baseFileName = "vis({$idVisita})_cli({$idCliente})_".$fechaActual;
+            $fechaActual = $fechaActual->format('d-m-Y H:m:s');
+            $baseFileName = "vis({$idVisita})_cli({$idCliente})_".Carbon::parse($fechaActual)->timestamp;
 
-            $carpetaArchivos = '/upfiles/visita';
-            // $carpetaArchivos = storage_path('app/public/');
-            // $carpetaArchivos = storage_path('/upfiles/visita');
+            $carpetaArchivos = storage_path('app\public\upfiles\visita\\');
 
             $rfFachada= '';
             if ($request->hasFile('rf_fachada')) {
-                $rfFachada = $this->upfileWithName($baseFileName, $carpetaArchivos, $request, 'rf_fachada', 'fachada');
-                // $rfFachada = $this->uploadFile($request, 'xml_evento', $carpeta_archivos);
-                // !Storage::exists($factura->ruta_archivo) ?: Storage::delete($factura->ruta_archivo);
-                // $rfFachada = $this->uploadFile($request, 'archivo', 'upfilesspe/contabilidad/facturas');
-                // $poliza = storage_path('app/public/'. $archivos_poliza[0]['archivo']);
 
-                // if(file_exists($archivo_matricula)){
-                //     unlink($archivo_matricula);
-                // }
+                $rfFachada = $this->upfileWithName($baseFileName, $carpetaArchivos, $_FILES, 'rf_fachada', 'fachada');
 
             } else {
                 $rfFachada = null;

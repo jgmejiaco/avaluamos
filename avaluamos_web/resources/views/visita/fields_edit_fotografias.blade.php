@@ -10,7 +10,7 @@
                 <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_fachada" class="form-label text-uppercase">Fachada</label>
-                        {!! Form::file('rf_fachada', isset($editarVisita) ? $editarVisita->rf_fachada : null, ['class' => 'form-control', 'id' => 'rf_fachada']) !!}
+                        {!! Form::file('rf_fachada', ['class' => 'form-control', 'id' => 'rf_fachada']) !!}
                     </div>
                 </div>
 
@@ -19,7 +19,7 @@
                 <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_entrada" class="form-label text-uppercase">Entrada</label>
-                        {!! Form::file('rf_entrada', isset($editarVisita) ? $editarVisita->rf_entrada : null, ['class' => 'form-control', 'id' => 'rf_entrada']) !!}
+                        {!! Form::file('rf_entrada', ['class' => 'form-control', 'id' => 'rf_entrada']) !!}
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_sala2" class="form-label text-uppercase">sala 2</label>
@@ -42,7 +42,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_sala3" class="form-label text-uppercase">sala 3</label>
@@ -60,7 +60,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_comedor2" class="form-label text-uppercase">comedor 2</label>
@@ -69,7 +69,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_comedor3" class="form-label text-uppercase">comedor 3</label>
@@ -78,7 +78,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cocina1" class="form-label text-uppercase">cocina 1</label>
@@ -87,7 +87,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cocina2" class="form-label text-uppercase">cocina 2</label>
@@ -96,7 +96,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cocina3" class="form-label text-uppercase">cocina 3</label>
@@ -114,7 +114,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion2" class="form-label text-uppercase">habitación 2</label>
@@ -123,7 +123,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion3" class="form-label text-uppercase">habitación 3</label>
@@ -132,7 +132,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion4" class="form-label text-uppercase">habitación 4</label>
@@ -141,7 +141,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion5" class="form-label text-uppercase">habitación 5</label>
@@ -150,7 +150,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion6" class="form-label text-uppercase">habitación 6</label>
@@ -159,7 +159,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_habitacion7" class="form-label text-uppercase">habitación 7</label>
@@ -168,7 +168,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_bano1" class="form-label text-uppercase">baño 1</label>
@@ -177,7 +177,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_bano2" class="form-label text-uppercase">baño 2</label>
@@ -186,7 +186,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_bano3" class="form-label text-uppercase">baño 3</label>
@@ -195,7 +195,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_patio1" class="form-label text-uppercase">patio 1</label>
@@ -204,7 +204,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_patio2" class="form-label text-uppercase">patio 2</label>
@@ -213,7 +213,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_patio3" class="form-label text-uppercase">patio 3</label>
@@ -222,7 +222,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_estudio1" class="form-label text-uppercase">Estudio 1</label>
@@ -231,7 +231,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_estudio2" class="form-label text-uppercase">Estudio 2</label>
@@ -240,7 +240,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_estudio3" class="form-label text-uppercase">Estudio 3</label>
@@ -249,7 +249,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cuarto_util1" class="form-label text-uppercase">Cuarto Útil 1</label>
@@ -258,7 +258,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cuarto_util2" class="form-label text-uppercase">Cuarto Útil 2</label>
@@ -267,7 +267,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_cuarto_util3" class="form-label text-uppercase">Cuarto Útil 3</label>
@@ -276,7 +276,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_pasillo1" class="form-label text-uppercase">Pasillo 1</label>
@@ -285,7 +285,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_pasillo2" class="form-label text-uppercase">Pasillo 2</label>
@@ -294,7 +294,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_pasillo3" class="form-label text-uppercase">Pasillo 3</label>
@@ -303,7 +303,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_zona_ropa1" class="form-label text-uppercase">Zona ropa 1</label>
@@ -312,7 +312,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_zona_ropa2" class="form-label text-uppercase">Zona ropa 2</label>
@@ -321,16 +321,16 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_zona_ropa3" class="form-label text-uppercase">Zona ropa 3</label>
                         {!! Form::file('rf_zona_ropa3',  isset($editarVisita) ? $editarVisita->rf_zona_ropa3 : null, ['class' => 'form-control', 'id' => 'rf_zona_ropa3']) !!}
                     </div>
                 </div> --}}
-                
+
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_balcon1" class="form-label text-uppercase">balcón 1</label>
@@ -339,7 +339,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_balcon2" class="form-label text-uppercase">balcón 2</label>
@@ -348,7 +348,7 @@
                 </div> --}}
 
                 {{-- ======================= --}}
-                
+
                 {{-- <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="rf_balcon3" class="form-label text-uppercase">balcón 3</label>

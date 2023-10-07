@@ -62,6 +62,21 @@ trait FileUploadTrait
      * @param [type] $folder
      * @return void
      */
+    public function upfileWithName($baseFileName, $folder, $files, $nameField, $prefix)
+    {
+        $filename = null;
+        if (!is_null($files) && !empty($files)) {
+
+            $filename = $_FILES['rf_fachada']['name'];
+            $tmpName = $_FILES['rf_fachada']['tmp_name'];
+            $extension = $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            $nameFile = "{$baseFileName}_{$prefix}.{$extension}";
+            $mover_foto = move_uploaded_file($tmpName, "$folder/$nameFile");
+        }
+
+        return $mover_foto;
+    }
+
     public function uploadFile($request, $name, $folder)
     {
         $filename = null;
@@ -71,9 +86,6 @@ trait FileUploadTrait
         return $filename;
     }
 
-    /**
-     *
-     */
     public function uploadFiles($request, $name, $folder) {
         $name_files = array();
         if(is_array($request->$name)){
@@ -87,26 +99,5 @@ trait FileUploadTrait
             }
         }
         return json_encode($name_files);
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param [type] $base_file_name
-     * @param [type] $folder
-     * @param [type] $request
-     * @param [type] $name_field
-     * @param [type] $prefix
-     * @return void
-     */
-    public function upfileWithName($base_file_name, $folder, $request, $name_field, $prefix)
-    {
-        $filename = null;
-        if ($request->hasFile($name_field)) {
-            $extension = $request->file($name_field)->getClientOriginalExtension();
-            $name_file = "{$base_file_name}_{$prefix}.{$extension}";
-            $filename = $request->file($name_field)->storeAs( $folder,  $name_file, 'public' );
-        }
-        return $filename;
     }
 }
