@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,3 +16,5 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+Route::get('editar_cliente/{idCliente}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
