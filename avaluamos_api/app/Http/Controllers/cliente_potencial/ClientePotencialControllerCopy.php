@@ -20,7 +20,7 @@ use App\Models\RedSocial;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 use App\Http\Responsable\cliente_potencial\ClienteUpdate;
 
-class ClientePotencialController extends Controller
+class ClientePotencialControllerCopy extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,6 +29,7 @@ class ClientePotencialController extends Controller
      */
     public function index(Request $request)
     {
+        return ("ok editar_cliente desde index");
         // try {
         //     $adminCtrl = new AdministradorController();
         //     $sesion = $adminCtrl->validarVariablesSesion();
@@ -137,6 +138,8 @@ class ClientePotencialController extends Controller
      */
     public function edit($idCliente)
     {
+        // dd("ok editar_cliente");
+        return ("ok editar_cliente");
         // try {
         //     $adminCtrl = new AdministradorController();
         //     $sesion = $adminCtrl->validarVariablesSesion();
