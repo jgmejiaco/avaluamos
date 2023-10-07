@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/', function () {
         return view('inicio_sesion.login');
-        // return view('home');
     })->name('inicio');
 
     // RUTA COMPROBAR CONEXIÓN BASE DE DATOS

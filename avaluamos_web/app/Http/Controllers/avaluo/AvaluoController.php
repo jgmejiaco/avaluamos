@@ -197,8 +197,9 @@ class AvaluoController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $calcularAvaluo = $this->calcularAvaluo($idVisita);
+                $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
                 $this->shareData();
-                return view('avaluo.edit', compact('calcularAvaluo'));
+                return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
                 // return view('avaluo.edit');
             }
         } catch (Exception $e) {
@@ -705,6 +706,9 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
+        $visitas = Visita::with('usuario', 'cargo')->first();
+        dd($visitas);
+
         return DB::table('visitas')
                     // ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
@@ -768,7 +772,6 @@ class AvaluoController extends Controller
                     ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
                     ->leftjoin('registro_fotografico','registro_fotografico.id_visita','=','visitas.id_visita')
                     ->select(
-                        // 'avaluo.id_avaluo',
                         'visitas.id_visita',
                         'clientes.id_cliente',
                         'cli_nombres',
@@ -997,6 +1000,21 @@ class AvaluoController extends Controller
     }
 
     //=========================================================
+    //=========================================================
+
+    public function calcularAvaluo2($idVisita)
+    {
+        return DB::table('visitas')
+                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
+                    ->select(
+                        'avaluo.id_avaluo',
+                    )
+                    ->where('visitas.id_visita', $idVisita)
+                    ->whereNull('visitas.deleted_at')
+                    ->whereNull('clientes.deleted_at')
+                    ->first();
+    }
+
     //=========================================================
     
     public function consultarFactorPendiente()
