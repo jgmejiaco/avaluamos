@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Persona;
 use App\Models\Usuario;
 use Jenssegers\Date\Date;
+use GuzzleHttp\Client;
 
 class UsuarioStore implements Responsable
 {
@@ -48,11 +49,35 @@ class UsuarioStore implements Responsable
                 $complemento++;
             }
 
+            // $client = new Client([
+            //     'base_uri' => 'http://localhost:8000/ver_index',
+            //     'headers' => [
+                    
+            //     ],
+            //     'body' => json_encode($request)
+            // ]);
+
+            // $response = $client->request('GET');
+            // $res = $response->getBody()->getContents();
+            // dd($res);
+
             // ===================================================================
 
             DB::connection('mysql')->beginTransaction();
 
             try {
+
+                // $client = new Client([
+                //     'base_uri' => 'http://localhost:8000/ver_index',
+                //     'headers' => [
+                        
+                //     ],
+                //     'body' => json_encode($request)
+                // ]);
+
+                // $response = $client->request('GET');
+                // $res = $response->getBody()->getContents();
+                // dd($res);
 
                 $nuevoUsuario = Usuario::create([
                     'nombre_usuario' => $usuario.$complemento,
