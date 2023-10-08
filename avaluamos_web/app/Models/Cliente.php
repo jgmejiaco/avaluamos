@@ -36,5 +36,6 @@ class Cliente extends Model
         'id_red_social',
         'nombre_quien_refiere',
         'empresa_que_refiere',
+        'usu_logueado',
     ];
 }

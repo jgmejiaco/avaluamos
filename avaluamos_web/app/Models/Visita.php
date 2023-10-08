@@ -99,7 +99,8 @@ class Visita extends Model
         'id_visitado',
         'fecha_visita',
         'hora_visita',
-        'id_visitador'
+        'id_visitador',
+        'usu_logueado',
     ];
 
     public function usuario()

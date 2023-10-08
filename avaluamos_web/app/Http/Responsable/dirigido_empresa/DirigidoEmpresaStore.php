@@ -18,6 +18,7 @@ class DirigidoEmpresaStore implements Responsable
         $idTipoDocumento = strtoupper(request('id_tipo_documento', null));
         $numeroDocumento = strtoupper(request('numero_documento', null));
         $nombreEmpresa = strtoupper(request('nombre_empresa', null));
+        $usuLogueado = session('id_usuario');
 
         // ========================================================
 
@@ -28,6 +29,7 @@ class DirigidoEmpresaStore implements Responsable
                 'dirigido_a' => $nombreEmpresa,
                 'id_tipo_documento' => $idTipoDocumento,
                 'numero_documento' => $numeroDocumento,
+                'usu_logueado' => $usuLogueado,
             ]);
 
             // =======================================
@@ -43,30 +45,9 @@ class DirigidoEmpresaStore implements Responsable
                 return redirect()->to(route('dirigido_empresa.index'));
             }
         } catch (Exception $e) {
-            // dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Ha ocurrido un excepción, si el problema persiste, contacte a Soporte.');
             return back();
         }
     }
-
-    // Consultamos si ya existe un usuario con la cedula ingresada
-
-    // private function consultaEmpresa($usuario)
-    // {
-    //     try
-    //     {
-    //         $usuario = Usuario::where('nombre_usuario', $usuario)
-    //                             ->first();
-    //         return $usuario;
-
-    //     }
-    //     catch (Exception $e)
-    //     {
-    //         alert()->error('Error', 'Ha ocurrido un error, inténtelo de nuevo, si el problema persiste, contacte a Soporte.');
-    //         return back();
-    //     }
-    // }
-
-    
 }

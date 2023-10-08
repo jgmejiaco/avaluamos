@@ -26,6 +26,7 @@ class ClientePotencialStore implements Responsable
         $idRedSocial = request('id_red_social', null);
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere = request('empresa_que_refiere', null);
+        $usuLogueado = session('id_usuario');
 
         // ==============================================================================
         
@@ -55,6 +56,8 @@ class ClientePotencialStore implements Responsable
                                 'id_red_social' => $idRedSocial,
                                 'nombre_quien_refiere' => $nombreQuienRefiere,
                                 'empresa_que_refiere' => $empresaQueRefiere,
+                                'empresa_que_refiere' => $empresaQueRefiere,
+                                'usu_logueado' => $usuLogueado,
                             ]);
 
             if($nuevoCliente)

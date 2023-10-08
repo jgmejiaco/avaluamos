@@ -25,5 +25,6 @@ class DirigidoA extends Model
         'dirigido_a',
         'id_tipo_documento',
         'numero_documento',
+        'usu_logueado',
     ];
 }

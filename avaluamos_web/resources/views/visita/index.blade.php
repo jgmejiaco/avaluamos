@@ -46,15 +46,13 @@
                                 <th>Estado Visitado</th>
                                 <th>Fecha Visita</th>
                                 <th>Fecha Informe</th>
+                                <th>Creado Por</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         {{-- ============================== --}}
                         <tbody>
                             @foreach ($todasVisitas as $visita)
-                                {{-- @php
-                                    dd($visita->id_avaluo);
-                                @endphp --}}
                                 <tr>
                                     <td>{{$visita->id_visita}}</td>
                                     <td>{{$visita->cli_nombres}}</td>
@@ -69,6 +67,7 @@
                                     <td>{{$visita->descripcion_si_no}}</td>
                                     <td>{{$visita->fecha_visita}}</td>
                                     <td>{{$visita->fecha_informe}}</td>
+                                    <td>{{$visita->nombre_usuario}}</td>
                                     <td>
                                         <a href="{{route('editar_visita',$visita->id_visita)}}" class="btn btn-info" id="ver_cliente">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita

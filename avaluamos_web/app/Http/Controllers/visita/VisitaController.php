@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Usuarios;
 use App\Http\Controllers\admin\AdministradorController;
 use App\Models\Usuario;
 use App\Models\Rol;
@@ -661,7 +660,6 @@ class VisitaController extends Controller
     public function visitasIndex()
     {
         return DB::table('visitas')
-                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
                     ->leftjoin('tipo_documento','tipo_documento.id_tipo_documento','=','visitas.id_doc_empresa')
@@ -671,7 +669,7 @@ class VisitaController extends Controller
                     ->leftjoin('tipo_inmueble','tipo_inmueble.id_tipo_inmueble','=','visitas.id_tipo_inmueble')
                     ->leftjoin('indicador_numerico as estrato','estrato.id_indicador_numerico','=','visitas.id_estrato')
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
-                    ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
+                    ->leftjoin('usuarios', 'usuarios.id_usuario', '=', 'visitas.usu_logueado')
                     ->select(
                         'visitas.id_cliente',
                         'visitas.id_visita',
@@ -688,7 +686,7 @@ class VisitaController extends Controller
                         'fecha_visita',
                         DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita), "%d-%m-%Y") as fecha_visita'),
                         DB::raw('DATE_FORMAT(DATE_ADD(FROM_UNIXTIME(fecha_visita), INTERVAL 3 DAY), "%d-%m-%Y") as fecha_informe'),
-                        'avaluo.id_avaluo'
+                        'usuarios.nombre_usuario',
                     )
                     ->whereNull('visitas.deleted_at')
                     ->whereNull('clientes.deleted_at')

@@ -2,14 +2,9 @@
 
 namespace App\Http\Responsable\visita;
 
-use App\User;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Persona;
-use App\Models\Usuario;
 use Jenssegers\Date\Date;
 use App\Models\Visita;
 use App\Models\InfoInmueble;
@@ -24,6 +19,7 @@ use App\Models\EstadoConservacion;
 use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
 use App\Models\Avaluo;
+use App\Models\InfoJuridica;
 
 class VisitaStore implements Responsable
 {
@@ -58,6 +54,7 @@ class VisitaStore implements Responsable
         $fechaVisita = request('fecha_visita', null);
         $horaVisita = request('hora_visita', null);
         $visitador = request('visitador', null);
+        $usuLogueado = session('id_usuario');
 
         // ==============================================================================
 
@@ -172,12 +169,6 @@ class VisitaStore implements Responsable
                 'area' => $area,
                 'id_estrato' => $estrato,
                 'numero_inmueble' => $numeroInmueble,
-                // 'id_cant_parqueaderos' => $cantParqueaderos,
-                // 'id_cant_cuarto_util' => $cantCuartoUtil,
-                // 'id_cant_kioskos' => $cantKioscos,
-                // 'id_cant_piscinas' => $cantPiscinas,
-                // 'id_cant_establos' => $cantEstablos,
-                // 'id_cant_billares' => $cantBillares,
                 'latitud' => $latitud,
                 'longitud' => $longitud,
                 'porcentaje_descuento' => $porcentajeDescuento,
@@ -187,6 +178,7 @@ class VisitaStore implements Responsable
                 'fecha_visita' => $fechaVisita,
                 'hora_visita' => $horaVisita,
                 'id_visitador' => $visitador,
+                'usu_logueado' => $usuLogueado,
             ]);
 
             if($nuevaVisita) {
@@ -239,6 +231,10 @@ class VisitaStore implements Responsable
                 ]);
 
                 ValorEstimadoAvaluo::create([
+                    'id_visita' => $idVisita->id_visita,
+                ]);
+
+                InfoJuridica::create([
                     'id_visita' => $idVisita->id_visita,
                 ]);
 

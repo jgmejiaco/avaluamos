@@ -706,8 +706,8 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
-        $visitas = Visita::with('usuario', 'cargo')->first();
-        dd($visitas);
+        // $visitas = Visita::with('usuario', 'cargo')->first();
+        // dd($visitas);
 
         return DB::table('visitas')
                     // ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
@@ -1011,7 +1011,6 @@ class AvaluoController extends Controller
                     )
                     ->where('visitas.id_visita', $idVisita)
                     ->whereNull('visitas.deleted_at')
-                    ->whereNull('clientes.deleted_at')
                     ->first();
     }
 

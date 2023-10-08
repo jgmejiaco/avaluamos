@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\admin\AdministradorController;
 use Exception;
-use Jenssegers\Date\Date;
-use Carbon\Carbon;
 use App\Models\Cliente;
 use App\Models\TipoDocumento;
 use App\Models\TipoPersona;
@@ -191,7 +189,6 @@ class ClientePotencialController extends Controller
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
-        // return new ClienteUpdate();
     }
 
     // ========================================================
@@ -233,6 +230,7 @@ class ClientePotencialController extends Controller
                 ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
                 ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
                 ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
+                ->leftjoin('usuarios', 'usuarios.id_usuario', '=', 'clientes.usu_logueado')
                 ->select('id_cliente',
                             'cli_nombres',
                             'id_doc_cliente',
@@ -254,7 +252,8 @@ class ClientePotencialController extends Controller
                             'redes_sociales.id_red_social',
                             'red_social',
                             'nombre_quien_refiere',
-                            'empresa_que_refiere'
+                            'empresa_que_refiere',
+                            'usuarios.nombre_usuario',
                         )
                 ->whereNull('clientes.deleted_at')
                 ->orderBy('clientes.id_cliente', 'DESC')

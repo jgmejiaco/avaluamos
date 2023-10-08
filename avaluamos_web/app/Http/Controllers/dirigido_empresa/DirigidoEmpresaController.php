@@ -4,14 +4,9 @@ namespace App\Http\Controllers\dirigido_empresa;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 use Exception;
-use Jenssegers\Date\Date;
-use Carbon\Carbon;
 use App\Models\TipoDocumento;
-use App\Models\SiNo;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
 use App\Models\DirigidoA;
@@ -80,7 +75,6 @@ class DirigidoEmpresaController extends Controller
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
-        // return new DirigidoEmpresaStore();
     }
 
     /**
@@ -130,7 +124,6 @@ class DirigidoEmpresaController extends Controller
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
-        // return new DirigidoEmpresaUpdate();
     }
 
     // ========================================================
@@ -159,11 +152,14 @@ class DirigidoEmpresaController extends Controller
     {
         return DB::table('dirigido_a')
                     ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
+                    ->leftjoin('usuarios', 'usuarios.id_usuario', '=', 'dirigido_a.usu_logueado')
                     ->select('dirigido_a.id_dirigido_a',
                                 'dirigido_a.dirigido_a',
                                 'dirigido_a.numero_documento',
                                 'tipo_documento.id_tipo_documento',
                                 'tipo_documento.decripcion_documento',
+                                'tipo_documento.decripcion_documento',
+                                'usuarios.nombre_usuario',
                                 )
                     ->whereNull('dirigido_a.deleted_at')
                     ->orderBy('dirigido_a.dirigido_a', 'ASC')

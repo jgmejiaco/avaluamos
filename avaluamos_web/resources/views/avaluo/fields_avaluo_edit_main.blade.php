@@ -22,6 +22,10 @@
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
+                    <a class="nav-link" href="#nav_info_juridica" id="nav_info_juridica_tab" data-toggle="tab" role="tab" aria-controls="nav_info_juridica">Info Jurídica</a>
+                </li>
+                <!-- ================================== -->
+                <li class="nav-item">
                     <a class="nav-link" href="#nav_caracteristicas_inmueble" id="nav_caracteristicas_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_caracteristicas_inmueble">Características del Inmueble</a>
                 </li>
                 <!-- ================================== -->
@@ -83,6 +87,12 @@
                 <!-- CONTENIDO PESTAÑA "INFORMACIÓN INMUEBLE" -->
                 <div class="tab-pane" id="nav_info_inmueble" role="tabpanel" aria-labelledby="nav_info_inmueble_tab">
                     @include('avaluo.fields_avaluo_edit_info_inmueble')
+                </div>
+                <!-- ================================== -->
+                <!-- ================================== -->
+                <!-- CONTENIDO PESTAÑA "INFORMACIÓN JURÍDICA" -->
+                <div class="tab-pane" id="nav_info_juridica" role="tabpanel" aria-labelledby="nav_info_juridica_tab">
+                    @include('avaluo.fields_avaluo_edit_info_juridica')
                 </div>
                 <!-- ================================== -->
                 <!-- ================================== -->

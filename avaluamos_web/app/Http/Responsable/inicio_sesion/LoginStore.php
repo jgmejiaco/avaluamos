@@ -37,17 +37,8 @@ class LoginStore implements Responsable
             }
 
             if(Hash::check($clave, $user->clave)) {
-                
-                // if($user->id_rol == 1 || $user->id_rol == "1") {
-                    // ROL ADMINISTRADOR
-                    $this->crearVariablesSesion($user);
-                    return redirect('home');
-                // }
-                // else {
-                //     // Si el rol es diferente a los mencionados, mostramos mensaje
-                //     alert()->error('Error','El usuario ' . $usuario . ' tiene un rol inválido!');
-                //     return back();
-                // }
+                $this->crearVariablesSesion($user);
+                return redirect('home');
             } else {
                 $contarClaveErronea += 1;
                 $this->actualizarClaveFallas($user->id_usuario, $contarClaveErronea);
@@ -81,7 +72,6 @@ class LoginStore implements Responsable
             return Usuario::where('nombre_usuario', $usuario)
                         ->whereNull('deleted_at')
                         ->first();
-
         } catch (Exception $e) {
             alert()->error('Error','Un error ha ocurrido, inténtelo nuevamente, si el problema persiste, contacte a Soporte.');
             return back();

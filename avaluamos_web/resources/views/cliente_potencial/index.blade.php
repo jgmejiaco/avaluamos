@@ -45,6 +45,7 @@
                                 <th>Tipo Persona</th>
                                 <th>Recomendado Por</th>
                                 <th>Referido</th>
+                                <th>Creado Por</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -73,6 +74,8 @@
                                     @else {{-- Vacío --}}
                                         <td></td>
                                     @endif
+
+                                    <td>{{$cliente->nombre_usuario}}</td>
 
                                     <td>
                                         <a href="{{route('editar_cliente',$cliente->id_cliente)}}" class="btn btn-warning">Editar Cliente</a>

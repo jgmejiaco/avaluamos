@@ -34,6 +34,7 @@
                                 <th>Nombre Empresa</th>
                                 <th>Tipo Documento</th>
                                 <th>Número Documento</th>
+                                <th>Creada Por</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                     <td>{{isset($empresa) ? $empresa->dirigido_a : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->decripcion_documento : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->numero_documento : null}}</td>
+                                    <td>{{isset($empresa) ? $empresa->nombre_usuario : null}}</td>
                                     <td>
                                         @php
                                             $idEmpresa = $empresa->id_dirigido_a;
