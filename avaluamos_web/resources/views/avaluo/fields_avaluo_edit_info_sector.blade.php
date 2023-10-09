@@ -1,8 +1,8 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita_info_sector_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_sector']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['avaluo_info_sector_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_sector']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
-            {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+            {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
             <h2 class="text-uppercase mb-5">INFORMACIÓN DEL SECTOR</h2>
 
             <div class="row mb-5">

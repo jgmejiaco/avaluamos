@@ -22,4 +22,4 @@ $router->get('ver_index', 'cliente_potencial\ClientePotencialControllerCopy@inde
 
 
   // RUTAS AVALÚO
-  Route::post('avaluo_cliente_update/{id}', 'avaluo\AvaluoController@avaluoClienteUpdate')->name('avaluo_cliente_update');
+//   Route::post('avaluo_cliente_update/{id}', 'avaluo\AvaluoController@avaluoClienteUpdate')->name('avaluo_cliente_update');

@@ -1,7 +1,7 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
-        {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+        {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
             <h2 class="text-uppercase">información del inmueble</h2>
 

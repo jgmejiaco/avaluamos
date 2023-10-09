@@ -1,8 +1,8 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita_dotacion_comunal_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_dotacion_comunal']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['avaluo_dotacion_comunal_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_dotacion_comunal']) !!}
 @csrf
     <div id="div_dotacion_comunal" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
-            {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+            {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
             <h2 class="text-uppercase">EQUIPAMIENTO Y DOTACIÓN COMUNAL</h2>
 
             <div class="row mb-5">

@@ -344,22 +344,22 @@ class AvaluoController extends Controller
     
     public function avaluoAcabadosInmuebleUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoAcabadosInmuebleUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoAcabadosInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -367,22 +367,22 @@ class AvaluoController extends Controller
 
     public function avaluoCalificacionInmuebleUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoCalificacionInmuebleUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoCalificacionInmuebleUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -390,22 +390,22 @@ class AvaluoController extends Controller
 
     public function avaluoDotacionComunalUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoDotacionComunalUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoDotacionComunalUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -413,22 +413,22 @@ class AvaluoController extends Controller
     
     public function avaluoInfoSectorUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoInfoSectorUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoInfoSectorUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -436,22 +436,22 @@ class AvaluoController extends Controller
     
     public function avaluoCondiUrbanisticasUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoCondiUrbanisticasUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoCondiUrbanisticasUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -459,22 +459,22 @@ class AvaluoController extends Controller
     
     public function avaluoObserGeneralesUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoObserGeneralesUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoObserGeneralesUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -482,22 +482,22 @@ class AvaluoController extends Controller
     
     public function avaluoRegFotograficoUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoRegFotograficoUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoRegFotograficoUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -505,22 +505,22 @@ class AvaluoController extends Controller
     
     public function avaluoValorEstimadoUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoValorEstimadoUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoValorEstimadoUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================
@@ -528,22 +528,22 @@ class AvaluoController extends Controller
     
     public function avaluoEstadoConservacionUpdate()
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new AvaluoEstadoConservacionUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoEstadoConservacionUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================

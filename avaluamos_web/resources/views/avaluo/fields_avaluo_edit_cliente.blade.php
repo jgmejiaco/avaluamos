@@ -1,8 +1,5 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_cliente_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_cli_avaluo']) !!}
 @csrf
-    {{-- @php
-        dd($calcularAvaluo);
-    @endphp --}}
     <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <h2 class="text-uppercase">CLIENTE</h2>
         <div class="row mb-1 mt-5" id="div_editar_cliente">
