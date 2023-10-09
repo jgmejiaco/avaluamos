@@ -150,7 +150,6 @@ class AdministradorController extends Controller
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
-        // return new UsuarioUpdate();
     }
 
     // ==========================================================================
