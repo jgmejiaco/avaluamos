@@ -429,12 +429,12 @@ class AvaluoRegFotograficoUpdate implements Responsable
             if($editarRegFotografico) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Registro fotográfico editado satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Error al editar el Registro fotográfico, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
             }
         } catch (Exception $e) {
             dd($e);

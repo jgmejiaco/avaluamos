@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita_caracteristicas_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_caracteristicas_inmueble']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['avaluo_caracteristicas_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_caracteristicas_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}

@@ -28,12 +28,12 @@ class AvaluoValorEstimadoUpdate implements Responsable
             if($editarValorEstimadoInmueble) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Valor Estimado Avalúo editado satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Error al editar el Valor Estimado Avalúo, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
                 // return redirect('editar_visita/'.$id_visita.'/actualizar#nav-familiar');
             }
         }

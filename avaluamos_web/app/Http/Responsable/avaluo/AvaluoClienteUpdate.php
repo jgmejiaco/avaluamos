@@ -13,7 +13,6 @@ class AvaluoClienteUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        dd($request);
         $idVisita = request('id_visita', null);
         $idCliente = request('id_cliente', null);
         $cliNombres = strtoupper(request('cli_nombres', null));
@@ -40,25 +39,24 @@ class AvaluoClienteUpdate implements Responsable
         }
 
         // ==============================================================================
-        // ==============================================================================
 
         DB::connection('mysql')->beginTransaction();
 
         try {
             // Consumimos el API
-            $client = new Client([
-                'base_uri' => 'http://localhost:8000/avaluo_cliente_update/{id}',
-                'headers' => [
+            // $client = new Client([
+            //     'base_uri' => 'http://localhost:8000/avaluo_cliente_update/{id}',
+            //     'headers' => [
                     
-                ],
-                'body' => json_encode($request)
-            ]);
+            //     ],
+            //     'body' => json_encode($request)
+            // ]);
 
-            $response = $client->request('POST');
-            $res = $response->getBody()->getContents();
-            dd($res);
+            // $response = $client->request('POST');
+            // $res = $response->getBody()->getContents();
+            // dd($res);
 
-            $editarCliente = Cliente::where('id_cliente', $idCliente)
+            $editarAvaluoCliente = Cliente::where('id_cliente', $idCliente)
                     ->update(
                         [
                             'cli_nombres' => $cliNombres,
@@ -78,20 +76,17 @@ class AvaluoClienteUpdate implements Responsable
                         ]
                     );
 
-            if($editarCliente) {
+            if($editarAvaluoCliente) {
                 DB::connection('mysql')->commit();
-
                 alert()->success('Proceso Exitoso', 'Cliente editado satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Ha ocurrido un error al editar el cliente la visita, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect('calcular_avaluo/'.$idVisita);
             }
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');

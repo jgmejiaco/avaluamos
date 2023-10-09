@@ -23,7 +23,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc']) !!}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
                 </div>
             </div>
 

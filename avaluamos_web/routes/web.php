@@ -100,6 +100,21 @@ use Illuminate\Support\Facades\Route;
     Route::resource('avaluos', 'avaluo\AvaluoController');
     Route::get('calcular_avaluo/{idVisita}', 'avaluo\AvaluoController@edit')->name('calcular_avaluo');
     Route::post('avaluo_cliente_update', 'avaluo\AvaluoController@avaluoClienteUpdate')->name('avaluo_cliente_update');
+    Route::post('avaluo_visita_tecnica_update', 'avaluo\AvaluoController@avaluoVisitaTecnicaUpdate')->name('avaluo_visita_tecnica_update');
+    Route::post('avaluo_info_inmueble_update', 'avaluo\AvaluoController@avaluoInfoInmuebleUpdate')->name('avaluo_info_inmueble_update');
+    Route::post('avaluo_info_juridica_update', 'avaluo\AvaluoController@avaluoInfoJuridicaUpdate')->name('avaluo_info_juridica_update');
+    Route::post('avaluo_caracteristicas_inmueble_update', 'avaluo\AvaluoController@avaluoCaracteristicasInmuebleUpdate')->name('avaluo_caracteristicas_inmueble_update');
+    Route::post('avaluo_acabados_inmueble_update', 'avaluo\AvaluoController@avaluoAcabadosInmuebleUpdate')->name('avaluo_acabados_inmueble_update');
+    Route::post('avaluo_calificacion_inmueble_update', 'avaluo\AvaluoController@avaluoCalificacionInmuebleUpdate')->name('avaluo_calificacion_inmueble_update');
+    Route::post('avaluo_dotacion_comunal_update', 'avaluo\AvaluoController@avaluoDotacionComunalUpdate')->name('avaluo_dotacion_comunal_update');
+    Route::post('avaluo_info_sector_update', 'avaluo\AvaluoController@avaluoInfoSectorUpdate')->name('avaluo_info_sector_update');
+    Route::post('avaluo_condi_urbanisticas_update', 'avaluo\AvaluoController@avaluoCondiUrbanisticasUpdate')->name('avaluo_condi_urbanisticas_update');
+    Route::post('avaluo_obser_generales_update', 'avaluo\AvaluoController@avaluoObserGeneralesUpdate')->name('avaluo_obser_generales_update');
+    Route::post('avaluo_reg_fotografico_update', 'avaluo\AvaluoController@avaluoRegFotograficoUpdate')->name('avaluo_reg_fotografico_update');
+    Route::post('avaluo_valor_estimado_update', 'avaluo\AvaluoController@avaluoValorEstimadoUpdate')->name('avaluo_valor_estimado_update');
+    Route::post('avaluo_estado_conservacion_update', 'avaluo\AvaluoController@avaluoEstadoConservacionUpdate')->name('avaluo_estado_conservacion_update');
+    Route::post('consultar_factor_pendiente', 'avaluo\AvaluoController@consultarFactorPendiente')->name('consultar_factor_pendiente');
+    Route::post('consultar_factor_ubicacion', 'avaluo\AvaluoController@consultarFactorUbicacion')->name('consultar_factor_ubicacion');
 
     // ========================================================================
 // });

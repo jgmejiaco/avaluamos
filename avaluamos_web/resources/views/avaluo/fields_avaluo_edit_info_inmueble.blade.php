@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['avaluo_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
 @csrf
     <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         {!! Form::text('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
@@ -6,15 +6,6 @@
             <h2 class="text-uppercase">información del inmueble</h2>
 
             <div class="row mb-5">
-                {{-- <div class="col-12 col-md-3">
-                    <div class="form-group d-flex flex-column">
-                        <label for="id_tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::select('id_tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), isset($editarVisita) ? $editarVisita->id_tipo_inmueble : null, ['class' => 'form-control select2', 'id' => 'id_tipo_inmueble', 'required']) !!}
-                    </div>
-                </div> --}}
-
-                {{-- ======================= --}}
-
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_tipo_vivienda" class="form-label text-uppercase">Tipo Vivienda<span class="text-danger">*</span></label>
