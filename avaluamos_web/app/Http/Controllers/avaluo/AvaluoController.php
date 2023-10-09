@@ -53,21 +53,20 @@ use App\Models\FactorTiempo;
 use App\Models\FactorPendiente;
 use App\Models\FactorUbicacion;
 use App\Models\EstadoConservacionOpciones;
-use App\Http\Responsable\visita\VisitaStore;
-use App\Http\Responsable\visita\VisitaClienteUpdate;
-use App\Http\Responsable\visita\VisitaTecnicaUpdate;
-use App\Http\Responsable\visita\VisitaInfoJuridicaUpdate;
-use App\Http\Responsable\visita\VisitaInfoInmuebleUpdate;
-use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
-use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
-use App\Http\Responsable\visita\VisitaCalificacionInmuebleUpdate;
-use App\Http\Responsable\visita\VisitaDotacionComunalUpdate;
-use App\Http\Responsable\visita\VisitaInfoSectorUpdate;
-use App\Http\Responsable\visita\VisitaCondiUrbanisticasUpdate;
-use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
-use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
-use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
-use App\Http\Responsable\visita\VisitaEstadoConservacionUpdate;
+use App\Http\Responsable\avaluo\AvaluoClienteUpdate;
+use App\Http\Responsable\avaluo\AvaluoTecnicaUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoJuridicaUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoCaracteristicasInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoAcabadosInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoCalificacionInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoDotacionComunalUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoSectorUpdate;
+use App\Http\Responsable\avaluo\AvaluoCondiUrbanisticasUpdate;
+use App\Http\Responsable\avaluo\AvaluoObserGeneralesUpdate;
+use App\Http\Responsable\avaluo\AvaluoRegFotograficoUpdate;
+use App\Http\Responsable\avaluo\AvaluoValorEstimadoUpdate;
+use App\Http\Responsable\avaluo\AvaluoEstadoConservacionUpdate;
 use PhpParser\Node\Expr\FuncCall;
 
 class AvaluoController extends Controller
@@ -227,24 +226,24 @@ class AvaluoController extends Controller
     // =================================================================
     // =================================================================
 
-    public function visitaClienteUpdate(Request $request)
+    public function avaluoClienteUpdate(Request $request)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new VisitaClienteUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new AvaluoClienteUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return back();
+        }
     }
 
     //=========================================================

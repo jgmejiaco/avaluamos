@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'POST', 'route' => ['visita_cliente_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_cli_visita']) !!}
+{!! Form::open(['method' => 'POST', 'route' => ['avaluo_cliente_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_cli_avaluo']) !!}
 @csrf
     {{-- @php
         dd($calcularAvaluo);
@@ -23,7 +23,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc']) !!}
                 </div>
             </div>
 

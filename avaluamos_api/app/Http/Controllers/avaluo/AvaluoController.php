@@ -7,6 +7,20 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\admin\AdministradorController;
+use App\Http\Responsable\avaluo\AvaluoClienteUpdate;
+use App\Http\Responsable\avaluo\AvaluoTecnicaUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoJuridicaUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoCaracteristicasInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoAcabadosInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoCalificacionInmuebleUpdate;
+use App\Http\Responsable\avaluo\AvaluoDotacionComunalUpdate;
+use App\Http\Responsable\avaluo\AvaluoInfoSectorUpdate;
+use App\Http\Responsable\avaluo\AvaluoCondiUrbanisticasUpdate;
+use App\Http\Responsable\avaluo\AvaluoObserGeneralesUpdate;
+use App\Http\Responsable\avaluo\AvaluoRegFotograficoUpdate;
+use App\Http\Responsable\avaluo\AvaluoValorEstimadoUpdate;
+use App\Http\Responsable\avaluo\AvaluoEstadoConservacionUpdate;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Cargo;
@@ -79,24 +93,7 @@ class AvaluoController extends Controller
      */
     public function index()
     {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
-
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                // $avaluosIndex = $this->avaluosIndex();
-                return view('avaluo.index', compact('avaluosIndex'));
-                // return view('avaluo.index');
-            }
-        } catch (Exception $e) {
-            // alert()->error("Error Exception!");
-            return redirect()->to(route('login'));
-        }
+        
     }
 
     // =================================================================
@@ -109,26 +106,7 @@ class AvaluoController extends Controller
      */
     public function create($idVisita)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         // $crearVisitaAvaluo = $this->cliVisitaAvaluo($idVisita);
-        //         $this->shareData();
-                
-        //         // return view('avaluo.create',compact('crearVisitaAvaluo'));
-        //         return view('avaluo.create');
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error('Error', 'Error al consultar la visita para crear el avalúo, por favor contacte a Soporte.');
-        //     return back();
-        // }
+        
     }
 
     // =================================================================
@@ -142,22 +120,7 @@ class AvaluoController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new VisitaStore();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+        
     }
 
     // =================================================================
@@ -185,26 +148,7 @@ class AvaluoController extends Controller
      */
     public function edit($idVisita)
     {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
-
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                // $calcularAvaluo = $this->calcularAvaluo($idVisita);
-                // $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
-                return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
-                // return view('avaluo.edit');
-            }
-        } catch (Exception $e) {
-            dd($e);
-            // alert()->error("Error Exception!");
-            // return back();
-        }
+       
     }
 
     // =================================================================
@@ -225,7 +169,7 @@ class AvaluoController extends Controller
     // =================================================================
     // =================================================================
 
-    public function visitaClienteUpdate(Request $request)
+    public function avaluoClienteUpdate(Request $request)
     {
         // try {
         //     $adminCtrl = new AdministradorController();
@@ -237,7 +181,7 @@ class AvaluoController extends Controller
         //     {
         //         return view('inicio_sesion.login');
         //     } else {
-        //         return new VisitaClienteUpdate();
+                return new AvaluoClienteUpdate();
         //     }
         // } catch (Exception $e) {
         //     alert()->error("Ha ocurrido un error!");

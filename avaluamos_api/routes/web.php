@@ -19,3 +19,7 @@ $router->get('/', function () use ($router) {
 
 // Route::get('editar_cliente/{idCliente}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
 $router->get('ver_index', 'cliente_potencial\ClientePotencialControllerCopy@index');
+
+
+  // RUTAS AVALÚO
+  Route::post('avaluo_cliente_update/{id}', 'avaluo\AvaluoController@avaluoClienteUpdate')->name('avaluo_cliente_update');
