@@ -2,7 +2,7 @@
 @csrf
     <div id="div_dotacion_comunal" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
         <div class="mb-5">
-            {!! Form::text('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
+            {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
             <h2 class="text-uppercase">EQUIPAMIENTO Y DOTACIÓN COMUNAL</h2>
 
             <div class="row mb-5">

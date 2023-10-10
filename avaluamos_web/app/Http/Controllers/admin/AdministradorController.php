@@ -12,7 +12,6 @@ use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
-use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\admin\UsuarioStore;
 use App\Http\Responsable\admin\UsuarioUpdate;
 
@@ -95,7 +94,6 @@ class AdministradorController extends Controller
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
-        // return new UsuarioStore();
     }
 
     // ==========================================================================
@@ -205,7 +203,6 @@ class AdministradorController extends Controller
                                     )
                             ->get()
                             ->toarray();
-
        } catch (Exception $e) {
            alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
            return back();
