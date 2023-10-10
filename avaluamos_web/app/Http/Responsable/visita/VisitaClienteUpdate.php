@@ -2,14 +2,9 @@
 
 namespace App\Http\Responsable\visita;
 
-use App\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Usuario;
 use Jenssegers\Date\Date;
 use App\Models\Cliente;
 

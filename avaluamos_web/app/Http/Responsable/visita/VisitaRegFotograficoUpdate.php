@@ -3,11 +3,9 @@
 namespace App\Http\Responsable\visita;
 
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\DB;
 use App\Models\RegistroFotografico;
-use App\Models\Cliente;
 use App\Traits\FileUploadTrait;
 use Carbon\Carbon;
 
@@ -28,7 +26,6 @@ class VisitaRegFotograficoUpdate implements Responsable
             $fechaActual = Carbon::now();
             $fechaActual = $fechaActual->format('d-m-Y_H_i_s');
             $baseFileName = "vis({$idVisita})_cli({$idCliente})_".$fechaActual;
-            // $baseFileName = "vis({$idVisita})_cli({$idCliente})_".Carbon::parse($fechaActual)->timestamp;
 
             $carpetaArchivos = 'app/public/upfiles/visita';
 
