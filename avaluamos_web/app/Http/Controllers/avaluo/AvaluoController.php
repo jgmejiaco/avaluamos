@@ -8,14 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\admin\AdministradorController;
 use App\Models\Usuario;
-use App\Models\Rol;
-use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
-use App\Models\Estado;
 use App\Models\Pais;
 use App\Models\DepartamentoEstado;
-use App\Models\Municipio;
 use App\Models\TipoVivienda;
 use App\Models\TipoInmueble;
 use App\Models\UsoInmueble;
@@ -29,7 +25,6 @@ use App\Models\TipoFachada;
 use App\Models\TipoMuro;
 use App\Models\Ventaneria;
 use App\Models\TipoTecho;
-use App\Models\Empresa;
 use App\Models\TipoSuelo;
 use App\Models\CondicionInmueble;
 use App\Models\FittoCorvini;
@@ -40,7 +35,6 @@ use App\Models\TipoPersona;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Models\DirigidoA;
-use App\Models\Cliente;
 use App\Models\Visita;
 use App\Models\TipoPiso;
 use App\Models\TipoBanio;
@@ -706,11 +700,10 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
-        // $visitas = Visita::with('usuario')->first();
+        // $visitas = Visita::with('usuario', 'cliente', 'tipoPersona', 'tipoDocCliente', 'tipoDocEmpresa', 'referidoPor')->first();
         // dd($visitas);
 
         return DB::table('visitas')
-                    // ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
@@ -1005,7 +998,6 @@ class AvaluoController extends Controller
     public function calcularAvaluo2($idVisita)
     {
         return DB::table('visitas')
-                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('info_juridica','info_juridica.id_visita','=','visitas.id_visita')
                     ->select(
                         'visitas.id_visita',

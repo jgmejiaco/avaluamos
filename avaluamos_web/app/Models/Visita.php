@@ -12,14 +12,14 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
-use App\Models\Rol;
-use App\Models\Cargo;
+use App\Models\Cliente;
+use App\Models\TipoPersona;
 use App\Models\TipoDocumento;
+use App\Models\ReferidoPor;
 use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Models\Pais;
 use App\Models\DepartamentoEstado;
-use App\Models\Municipio;
 use App\Models\TipoVivienda;
 use App\Models\TipoInmueble;
 use App\Models\UsoInmueble;
@@ -40,11 +40,8 @@ use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
 use App\Models\CalificacionGeneral;
 use App\Models\TipoVias;
-use App\Models\TipoPersona;
-use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Models\DirigidoA;
-use App\Models\Cliente;
 use App\Models\TipoPiso;
 use App\Models\TipoBanio;
 use App\Models\TipoCocina;
@@ -101,6 +98,7 @@ class Visita extends Model
 
     public function usuario()
     {
+                                                // visitas ------usuarios
         return $this->belongsTo(Usuario::class,'id_visitador', 'id_usuario');
     }
 
@@ -108,21 +106,36 @@ class Visita extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,'id_cliente', 'id_usuario');
+        return $this->belongsTo(Cliente::class,'id_cliente', 'id_cliente');
     }
 
     // ======================================================================
 
-//     public function usuario()
-//     {
-//         return $this->belongsTo(Usuario::class ,'id_usuario', 'id_usuario');
-//     }
+    public function tipoPersona()
+    {                                              // cliente ------ tipoPersona
+        return $this->belongsTo(TipoPersona::class,'id_cliente', 'id_tipo_persona'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
+    public function tipoDocCliente()
+    {                                              // cliente ------ tipo_documento
+        return $this->belongsTo(TipoDocumento::class,'id_cliente', 'id_tipo_documento'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
+    public function tipoDocEmpresa()
+    {                                              // visitas ------ tipo_documento
+        return $this->belongsTo(TipoDocumento::class,'id_doc_empresa', 'id_tipo_documento'); // no se necesita en la visita
+    }
+
+    // ======================================================================
+
+    public function referidoPor()
+    {                                              // cliente ------ referido_por
+        return $this->belongsTo(ReferidoPor::class,'id_cliente', 'id_referido_por'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
