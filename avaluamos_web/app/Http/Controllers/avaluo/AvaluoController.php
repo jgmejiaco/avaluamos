@@ -706,7 +706,7 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
-        // $visitas = Visita::with('usuario', 'cargo')->first();
+        // $visitas = Visita::with('usuario')->first();
         // dd($visitas);
 
         return DB::table('visitas')
