@@ -16,6 +16,7 @@ use App\Models\Cliente;
 use App\Models\TipoPersona;
 use App\Models\TipoDocumento;
 use App\Models\ReferidoPor;
+use App\Models\RedSocial;
 use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Models\Pais;
@@ -40,7 +41,6 @@ use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
 use App\Models\CalificacionGeneral;
 use App\Models\TipoVias;
-use App\Models\RedSocial;
 use App\Models\DirigidoA;
 use App\Models\TipoPiso;
 use App\Models\TipoBanio;
@@ -139,12 +139,24 @@ class Visita extends Model
 
     // ======================================================================
 
+    public function redSocial()
+    {                                              // cliente ------ redes sociales
+        return $this->belongsTo(RedSocial::class,'id_cliente', 'id_red_social'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
+    public function clientePais()
+    {                                       // cliente ------ paises
+        return $this->belongsTo(Pais::class,'id_pais', 'id_pais'); // no se necesita en la visita
+    }
 
     // ======================================================================
-
+    
+    public function visitaPais()
+    {                                       // visita ------ paises
+        return $this->belongsTo(Pais::class,'id_pais', 'id_pais'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
