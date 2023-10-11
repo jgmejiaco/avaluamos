@@ -662,7 +662,7 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
-        $visitas = Visita::with('usuario','cliente','tipoPersona','tipoDocCliente','tipoDocEmpresa','referidoPor','redSocial','clientePais','visitaPais','clienteDepartamento','visitaDepartamento','clienteCiudad','visitaCiudad','tipoInmueble','infoInmueble','tipoVivienda')->first();
+        $visitas = Visita::with('usuario','cliente','tipoPersona','tipoDocCliente','tipoDocEmpresa','referidoPor','redSocial','clientePais','visitaPais','clienteDepartamento','visitaDepartamento','clienteCiudad','visitaCiudad','tipoInmueble','infoInmueble','tipoVivienda','usoInmueble','siNo','tipoSuelo','topografia','forma')->first();
         dd($visitas);
 
         return DB::table('visitas')

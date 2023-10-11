@@ -18,10 +18,11 @@ use App\Models\TipoInmueble;
 use App\Models\InfoInmueble;
 use App\Models\TipoVivienda;
 use App\Models\UsoInmueble;
+use App\Models\SiNo;
+use App\Models\TipoSuelo;
 use App\Models\Topografia;
 use App\Models\Forma;
 use App\Models\IndicadorNumerico;
-use App\Models\SiNo;
 use App\Models\SistemaConstructivo;
 use App\Models\PuertasMaterial;
 use App\Models\TipoFachada;
@@ -29,7 +30,6 @@ use App\Models\TipoMuro;
 use App\Models\Ventaneria;
 use App\Models\TipoTecho;
 use App\Models\Empresa;
-use App\Models\TipoSuelo;
 use App\Models\CondicionInmueble;
 use App\Models\FittoCorvini;
 use App\Models\Valorizacion;
@@ -204,18 +204,37 @@ class Visita extends Model
     // ======================================================================
 
     public function usoInmueble()
-    {                                               // infoInmueble ------ tipoVivienda
-        return $this->belongsTo(UsoInmueble::class,'id_visita', 'id_tipo_vivienda');
+    {                                               // infoInmueble ------ usoInmueble
+        return $this->belongsTo(UsoInmueble::class,'id_visita', 'id_uso_inmueble');
     }
 
     // ======================================================================
 
-    // ======================================================================
+    public function siNo()
+    {                                      // visitas ------ id_si_no
+        return $this->belongsTo(SiNo::class,'id_visitado', 'id_si_no');
+    }
 
     // ======================================================================
-    
+
+    public function tipoSuelo()
+    {                                        // infoInmueble ------ id_tipo_suelo
+        return $this->belongsTo(TipoSuelo::class,'id_visita', 'id_tipo_suelo');
+    }
+
+    // ======================================================================
+
+    public function topografia()
+    {                                        // infoInmueble ------ Topografia
+        return $this->belongsTo(Topografia::class,'id_visita', 'id_topografia');
+    }
     
     // ======================================================================
+
+    public function forma()
+    {                                       // infoInmueble ------ id_forma
+        return $this->belongsTo(Forma::class,'id_visita', 'id_forma');
+    }
 
     // ======================================================================
 
