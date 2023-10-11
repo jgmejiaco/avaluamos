@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\TipoPersona;
@@ -23,30 +24,39 @@ use App\Models\TipoSuelo;
 use App\Models\Topografia;
 use App\Models\Forma;
 use App\Models\IndicadorNumerico;
-use App\Models\SistemaConstructivo;
-use App\Models\PuertasMaterial;
-use App\Models\TipoFachada;
-use App\Models\TipoMuro;
-use App\Models\Ventaneria;
-use App\Models\TipoTecho;
-use App\Models\Empresa;
 use App\Models\CondicionInmueble;
-use App\Models\FittoCorvini;
-use App\Models\Valorizacion;
-use App\Models\CalificacionGeneral;
-use App\Models\TipoVias;
-use App\Models\DirigidoA;
-use App\Models\TipoPiso;
-use App\Models\TipoBanio;
-use App\Models\TipoCocina;
-use App\Models\TipoMeson;
-use App\Models\Comuna;
-use App\Models\FactorCalidad;
-use App\Models\FactorZona;
-use App\Models\FactorTiempo;
-use App\Models\FactorPendiente;
-use App\Models\FactorUbicacion;
-use App\Models\EstadoConservacionOpciones;
+use App\Models\CaracteristicasInmueble;
+use App\Models\AcabadosInmueble;
+use App\Models\CalificacionInmueble;
+use App\Models\DotacionComunal;
+use App\Models\CondicionesUrbanisticas;
+use App\Models\InfoSector;
+use App\Models\ObservacionesGenerales;
+use App\Models\ValorEstimadoAvaluo;
+use App\Models\EstadoConservacion;
+use App\Models\RegistroFotografico;
+// use App\Models\SistemaConstructivo;
+// use App\Models\PuertasMaterial;
+// use App\Models\TipoFachada;
+// use App\Models\TipoMuro;
+// use App\Models\Ventaneria;
+// use App\Models\TipoTecho;
+// use App\Models\FittoCorvini;
+// use App\Models\Valorizacion;
+// use App\Models\CalificacionGeneral;
+// use App\Models\TipoVias;
+// use App\Models\DirigidoA;
+// use App\Models\TipoPiso;
+// use App\Models\TipoBanio;
+// use App\Models\TipoCocina;
+// use App\Models\TipoMeson;
+// use App\Models\Comuna;
+// use App\Models\FactorCalidad;
+// use App\Models\FactorZona;
+// use App\Models\FactorTiempo;
+// use App\Models\FactorPendiente;
+// use App\Models\FactorUbicacion;
+// use App\Models\EstadoConservacionOpciones;
 
 class Visita extends Model
 {
@@ -210,7 +220,7 @@ class Visita extends Model
 
     // ======================================================================
 
-    public function siNo()
+    public function visitado()
     {                                      // visitas ------ id_si_no
         return $this->belongsTo(SiNo::class,'id_visitado', 'id_si_no');
     }
@@ -238,70 +248,269 @@ class Visita extends Model
 
     // ======================================================================
 
-    // ======================================================================
+    public function estrato()
+    {                                                  // visitas ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_estrato', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function pisosInmueble()
+    {                                              // infoInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function pisosEdificio()
+    {                                              // infoInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function remodelado()
+    {                                       // infoInmueble ------ id_si_no
+        return $this->belongsTo(SiNo::class,'id_visita', 'id_si_no');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function condicionInmueble()
+    {                                                   // infoInmueble ------ CondicionInmueble
+        return $this->belongsTo(CondicionInmueble::class,'id_visita', 'id_condicion_inmueble');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function caracteristicasInmueble()
+    {                                                   // visita ------ caracteristicas_inmueble
+        return $this->belongsTo(CaracteristicasInmueble::class,'id_visita', 'id_caracteristicas_inmueble');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function cocinas()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function habitaciones()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function salas()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function habitacionesServicio()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function comedores()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function baniosServicio()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function baniosSocial()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function baniosPrivado()
+    {                                                     // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function balcones()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
-    // ======================================================================
+
+    public function zonaRopa()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
 
     // ======================================================================
 
+    public function estudios()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
     // ======================================================================
+
+    public function patios()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function vestier()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function escalaEmergencia()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function closets()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function shutBasura()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function parqueaderos()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function cuartoUtil()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function kioskos()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function piscinas()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function establos()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function billares()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function ascensores()
+    {                                                   // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(IndicadorNumerico::class,'id_visita', 'id_indicador_numerico');
+    }
+
+    // ======================================================================
+
+    public function acabadosInmueble()
+    {                                                      // visita ------ acabados_inmueble
+        return $this->belongsTo(AcabadosInmueble::class,'id_visita', 'id_acabados_inmueble');
+    }
+
+    // ======================================================================
+
+    public function calificacionInmueble()
+    {                                                       // caracteristicasInmueble ------ id_indicador_numerico
+        return $this->belongsTo(CalificacionInmueble::class,'id_visita', 'id_calificacion_inmueble');
+    }
+
+    // ======================================================================
+
+    public function dotacionComunal()
+    {                                                   // visita ------ id_dotacion_comunal
+        return $this->belongsTo(DotacionComunal::class,'id_visita', 'id_dotacion_comunal');
+    }
+
+    // ======================================================================
+
+    public function condicionesUrbanisticas()
+    {                                                           // visita ------ id_condiciones_urbanisticas
+        return $this->belongsTo(CondicionesUrbanisticas::class,'id_visita', 'id_condiciones_urbanisticas');
+    }
+
+    // ======================================================================
+
+    public function infoSector()
+    {                                               // visitas ------ id_info_sector
+        return $this->belongsTo(InfoSector::class,'id_visita', 'id_info_sector');
+    }
+
+    // ======================================================================
+
+    public function observacionesGenerales()
+    {                                                       // visitas ------ id_obs_generales
+        return $this->belongsTo(ObservacionesGenerales::class,'id_visita', 'id_obs_generales');
+    }
+
+    // ======================================================================
+
+    public function valorEstimadoAvaluo()
+    {                                                       // visitas ------ id_valor_estimado_avaluo
+        return $this->belongsTo(ValorEstimadoAvaluo::class,'id_visita', 'id_valor_estimado_avaluo');
+    }
+
+    // ======================================================================
+
+    public function estadoConservacion()
+    {                                                       // visitas ------ id_estado_conservacion
+        return $this->belongsTo(EstadoConservacion::class,'id_visita', 'id_estado_conservacion');
+    }
+
+    // ======================================================================
+
+    public function registroFotografico()
+    {                                                       // visitas ------ id_reg_foto
+        return $this->belongsTo(RegistroFotografico::class,'id_visita', 'id_reg_foto');
+    }
 
     // ======================================================================
 
