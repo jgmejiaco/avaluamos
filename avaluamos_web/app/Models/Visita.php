@@ -4,13 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Jenssegers\Date\Date;
-use App\User;
-use Carbon\Carbon;
-use Exception;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\TipoPersona;
@@ -21,8 +14,9 @@ use App\Models\Pais;
 use App\Models\DepartamentoEstado;
 use App\Models\Ciudad;
 use App\Models\Estado;
-use App\Models\TipoVivienda;
 use App\Models\TipoInmueble;
+use App\Models\InfoInmueble;
+use App\Models\TipoVivienda;
 use App\Models\UsoInmueble;
 use App\Models\Topografia;
 use App\Models\Forma;
@@ -113,85 +107,106 @@ class Visita extends Model
 
     public function tipoPersona()
     {                                              // cliente ------ tipoPersona
-        return $this->belongsTo(TipoPersona::class,'id_cliente', 'id_tipo_persona'); // no se necesita en la visita
+        return $this->belongsTo(TipoPersona::class,'id_cliente', 'id_tipo_persona');
     }
 
     // ======================================================================
 
     public function tipoDocCliente()
     {                                              // cliente ------ tipo_documento
-        return $this->belongsTo(TipoDocumento::class,'id_cliente', 'id_tipo_documento'); // no se necesita en la visita
+        return $this->belongsTo(TipoDocumento::class,'id_cliente', 'id_tipo_documento');
     }
 
     // ======================================================================
 
     public function tipoDocEmpresa()
     {                                              // visitas ------ tipo_documento
-        return $this->belongsTo(TipoDocumento::class,'id_doc_empresa', 'id_tipo_documento'); // no se necesita en la visita
+        return $this->belongsTo(TipoDocumento::class,'id_doc_empresa', 'id_tipo_documento');
     }
 
     // ======================================================================
 
     public function referidoPor()
     {                                              // cliente ------ referido_por
-        return $this->belongsTo(ReferidoPor::class,'id_cliente', 'id_referido_por'); // no se necesita en la visita
+        return $this->belongsTo(ReferidoPor::class,'id_cliente', 'id_referido_por');
     }
 
     // ======================================================================
 
     public function redSocial()
     {                                              // cliente ------ redes sociales
-        return $this->belongsTo(RedSocial::class,'id_cliente', 'id_red_social'); // no se necesita en la visita
+        return $this->belongsTo(RedSocial::class,'id_cliente', 'id_red_social');
     }
 
     // ======================================================================
 
     public function clientePais()
     {                                       // cliente ------ paises
-        return $this->belongsTo(Pais::class,'id_pais', 'id_pais'); // no se necesita en la visita
+        return $this->belongsTo(Pais::class,'id_pais', 'id_pais');
     }
 
     // ======================================================================
     
     public function visitaPais()
     {                                       // visita ------ paises
-        return $this->belongsTo(Pais::class,'id_pais', 'id_pais'); // no se necesita en la visita
+        return $this->belongsTo(Pais::class,'id_pais', 'id_pais');
     }
 
     // ======================================================================
     
     public function clienteDepartamento()
     {                                       // visita ------ departamentos
-        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado'); // no se necesita en la visita
+        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado');
     }
 
     // ======================================================================
 
     public function visitaDepartamento()
     {                                       // visita ------ departamentos
-        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado'); // no se necesita en la visita
+        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado');
     }
 
     // ======================================================================
 
     public function clienteCiudad()
     {                                       // visita ------ ciudades
-        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad'); // no se necesita en la visita
+        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad');
     }
 
     // ======================================================================
 
     public function visitaCiudad()
     {                                       // visita ------ ciudades
-        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad'); // no se necesita en la visita
+        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad');
     }
 
     // ======================================================================
-    
+
+    public function tipoInmueble()
+    {                                                // visita ------ tipo_inmueble
+        return $this->belongsTo(TipoInmueble::class,'id_tipo_inmueble', 'id_tipo_inmueble');
+    }
 
     // ======================================================================
 
+    public function infoInmueble()
+    {                                             // visitas ------ infoInmueble
+        return $this->belongsTo(InfoInmueble::class,'id_visita', 'id_info_inmueble');
+    }
+
     // ======================================================================
+
+    public function tipoVivienda()
+    {                                               // infoInmueble ------ tipoVivienda
+        return $this->belongsTo(TipoVivienda::class,'id_visita', 'id_tipo_vivienda');
+    }
+
+    // ======================================================================
+
+    public function usoInmueble()
+    {                                               // infoInmueble ------ tipoVivienda
+        return $this->belongsTo(UsoInmueble::class,'id_visita', 'id_tipo_vivienda');
+    }
 
     // ======================================================================
 

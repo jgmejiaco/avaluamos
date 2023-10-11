@@ -85,11 +85,11 @@ class AvaluoController extends Controller
                 $avaluosIndex = $this->avaluosIndex();
                 $this->shareData();
                 return view('avaluo.index', compact('avaluosIndex'));
-                // return view('avaluo.index');
             }
         } catch (Exception $e) {
             alert()->error("Error Exception!");
-            return redirect()->to(route('login'));
+            // return redirect()->to(route('login'));
+            return back();
         }
     }
 
@@ -103,26 +103,7 @@ class AvaluoController extends Controller
      */
     public function create($idVisita)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         // $crearVisitaAvaluo = $this->cliVisitaAvaluo($idVisita);
-        //         $this->shareData();
-                
-        //         // return view('avaluo.create',compact('crearVisitaAvaluo'));
-        //         return view('avaluo.create');
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error('Error', 'Error al consultar la visita para crear el avalúo, por favor contacte a Soporte.');
-        //     return back();
-        // }
+        
     }
 
     // =================================================================
@@ -136,22 +117,7 @@ class AvaluoController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
-
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-        //         return new VisitaStore();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+        
     }
 
     // =================================================================
@@ -191,10 +157,8 @@ class AvaluoController extends Controller
             } else {
                 $calcularAvaluo = $this->calcularAvaluo($idVisita);
                 $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
-                // dd($calcularAvaluo2);
                 $this->shareData();
                 return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
-                // return view('avaluo.edit');
             }
         } catch (Exception $e) {
             dd($e);
@@ -658,7 +622,6 @@ class AvaluoController extends Controller
     public function avaluosIndex()
     {
         return DB::table('visitas')
-                    ->leftjoin('avaluo','avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
                     ->leftjoin('tipo_documento','tipo_documento.id_tipo_documento','=','visitas.id_doc_empresa')
@@ -670,7 +633,6 @@ class AvaluoController extends Controller
                     ->leftjoin('si_no','si_no.id_si_no','=','visitas.id_visitado')
                     ->leftjoin('usuarios','usuarios.id_usuario','=','visitas.id_visitador')
                     ->select(
-                        'avaluo.id_avaluo',
                         'visitas.id_cliente',
                         'visitas.id_visita',
                         'clientes.cli_nombres',
@@ -700,8 +662,8 @@ class AvaluoController extends Controller
 
     public function calcularAvaluo($idVisita)
     {
-        // $visitas = Visita::with('usuario','cliente','tipoPersona','tipoDocCliente','tipoDocEmpresa','referidoPor','redSocial','clientePais','visitaPais','clienteCiudad','visitaCiudad','clienteDepartamento','visitaDepartamento')->first();
-        // dd($visitas);
+        $visitas = Visita::with('usuario','cliente','tipoPersona','tipoDocCliente','tipoDocEmpresa','referidoPor','redSocial','clientePais','visitaPais','clienteDepartamento','visitaDepartamento','clienteCiudad','visitaCiudad','tipoInmueble','infoInmueble','tipoVivienda')->first();
+        dd($visitas);
 
         return DB::table('visitas')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')

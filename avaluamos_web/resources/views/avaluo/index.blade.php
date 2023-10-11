@@ -7,23 +7,12 @@
 {{-- ====================================================== --}}
 
 @section('content')
-    {{-- @php
-        use Carbon\Carbon;
-    @endphp --}}
     <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center text-uppercase">Calcular Avalúos</h1>
             </div>
         </div>
-
-        {{-- ============================== --}}
-
-        {{-- <div class="row p-b-20 float-right">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <a href="{{route('visita.create')}}" class="btn btn-primary">Registrar Nueva Visita</a>
-            </div>
-        </div> --}}
 
         {{-- ============================== --}}
 
@@ -51,9 +40,6 @@
                         </thead>
                         {{-- ============================== --}}
                         <tbody>
-                            {{-- @php
-                                dd($avaluosIndex);
-                            @endphp --}}
                             @foreach ($avaluosIndex as $avaluo)
                                 <tr>
                                     <td>{{$avaluo->id_visita}}</td>
