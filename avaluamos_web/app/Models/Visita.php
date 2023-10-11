@@ -17,10 +17,10 @@ use App\Models\TipoPersona;
 use App\Models\TipoDocumento;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
-use App\Models\Ciudad;
-use App\Models\Estado;
 use App\Models\Pais;
 use App\Models\DepartamentoEstado;
+use App\Models\Ciudad;
+use App\Models\Estado;
 use App\Models\TipoVivienda;
 use App\Models\TipoInmueble;
 use App\Models\UsoInmueble;
@@ -159,12 +159,35 @@ class Visita extends Model
     }
 
     // ======================================================================
+    
+    public function clienteDepartamento()
+    {                                       // visita ------ departamentos
+        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado'); // no se necesita en la visita
+    }
 
     // ======================================================================
 
-    // ======================================================================
+    public function visitaDepartamento()
+    {                                       // visita ------ departamentos
+        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado'); // no se necesita en la visita
+    }
 
     // ======================================================================
+
+    public function clienteCiudad()
+    {                                       // visita ------ ciudades
+        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad'); // no se necesita en la visita
+    }
+
+    // ======================================================================
+
+    public function visitaCiudad()
+    {                                       // visita ------ ciudades
+        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad'); // no se necesita en la visita
+    }
+
+    // ======================================================================
+    
 
     // ======================================================================
 
