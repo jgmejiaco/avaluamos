@@ -205,7 +205,16 @@ class AvaluoController extends Controller
     public function avaluoClienteUpdate(Request $request)
     {
         // dd($request);
-        dd("avaluoClienteUpdate");
+        // dd($request);
+        // // $visita = Visita::find($id);
+
+        // if (isset($visita) && !is_null($visita) && !empty($visita)) {
+        //     return response()->json($visita);
+        // } else {
+        //     abort(404,$message="no existe esta visita");
+        // }
+
+        // dd("avaluoClienteUpdate");
         // try {
         //     $adminCtrl = new AdministradorController();
         //     $sesion = $adminCtrl->validarVariablesSesion();

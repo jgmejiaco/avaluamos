@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Responsable\avaluo;
+use Illuminate\Http\Request;
 
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use Jenssegers\Date\Date;
 use App\Models\Cliente;
 
@@ -12,14 +13,14 @@ class AvaluoClienteUpdate implements Responsable
 {
     public function toResponse($request)
     {
-        dd($request);
-        // dd($request."avaluo update");
-        $idVisita = request('id_visita', null);
+        // dd($request);
         $idCliente = request('id_cliente', null);
         $cliNombres = strtoupper(request('cli_nombres', null));
         $cliTipoDoc = request('cli_tipo_doc', null);
         $docCliente = request('doc_cliente', null);
         $fechaNacimiento = request('fecha_nacimiento', null);
+        // $fechaNacimiento = trim($fechaNacimiento, '^ ');
+        $fechaNacimiento = trim($fechaNacimiento);
         $cliCelular = request('cli_celular', null);
         $cliCorreo = request('cli_correo', null);
         $tipoPersona = request('tipo_persona', null);
@@ -32,21 +33,22 @@ class AvaluoClienteUpdate implements Responsable
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
+        dd($fechaNacimiento);
 
-        // if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
-        //     $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
-        // } else {
-        //     $fechaNacimiento = null;
-        // }
+        if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
+            $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+        } else {
+            $fechaNacimiento = null;
+        }
+
+        dd($fechaNacimiento);
 
         // ==============================================================================
         // ==============================================================================
 
-        DB::connection('mysql')->beginTransaction();
+        // DB::connection('mysql')->beginTransaction();
 
         try {
-            
-
             $editarCliente = Cliente::where('id_cliente', $idCliente)
                     ->update(
                         [
@@ -68,21 +70,25 @@ class AvaluoClienteUpdate implements Responsable
                     );
 
             if($editarCliente) {
-                DB::connection('mysql')->commit();
+                return response()->json(['message' => 'Cliente actualizado con exito']);
+                // DB::connection('mysql')->commit();
 
                 // alert()->success('Proceso Exitoso', 'Cliente editado satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                // return redirect('calcular_avaluo/'.$idVisita);
 
             } else {
-                DB::connection('mysql')->rollback();
+                return response()->json(['error' => 'Ocurrio un error al actualizar el cliente'], 500);
+                // DB::connection('mysql')->rollback();
+
                 // alert()->error('Error', 'Ha ocurrido un error al editar el cliente la visita, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
+                // return redirect('calcular_avaluo/'.$idVisita);
             }
         }
         catch (Exception $e)
         {
-            dd($e);
-            DB::connection('mysql')->rollback();
+            // dd($e);
+            return response()->json(['error' => 'Exception'], 500);
+            // DB::connection('mysql')->rollback();
             // alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             // return back();
         }
