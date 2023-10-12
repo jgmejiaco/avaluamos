@@ -18,9 +18,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/key', function () {
-  return Str::random(32);
- });
+//  https://diarioprogramador.com/crear-api-rest-con-laravel-lumen/
 
 // RUTAS AVALÚO
 $router->get('avaluo_index', 'avaluo\AvaluoController@index');

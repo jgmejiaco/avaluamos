@@ -92,8 +92,15 @@ class AvaluoController extends Controller
      */
     public function index()
     {
-        return Visita::all();
-        // return "avaluos index";
+        $visitas = Visita::all();
+
+        if (isset($visitas) && !is_null($visitas) && !empty($visitas)) {
+            return response()->json($visitas);
+        } else {
+            return response()->json([
+                'message' => 'no hay visitas'
+            ], 404);
+        }
     }
 
     // =================================================================
