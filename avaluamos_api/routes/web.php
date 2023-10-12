@@ -22,5 +22,5 @@ $router->get('/', function () use ($router) {
 
 // RUTAS AVALÚO
 $router->get('avaluo_index', 'avaluo\AvaluoController@index');
-$router->get('avaluo_cliente_show/{idAvaluo}', 'avaluo\AvaluoController@show');
-$router->put('avaluo_cliente_update/{idAvaluo}', 'avaluo\AvaluoController@avaluoClienteUpdate');
+$router->get('avaluo_cliente_show/{id}', 'avaluo\AvaluoController@show');
+$router->put('avaluo_cliente_update/{id}', 'avaluo\AvaluoController@avaluoClienteUpdate');

@@ -140,19 +140,14 @@ class AvaluoController extends Controller
      * @param  \App\Models\Visita $visita
      * @return \Illuminate\Http\Response
      */
-    public function show($idVisita)
+    public function show($id)
     {
-        // dd($idVisita);
+        $visita = Visita::find($id);
 
-        $visita = Visita::find($idVisita);
-        // dd("mostrar cliente avaluo");
-
-        if (!$visita) {
-            return response()->json([
-                'message'=>'Visita no encontrada'
-            ]);
-        } else {
+        if (isset($visita) && !is_null($visita) && !empty($visita)) {
             return response()->json($visita);
+        } else {
+            abort(404,$message="no existe esta visita");
         }
     }
 
