@@ -156,8 +156,6 @@ class AvaluoController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $calcularAvaluo = $this->calcularAvaluo($idVisita);
-                // dd($calcularAvaluo);
-
                 $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
                 $this->shareData();
                 return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
@@ -670,13 +668,14 @@ class AvaluoController extends Controller
         // $visitas2 = Visita::with('ascensores', 'calificacionInmueble', 'dotacionComunal', 'condicionesUrbanisticas', 'infoSector', 'observacionesGenerales', 'valorEstimadoAvaluo', 'estadoConservacion', 'registroFotografico')->first();
         // dd($visitas,$visitas2);
 
-        // $visitas = Visita::with('usuario', 'cliente', 'tipoPersona', 'tipoDocCliente', 'tipoDocEmpresa', 'referidoPor', 'redSocial', 'clientePais', 'visitaPais', 'clienteDepartamento', 'visitaDepartamento', 'clienteCiudad', 'visitaCiudad', 'tipoInmueble', 'infoInmueble', 'tipoVivienda', 'usoInmueble', 'visitado', 'tipoSuelo', 'topografia', 'forma', 'estrato', 'pisosInmueble', 'pisosEdificio', 'remodelado', 'condicionInmueble', 'caracteristicasInmueble', 'cocinas', 'habitaciones', 'salas', 'habitacionesServicio', 'comedores', 'baniosServicio', 'baniosSocial', 'baniosPrivado', 'balcones', 'zonaRopa', 'estudios', 'patios', 'vestier', 'escalaEmergencia', 'closets', 'shutBasura', 'parqueaderos', 'cuartoUtil', 'kioskos', 'piscinas', 'establos', 'billares','ascensores', 'calificacionInmueble', 'dotacionComunal', 'condicionesUrbanisticas', 'infoSector', 'observacionesGenerales', 'valorEstimadoAvaluo', 'estadoConservacion', 'registroFotografico')->first();
-
+        // $visitas = Visita::with('usuario','cliente','tipoPersona','tipoDocCliente','tipoDocEmpresa','referidoPor','redSocial','clientePais','visitaPais','clienteDepartamento','visitaDepartamento','clienteCiudad','visitaCiudad','tipoInmueble','infoInmueble','tipoVivienda','usoInmueble','visitado','tipoSuelo','topografia','forma','estrato','pisosInmueble','pisosEdificio','remodelado','condicionInmueble','caracteristicasInmueble','cocinas','habitaciones','salas','habitacionesServicio','comedores','baniosServicio','baniosSocial','baniosPrivado','balcones','zonaRopa','estudios','patios','vestier','escalaEmergencia','closets','shutBasura','parqueaderos','cuartoUtil','kioskos','piscinas','establos','billares','ascensores','calificacionInmueble','dotacionComunal','condicionesUrbanisticas','infoSector','observacionesGenerales','valorEstimadoAvaluo','estadoConservacion','registroFotografico')->first();
         // dd($visitas);
+
+        // return Visita::with('usuario', 'cliente', 'tipoPersona', 'tipoDocCliente', 'tipoDocEmpresa', 'referidoPor', 'redSocial', 'clientePais', 'visitaPais', 'clienteDepartamento', 'visitaDepartamento', 'clienteCiudad', 'visitaCiudad', 'tipoInmueble', 'infoInmueble', 'tipoVivienda', 'usoInmueble', 'visitado', 'tipoSuelo', 'topografia', 'forma', 'estrato', 'pisosInmueble', 'pisosEdificio', 'remodelado', 'condicionInmueble', 'caracteristicasInmueble', 'cocinas', 'habitaciones', 'salas', 'habitacionesServicio', 'comedores', 'baniosServicio', 'baniosSocial', 'baniosPrivado', 'balcones', 'zonaRopa', 'estudios', 'patios', 'vestier', 'escalaEmergencia', 'closets', 'shutBasura', 'parqueaderos', 'cuartoUtil', 'kioskos', 'piscinas', 'establos', 'billares','ascensores', 'calificacionInmueble', 'dotacionComunal', 'condicionesUrbanisticas', 'infoSector', 'observacionesGenerales', 'valorEstimadoAvaluo', 'estadoConservacion', 'registroFotografico')
 
         return DB::table('visitas')
                     ->leftjoin('clientes','clientes.id_cliente','=','visitas.id_cliente')
-                     ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
+                    ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                     ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
                     ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
                     ->leftjoin('dirigido_a','dirigido_a.id_dirigido_a','=','visitas.id_dirigido_a')
@@ -735,8 +734,6 @@ class AvaluoController extends Controller
                     ->leftjoin('valor_estimado_avaluo','valor_estimado_avaluo.id_visita','=','visitas.id_visita')
                     ->leftjoin('estado_conservacion','estado_conservacion.id_visita','=','visitas.id_visita')
                     ->leftjoin('registro_fotografico','registro_fotografico.id_visita','=','visitas.id_visita')
-
-            // return Visita::with('usuario', 'cliente', 'tipoPersona', 'tipoDocCliente', 'tipoDocEmpresa', 'referidoPor', 'redSocial', 'clientePais', 'visitaPais', 'clienteDepartamento', 'visitaDepartamento', 'clienteCiudad', 'visitaCiudad', 'tipoInmueble', 'infoInmueble', 'tipoVivienda', 'usoInmueble', 'visitado', 'tipoSuelo', 'topografia', 'forma', 'estrato', 'pisosInmueble', 'pisosEdificio', 'remodelado', 'condicionInmueble', 'caracteristicasInmueble', 'cocinas', 'habitaciones', 'salas', 'habitacionesServicio', 'comedores', 'baniosServicio', 'baniosSocial', 'baniosPrivado', 'balcones', 'zonaRopa', 'estudios', 'patios', 'vestier', 'escalaEmergencia', 'closets', 'shutBasura', 'parqueaderos', 'cuartoUtil', 'kioskos', 'piscinas', 'establos', 'billares','ascensores', 'calificacionInmueble', 'dotacionComunal', 'condicionesUrbanisticas', 'infoSector', 'observacionesGenerales', 'valorEstimadoAvaluo', 'estadoConservacion', 'registroFotografico')
                     ->select(
                         'visitas.id_visita',
                         'clientes.id_cliente',

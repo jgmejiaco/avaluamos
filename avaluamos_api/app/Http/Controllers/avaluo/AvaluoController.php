@@ -93,7 +93,7 @@ class AvaluoController extends Controller
      */
     public function index()
     {
-        
+        dd("avaluos index");
     }
 
     // =================================================================
