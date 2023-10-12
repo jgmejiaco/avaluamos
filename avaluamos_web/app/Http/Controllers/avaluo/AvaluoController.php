@@ -61,7 +61,6 @@ use App\Http\Responsable\avaluo\AvaluoObserGeneralesUpdate;
 use App\Http\Responsable\avaluo\AvaluoRegFotograficoUpdate;
 use App\Http\Responsable\avaluo\AvaluoValorEstimadoUpdate;
 use App\Http\Responsable\avaluo\AvaluoEstadoConservacionUpdate;
-use PhpParser\Node\Expr\FuncCall;
 
 class AvaluoController extends Controller
 {

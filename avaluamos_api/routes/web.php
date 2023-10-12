@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/key', function () {
+  return Str::random(32);
+ });
+
 // RUTAS AVALÚO
 $router->get('avaluo_index', 'avaluo\AvaluoController@index');
+$router->get('avaluo_cliente_show/{idAvaluo}', 'avaluo\AvaluoController@show');
+$router->put('avaluo_cliente_update/{idAvaluo}', 'avaluo\AvaluoController@avaluoClienteUpdate');

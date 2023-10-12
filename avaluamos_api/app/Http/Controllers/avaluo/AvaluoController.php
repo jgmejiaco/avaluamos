@@ -82,7 +82,6 @@ use App\Http\Responsable\visita\VisitaObserGeneralesUpdate;
 use App\Http\Responsable\visita\VisitaRegFotograficoUpdate;
 use App\Http\Responsable\visita\VisitaValorEstimadoUpdate;
 use App\Http\Responsable\visita\VisitaEstadoConservacionUpdate;
-use PhpParser\Node\Expr\FuncCall;
 
 class AvaluoController extends Controller
 {
@@ -93,7 +92,8 @@ class AvaluoController extends Controller
      */
     public function index()
     {
-        dd("avaluos index");
+        return Visita::all();
+        // return "avaluos index";
     }
 
     // =================================================================
@@ -129,12 +129,24 @@ class AvaluoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idVisita
+     * @param  \App\Models\Visita $visita
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idVisita)
     {
-        //
+        // dd($idVisita);
+
+        $visita = Visita::find($idVisita);
+        // dd("mostrar cliente avaluo");
+
+        if (!$visita) {
+            return response()->json([
+                'message'=>'Visita no encontrada'
+            ]);
+        } else {
+            return response()->json($visita);
+        }
     }
 
     // =================================================================
@@ -148,7 +160,26 @@ class AvaluoController extends Controller
      */
     public function edit($idVisita)
     {
-       
+        // try {
+        //     $adminCtrl = new AdministradorController();
+        //     $sesion = $adminCtrl->validarVariablesSesion();
+
+        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
+        //         empty($sesion[1]) || is_null($sesion[1]) &&
+        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+        //     {
+        //         return view('inicio_sesion.login');
+        //     } else {
+        //         $calcularAvaluo = $this->calcularAvaluo($idVisita);
+        //         $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
+        //         $this->shareData();
+        //         return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
+        //     }
+        // } catch (Exception $e) {
+        //     dd($e);
+        //     alert()->error("Error Exception!");
+        //     return back();
+        // }
     }
 
     // =================================================================
@@ -171,6 +202,8 @@ class AvaluoController extends Controller
 
     public function avaluoClienteUpdate(Request $request)
     {
+        // dd($request);
+        dd("avaluoClienteUpdate");
         // try {
         //     $adminCtrl = new AdministradorController();
         //     $sesion = $adminCtrl->validarVariablesSesion();

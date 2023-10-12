@@ -12,30 +12,19 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
-class Cliente extends Model
+class DepartamentoEstado extends Model
 {
     use SoftDeletes;
 
     protected $connection = 'mysql';
-    protected $table = 'clientes';
-    protected $primaryKey = 'id_cliente';
+    protected $table = 'departamento_estado';
+    protected $primaryKey = 'id_departamento_estado';
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'cli_nombres',
-        'id_doc_cliente',
-        'documento_cliente',
-        'fecha_nacimiento',
-        'cli_celular',
-        'cli_email',
-        'id_tipo_persona',
+        'descripcion_departamento',
+        'id_estado',
         'id_pais',
-        'id_dpto_estado',
-        'id_ciudad',
-        'id_referido_por',
-        'id_red_social',
-        'nombre_quien_refiere',
-        'empresa_que_refiere',
-        'usu_logueado',
+        'id_ciudad'
     ];
 }

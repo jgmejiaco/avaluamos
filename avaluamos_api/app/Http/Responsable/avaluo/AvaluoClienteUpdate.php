@@ -13,6 +13,7 @@ class AvaluoClienteUpdate implements Responsable
     public function toResponse($request)
     {
         dd($request);
+        // dd($request."avaluo update");
         $idVisita = request('id_visita', null);
         $idCliente = request('id_cliente', null);
         $cliNombres = strtoupper(request('cli_nombres', null));
