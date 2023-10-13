@@ -30,6 +30,8 @@ class AvaluoClienteUpdate implements Responsable
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
+        // dd($request,$fechaNacimiento);
+
         // ==============================================================================
 
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
@@ -45,7 +47,7 @@ class AvaluoClienteUpdate implements Responsable
         try {
             // Consumimos el API
             // $client = new Client([
-            //     'base_uri' => 'http://localhost:8000/avaluo_cliente_update/{id}',
+            //     'base_uri' => 'http://localhost:8000/api/avaluo_cliente_update/{id}',
             //     'headers' => [
                     
             //     ],

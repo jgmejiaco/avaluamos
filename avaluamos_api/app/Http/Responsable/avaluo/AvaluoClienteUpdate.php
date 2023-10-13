@@ -19,8 +19,9 @@ class AvaluoClienteUpdate implements Responsable
         $cliTipoDoc = request('cli_tipo_doc', null);
         $docCliente = request('doc_cliente', null);
         $fechaNacimiento = request('fecha_nacimiento', null);
-        // $fechaNacimiento = trim($fechaNacimiento, '^ ');
-        $fechaNacimiento = trim($fechaNacimiento);
+        // $fechaNacimiento = '^ ' .$fechaNacimiento;
+        $fechaNacimiento = trim($fechaNacimiento, '^ ');
+        // $fechaNacimiento = trim($fechaNacimiento);
         $cliCelular = request('cli_celular', null);
         $cliCorreo = request('cli_correo', null);
         $tipoPersona = request('tipo_persona', null);
@@ -33,7 +34,7 @@ class AvaluoClienteUpdate implements Responsable
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
-        dd($fechaNacimiento);
+        dd($request,$fechaNacimiento);
 
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
             $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
@@ -41,7 +42,7 @@ class AvaluoClienteUpdate implements Responsable
             $fechaNacimiento = null;
         }
 
-        dd($fechaNacimiento);
+        // dd($fechaNacimiento);
 
         // ==============================================================================
         // ==============================================================================
@@ -86,7 +87,7 @@ class AvaluoClienteUpdate implements Responsable
         }
         catch (Exception $e)
         {
-            // dd($e);
+            dd($e);
             return response()->json(['error' => 'Exception'], 500);
             // DB::connection('mysql')->rollback();
             // alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
