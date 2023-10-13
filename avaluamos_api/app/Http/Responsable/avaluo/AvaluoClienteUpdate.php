@@ -34,7 +34,7 @@ class AvaluoClienteUpdate implements Responsable
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
-        dd($request,$fechaNacimiento);
+        // dd($request,$fechaNacimiento);
 
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
             $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
