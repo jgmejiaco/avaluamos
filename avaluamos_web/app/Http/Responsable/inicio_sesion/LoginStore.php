@@ -46,7 +46,7 @@ class LoginStore implements Responsable
                 return back();
             }
         } else {
-            alert()->error('Error','No records were found for the username ' . $usuario);
+            alert()->error('Error','No hay registro de este usuario: ' . $usuario);
             return back();
         }
     }
