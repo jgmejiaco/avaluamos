@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\admin\AdministradorController;
 use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\inicio_sesion\RecuperarClave;
 use App\Traits\MetodosTrait;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
