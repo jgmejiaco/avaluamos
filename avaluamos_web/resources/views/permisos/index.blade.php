@@ -17,17 +17,17 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase">Permisos</h1>
+                <h1 class="text-center text-uppercase">Permiso Módulos</h1>
             </div>
         </div>
 
         {{-- ====================================================== --}}
 
-        <div class="row p-b-20 float-right">
+        {{-- <div class="row p-b-20 float-right">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary">Crear Nuevo Permisos</a>
             </div>
-        </div>
+        </div> --}}
 
         {{-- ====================================================== --}}
 
@@ -39,36 +39,43 @@
                             <tr class="header-table"">
                                 <th class="text-center" style="vertical-align: middle">ID ROL</th>
                                 <th class="text-center" style="vertical-align: middle">ROL</th>
-                                <th class="text-center" style="vertical-align: middle">MÓDULO USUARIOS</th>
-                                <th class="text-center" style="vertical-align: middle">MÓDULO CLIENTE POTENCIAL</th>
-                                <th class="text-center" style="vertical-align: middle">MÓDULO CALENDARIO</th>
-                                <th class="text-center" style="vertical-align: middle">AVALUO</th>
-                                <th class="text-center" style="vertical-align: middle">MÓDULO INFORMES GERENCIALES</th>
+                                <th class="text-center" style="vertical-align: middle">GESTOR USUARIOS</th>
+                                <th class="text-center" style="vertical-align: middle">CLIENTES</th>
+                                <th class="text-center" style="vertical-align: middle">CALENDARIO</th>
+                                <th class="text-center" style="vertical-align: middle">AVALÚO</th>
+                                <th class="text-center" style="vertical-align: middle">INFORMES GERENCIALES</th>
                                 <th class="text-center" style="vertical-align: middle">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($roles as $rol)
                                 <tr>
-                                    <td class="text-center" style="vertical-align: middle">{{$rol['id_rol']}}</td>
-                                    <td class="text-center" style="vertical-align: middle">{{$rol['nombre_rol']}}</td>
+                                    <td class="text-center" style="vertical-align: middle">{{$rol->id_rol}}</td>
+
+                                    <td class="text-center" style="vertical-align: middle">{{$rol->nombre_rol}}</td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="mod_usuario_{{$rol->id_rol}}" id="mod_usuario_{{$rol->id_rol}}">
                                     </td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="mod_clientes_{{$rol->id_rol}}" id="mod_clientes_{{$rol->id_rol}}">
                                     </td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="mod_calendario_{{$rol->id_rol}}" id="mod_calendario_{{$rol->id_rol}}">
                                     </td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="mod_avaluo_{{$rol->id_rol}}" id="mod_avaluo_{{$rol->id_rol}}">
                                     </td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="mod_informes_{{$rol->id_rol}}" id="mod_informes_{{$rol->id_rol}}">
                                     </td>
+
                                     <td class="text-center" style="vertical-align: middle">
-                                        <button class="btn btn-info" title="Update Password" id="">
+                                        <button class="btn btn-info" id="btn_permiso" onclick="editarPermiso({{$rol->id_rol}})">
                                             <i class="fa fa-key" aria-hidden="true"></i>Editar Rol
                                         </button>
                                     </td>
@@ -121,5 +128,44 @@
             });
             // CIERRE DataTable LISTA CLIENTES
         });
+
+        // ==========================================
+
+        function editarPermiso(idPermiso) {
+
+            console.log(idPermiso);
+            let modUsuario = $('#mod_usuario_'+idPermiso).is(':checked') ? 'on' : 'off';
+            let modClientes = $('#mod_clientes_'+idPermiso).is(':checked') ? 'on' : 'off';
+            let modCalendario = $('#mod_calendario_'+idPermiso).is(':checked') ? 'on' : 'off';
+            let modAvaluo = $('#mod_avaluo_'+idPermiso).is(':checked') ? 'on' : 'off';
+            let modInformes = $('#mod_informes_'+idPermiso).is(':checked') ? 'on' : 'off';
+
+            $.ajax({
+                url: "{{route('permiso_update')}}",
+                type: "POST",
+                dataType: "JSON",
+                data:{
+                    '_token': "{{ csrf_token() }}",
+                    'id_permiso': idPermiso,
+                    'mod_usuario': modUsuario,
+                    'mod_clientes': modClientes,
+                    'mod_calendario': modCalendario,
+                    'mod_avaluo': modAvaluo,
+                    'mod_informes': modInformes,
+                },
+                success: function (respuesta) {
+                    console.log(respuesta);
+                }
+            })
+            
+            
+            // $("input:checkbox[id^='pending_']").attr('checked', true);
+
+            console.log(mod_usuario);
+            console.log(mod_clientes);
+            console.log(mod_calendario);
+            console.log(mod_avaluo);
+            console.log(mod_informes);
+        }
     </script>
 @endsection

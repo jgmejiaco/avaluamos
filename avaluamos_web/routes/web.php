@@ -51,6 +51,7 @@ use Illuminate\Support\Facades\Route;
 
     // RUTAS PERMISOS
     Route::resource('permisos', 'permisos\PermisosController');
+    Route::post('permiso_update', 'permisos\PermisosController@update')->name('permiso_update');
 
     // ========================================================================
 

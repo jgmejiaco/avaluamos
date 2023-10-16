@@ -119,9 +119,9 @@ class PermisosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        
+        dd($request);
     }
 
     /**
@@ -137,7 +137,7 @@ class PermisosController extends Controller
 
     private function shareData()
     {
-        view()->share('roles', Rol::select('id_rol','nombre_rol')->orderBy('nombre_rol', 'asc')->get()->toArray());
+        view()->share('roles', Rol::select('id_rol','nombre_rol')->orderBy('nombre_rol', 'asc')->get());
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
         // view()->share('usuarios', $this->todosLosUsuarios());
