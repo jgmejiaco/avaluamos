@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 use App\Http\Controllers\admin\AdministradorController;
+use App\Models\Usuario;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,9 @@ class HomeController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                return view('home');
+                $usuLogueado = session('id_usuario');
+                $usuario = Usuario::select('nombres')->where('id_usuario',$usuLogueado)->first();
+                return view('home',compact('usuario'));
             }
         } catch (Exception $e) {
             alert()->error("Error Exception!");

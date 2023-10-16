@@ -25,16 +25,6 @@ class UsuarioUpdate implements Responsable
         
         // ===================================================================
 
-        $hoy = Carbon::now();
-
-        if ($usuEstado == 2 || $usuEstado == "2") {
-            $deletedAt = $hoy;
-        } else {
-            $deletedAt =  null;
-        }
-        
-        // ===================================================================
-
         DB::connection('mysql')->beginTransaction();
 
         try {
@@ -49,7 +39,6 @@ class UsuarioUpdate implements Responsable
                     'correo' => $usuCorreo,
                     'celular' => $usuCelular,
                     'id_estado' => $usuEstado,
-                    'deleted_at' => $deletedAt,
             ]);
 
             if($editarUsuario)

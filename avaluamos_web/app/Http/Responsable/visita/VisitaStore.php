@@ -18,7 +18,6 @@ use App\Models\ObservacionesGenerales;
 use App\Models\EstadoConservacion;
 use App\Models\RegistroFotografico;
 use App\Models\ValorEstimadoAvaluo;
-use App\Models\Avaluo;
 use App\Models\InfoJuridica;
 
 class VisitaStore implements Responsable
@@ -185,10 +184,6 @@ class VisitaStore implements Responsable
                 DB::connection('mysql')->commit();
 
                 $idVisita = Visita::select('id_visita')->orderBy('id_visita', 'DESC')->first();
-
-                Avaluo::create([
-                    'id_visita' => $idVisita->id_visita,
-                ]);
 
                 InfoInmueble::create([
                     'id_visita' => $idVisita->id_visita,
