@@ -41,7 +41,7 @@
             </div>
 
             <div class="mt-5 d-flex justify-content-end">
-                <a class="" href="" style="color: blue">Olvidé mi Clave</a>
+                <a class="" href="{{route('recuperar_clave')}}" style="color: blue">Olvidé mi Clave</a>
             </div>
         </form>
     </div>
