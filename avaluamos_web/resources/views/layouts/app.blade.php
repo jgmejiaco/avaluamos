@@ -61,6 +61,8 @@
                 {{-- ===================================== --}}
                 @if(Request()->path() == '/' || Request()->path() == "login")
                     @include('layouts.topbar_login')
+                @elseif(Request()->path() == "recuperar")
+                    @include('layouts.topbar_login')
                 @else
                     @include('layouts.topbar')
                 @endif

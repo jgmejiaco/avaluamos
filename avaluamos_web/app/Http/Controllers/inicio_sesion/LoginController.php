@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\admin\AdministradorController;
 use App\Http\Responsable\inicio_sesion\LoginStore;
+use App\Http\Responsable\inicio_sesion\RecuperarClave;
 use App\Traits\MetodosTrait;
 
 class LoginController extends Controller
@@ -125,25 +126,36 @@ class LoginController extends Controller
             return redirect()->to(route('inicio'));
 
         } catch (Exception $e) {
-            dd($e);
             alert()->error('Ha ocurrido un error');
             return back();
         }
     }
     
-    // public function resetPassword()
-    // {
-    //     return view('inicio_sesion.resetear_password_administrador');
-    // }
+    public function resetPassword()
+    {
+        return view('inicio_sesion.resetear_contrasenia');
+    }
     
-    // ======================================================================
-    
-    // public function recoveryPassword(Request $request)
-    // {
-    //     return view('inicio_sesion.recovery_password');
-    // }
-    
-    // ======================================================================
+    public function validarDatos(Request $request)
+    {
+        try {
+            return new RecuperarClave();
+        } catch (Exception $e) {
+            alert()->error('Ha ocurrido un error');
+            return back();
+        }
+    }
 
-    
+    public function actualizarContraseña($expiration)
+    {
+        $fechaActual = Carbon::now()->timestamp;
+
+       if($fechaActual <= $expiration) {
+
+           return view('inicio_sesion.actualizar_contraseña');
+       } else {
+            alert()->error("El link ya ha expirado, realice el proceso nuevamente.");
+            return redirect()->to(route('inicio'));
+       }
+    }
 }

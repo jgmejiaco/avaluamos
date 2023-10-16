@@ -30,6 +30,11 @@ use Illuminate\Support\Facades\Route;
     Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_usuario');
     Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
 
+    // Rutas recuperacion clave
+    Route::get('recuperar', 'inicio_sesion\LoginController@resetPassword')->name('recuperar_clave');
+    Route::post('validar', 'inicio_sesion\LoginController@validarDatos')->name('validar_datos');
+    Route::get('actualizar/{expiration}', 'inicio_sesion\LoginController@actualizarContraseña')->name('actualizar_clave');
+
     // ========================================================================
     
     // RUTA AL INICIAR SESIÓN
