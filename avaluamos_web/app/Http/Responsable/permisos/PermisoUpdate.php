@@ -15,6 +15,7 @@ class PermisoUpdate implements Responsable
         $modUsuario = request('mod_usuario', null);
         $modClientes = request('mod_clientes', null);
         $modCalendario = request('mod_calendario', null);
+        $modVisitas = request('mod_visitas', null);
         $modAvaluo = request('mod_avaluo', null);
         $modInformes = request('mod_informes', null);
 
@@ -28,6 +29,7 @@ class PermisoUpdate implements Responsable
                         'mod_usuario' => $modUsuario,
                         'mod_clientes' => $modClientes,
                         'mod_calendario' => $modCalendario,
+                        'mod_visitas' => $modVisitas,
                         'mod_avaluo' => $modAvaluo,
                         'mod_informes' => $modInformes,
                     ]);

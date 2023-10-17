@@ -149,6 +149,7 @@ class PermisosController extends Controller
                             'mod_usuario',
                             'mod_clientes',
                             'mod_calendario',
+                            'mod_visitas',
                             'mod_avaluo',
                             'mod_informes'
                         )

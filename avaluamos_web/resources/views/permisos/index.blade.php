@@ -42,6 +42,7 @@
                                 <th class="text-center" style="vertical-align: middle">GESTOR USUARIOS</th>
                                 <th class="text-center" style="vertical-align: middle">CLIENTES</th>
                                 <th class="text-center" style="vertical-align: middle">CALENDARIO</th>
+                                <th class="text-center" style="vertical-align: middle">VISITAS</th>
                                 <th class="text-center" style="vertical-align: middle">AVALÚO</th>
                                 <th class="text-center" style="vertical-align: middle">INFORMES GERENCIALES</th>
                                 <th class="text-center" style="vertical-align: middle">ACCIONES</th>
@@ -64,6 +65,10 @@
 
                                     <td class="text-center" style="vertical-align: middle">
                                         {!! Form::checkbox('mod_calendario_'.$rol->id_rol, 1, $rol->mod_calendario, ['id' => 'mod_calendario_'.$rol->id_rol]) !!}
+                                    </td>
+
+                                    <td class="text-center" style="vertical-align: middle">
+                                        {!! Form::checkbox('mod_visitas_'.$rol->id_rol, 1, $rol->mod_visitas, ['id' => 'mod_visitas_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
@@ -135,6 +140,7 @@
             let modUsuario = $('#mod_usuario_'+idRol).is(':checked') ? '1' : '0';
             let modClientes = $('#mod_clientes_'+idRol).is(':checked') ? '1' : '0';
             let modCalendario = $('#mod_calendario_'+idRol).is(':checked') ? '1' : '0';
+            let modVisitas = $('#mod_visitas_'+idRol).is(':checked') ? '1' : '0';
             let modAvaluo = $('#mod_avaluo_'+idRol).is(':checked') ? '1' : '0';
             let modInformes = $('#mod_informes_'+idRol).is(':checked') ? '1' : '0';
 
@@ -148,6 +154,7 @@
                     'mod_usuario': modUsuario,
                     'mod_clientes': modClientes,
                     'mod_calendario': modCalendario,
+                    'mod_visitas': modVisitas,
                     'mod_avaluo': modAvaluo,
                     'mod_informes': modInformes,
                 },

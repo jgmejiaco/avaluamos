@@ -26,6 +26,7 @@ class Rol extends Model
         'mod_usuario',
         'mod_clientes',
         'mod_calendario',
+        'mod_visitas',
         'mod_avaluo',
         'mod_informes',
     ];

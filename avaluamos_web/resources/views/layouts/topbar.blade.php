@@ -30,13 +30,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/calendario">CALENDARIO</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">AVALUO</a>
-                            <ul class="dropdown-menu">
-                                {{-- <li><a class="dropdown-item" href="/cotizador">Cotización</a></li> --}}
-                                <li><a class="dropdown-item" href="/visita">Visitas</a></li>
-                                <li><a class="dropdown-item" href="/avaluos">Avalúos</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/visita">VISITAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/avaluos">AVALÚO</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
