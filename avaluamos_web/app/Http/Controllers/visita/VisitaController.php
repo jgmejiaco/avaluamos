@@ -56,7 +56,6 @@ use App\Models\EstadoConservacionOpciones;
 use App\Http\Responsable\visita\VisitaStore;
 use App\Http\Responsable\visita\VisitaClienteUpdate;
 use App\Http\Responsable\visita\VisitaTecnicaUpdate;
-use App\Http\Responsable\visita\VisitaInfoJuridicaUpdate;
 use App\Http\Responsable\visita\VisitaInfoInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaCaracteristicasInmuebleUpdate;
 use App\Http\Responsable\visita\VisitaAcabadosInmuebleUpdate;
@@ -269,29 +268,6 @@ class VisitaController extends Controller
     //=========================================================
     //=========================================================
 
-    public function visitaInfoJuridicaUpdate(Request $request)
-    {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
-
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaInfoJuridicaUpdate();
-            }
-        } catch (Exception $e) {
-            alert()->error("Ha ocurrido un error!");
-            return back();
-        }
-    }
-
-    //=========================================================
-    //=========================================================
-    
     public function visitaInfoInmuebleUpdate(Request $request)
     {
         try {

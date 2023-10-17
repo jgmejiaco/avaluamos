@@ -37,6 +37,8 @@ class PermisosController extends Controller
         }
     }
 
+    // ==========================================================================
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,6 +48,8 @@ class PermisosController extends Controller
     {
         
     }
+
+    // ==========================================================================
 
     /**
      * Store a newly created resource in storage.
@@ -58,6 +62,8 @@ class PermisosController extends Controller
         
     }
 
+    // ==========================================================================
+
     /**
      * Display the specified resource.
      *
@@ -69,6 +75,8 @@ class PermisosController extends Controller
         
     }
 
+    // ==========================================================================
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -79,6 +87,8 @@ class PermisosController extends Controller
     {
         
     }
+
+    // ==========================================================================
 
     /**
      * Update the specified resource in storage.
@@ -107,6 +117,8 @@ class PermisosController extends Controller
         }
     }
 
+    // ==========================================================================
+
     /**
      * Remove the specified resource from storage.
      *
@@ -118,15 +130,32 @@ class PermisosController extends Controller
        
     }
 
+    // ==========================================================================
+
     private function shareData()
     {
-        view()->share('roles', Rol::select('id_rol','nombre_rol')->orderBy('nombre_rol', 'asc')->get());
+        view()->share('roles', $this->rolesPermisos());
+        // view()->share('roles', Rol::select('id_rol','nombre_rol')->orderBy('nombre_rol', 'asc')->get());
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
         // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
-        // view()->share('usuarios', $this->todosLosUsuarios());
     }
 
     // ==========================================================================
+
+    public function rolesPermisos()
+    {
+        return Rol::select( 'id_rol',
+                            'nombre_rol',
+                            'mod_usuario',
+                            'mod_clientes',
+                            'mod_calendario',
+                            'mod_avaluo',
+                            'mod_informes'
+                        )
+                        ->orderBy('nombre_rol', 'asc')
+                        ->get();
+    }
+
 
 
     

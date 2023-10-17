@@ -55,23 +55,23 @@
                                     <td class="text-center" style="vertical-align: middle">{{$rol->nombre_rol}}</td>
 
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="mod_usuario_{{$rol->id_rol}}" id="mod_usuario_{{$rol->id_rol}}">
+                                        {!! Form::checkbox('mod_usuario_'.$rol->id_rol, 1, $rol->mod_usuario, ['id' => 'mod_usuario_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="mod_clientes_{{$rol->id_rol}}" id="mod_clientes_{{$rol->id_rol}}">
+                                        {!! Form::checkbox('mod_clientes_'.$rol->id_rol, 1, $rol->mod_clientes, ['id' => 'mod_clientes_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="mod_calendario_{{$rol->id_rol}}" id="mod_calendario_{{$rol->id_rol}}">
+                                        {!! Form::checkbox('mod_calendario_'.$rol->id_rol, 1, $rol->mod_calendario, ['id' => 'mod_calendario_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="mod_avaluo_{{$rol->id_rol}}" id="mod_avaluo_{{$rol->id_rol}}">
+                                        {!! Form::checkbox('mod_avaluo_'.$rol->id_rol, 1, $rol->mod_avaluo, ['id' => 'mod_avaluo_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
-                                        <input type="checkbox" name="mod_informes_{{$rol->id_rol}}" id="mod_informes_{{$rol->id_rol}}">
+                                        {!! Form::checkbox('mod_informes_'.$rol->id_rol, 1, $rol->mod_informes, ['id' => 'mod_informes_'.$rol->id_rol]) !!}
                                     </td>
 
                                     <td class="text-center" style="vertical-align: middle">
@@ -152,30 +152,35 @@
                     'mod_informes': modInformes,
                 },
                 success: function (respuesta) {
-                    console.log(respuesta);
-
                     if (respuesta == "permiso_editado") {
                         Swal.fire(
                             'Hecho!',
                             'Este permiso ha sido editado!',
                             'success'
-                        )
+                        );
+                        window.location.reload();
                     }
+
+                    // =============================
 
                     if (respuesta == "permiso_no_editado") {
                         Swal.fire(
                             'Precaución!',
                             'Este permiso NO ha sido editado!',
                             'warning'
-                        )
+                        );
+                        window.location.reload();
                     }
+
+                    // =============================
 
                     if (respuesta == "error_exception") {
                         Swal.fire(
                             'Error!',
                             'Error de Excepción!',
                             'warning'
-                        )
+                        );
+                        window.location.reload();
                     }
                 }
             })
