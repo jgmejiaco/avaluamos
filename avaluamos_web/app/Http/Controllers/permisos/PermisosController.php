@@ -30,6 +30,8 @@ class PermisosController extends Controller
             } else {
                 $this->shareData();
                 return view('permisos.index');
+                // return view('permisos.index', 'layouts.topbar');
+                // return view('permisos.index')->nest('topbar', 'layouts.topbar');
             }
         } catch (Exception $e) {
             alert()->error("Ha ocurrido un error!");
@@ -156,8 +158,4 @@ class PermisosController extends Controller
                         ->orderBy('nombre_rol', 'asc')
                         ->get();
     }
-
-
-
-    
 }

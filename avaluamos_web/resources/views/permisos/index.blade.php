@@ -79,11 +79,15 @@
                                         {!! Form::checkbox('mod_informes_'.$rol->id_rol, 1, $rol->mod_informes, ['id' => 'mod_informes_'.$rol->id_rol]) !!}
                                     </td>
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        <button class="btn btn-info" id="btn_permiso" onclick="editarPermiso({{$rol->id_rol}})">
-                                            <i class="fa fa-key" aria-hidden="true"></i>Editar Rol
-                                        </button>
-                                    </td>
+                                    @if ($rol->id_rol == 1)
+                                        <td></td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            <button class="btn btn-info" id="btn_permiso" onclick="editarPermiso({{$rol->id_rol}})">
+                                                <i class="fa fa-key" aria-hidden="true"></i>Editar Rol
+                                            </button>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

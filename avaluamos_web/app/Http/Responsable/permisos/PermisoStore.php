@@ -16,8 +16,6 @@ class PermisoStore implements Responsable
 {
     public function toResponse($request)
     {
-        // dd($request);
-
        
     }
 }
