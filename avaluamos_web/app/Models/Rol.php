@@ -22,6 +22,11 @@ class Rol extends Model
     protected $dates = ['deleted_at'];
     public $timestamps = true;
     protected $fillable = [
-        'nombre_rol','id_estado','id_permiso'
+        'nombre_rol',
+        'mod_usuario',
+        'mod_clientes',
+        'mod_calendario',
+        'mod_avaluo',
+        'mod_informes',
     ];
 }

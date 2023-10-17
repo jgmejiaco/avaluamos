@@ -131,14 +131,12 @@
 
         // ==========================================
 
-        function editarPermiso(idPermiso) {
-
-            console.log(idPermiso);
-            let modUsuario = $('#mod_usuario_'+idPermiso).is(':checked') ? 'on' : 'off';
-            let modClientes = $('#mod_clientes_'+idPermiso).is(':checked') ? 'on' : 'off';
-            let modCalendario = $('#mod_calendario_'+idPermiso).is(':checked') ? 'on' : 'off';
-            let modAvaluo = $('#mod_avaluo_'+idPermiso).is(':checked') ? 'on' : 'off';
-            let modInformes = $('#mod_informes_'+idPermiso).is(':checked') ? 'on' : 'off';
+        function editarPermiso(idRol) {
+            let modUsuario = $('#mod_usuario_'+idRol).is(':checked') ? '1' : '0';
+            let modClientes = $('#mod_clientes_'+idRol).is(':checked') ? '1' : '0';
+            let modCalendario = $('#mod_calendario_'+idRol).is(':checked') ? '1' : '0';
+            let modAvaluo = $('#mod_avaluo_'+idRol).is(':checked') ? '1' : '0';
+            let modInformes = $('#mod_informes_'+idRol).is(':checked') ? '1' : '0';
 
             $.ajax({
                 url: "{{route('permiso_update')}}",
@@ -146,7 +144,7 @@
                 dataType: "JSON",
                 data:{
                     '_token': "{{ csrf_token() }}",
-                    'id_permiso': idPermiso,
+                    'id_rol': idRol,
                     'mod_usuario': modUsuario,
                     'mod_clientes': modClientes,
                     'mod_calendario': modCalendario,
@@ -155,17 +153,32 @@
                 },
                 success: function (respuesta) {
                     console.log(respuesta);
+
+                    if (respuesta == "permiso_editado") {
+                        Swal.fire(
+                            'Hecho!',
+                            'Este permiso ha sido editado!',
+                            'success'
+                        )
+                    }
+
+                    if (respuesta == "permiso_no_editado") {
+                        Swal.fire(
+                            'Precaución!',
+                            'Este permiso NO ha sido editado!',
+                            'warning'
+                        )
+                    }
+
+                    if (respuesta == "error_exception") {
+                        Swal.fire(
+                            'Error!',
+                            'Error de Excepción!',
+                            'warning'
+                        )
+                    }
                 }
             })
-            
-            
-            // $("input:checkbox[id^='pending_']").attr('checked', true);
-
-            console.log(mod_usuario);
-            console.log(mod_clientes);
-            console.log(mod_calendario);
-            console.log(mod_avaluo);
-            console.log(mod_informes);
         }
     </script>
 @endsection

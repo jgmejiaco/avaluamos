@@ -5,9 +5,8 @@ namespace App\Http\Controllers\permisos;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Rol;
-use App\Http\Responsable\permisos\PermisoStore;
+use App\Http\Responsable\permisos\PermisoUpdate;
 use App\Http\Controllers\admin\AdministradorController;
 
 class PermisosController extends Controller
@@ -45,23 +44,7 @@ class PermisosController extends Controller
      */
     public function create()
     {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
-
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $this->shareData();
-                return view('permisos.create');
-            }
-        } catch (Exception $e) {
-            alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
-        }
+        
     }
 
     /**
@@ -72,22 +55,7 @@ class PermisosController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
-
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new PermisoStore();
-            }
-        } catch (Exception $e) {
-            alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
-        }
+        
     }
 
     /**
@@ -121,7 +89,22 @@ class PermisosController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request);
+        try {
+            $adminCtrl = new AdministradorController();
+            $sesion = $adminCtrl->validarVariablesSesion();
+
+            if (empty($sesion[0]) || is_null($sesion[0]) &&
+                empty($sesion[1]) || is_null($sesion[1]) &&
+                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
+            {
+                return view('inicio_sesion.login');
+            } else {
+                return new PermisoUpdate();
+            }
+        } catch (Exception $e) {
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('login'));
+        }
     }
 
     /**
