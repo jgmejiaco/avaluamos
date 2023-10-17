@@ -19,8 +19,6 @@ class PermisoUpdate implements Responsable
         $modAvaluo = request('mod_avaluo', null);
         $modInformes = request('mod_informes', null);
 
-        // dd($request,$idRol,$modUsuario,$modClientes,$modCalendario,$modAvaluo,$modInformes);
-
         DB::connection('mysql')->beginTransaction();
 
         try {

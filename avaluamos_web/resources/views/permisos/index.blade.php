@@ -55,29 +55,77 @@
 
                                     <td class="text-center" style="vertical-align: middle">{{$rol->nombre_rol}}</td>
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_usuario_'.$rol->id_rol, 1, $rol->mod_usuario, ['id' => 'mod_usuario_'.$rol->id_rol]) !!}
-                                    </td>
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_usuario_'.$rol->id_rol, 1, $rol->mod_usuario, ['id' => 'mod_usuario_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_usuario_'.$rol->id_rol, 1, $rol->mod_usuario, ['id' => 'mod_usuario_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_clientes_'.$rol->id_rol, 1, $rol->mod_clientes, ['id' => 'mod_clientes_'.$rol->id_rol]) !!}
-                                    </td>
+                                    {{-- ================================ --}}
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_calendario_'.$rol->id_rol, 1, $rol->mod_calendario, ['id' => 'mod_calendario_'.$rol->id_rol]) !!}
-                                    </td>
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_clientes_'.$rol->id_rol, 1, $rol->mod_clientes, ['id' => 'mod_clientes_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_clientes_'.$rol->id_rol, 1, $rol->mod_clientes, ['id' => 'mod_clientes_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_visitas_'.$rol->id_rol, 1, $rol->mod_visitas, ['id' => 'mod_visitas_'.$rol->id_rol]) !!}
-                                    </td>
+                                    {{-- ================================ --}}
+                                    
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_calendario_'.$rol->id_rol, 1, $rol->mod_calendario, ['id' => 'mod_calendario_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_calendario_'.$rol->id_rol, 1, $rol->mod_calendario, ['id' => 'mod_calendario_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_avaluo_'.$rol->id_rol, 1, $rol->mod_avaluo, ['id' => 'mod_avaluo_'.$rol->id_rol]) !!}
-                                    </td>
+                                    {{-- ================================ --}}
+                                    
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_visitas_'.$rol->id_rol, 1, $rol->mod_visitas, ['id' => 'mod_visitas_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_visitas_'.$rol->id_rol, 1, $rol->mod_visitas, ['id' => 'mod_visitas_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
 
-                                    <td class="text-center" style="vertical-align: middle">
-                                        {!! Form::checkbox('mod_informes_'.$rol->id_rol, 1, $rol->mod_informes, ['id' => 'mod_informes_'.$rol->id_rol]) !!}
-                                    </td>
+                                    {{-- ================================ --}}
+                                    
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_avaluo_'.$rol->id_rol, 1, $rol->mod_avaluo, ['id' => 'mod_avaluo_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_avaluo_'.$rol->id_rol, 1, $rol->mod_avaluo, ['id' => 'mod_avaluo_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
+
+                                    {{-- ================================ --}}
+                                    
+                                    @if ($rol->id_rol == 1)
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_informes_'.$rol->id_rol, 1, $rol->mod_informes, ['id' => 'mod_informes_'.$rol->id_rol, 'disabled' => 'disabled']) !!}
+                                        </td>
+                                    @else
+                                        <td class="text-center" style="vertical-align: middle">
+                                            {!! Form::checkbox('mod_informes_'.$rol->id_rol, 1, $rol->mod_informes, ['id' => 'mod_informes_'.$rol->id_rol]) !!}
+                                        </td>
+                                    @endif
+
+                                    {{-- ================================ --}}
 
                                     @if ($rol->id_rol == 1)
                                         <td></td>
@@ -133,7 +181,7 @@
                     }
                 ],
                 "pageLength": 25,
-                "scrollX": true,                 
+                "scrollX": true,
             });
             // CIERRE DataTable LISTA CLIENTES
         });
