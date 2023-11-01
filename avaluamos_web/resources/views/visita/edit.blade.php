@@ -2,7 +2,11 @@
 @section('title', 'Editar Visita')
 
 @section('css')
-    
+    <style>
+        .file-div {
+            width: 100%;
+        }
+    </style>
 @stop
 
 {{-- ====================================================== --}}
@@ -152,13 +156,13 @@
 
             // ==============================================
             // ==============================================
+            // .css('width', '100%')
 
             $('input[name=rf_fachada]').filestyle({
                 input: false,
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Fachada",
                 buttonBefore: true,
-                size : 'md',
                 iconName: "mdi mdi-folder",
             });
             
@@ -169,7 +173,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Entrada",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -180,7 +184,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Sala 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -191,7 +195,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Sala 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -202,7 +206,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Sala3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -213,7 +217,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Comedor 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -224,7 +228,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Comedor 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -235,7 +239,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Comedor 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -246,7 +250,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cocina 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -257,7 +261,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cocina 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -268,7 +272,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cocina 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -279,7 +283,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -290,7 +294,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -301,7 +305,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -312,7 +316,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 4",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -323,7 +327,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 5",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -334,7 +338,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 6",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -345,7 +349,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Habitación 7",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -356,7 +360,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Baño 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -367,7 +371,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Baño 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -378,7 +382,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Baño 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -389,7 +393,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Patio 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -400,7 +404,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Patio 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -411,7 +415,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Patio 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -422,7 +426,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Estudio 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -433,7 +437,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Estudio 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -444,7 +448,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Estudio 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -455,7 +459,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cuarto Útil 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -466,7 +470,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cuarto Útil 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -477,7 +481,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Cuarto Útil 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -488,7 +492,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Pasillo 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -499,7 +503,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Pasillo 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -510,7 +514,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Pasillo 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -521,7 +525,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Zona Ropa 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -532,7 +536,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Zona Ropa 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -543,7 +547,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Zona Ropa 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -554,7 +558,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Balcón 1",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -565,7 +569,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Balcón 2",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
 
@@ -576,7 +580,7 @@
                 buttonName: "btn-rounded btn-success",
                 buttonText: "Balcón 3",
                 buttonBefore: true,
-                size : 'md',
+                // size : 'md',
                 iconName: "mdi mdi-folder"
             });
             
