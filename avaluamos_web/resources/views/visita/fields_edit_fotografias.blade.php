@@ -341,8 +341,8 @@
                             $rf_bano1 = str_replace("/storage/app/public/", "/storage/", $rutaRfBano1);
                         @endphp
                         
-                        @if ($editarVisita->rf_bano1 != null || $editarVisita->rf_bano1 != "")
-                            <a href="{{$editarVisita->rf_bano1}}" target="_blank" rel="noopener noreferrer" class="text-primary">Foto Baño 1</a>
+                        @if ($rf_bano1 != null || $rf_bano1 != "")
+                            <a href="{{$rf_bano1}}" target="_blank" rel="noopener noreferrer" class="text-primary">Foto Baño 1</a>
                         @endif
                     </div>
                 </div>
@@ -485,8 +485,8 @@
                             $rf_estudio3 = str_replace("/storage/app/public/", "/storage/", $rutaRfEstudio3);
                         @endphp
                         
-                        @if ($editarVisita->rf_estudio3 != null || $editarVisita->rf_estudio3 != "")
-                            <a href="{{$editarVisita->rf_estudio3}}" target="_blank" rel="noopener noreferrer" class="text-primary">Foto Estudio 3</a>
+                        @if ($rf_estudio3 != null || $rf_estudio3 != "")
+                            <a href="{{$rf_estudio3}}" target="_blank" rel="noopener noreferrer" class="text-primary">Foto Estudio 3</a>
                         @endif
                     </div>
                 </div>
