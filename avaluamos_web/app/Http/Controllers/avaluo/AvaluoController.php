@@ -158,7 +158,7 @@ class AvaluoController extends Controller
                 $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
                 $this->shareData();
 
-                dd($calcularAvaluo);
+                // dd($calcularAvaluo);
                 return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
             }
         } catch (Exception $e) {

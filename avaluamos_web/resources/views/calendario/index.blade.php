@@ -98,6 +98,19 @@
     {{-- ===================================================== --}}
 
     <script>
+       // Obtener la selección actual
+        var selection = window.getSelection();
+
+        // Verificar si hay algún rango de selección
+        if (selection.rangeCount > 0 && selection.rangeCount > 0) {
+          // Obtener el rango en el índice 0
+          var range = selection.getRangeAt(0);
+
+          // Resto de tu código para trabajar con el rango de selección
+        } else {
+          console.error("No hay ningún rango de selección disponible");
+        }
+
         $(document).ready(function () {
 
             $.ajaxSetup({
@@ -129,7 +142,7 @@
 
                     // ===============================================
                     // ===============================================
-        
+
                     let calendar = $('#calendar').fullCalendar({
                         height: 'auto',
                         header:{
@@ -167,7 +180,7 @@
                             let hoy_hora = hoy.getHours();
                             let hoy_minutos = hoy.getMinutes();
                             let hoy_segundos = hoy.getSeconds();
-                            
+
                             if (hoy_dia < 10) hoy_dia = '0' + hoy_dia;
                             if (hoy_mes < 10) hoy_mes = '0' + hoy_mes;
 
@@ -253,7 +266,7 @@
                                 `;
 
                                 // =============================================
-                            
+
                                 formCalendarioVisita += `
                                     <div class="flex-row-edit mt-2">
                                         <div class="form-group flex-column-edit">
@@ -280,13 +293,13 @@
                                 `;
 
                                 // =============================================
-                                
+
                                 formCalendarioVisita += `
                                     <input type="button" class="btn btn-primary mt-3" id="btn_crear_visita_calendario" value="Crear Visita">
                                 `;
 
                                 // =============================================
-                            
+
                                 swal({
                                     title: '<strong>AGENDAMIENTO</strong>',
                                     icon: 'warning',
@@ -369,7 +382,7 @@
                                 // $('.chosen.swal').select2({});
 
                                 // =============================================
-                                
+
                                 // let form_modal_infra = $("#form_modal_infra");
 
                                 // form_modal_infra.validate({
@@ -384,7 +397,7 @@
                                 // });
 
                                 // =============================================
-                                
+
                                 // $( "#id_tipo_categoria" ).change(function() {
                                 //     let id_tipo_categoria = $('#id_tipo_categoria option:selected').text();
 
@@ -395,7 +408,7 @@
                                 //     else
                                 //     {
                                 //         $('#div_segaut_codigo_create').hide('slow');
-                                        
+
                                 //     }
                                 // });
 
@@ -508,7 +521,7 @@
                                     `;
 
                                     // =============================================
-                                
+
                                     formCalendarioVisitaEditar += `
                                         <div class="flex-row-edit mt-2">
                                             <div class="form-group flex-column-edit">
@@ -632,7 +645,7 @@
                                     // optionsDatePicker.minDate = minDate.format('DD-MM-YYYY');
                                     // optionsDatePicker.drops = 'up';
                                     // FIN - Estilo Calendario
-                                    
+
                                     // $('.datapicker').daterangepicker(optionsDatePicker).on('apply.daterangepicker', function(ev, picker) {
                                     //     $(this).val(picker.startDate.format('DD-MM-YYYY'));
                                     // });
@@ -645,11 +658,11 @@
 
                                     // =============================================
 
-                                    
+
 
                                     // =============================================
 
-                                    
+
                                 }
                             });
                         },
