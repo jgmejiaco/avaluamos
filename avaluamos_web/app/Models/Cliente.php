@@ -38,4 +38,9 @@ class Cliente extends Model
         'empresa_que_refiere',
         'usu_logueado',
     ];
+
+    public function tipoDocCliente()
+    {                                              // cliente ------ tipo_documento
+        return $this->belongsTo(TipoDocumento::class,'id_doc_cliente', 'id_tipo_documento');
+    }
 }

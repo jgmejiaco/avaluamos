@@ -110,7 +110,7 @@ class Visita extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,'id_cliente', 'id_cliente');
+        return $this->belongsTo(Cliente::class,'id_cliente', 'id_cliente')->whereNull('deleted_at');
     }
 
     // ======================================================================
@@ -120,11 +120,19 @@ class Visita extends Model
         return $this->belongsTo(TipoPersona::class,'id_cliente', 'id_tipo_persona');
     }
 
+
     // ======================================================================
 
     public function tipoDocCliente()
-    {                                              // cliente ------ tipo_documento
-        return $this->belongsTo(TipoDocumento::class,'id_cliente', 'id_tipo_documento');
+    {
+        return $this->hasOneThrough(
+            TipoDocumento::class,
+            Cliente::class,
+            "id_cliente",
+            "id_tipo_documento",
+            "id_cliente",
+            "id_doc_cliente"
+        );
     }
 
     // ======================================================================
@@ -156,14 +164,14 @@ class Visita extends Model
     }
 
     // ======================================================================
-    
+
     public function visitaPais()
     {                                       // visita ------ paises
-        return $this->belongsTo(Pais::class,'id_pais', 'id_pais');
+        return $this->belongsTo(Pais::class,'id_pais', 'id_pais')->whereNull('deleted_at');
     }
 
     // ======================================================================
-    
+
     public function clienteDepartamento()
     {                                       // visita ------ departamentos
         return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado');
@@ -173,7 +181,7 @@ class Visita extends Model
 
     public function visitaDepartamento()
     {                                       // visita ------ departamentos
-        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado');
+        return $this->belongsTo(DepartamentoEstado::class,'id_departamento', 'id_departamento_estado')->whereNull('deleted_at');
     }
 
     // ======================================================================
@@ -187,7 +195,7 @@ class Visita extends Model
 
     public function visitaCiudad()
     {                                       // visita ------ ciudades
-        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad');
+        return $this->belongsTo(Ciudad::class,'id_ciudad', 'id_ciudad')->whereNull('deleted_at');
     }
 
     // ======================================================================
@@ -238,7 +246,7 @@ class Visita extends Model
     {                                        // infoInmueble ------ Topografia
         return $this->belongsTo(Topografia::class,'id_visita', 'id_topografia');
     }
-    
+
     // ======================================================================
 
     public function forma()

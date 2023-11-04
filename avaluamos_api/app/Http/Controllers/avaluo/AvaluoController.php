@@ -113,7 +113,7 @@ class AvaluoController extends Controller
      */
     public function create($idVisita)
     {
-        
+
     }
 
     // =================================================================
@@ -127,7 +127,7 @@ class AvaluoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     // =================================================================
@@ -196,7 +196,7 @@ class AvaluoController extends Controller
      */
     public function update(Request $request)
     {
-        
+
     }
 
     // =================================================================
@@ -204,33 +204,23 @@ class AvaluoController extends Controller
 
     public function avaluoClienteUpdate(Request $request)
     {
-        // dd($request);
-        // dd($request);
-        // // $visita = Visita::find($id);
+        try {
 
-        // if (isset($visita) && !is_null($visita) && !empty($visita)) {
-        //     return response()->json($visita);
-        // } else {
-        //     abort(404,$message="no existe esta visita");
-        // }
+            $datos = $request->json();
 
-        // dd("avaluoClienteUpdate");
-        // try {
-        //     $adminCtrl = new AdministradorController();
-        //     $sesion = $adminCtrl->validarVariablesSesion();
+            dd($request);
 
-        //     if (empty($sesion[0]) || is_null($sesion[0]) &&
-        //         empty($sesion[1]) || is_null($sesion[1]) &&
-        //         empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-        //     {
-        //         return view('inicio_sesion.login');
-        //     } else {
-                return new AvaluoClienteUpdate();
-        //     }
-        // } catch (Exception $e) {
-        //     alert()->error("Ha ocurrido un error!");
-        //     return back();
-        // }
+            if(is_object($datos) && !empty($datos) && !is_null($datos) && count($datos) > 0)
+            {
+                $avaluo = new AvaluoClienteUpdate();
+                return $avaluo->toResponse($request);
+
+            } else {
+                return $this->errorResponse(['respuesta' => 'Datos Invalidos o Vacios'], 401);
+            }
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 
     //=========================================================
@@ -281,7 +271,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaInfoInmuebleUpdate(Request $request)
     {
         // try {
@@ -304,7 +294,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaCaracteristicasInmuebleUpdate(Request $request)
     {
         // try {
@@ -327,7 +317,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaAcabadosInmuebleUpdate(Request $request)
     {
         // try {
@@ -396,7 +386,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaInfoSectorUpdate(Request $request)
     {
         // try {
@@ -419,7 +409,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaCondiUrbanisticasUpdate(Request $request)
     {
         // try {
@@ -442,7 +432,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaObserGeneralesUpdate(Request $request)
     {
         // try {
@@ -465,7 +455,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaRegFotograficoUpdate(Request $request)
     {
         // try {
@@ -488,7 +478,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaValorEstimadoUpdate(Request $request)
     {
         // try {
@@ -511,7 +501,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-    
+
     public function visitaEstadoConservacionUpdate(Request $request)
     {
         // try {
@@ -543,13 +533,13 @@ class AvaluoController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 
     //=========================================================
     //=========================================================
 
-    
+
 
     //=========================================================
     //=========================================================
@@ -961,7 +951,7 @@ class AvaluoController extends Controller
     // }
 
     //=========================================================
-    
+
     // public function consultarFactorPendiente()
     // {
     //     $id_factor_pendiente = request('id_factor_pendiente', null);
@@ -970,9 +960,9 @@ class AvaluoController extends Controller
     //                             ->where('id_factor_pendiente', $id_factor_pendiente)
     //                             ->first();
     // }
-    
+
     //=========================================================
-    
+
     // public function consultarFactorUbicacion()
     // {
     //     $id_factor_ubicacion = request('id_factor_ubicacion', null);

@@ -11,17 +11,18 @@ use App\Models\Cliente;
 
 class AvaluoClienteUpdate implements Responsable
 {
+    public $datos;
+
     public function toResponse($request)
     {
-        // dd($request);
+        $datos = $request->json()->all();
+
+        dd($datos);
         $idCliente = request('id_cliente', null);
         $cliNombres = strtoupper(request('cli_nombres', null));
         $cliTipoDoc = request('cli_tipo_doc', null);
         $docCliente = request('doc_cliente', null);
-        $fechaNacimiento = request('fecha_nacimiento', null);
-        // $fechaNacimiento = '^ ' .$fechaNacimiento;
-        $fechaNacimiento = trim($fechaNacimiento, '^ ');
-        // $fechaNacimiento = trim($fechaNacimiento);
+        $fechaNacimiento = $datos['fecha_nacimiento'];
         $cliCelular = request('cli_celular', null);
         $cliCorreo = request('cli_correo', null);
         $tipoPersona = request('tipo_persona', null);
@@ -34,7 +35,7 @@ class AvaluoClienteUpdate implements Responsable
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
         // ==============================================================================
-        // dd($request,$fechaNacimiento);
+        dd($fechaNacimiento);
 
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
             $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
@@ -42,7 +43,7 @@ class AvaluoClienteUpdate implements Responsable
             $fechaNacimiento = null;
         }
 
-        // dd($fechaNacimiento);
+        dd($fechaNacimiento);
 
         // ==============================================================================
         // ==============================================================================

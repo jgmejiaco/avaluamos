@@ -11,21 +11,21 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_nombres" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
-                    {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!}
+                    {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cliente->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->tipoDocCliente->id_tipo_documento : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="doc_cliente" class="form-label text-uppercase">Documento Cliente<span class="text-danger">*</span></label>
@@ -40,7 +40,7 @@
                 $fechaNacTimeStamp = $calcularAvaluo->fecha_nacimiento;
                 $fechaNacimiento = isset($fechaNacTimeStamp) ? Carbon::parse($calcularAvaluo->fecha_nacimiento)->toDateString() : null;
             @endphp
-            
+
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
@@ -49,7 +49,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
@@ -58,7 +58,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
                     <label for="cli_correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
@@ -67,7 +67,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
                     <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
@@ -76,14 +76,14 @@
             </div>
 
             {{-- ======================= --}}
-            
+
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="cli_pais" class="form-label text-uppercase">País residencia</label>
                 {!! Form::select('cli_pais', collect(['' => 'Seleccionar...'])->union($paises), isset($calcularAvaluo) ? $calcularAvaluo->cli_pais : null, ['class' => 'form-control select2', 'id' => 'cli_pais']) !!}
             </div>
         </div>
-        
+
         {{-- ======================= --}}
 
         <div class="col-12 col-md-3" id="">
@@ -92,18 +92,18 @@
                 {!! Form::select('cli_dpto', collect(['' => 'Seleccionar...'])->union($departamentos), isset($calcularAvaluo) ? $calcularAvaluo->cli_dpto : null, ['class' => 'form-control select2', 'id' => 'cli_dpto']) !!}
             </div>
         </div>
-        
+
         {{-- ======================= --}}
-        
+
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="cli_ciudad" class="form-label text-uppercase">Ciudad residencia</label>
                 {!! Form::select('cli_ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($calcularAvaluo) ? $calcularAvaluo->cli_ciudad : null, ['class' => 'form-control select2', 'id' => 'cli_ciudad', 'required']) !!}
             </div>
         </div>
-        
+
         {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
@@ -112,7 +112,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="div_red_social">
                 <div class="form-group">
                     <label for="red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
@@ -121,7 +121,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="div_nombre_refiere">
                 <div class="form-group">
                     <label for="nombre_quien_refiere" class="form-label text-uppercase">Nombre quien refiere<span class="text-danger">*</span></label>
@@ -130,7 +130,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="div_empresa_refiere">
                 <div class="form-group">
                     <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere<span class="text-danger">*</span></label>

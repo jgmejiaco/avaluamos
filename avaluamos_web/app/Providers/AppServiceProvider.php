@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
                                         'mod_calendario',
                                         'mod_visitas',
                                         'mod_avaluo',
-                                        'mod_informes',
+                                        'mod_informes'
                                     )
                                     ->where('id_usuario', $usuLogueado)
                                     ->first();

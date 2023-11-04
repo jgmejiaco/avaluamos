@@ -30,7 +30,7 @@ class AvaluoClienteUpdate implements Responsable
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
-        // dd($request,$fechaNacimiento);
+        dd($request,$fechaNacimiento);
 
         // ==============================================================================
 
@@ -45,17 +45,17 @@ class AvaluoClienteUpdate implements Responsable
         DB::connection('mysql')->beginTransaction();
 
         try {
-            // Consumimos el API
-            // $client = new Client([
-            //     'base_uri' => 'http://localhost:8000/api/avaluo_cliente_update/{id}',
-            //     'headers' => [
-                    
-            //     ],
-            //     'body' => json_encode($request)
-            // ]);
+            //Consumimos el API
+            $client = new Client([
+                'base_uri' => 'http://localhost:8000/api/avaluo_cliente_update/{id}',
+                'headers' => [
 
-            // $response = $client->request('POST');
-            // $res = $response->getBody()->getContents();
+                ],
+                'body' => json_encode($request)
+            ]);
+
+            $response = $client->request('POST');
+            $res = $response->getBody()->getContents();
             // dd($res);
 
             $editarAvaluoCliente = Cliente::where('id_cliente', $idCliente)
