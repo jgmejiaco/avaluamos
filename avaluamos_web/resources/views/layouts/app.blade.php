@@ -29,7 +29,7 @@
 
         <!--  Js -->
         <script src="{{asset('js/modernizr.custom.js')}}"></script>
-        <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
 
         {{-- ========================================= --}}
 
