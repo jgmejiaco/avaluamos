@@ -30,7 +30,7 @@ class AvaluoClienteUpdate implements Responsable
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere = request('empresa_que_refiere', null);
 
-        dd($request,$fechaNacimiento);
+        // dd($request,$fechaNacimiento);
 
         // ==============================================================================
 

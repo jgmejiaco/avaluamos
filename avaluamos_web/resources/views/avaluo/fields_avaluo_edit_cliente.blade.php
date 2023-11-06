@@ -11,7 +11,8 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_nombres" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
-                    {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cliente->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!}
+                    {{-- {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cliente->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!} --}}
+                    {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!}
                 </div>
             </div>
 
@@ -20,7 +21,8 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->tipoDocCliente->id_tipo_documento : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
+                    {{-- {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->tipoDocCliente->id_tipo_documento : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!} --}}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-control select2', 'id' => 'cli_tipo_doc', 'required']) !!}
                 </div>
             </div>
 
