@@ -60,6 +60,7 @@ use Illuminate\Support\Facades\Route;
     // Route::get('ver_cliente/{id}', 'cliente_potencial\ClientePotencialController@show')->name('ver_cliente');
     Route::get('editar_cliente/{idCliente}', 'cliente_potencial\ClientePotencialController@edit')->name('editar_cliente');
     Route::post('verificar_celular', 'cliente_potencial\ClientePotencialController@verificarCelular')->name('verificar_celular');
+    Route::post('consultar_ciudad_dpto', 'cliente_potencial\ClientePotencialController@consultarCiudadDpto')->name('consultar_ciudad_dpto');
 
     // ========================================================================
 

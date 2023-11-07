@@ -315,4 +315,20 @@ class ClientePotencialController extends Controller
             return response()->json("error_exception");
         }
     }
+
+    // ========================================================
+
+    public function consultarCiudadDpto()
+    {
+        $idDpto = request('id_dpto', null);
+
+        return DB::table('ciudad')
+                    ->select(
+                        'id_ciudad',
+                        'descripcion_ciudad',
+                    )
+                    ->where('id_departamento_estado', $idDpto)
+                    ->orderBy('descripcion_ciudad', 'asc')
+                    ->get();
+    }
 }
