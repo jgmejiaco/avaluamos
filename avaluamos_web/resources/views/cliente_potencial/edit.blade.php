@@ -150,5 +150,34 @@
                 $('#id_referido_por').attr('required');
             }
         });
+
+        // ==============================================
+
+        $('#departamento').on('change', function () {
+            let idDpto = $('#departamento').val();
+
+            $.ajax({
+                url: "{{route('consultar_ciudad_dpto')}}",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id_dpto': idDpto
+                },
+                success: function (respuesta) {
+
+                    var ciudadSelect = $('#municipio');
+        
+                    // Limpiar el select de ciudades
+                    ciudadSelect.empty();
+                    ciudadSelect.append($('<option value="">Seleccionar...</option>'));
+
+                    // Llenar el select con las ciudades obtenidas
+                    $.each(respuesta, function (key, value) {
+                        ciudadSelect.append($('<option value="' + value.id_ciudad + '">' + value.descripcion_ciudad + '</option>'));
+                    });
+                }
+            });
+        })
     </script>
 @endsection
