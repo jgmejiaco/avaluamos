@@ -86,8 +86,6 @@
 
 @section('scripts')
     {{-- INICIO SCRIPT FULL CALENDAR "LOCAL" --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> --}}
     <script src="{{asset('fullcalendar/moment/cdnjs.cloudflare.com_ajax_libs_moment.js_2.24.0_moment.min.js')}}"></script>
     <script src="{{asset('fullcalendar/js/fullcalendar.min.js')}}"></script>
     <script src="{{asset('fullcalendar/js/locale/es.js')}}"></script>
@@ -121,6 +119,7 @@
 
             let tipoInmuebles = @json($tipo_inmueble);
             let ciudades = @json($ciudades);
+            console.log(ciudades);
             let siNo = @json($si_no);
 
             // ===============================================
@@ -236,8 +235,8 @@
                                             <select class="form-control w-100" id="ciudad" name="ciudad" required>
                                                 <option value="" selected >Seleccione...</option>
                                 `;
-                                                $.each(ciudades, function(idCiudad, ciudad){
-                                                    formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                                $.each(ciudades, function(idCiudad, ciudadDpto){
+                                                    formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudadDpto+'</option>'
                                                 });
                                 formCalendarioVisita += `
                                             </select>
@@ -327,6 +326,7 @@
                                     let celular = $('#celular').val();
                                     let tipoInmueble = $('#tipo_inmueble').val();
                                     let ciudad = $('#ciudad').val();
+                                    console.log(ciudad);
                                     let barrio = $('#barrio').val();
                                     let direccion = $('#direccion').val();
                                     let visitado = $('#visitado').val();
@@ -489,10 +489,10 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
-                                                    <option value="${response.municipio}" selected >${response.descripcion_ciudad}</option>
+                                                    <option value="${response.municipio}" selected >${response.ciudadDpto}</option>
                                     `;
-                                                    $.each(ciudades, function(idCiudad, ciudad){
-                                                        formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudad+'</option>'
+                                                    $.each(ciudades, function(idCiudad, ciudadDpto){
+                                                        formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudadDpto+'</option>'
                                                     });
                                     formCalendarioVisitaEditar += `
                                                 </select>

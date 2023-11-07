@@ -161,8 +161,9 @@ class CalendarioController extends Controller
     private function shareData()
     {
         view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
-        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
         view()->share('si_no', SiNo::orderBy('descripcion_si_no', 'asc')->whereIn('id_si_no', [1,2])->pluck('descripcion_si_no', 'id_si_no'));
+        // view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
+        view()->share('ciudades', $this->consultarCiudadesDptos());
     }
 
     //=========================================================
@@ -192,7 +193,7 @@ class CalendarioController extends Controller
                  if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && !empty($visita->visita_cumplida) && $visita->visita_cumplida == 1) {
                     $colorVisita = "#449D44";
                 } else {
-                    $colorVisita = "#EC971F";
+                    $colorVisita = "red";
                 }
 
                 array_push($arrayVisitasCalendario,
@@ -224,6 +225,7 @@ class CalendarioController extends Controller
                                     ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
                                     ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
                                     ->leftjoin('si_no', 'si_no.id_si_no', '=', 'calendario.visita_cumplida')
+                                    ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'ciudad.id_departamento_estado')
                                     ->select(
                                         'id_visita_calendario',
                                         'nombre_cliente',
@@ -236,12 +238,33 @@ class CalendarioController extends Controller
                                         'calendario.direccion',
                                         DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
                                         'calendario.visita_cumplida',
-                                        'si_no.descripcion_si_no'
+                                        'si_no.descripcion_si_no',
+                                        DB::raw("CONCAT(ciudad.descripcion_ciudad, '-', departamento_estado.descripcion_departamento) as ciudadDpto"),
                                     )
                                     ->where('id_visita_calendario', $idVisitaCalendario)
                                     ->first();
 
             return response()->json($consultarVisitaCalendario);
+        }
+        catch (Exception $e) {
+            alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
+            return back();
+        }
+    }
+
+    // ========================================================
+
+    public function consultarCiudadesDptos()
+    {
+        try {
+            return DB::table('ciudad')
+                                    ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'ciudad.id_departamento_estado')
+                                    ->select(
+                                        'ciudad.id_ciudad',
+                                        DB::raw("CONCAT(ciudad.descripcion_ciudad, '-', departamento_estado.descripcion_departamento) as ciudadDpto"),
+                                    )
+                                    ->orderBy('ciudad.descripcion_ciudad', 'asc')
+                                    ->pluck('ciudadDpto', 'id_ciudad');
         }
         catch (Exception $e) {
             alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
