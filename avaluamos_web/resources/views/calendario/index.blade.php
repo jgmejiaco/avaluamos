@@ -235,8 +235,10 @@
                                             <select class="form-control w-100" id="ciudad" name="ciudad" required>
                                                 <option value="" selected >Seleccione...</option>
                                 `;
-                                                $.each(ciudades, function(idCiudad, ciudadDpto){
-                                                    formCalendarioVisita += ' <option value="'+idCiudad+'">'+ciudadDpto+'</option>'
+                                                const sortedCiudades = Object.entries(ciudades).sort((a, b) => a[1].localeCompare(b[1]));
+
+                                                sortedCiudades.forEach(([idCiudad, ciudadDpto]) => {
+                                                    formCalendarioVisita += ` <option value="${idCiudad}">${ciudadDpto}</option>`;
                                                 });
                                 formCalendarioVisita += `
                                             </select>
@@ -491,8 +493,10 @@
                                                 <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
                                                     <option value="${response.municipio}" selected >${response.ciudadDpto}</option>
                                     `;
-                                                    $.each(ciudades, function(idCiudad, ciudadDpto){
-                                                        formCalendarioVisitaEditar += ' <option value="'+idCiudad+'">'+ciudadDpto+'</option>'
+                                                    const sortedCiudades = Object.entries(ciudades).sort((a, b) => a[1].localeCompare(b[1]));
+
+                                                    sortedCiudades.forEach(([idCiudad, ciudadDpto]) => {
+                                                        formCalendarioVisitaEditar += ` <option value="${idCiudad}">${ciudadDpto}</option>`;
                                                     });
                                     formCalendarioVisitaEditar += `
                                                 </select>

@@ -263,7 +263,7 @@ class CalendarioController extends Controller
                                         'ciudad.id_ciudad',
                                         DB::raw("CONCAT(ciudad.descripcion_ciudad, '-', departamento_estado.descripcion_departamento) as ciudadDpto"),
                                     )
-                                    ->orderBy('ciudad.descripcion_ciudad', 'asc')
+                                    ->orderBy('ciudadDpto', 'asc')
                                     ->pluck('ciudadDpto', 'id_ciudad');
         }
         catch (Exception $e) {
