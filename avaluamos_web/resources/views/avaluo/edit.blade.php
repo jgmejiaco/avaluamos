@@ -151,14 +151,14 @@
             // ==============================================
             // ==============================================
 
-            $('input[type=file]').filestyle({
-                input: false,
-                buttonName: "btn-rounded btn-success",
-                buttonText: "Seleccionar Archivo",
-                buttonBefore: true,
-                size : 'md',
-                iconName: "mdi mdi-folder",
-            });
+            // $('input[type=file]').filestyle({
+            //     input: false,
+            //     buttonName: "btn-rounded btn-success",
+            //     buttonText: "Seleccionar Archivo",
+            //     buttonBefore: true,
+            //     size : 'md',
+            //     iconName: "mdi mdi-folder",
+            // });
 
             // ====================================
 
