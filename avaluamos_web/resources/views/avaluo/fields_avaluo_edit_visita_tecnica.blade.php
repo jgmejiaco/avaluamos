@@ -79,7 +79,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="departamento" class="form-label text-uppercase">Departamento<span class="text-danger">*</span></label>
-                    {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), isset($calcularAvaluo) ? $calcularAvaluo->id_vis_dpto : null, ['class' => 'form-control select2', 'id' => 'departamento', 'required']) !!}
+                    {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), isset($calcularAvaluo) ? $calcularAvaluo->id_vis_dpto : null, ['class' => 'form-control select2', 'id' => 'vis_dpto', 'required']) !!}
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="ciudad" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
-                    {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($calcularAvaluo) ? $calcularAvaluo->vis_ciudad : null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
+                    {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($calcularAvaluo) ? $calcularAvaluo->vis_ciudad : null, ['class' => 'form-control select2', 'id' => 'vis_ciudad', 'required']) !!}
                 </div>
             </div>
 
