@@ -379,6 +379,31 @@ class VisitaRegFotograficoUpdate implements Responsable
             }
 
             // =======================================
+
+            // if (isset($comparendo_archivo) && !is_null($comparendo_archivo) && !empty($comparendo_archivo)) {
+            //     $usuario_comparendo = DB::table('public.comparendos')
+            //     ->where('id_comparendo', intval($id_comparendo) )
+            //     ->update([
+            //         'fecha_revision' => !is_null($fecha_revision) ? $fecha_revision : null,
+            //         'fecha_comparendo' => !is_null($fecha_comparendo) ? $fecha_comparendo : null,
+            //         'fecha_notificacion' => !is_null($fecha_notificacion) ? $fecha_notificacion : null,
+            //         'id_infraccion' => $id_infraccion,
+            //         'id_municipio' => $id_municipio,
+            //         'valor_comparendo' => $valor_comparendo,
+            //         'evidencia_comparendo' => $comparendo_archivo,
+            //     ]);
+            // } else {
+            //     $usuario_comparendo = DB::table('public.comparendos')
+            //     ->where('id_comparendo', intval($id_comparendo) )
+            //     ->update([
+            //         'fecha_revision' => !is_null($fecha_revision) ? $fecha_revision : null,
+            //         'fecha_comparendo' => !is_null($fecha_comparendo) ? $fecha_comparendo : null,
+            //         'fecha_notificacion' => !is_null($fecha_notificacion) ? $fecha_notificacion : null,
+            //         'id_infraccion' => $id_infraccion,
+            //         'id_municipio' => $id_municipio,
+            //         'valor_comparendo' => $valor_comparendo,
+            //     ]);
+            // }
         
 
             $editarRegFotografico = RegistroFotografico::where('id_visita',$idVisita)

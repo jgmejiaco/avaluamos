@@ -156,18 +156,8 @@
 
             // ==============================================
             // ==============================================
-            // .css('width', '100%')
 
-            $('input[type=file]').filestyle({
-                input: false,
-                buttonName: "btn-rounded btn-success",
-                buttonText: "Seleccionar Archivo",
-                buttonBefore: true,
-                size : 'md',
-                iconName: "mdi mdi-folder",
-            });
-
-            // ====================================
+            
 
             let id_factor_pendiente = $('#id_factor_pendiente').val();
             
@@ -384,5 +374,35 @@
                 }
             });
         })
+
+        // ==============================================
+
+        // $('input[type=file]').filestyle({
+        //     input: false,
+        //     buttonName: "btn-rounded btn-success",
+        //     buttonText: "Seleccionar Archivo",
+        //     buttonBefore: true,
+        //     size : 'md',
+        //     iconName: "mdi mdi-folder",
+        // });
+
+        // ====================================
+
+        function displaySelectedFile(inputId, displayElementId) {
+            const input = document.getElementById(inputId);
+            const selectedFile = input.files[0];
+            const displayElement = document.getElementById(displayElementId);
+
+            if (selectedFile) {
+                const selectedFileName = selectedFile.name;
+                displayElement.textContent = selectedFileName;
+                displayElement.classList.remove('hidden');
+            } else {
+                displayElement.textContent = '';
+                displayElement.classList.add('hidden');
+            }
+        }
+
+        // ==============================================
     </script>
 @endsection
