@@ -128,7 +128,7 @@ Route::post('consultar_factor_ubicacion', 'avaluo\AvaluoController@consultarFact
 
 // RUTA PARA SERVIDOR REMOTO (CPANEL) DEL STORAGE:LINK
 Route::get('storage-link', function(){
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
 
     if (file_exists(public_path('storage'))) {
         return 'El directorio "public/storage" ya existe';
