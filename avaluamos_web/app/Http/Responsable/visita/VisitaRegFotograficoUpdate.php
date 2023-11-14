@@ -265,19 +265,8 @@ class VisitaRegFotograficoUpdate implements Responsable
 
             // =======================================
 
-            // dd($editarRegFotografico->rf_sala2, $editarRegFotografico->rf_sala3);
-            
             $editarRegFotografico->save();
 
-            // if ($editarRegFotografico->save()) {
-            //     // Éxito
-            //     dd('Éxito');
-            // } else {
-            //     // Error
-            //     $errors = $editarRegFotografico->getErrors(); // O algo similar
-            //     dd($errors);
-            // }
-            
             // =======================================
 
             if($editarRegFotografico) {
@@ -291,7 +280,6 @@ class VisitaRegFotograficoUpdate implements Responsable
                 return redirect('editar_visita/'.$idVisita);
             }
         } catch (Exception $e) {
-            dd($e);
             DB::connection('mysql')->rollback();
             alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
