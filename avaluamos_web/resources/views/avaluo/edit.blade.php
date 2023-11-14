@@ -369,17 +369,6 @@
 
         // ==============================================
 
-        // $('input[type=file]').filestyle({
-        //     input: false,
-        //     buttonName: "btn-rounded btn-success",
-        //     buttonText: "Seleccionar Archivo",
-        //     buttonBefore: true,
-        //     size : 'md',
-        //     iconName: "mdi mdi-folder",
-        // });
-
-        // ====================================
-            
         function displaySelectedFile(inputId, displayElementId) {
             const input = document.getElementById(inputId);
             const selectedFile = input.files[0];
