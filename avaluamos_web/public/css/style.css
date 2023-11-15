@@ -3355,3 +3355,7 @@ div label input {margin-right: 100px;}
     height: 32px;
     display: inline-block;
 }
+
+#tabla_ususuarios_paginate a, #tbl_empresas_paginate a, #tabla_visitas_paginate a, #tbl_avaluos_paginate a {
+	color: blue !important;
+}
