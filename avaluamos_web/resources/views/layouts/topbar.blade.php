@@ -1,12 +1,12 @@
 <header class="topbar m-0 p-0">
     <nav class="navbar navbar-expand-lg w-100 m-0 p-0 text-white" style="background-color: #21277b !important" data-bs-theme="dark">
-        <div class="container-fluid d-flex justify-content-between p-0 text-white">
-            <div class="d-sm-none d-md-inline-flex">
+        <div class="container-fluid d-lg-flex justify-content-between p-0 text-white">
+            <div class="d-none d-lg-inline-flex">
                 <a class="" href="/home">
                     <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="">
                 </a>
             </div>
-            <div>
+            <div class="">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
