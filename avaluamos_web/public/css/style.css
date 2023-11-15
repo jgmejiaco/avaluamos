@@ -3359,3 +3359,14 @@ div label input {margin-right: 100px;}
 #tabla_ususuarios_paginate a, #tbl_empresas_paginate a, #tabla_visitas_paginate a, #tbl_avaluos_paginate a {
 	color: blue !important;
 }
+
+@media (max-width: 992px) {
+	.navbar-toggler {
+		background-color: white;
+	}
+
+    #navbarNavDropdown {
+        background-color: #21277b !important;
+		width: 100vw;
+    }
+}
