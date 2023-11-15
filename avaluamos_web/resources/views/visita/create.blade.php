@@ -175,6 +175,170 @@
                     }
                 });
             })
+
+            // ==============================================
+
+            $('#direccion_create').blur(function () {
+                let idCliente = $('#id_cliente').val();
+                let direccionCreate = $('#direccion_create').val();
+                console.log(idCliente + direccionCreate);
+
+                $.ajax({
+                    url:        "{{route('visita_direccion')}}",
+                    type:       "POST",
+                    dataType:   "JSON",
+                    data:       {
+                        '_token': "{{ csrf_token() }}",
+                        'id_cliente': idCliente,
+                        'direccion_create': direccionCreate
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta);
+
+                        $('#dirigido_a').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_dirigido_a,
+                            text: respuesta.dirigido_a
+                        }));
+
+                        $('#tipo_doc_empresa').val(respuesta.id_doc_empresa);
+                        $('#doc_dirigido_a').val(respuesta.documento_empresa);
+
+                        // ===================================================
+
+                        // Verificar si objeto_avaluo tiene contenido
+                        if (respuesta.objeto_avaluo) {
+                            // Parsear la cadena de objeto_avaluo a un array
+                            var objetoAvaluoArray = respuesta.objeto_avaluo.split(', ');
+
+                            // Mapeo de valores en objeto_avaluo a IDs de checkboxes
+                            var idMapping = {
+                                'comercial': 'comercial',
+                                'jurídico': 'juridico',
+                                'rentas': 'rentas',
+                                'contable': 'contable',
+                                'financiero': 'financiero',
+                                'reforma vivienda': 'reforma_vivienda',  // Ajuste por espacios
+                                'compra vivienda': 'compra_vivienda'     // Ajuste por espacios
+                            };
+
+                            // Marcar los checkboxes correspondientes
+                            objetoAvaluoArray.forEach(function(valor) {
+                                // Convertir el valor a minúsculas y buscar en el mapeo
+                                var idCheckbox = idMapping[valor.toLowerCase()];
+                                if (idCheckbox) {
+                                    $('#' + idCheckbox).prop('checked', true);
+                                }
+                            });
+                        } else {
+                            // Si objeto_avaluo está vacío, desmarcar todos los checkboxes o realizar otras acciones según tus necesidades
+                            $('input[name="objeto_avaluo[]"]').prop('checked', false);
+                        }
+
+                        // ===================================================
+
+                        $('#pais').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.visita_pais,
+                            text: respuesta.descripcion_pais
+                        }));
+
+                        // ===================================================
+                        
+                        $('#departamento').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_vis_dpto,
+                            text: respuesta.vis_dpto
+                        }));
+
+                        // ===================================================
+                        
+                        $('#ciudad').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_vis_ciudad,
+                            text: respuesta.vis_ciudad
+                        }));
+
+                        // ===================================================
+                        
+                        $('#ciudad').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_vis_ciudad,
+                            text: respuesta.vis_ciudad
+                        }));
+
+                        // ===================================================
+                        
+                        $('#comuna').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_comuna,
+                            text: respuesta.comuna
+                        }));
+
+                        // ===================================================
+                        
+                        $('#sector').val(respuesta.sector);
+
+                        // ===================================================
+                        
+                        $('#cerca_de').val(respuesta.cerca_de);
+
+                        // ===================================================
+                        
+                        $('#barrio').val(respuesta.barrio);
+
+                        // ===================================================
+                        
+                        $('#unidad_edificio').val(respuesta.unidad_edificio);
+
+                        // ===================================================
+                        
+                        $('#tipo_inmueble').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_tipo_inmueble,
+                            text: respuesta.tipo_inmueble
+                        }));
+
+                        // ===================================================
+                        
+                        $('#area').val(respuesta.area);
+
+                        // ===================================================
+                        
+                        $('#estrato').prepend($('<option>', {
+                            selected: 'selected',
+                            value: respuesta.id_estrato,
+                            text: respuesta.estrato
+                        }));
+
+                        // ===================================================
+                        
+                        $('#numero_inmueble').val(respuesta.numero_inmueble);
+
+                        // ===================================================
+                        
+                        $('#porcentaje_descuento').val(respuesta.porcentaje_descuento);
+
+                        // ===================================================
+                        
+                        // $('#valor_cotizacion').val(respuesta.valor_cotizacion);
+
+                        // ===================================================
+                        
+                        $('#latitud').val(respuesta.latitud);
+
+                        // ===================================================
+                        
+                        $('#longitud').val(respuesta.longitud);
+
+                        // ===================================================
+                        
+                        $('#obser_visita_tecnica').val(respuesta.obser_visita);
+
+                        // ===================================================
+                    }
+                });
+            })
         }); // FIN Document Ready
 
         // ===============================================================

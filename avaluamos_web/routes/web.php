@@ -93,6 +93,7 @@ Route::post('visita_valor_estimado_update', 'visita\VisitaController@visitaValor
 Route::post('visita_estado_conservacion_update', 'visita\VisitaController@visitaEstadoConservacionUpdate')->name('visita_estado_conservacion_update');
 Route::post('consultar_factor_pendiente', 'visita\VisitaController@consultarFactorPendiente')->name('consultar_factor_pendiente');
 Route::post('consultar_factor_ubicacion', 'visita\VisitaController@consultarFactorUbicacion')->name('consultar_factor_ubicacion');
+Route::post('visita_direccion', 'visita\VisitaController@visitaDireccion')->name('visita_direccion');
 
 // ========================================================================
 

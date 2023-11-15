@@ -5,10 +5,6 @@
 
         {{-- ======================= --}}
 
-        {{-- @php
-            dd($crearVisitaCliente->id_referido_por, $crearVisitaCliente->referido_por);
-        @endphp --}}
-
         <div class="row mb-1" id="div_campos_cliente">
             {!! Form::hidden('id_cliente', isset($crearVisitaCliente) ? $crearVisitaCliente->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
 
@@ -112,7 +108,7 @@
             </div>
 
             {{-- ======================= --}}
-            
+
             <div class="col-12 col-md-3" id="div_empresa_refiere">
                 <div class="form-group d-flex flex-column">
                     <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere</label>
@@ -127,6 +123,20 @@
         {{-- ========================================================= --}}
 
         <hr style="border: 1px solid grey">
+
+        <div class="col-12">
+            <div class="form-group d-flex flex-column">
+                <label for="direccion" class="form-label text-uppercase">Dirección</label>
+                {!! Form::text('direccion', null, ['class' => 'form-control text-uppercase', 'id' => 'direccion_create']) !!}
+            </div>
+        </div>
+
+        <hr style="border: 1px solid grey">
+
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
 
         <div class="row mb-2 mt-2" id="div_dirigido_a">
             <div class="col-12 col-md-4" id="">
@@ -293,12 +303,12 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            {{-- <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="direccion" class="form-label text-uppercase">Dirección</label>
                     {!! Form::text('direccion', null, ['class' => 'form-control text-uppercase', 'id' => 'direccion']) !!}
                 </div>
-            </div>
+            </div> --}}
 
             {{-- ======================= --}}
 
