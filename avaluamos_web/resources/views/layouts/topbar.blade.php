@@ -1,12 +1,14 @@
 <header class="topbar m-0 p-0">
     <nav class="navbar navbar-expand-lg w-100 m-0 p-0 text-white" style="background-color: #21277b !important" data-bs-theme="dark">
-        <div class="container-fluid d-lg-flex justify-content-between p-0 text-white">
-            <div class="d-none d-lg-inline-flex">
+        <div class="row p-0 text-white">
+        {{-- <div class="container-fluid d-flex justify-content-between p-0 text-white row"> --}}
+            <div class="logo-container col-4 col-md-2">
                 <a class="" href="/home">
                     <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="">
                 </a>
             </div>
-            <div class="">
+            {{-- ========================================== --}}
+            <div class="menu-container col-4 col-md-8">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -214,7 +216,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="">
+            {{-- ========================================== --}}
+            <div class="logout_container col-4 col-md-2">
                 <a href="{{route('logout')}}" title="SALIR">
                     <i class="fa fa-sign-out fa-3x" aria-hidden="false"></i>
                 </a>
