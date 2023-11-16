@@ -1,10 +1,9 @@
 <header class="topbar m-0 p-0">
-    <nav class="navbar navbar-expand-lg w-100 m-0 p-0 text-white" style="background-color: #21277b !important" data-bs-theme="dark">
-        <div class="row p-0 text-white">
-        {{-- <div class="container-fluid d-flex justify-content-between p-0 text-white row"> --}}
+    <nav class="navbar navbar-expand-lg w-100 m-0 p-0" style="background-color: #21277b !important" data-bs-theme="dark">
+        <div class="row p-0 w-100 text-lg-center align-items-lg-center">
             <div class="logo-container col-4 col-md-2">
-                <a class="" href="/home">
-                    <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="">
+                <a class="w-100 text-center" href="/home">
+                    <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="text-center">
                 </a>
             </div>
             {{-- ========================================== --}}
@@ -12,7 +11,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                {{-- <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarNavDropdown"> --}}
+                <div class="collapse d-lg-flex justify-content-lg-center" id="navbarNavDropdown">
                     @php
                         $idUsuario = $permiso->id_usuario;
                         $idRol = $permiso->id_rol;
@@ -218,7 +218,7 @@
             </div>
             {{-- ========================================== --}}
             <div class="logout_container col-4 col-md-2">
-                <a href="{{route('logout')}}" title="SALIR">
+                <a href="{{route('logout')}}" title="SALIR" class="">
                     <i class="fa fa-sign-out fa-3x" aria-hidden="false"></i>
                 </a>
             </div>
