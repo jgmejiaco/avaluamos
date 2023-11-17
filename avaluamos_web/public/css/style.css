@@ -3390,6 +3390,8 @@ div label input {margin-right: 100px;}
 		order: 1 !important;
 		display: flex;
 		flex-direction: column;
+		padding-left: 0;
+		justify-content: center;
 	}
 
 	.navbar-toggler {
@@ -3418,8 +3420,9 @@ div label input {margin-right: 100px;}
 	}
 
 	.logo-container a img{
-		width: 50% !important;
-		height: 50% !important;
+		width: 80% !important;
+		height: 80% !important;
+		/* object-fit: contain; */
 	}
 
 	/* =========================== */
