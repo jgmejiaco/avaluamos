@@ -640,6 +640,7 @@ class AvaluoController extends Controller
                         'dirigido_a.dirigido_a',
                         'visitas.objeto_avaluo',
                         'descripcion_ciudad',
+                        'direccion',
                         'tipo_inmueble.tipo_inmueble',
                         'visitas.area',
                         'estrato.indicador_numerico as estrato',

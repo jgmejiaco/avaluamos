@@ -27,6 +27,7 @@
                                 <th>Dirigido A</th>
                                 <th>Objeto Avalúo</th>
                                 <th>Ciudad</th>
+                                <th>Dirección</th>
                                 <th>Tipo Inmueble</th>
                                 <th>Área</th>
                                 <th>Estrato</th>
@@ -47,6 +48,7 @@
                                     <td>{{$avaluo->dirigido_a}}</td>
                                     <td>{{$avaluo->objeto_avaluo}}</td>
                                     <td>{{$avaluo->descripcion_ciudad}}</td>
+                                    <td>{{$avaluo->direccion}}</td>
                                     <td>{{$avaluo->tipo_inmueble}}</td>
                                     <td>{{$avaluo->area}}</td>
                                     <td>{{$avaluo->estrato}}</td>
