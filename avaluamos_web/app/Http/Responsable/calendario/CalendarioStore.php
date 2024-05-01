@@ -24,7 +24,8 @@ class CalendarioStore implements Responsable
         // ==============================================================================
         
         if (isset($fechaVisita) && !is_null($fechaVisita) && !empty($fechaVisita)) {
-            $fechaVisita = Date::parse($fechaVisita)->timestamp;
+            // $fechaVisita = Date::parse($fechaVisita)->timestamp;
+            $fechaVisita = strtotime($fechaVisita);
         } else {
             $fechaVisita = null;
         }

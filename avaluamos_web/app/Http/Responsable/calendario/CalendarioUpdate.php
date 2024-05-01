@@ -25,7 +25,8 @@ class CalendarioUpdate implements Responsable
         // ==============================================================================
         
         if (isset($fechaVisitaEditar) && !is_null($fechaVisitaEditar) && !empty($fechaVisitaEditar)) {
-            $fechaVisitaEditar = Date::parse($fechaVisitaEditar)->timestamp;
+            // $fechaVisitaEditar = Date::parse($fechaVisitaEditar)->timestamp;
+            $fechaVisitaEditar = strtotime($fechaVisitaEditar);
         } else {
             $fechaVisitaEditar = null;
         }

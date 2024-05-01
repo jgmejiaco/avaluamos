@@ -31,7 +31,9 @@ class ClientePotencialStore implements Responsable
         // ==============================================================================
         
         if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
-            $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+            // $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+            $fechaNacimiento = strtotime($fechaNacimiento);
+
         } else {
             $fechaNacimiento = null;
         }

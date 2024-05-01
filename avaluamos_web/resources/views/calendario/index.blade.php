@@ -30,7 +30,10 @@
     </style>
 
     <!-- Bootstrap 5.2.3-->
-    <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" >
+    {{-- <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" > --}}
+
+    <!-- Bootstrap 5.3.2-->
+    <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.5.3.2.min.css')}}" >
 
     {{-- INICIO CSS FULL CALENDAR "LOCAL" --}}
     <link rel="stylesheet" href="{{asset('fullcalendar/css/fullcalendar.min.css')}}" />
