@@ -323,7 +323,6 @@
                                 //=======================================//
 
                                 $('#btn_crear_visita_calendario').on('click', function () {
-                                    let fechaVisita = $('#fecha_visita').val();
                                     let nombreCliente = $('#nombre_cliente').val();
                                     let celular = $('#celular').val();
                                     let tipoInmueble = $('#tipo_inmueble').val();
@@ -331,6 +330,7 @@
                                     console.log(ciudad);
                                     let barrio = $('#barrio').val();
                                     let direccion = $('#direccion').val();
+                                    let fechaVisita = $('#fecha_visita').val();
                                     let visitado = $('#visitado').val();
 
                                     $.ajax({
@@ -339,13 +339,13 @@
                                         dataType: "JSON",
                                         data: {
                                             '_token': "{{ csrf_token() }}",
-                                            'fecha_visita':fechaVisita,
                                             'nombre_cliente':nombreCliente,
                                             'celular':celular,
                                             'tipo_inmueble':tipoInmueble,
                                             'ciudad':ciudad,
                                             'barrio':barrio,
                                             'direccion':direccion,
+                                            'fecha_visita':fechaVisita,
                                             'visitado':visitado
                                         },
                                         success: function (respuesta) {
