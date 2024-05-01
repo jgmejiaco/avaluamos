@@ -27,9 +27,13 @@ Route::get('/', function () {
 Route::get('check_db_conexion', 'inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
 
 // Rutas del Login
-Route::resource('login', 'inicio_sesion\LoginController');
-Route::get('login_usuario', 'inicio_sesion\LoginController@index')->name('login_usuario');
-Route::get('logout', 'inicio_sesion\LoginController@logout')->name('logout');
+Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
+    Route::resource('login', 'LoginController');
+    Route::get('login_usuario', 'LoginController@index')->name('login_usuario');
+    Route::get('logout', 'LoginController@logout')->name('logout');
+});
+
+
 
 // Rutas recuperacion clave
 Route::get('recuperar', 'inicio_sesion\LoginController@resetPassword')->name('recuperar_clave');
