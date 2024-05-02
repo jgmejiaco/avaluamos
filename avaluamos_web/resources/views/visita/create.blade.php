@@ -42,11 +42,11 @@
     <script>
         $( document ).ready(function() {
 
-            $('.select2').select2({
-                placeholder: 'Seleccionar...',
-                allowClear: true,
-                disabled: false
-            });
+            // $('.select2').select2({
+            //     placeholder: 'Seleccionar...',
+            //     allowClear: true,
+            //     disabled: false
+            // });
 
             // ==============================================
             
