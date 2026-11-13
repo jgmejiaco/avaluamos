@@ -24,7 +24,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // RUTA COMPROBAR CONEXIÓN BASE DE DATOS
-Route::get('check_db_conexion', 'inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
+Route::get('check_db_conexion', 'App\Http\Controllers\inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
 
 // Rutas del Login
 Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
