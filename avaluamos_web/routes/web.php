@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Route::group(['auth'], function () {
 // Route::group(['middleware' => ['auth', 'password_expired']], function () {
 
-Route::get('/', function () {
-    return view('inicio_sesion.login');
-})->name('inicio');
+Route::get('/', 'App\Http\Controllers\inicio_sesion\LoginController@index')->name('inicio');
 
 // RUTA COMPROBAR CONEXIÓN BASE DE DATOS
 Route::get('check_db_conexion', 'App\Http\Controllers\inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');

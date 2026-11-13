@@ -99,6 +99,44 @@
         {{-- Sweetalert --}}
         <script src="{{asset('js/sweetalert2.all.js')}}"></script>
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+
+        <script>
+            $(document).ajaxError(function (_event, jqxhr) {
+                if (jqxhr.status === 401 && jqxhr.responseJSON && jqxhr.responseJSON.sesion_expirada) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'La sesión se cierra',
+                        text: 'La vigencia de la sesión terminó.',
+                        confirmButtonText: 'Aceptar',
+                        allowOutsideClick: false
+                    }).then(function () {
+                        window.location.href = @json(route('inicio'));
+                    });
+                }
+            });
+
+            @if(session('sesion_iniciada') && session('api_jwt_exp'))
+            (function () {
+                var espera = ({{ (int) session('api_jwt_exp') }} * 1000) - Date.now();
+
+                if (espera < 0) {
+                    espera = 0;
+                }
+
+                setTimeout(function () {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'La sesión se cierra',
+                        text: 'La vigencia de la sesión terminó.',
+                        confirmButtonText: 'Aceptar',
+                        allowOutsideClick: false
+                    }).then(function () {
+                        window.location.href = @json(route('inicio'));
+                    });
+                }, espera);
+            })();
+            @endif
+        </script>
         
         <!-- SCRIPTS -->
         @include('sweetalert::alert')

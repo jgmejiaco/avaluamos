@@ -19,6 +19,12 @@ class LoginController extends Controller
      */
     public function index()
     {
+        $mensajeSesionExpirada = session()->pull('sesion_expirada');
+
+        if ($mensajeSesionExpirada) {
+            alert()->warning('Sesión cerrada', $mensajeSesionExpirada);
+        }
+
         return view('inicio_sesion.login');
     }
 

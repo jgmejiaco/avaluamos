@@ -62,9 +62,25 @@ class LoginStore implements Responsable
     private function crearVariablesSesion($data)
     {
         session()->put('api_jwt_token', $data->access_token);
+        session()->put('api_jwt_exp', $this->expiracionDelToken($data->access_token));
         session()->put('id_usuario', $data->usuario->id_usuario);
         session()->put('usuario', $data->usuario->nombre_usuario);
         session()->put('id_rol', $data->usuario->id_rol);
         session()->put('sesion_iniciada', true);
+    }
+
+    private function expiracionDelToken(string $token): int
+    {
+        $partes = explode('.', $token);
+
+        if (count($partes) !== 3) {
+            return time() + 3600;
+        }
+
+        $payload = strtr($partes[1], '-_', '+/');
+        $payload .= str_repeat('=', (4 - strlen($payload) % 4) % 4);
+        $datos = json_decode(base64_decode($payload, true), true);
+
+        return (int) ($datos['exp'] ?? (time() + 3600));
     }
 }
