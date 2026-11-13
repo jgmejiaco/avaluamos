@@ -8,12 +8,10 @@ use Exception;
 use Illuminate\Support\Facades\Session;
 use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\inicio_sesion\RecuperarClave;
-use App\Traits\MetodosTrait;
 use Carbon\Carbon;
 
 class LoginController extends Controller
 {
-    use MetodosTrait;
     /**
      * Display a listing of the resource.
      *
@@ -114,6 +112,14 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         try {
+            if (session('api_jwt_token')) {
+                try {
+                    $this->getClientApi()->post('auth/logout');
+                } catch (Exception $e) {
+                    // La sesión local se cierra aunque la API no responda.
+                }
+            }
+
             Session::forget('id_usuario');
             Session::forget('usuario');
             Session::forget('id_rol');

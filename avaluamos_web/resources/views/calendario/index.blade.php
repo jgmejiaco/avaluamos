@@ -121,9 +121,8 @@
             });
 
             let tipoInmuebles = @json($tipo_inmueble);
-            let ciudades = @json($ciudades);
-            console.log(ciudades);
-            let siNo = @json($si_no);
+            let ciudades = @json($ciudades_dpto);
+            let siNo = @json($si_no_calendario);
 
             // ===============================================
             // ===============================================

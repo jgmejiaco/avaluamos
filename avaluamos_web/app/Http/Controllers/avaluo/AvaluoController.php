@@ -86,6 +86,9 @@ class AvaluoController extends Controller
                 return view('avaluo.index', compact('avaluosIndex'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Error Exception!");
             // return redirect()->to(route('login'));
             return back();
@@ -162,6 +165,9 @@ class AvaluoController extends Controller
                 return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             dd($e);
             alert()->error("Error Exception!");
             return back();
@@ -201,6 +207,9 @@ class AvaluoController extends Controller
                 return new AvaluoClienteUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -224,6 +233,9 @@ class AvaluoController extends Controller
                 return new AvaluoVisitaTecnicaUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -247,6 +259,9 @@ class AvaluoController extends Controller
                 return new AvaluoInfoJuridicaUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -270,6 +285,9 @@ class AvaluoController extends Controller
                 return new AvaluoInfoInmuebleUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -293,6 +311,9 @@ class AvaluoController extends Controller
                 return new AvaluoCaracteristicasInmuebleUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -316,6 +337,9 @@ class AvaluoController extends Controller
                 return new AvaluoAcabadosInmuebleUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -339,6 +363,9 @@ class AvaluoController extends Controller
                 return new AvaluoCalificacionInmuebleUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -362,6 +389,9 @@ class AvaluoController extends Controller
                 return new AvaluoDotacionComunalUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -385,6 +415,9 @@ class AvaluoController extends Controller
                 return new AvaluoInfoSectorUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -408,6 +441,9 @@ class AvaluoController extends Controller
                 return new AvaluoCondiUrbanisticasUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -431,6 +467,9 @@ class AvaluoController extends Controller
                 return new AvaluoObserGeneralesUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -454,6 +493,9 @@ class AvaluoController extends Controller
                 return new AvaluoRegFotograficoUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -477,6 +519,9 @@ class AvaluoController extends Controller
                 return new AvaluoValorEstimadoUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -500,6 +545,9 @@ class AvaluoController extends Controller
                 return new AvaluoEstadoConservacionUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -521,49 +569,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-
-    private function shareData()
-    {
-        view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-        view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
-        view()->share('dirigido_a', DirigidoA::orderBy('dirigido_a', 'asc')->pluck('dirigido_a', 'id_dirigido_a'));
-        view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
-        view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
-        view()->share('avaluador', Usuario::orderBy('nombres', 'asc')->whereIn('id_rol', [1,2,4])->pluck('nombres', 'id_usuario'));
-        view()->share('paises', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
-        view()->share('departamentos', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
-        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
-        view()->share('tipo_vivienda', TipoVivienda::orderBy('tipo_vivienda', 'asc')->pluck('tipo_vivienda', 'id_tipo_vivienda'));
-        view()->share('tipo_inmueble', TipoInmueble::orderBy('tipo_inmueble', 'asc')->pluck('tipo_inmueble', 'id_tipo_inmueble'));
-        view()->share('uso_inmueble', UsoInmueble::orderBy('uso_inmueble', 'asc')->pluck('uso_inmueble', 'id_uso_inmueble'));
-        view()->share('topografia', Topografia::orderBy('topografia', 'asc')->pluck('topografia', 'id_topografia'));
-        view()->share('forma', Forma::orderBy('forma', 'asc')->pluck('forma', 'id_forma'));
-        view()->share('indicador_numerico', IndicadorNumerico::orderBy('id_indicador_numerico', 'asc')->pluck('indicador_numerico', 'id_indicador_numerico'));
-        view()->share('si_no', SiNo::orderBy('id_si_no', 'asc')->pluck('descripcion_si_no', 'id_si_no'));
-        view()->share('sistema_constructivo', SistemaConstructivo::orderBy('sistema_constructivo', 'asc')->pluck('sistema_constructivo', 'id_sistema_constructivo'));
-        view()->share('puertas_material', PuertasMaterial::orderBy('puertas_material', 'asc')->pluck('puertas_material', 'id_puertas_material'));
-        view()->share('tipo_fachada', TipoFachada::orderBy('tipo_fachada', 'asc')->pluck('tipo_fachada', 'id_tipo_fachada'));
-        view()->share('tipo_muro', TipoMuro::orderBy('tipo_muro', 'asc')->pluck('tipo_muro', 'id_tipo_muro'));
-        view()->share('ventaneria', Ventaneria::orderBy('ventaneria', 'asc')->pluck('ventaneria', 'id_ventaneria'));
-        view()->share('tipo_techo', TipoTecho::orderBy('tipo_techo', 'asc')->pluck('tipo_techo', 'id_tipo_techo'));
-        view()->share('tipo_suelo', TipoSuelo::orderBy('descripcion_tipo_suelo','asc')->pluck('descripcion_tipo_suelo', 'id_tipo_suelo'));
-        view()->share('condicion_inmueble', CondicionInmueble::orderBy('condicion_inmueble', 'asc')->pluck('condicion_inmueble', 'id_condicion_inmueble'));
-        view()->share('calificacion_fitto_corvini', FittoCorvini::orderBy('fitto_corvini', 'asc')->pluck('fitto_corvini', 'id_fitto_corvini'));
-        view()->share('valorizacion', Valorizacion::orderBy('valorizacion', 'asc')->pluck('valorizacion', 'id_valorizacion'));
-        view()->share('calificacion_general', CalificacionGeneral::orderBy('id_calificacion_general', 'asc')->pluck('calificacion_general', 'id_calificacion_general'));
-        view()->share('tipo_vias', TipoVias::orderBy('tipo_vias', 'asc')->pluck('tipo_vias', 'id_tipo_vias'));
-        view()->share('tipo_piso', TipoPiso::orderBy('tipo_pisos', 'asc')->pluck('tipo_pisos', 'id_tipo_piso'));
-        view()->share('tipo_banio', TipoBanio::orderBy('id_tipo_banio', 'asc')->pluck('tipo_banio', 'id_tipo_banio'));
-        view()->share('tipo_cocina', TipoCocina::orderBy('id_tipo_cocina', 'asc')->pluck('tipo_cocina', 'id_tipo_cocina'));
-        view()->share('tipo_meson', TipoMeson::orderBy('tipo_meson', 'asc')->pluck('tipo_meson', 'id_tipo_meson'));
-        view()->share('comunas', Comuna::orderBy('comuna', 'asc')->pluck('comuna', 'id_comuna'));
-        view()->share('factor_calidad', FactorCalidad::orderBy('factor_calidad', 'asc')->pluck('factor_calidad', 'id_factor_calidad'));
-        view()->share('factor_zona', FactorZona::orderBy('factor_zona', 'asc')->pluck('factor_zona', 'id_factor_zona'));
-        view()->share('factor_tiempo', FactorTiempo::orderBy('id_factor_tiempo', 'asc')->pluck('factor_tiempo', 'id_factor_tiempo'));
-        view()->share('factor_pendiente', FactorPendiente::orderBy('id_factor_pendiente', 'asc')->pluck('factor_pendiente', 'id_factor_pendiente'));
-        view()->share('factor_ubicacion', FactorUbicacion::orderBy('id_factor_ubicacion', 'asc')->pluck('factor_ubicacion', 'id_factor_ubicacion'));
-        view()->share('estado_conservacion_opciones', EstadoConservacionOpciones::orderBy('estado_conservacion_opciones', 'asc')->pluck('estado_conservacion_opciones', 'id_estado_conservacion_opciones'));
-    }
+
 
     //=========================================================
     //=========================================================

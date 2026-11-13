@@ -2,110 +2,69 @@
 
 namespace App\Http\Responsable\inicio_sesion;
 
+use App\Support\FalloServicio;
+use App\Traits\MetodosTrait;
 use Exception;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Usuario;
 
 class LoginStore implements Responsable
 {
+    use MetodosTrait;
+
     public function toResponse($request)
     {
         $usuario = request('usuario', null);
         $clave = request('clave', null);
 
-        if(!isset($usuario) || empty($usuario) || is_null($usuario) || !isset($clave) || empty($clave) || is_null($clave))
-        {
-            alert()->error('Error','Usuario y Clave son requeridos!');
+        if (! isset($usuario) || empty($usuario) || is_null($usuario) || ! isset($clave) || empty($clave) || is_null($clave)) {
+            alert()->error('Error', 'Usuario y Clave son requeridos!');
+
             return back();
         }
 
-        $user = $this->consultarUsuario($usuario);
-      
-        if(isset($user) && !empty($user) && !is_null($user)) {
-            $contarClaveErronea = $user->clave_fallas;
+        try {
+            $response = $this->getClientApi()->post('auth/login', [
+                'json' => [
+                    'usuario' => $usuario,
+                    'clave' => $clave,
+                ],
+            ]);
 
-            if($contarClaveErronea >= 4)
-            {
-                $this->inactivarUsuario($user->id_usuario);
-            }
+            $data = json_decode($response->getBody()->getContents());
+            $this->crearVariablesSesion($data);
 
-            if($user->id_estado == 2)
-            {
-                alert()->error('Error','El usuario ' . $usuario . ' está inactivo, por favor contacte al administrador');
-                return back();
-            }
+            return redirect('home');
+        } catch (ClientException $e) {
+            $body = json_decode((string) $e->getResponse()->getBody());
+            $codigo = $body->code ?? '';
 
-            if(Hash::check($clave, $user->clave)) {
-                $this->crearVariablesSesion($user);
-                return redirect('home');
+            if ($codigo === 'inactivo') {
+                alert()->error('Error', 'El usuario '.$usuario.' está inactivo, por favor contacte al administrador');
+            } elseif ($codigo === 'no_existe') {
+                alert()->error('Error', 'No hay registro de este usuario: '.$usuario);
             } else {
-                $contarClaveErronea += 1;
-                $this->actualizarClaveFallas($user->id_usuario, $contarClaveErronea);
-                alert()->error('Error','Credenciales Inválidas');
-                return back();
+                alert()->error('Error', 'Credenciales Inválidas');
             }
-        } else {
-            alert()->error('Error','No hay registro de este usuario: ' . $usuario);
+
+            return back();
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            alert()->error('Error', 'Un error ha ocurrido, inténtelo nuevamente, si el problema persiste, contacte a Soporte.');
+
             return back();
         }
     }
 
-    // ==================================================
-    // ==================================================
-    // ==================================================
-    
-    private function crearVariablesSesion($user)
+    private function crearVariablesSesion($data)
     {
-        // Creamos las variables de sesion
-        session()->put('id_usuario', $user->id_usuario);
-        session()->put('usuario', $user->nombre_usuario);
-        session()->put('id_rol', $user->id_rol);
+        session()->put('api_jwt_token', $data->access_token);
+        session()->put('id_usuario', $data->usuario->id_usuario);
+        session()->put('usuario', $data->usuario->nombre_usuario);
+        session()->put('id_rol', $data->usuario->id_rol);
         session()->put('sesion_iniciada', true);
-    }
-
-    // ==================================================
-
-    private function consultarUsuario($usuario)
-    {
-        try {
-            return Usuario::where('nombre_usuario', $usuario)
-                        ->whereNull('deleted_at')
-                        ->first();
-        } catch (Exception $e) {
-            alert()->error('Error','Un error ha ocurrido, inténtelo nuevamente, si el problema persiste, contacte a Soporte.');
-            return back();
-        }
-    }
-
-    // ==================================================
-
-    private function inactivarUsuario($idUser)
-    {
-        try {
-            $user = Usuario::find($idUser);
-            $user->id_estado = 2;
-            $user->save();
-
-        } catch (Exception $e)
-        {
-            alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
-            return back();
-        }
-    }
-
-    // ==================================================
-
-    private function actualizarClaveFallas($usuario_id, $contador)
-    {
-        try {
-            $user = Usuario::find($usuario_id);
-            $user->clave_fallas = $contador;
-            $user->save();
-
-        } catch (Exception $e) {
-            alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
-            return back();
-        }
     }
 }

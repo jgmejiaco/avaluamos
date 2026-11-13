@@ -32,6 +32,9 @@ class PermisosController extends Controller
                 return view('permisos.index');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -112,6 +115,9 @@ class PermisosController extends Controller
                 return new PermisoUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -131,29 +137,8 @@ class PermisosController extends Controller
     }
 
     // ==========================================================================
-
-    private function shareData()
-    {
-        view()->share('roles', $this->rolesPermisos());
-        // view()->share('roles', Rol::select('id_rol','nombre_rol')->orderBy('nombre_rol', 'asc')->get());
-        // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
-        // view()->share('', ::orderBy('', 'asc')->pluck('', ''));
-    }
+
 
     // ==========================================================================
-
-    public function rolesPermisos()
-    {
-        return Rol::select( 'id_rol',
-                            'nombre_rol',
-                            'mod_usuario',
-                            'mod_clientes',
-                            'mod_calendario',
-                            'mod_visitas',
-                            'mod_avaluo',
-                            'mod_informes'
-                        )
-                        ->orderBy('nombre_rol', 'asc')
-                        ->get();
-    }
+
 }

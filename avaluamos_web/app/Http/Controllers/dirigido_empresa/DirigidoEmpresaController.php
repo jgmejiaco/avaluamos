@@ -36,6 +36,9 @@ class DirigidoEmpresaController extends Controller
                 return view('dirigido_empresa.index', compact('empresas'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -72,6 +75,9 @@ class DirigidoEmpresaController extends Controller
                 return new DirigidoEmpresaStore();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -121,6 +127,9 @@ class DirigidoEmpresaController extends Controller
                 return new DirigidoEmpresaUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -140,11 +149,7 @@ class DirigidoEmpresaController extends Controller
     }
 
     // ========================================================
-    
-    private function shareData()
-    {
-        view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-    }
+    
 
     // ========================================================
 
@@ -190,6 +195,9 @@ class DirigidoEmpresaController extends Controller
             }
 
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             return response()->json("error_exception");
         }
     }

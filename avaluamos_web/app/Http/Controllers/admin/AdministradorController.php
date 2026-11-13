@@ -37,6 +37,9 @@ class AdministradorController extends Controller
                 return view('administrador.index');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -64,6 +67,9 @@ class AdministradorController extends Controller
                 return view('administrador.create');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -91,6 +97,9 @@ class AdministradorController extends Controller
                 return new UsuarioStore();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -145,6 +154,9 @@ class AdministradorController extends Controller
                 return new UsuarioUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -165,51 +177,6 @@ class AdministradorController extends Controller
 
     // ==========================================================================
 
-    private function shareData()
-    {
-        view()->share('rol', Rol::orderBy('nombre_rol','asc')->pluck('nombre_rol', 'id_rol'));
-        view()->share('cargo', Cargo::orderBy('descripcion_cargo','asc')->pluck('descripcion_cargo', 'id_cargo'));
-        view()->share('descripcion_documento', TipoDocumento::orderBy('decripcion_documento','asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-        view()->share('ciudad', Ciudad::orderBy('descripcion_ciudad','asc')->pluck('descripcion_ciudad', 'id_ciudad'));
-        view()->share('estado', Estado::orderBy('descripcion_estado','asc')->pluck('descripcion_estado', 'id_estado'));
-        view()->share('usuarios', $this->todosLosUsuarios());
-    }
-
-    // ==========================================================================
-
-    public function todosLosUsuarios()
-    {
-       try {
-            return DB::table('usuarios')
-                            ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
-                            ->leftjoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
-                            ->leftjoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
-                            ->leftjoin('estado', 'estado.id_estado', '=', 'usuarios.id_estado')
-                            ->select('usuarios.id_usuario',
-                                    'usuarios.nombre_usuario',
-                                    'usuarios.nombres',
-                                    'usuarios.apellidos',
-                                    'tipo_documento.id_tipo_documento',
-                                    'tipo_documento.decripcion_documento',
-                                    'usuarios.numero_documento',
-                                    'usuarios.correo',
-                                    'usuarios.celular',
-                                    'rol.id_rol',
-                                    'rol.nombre_rol',
-                                    'cargo.id_cargo',
-                                    'cargo.descripcion_cargo',
-                                    'estado.id_estado',
-                                    'estado.descripcion_estado'
-                                    )
-                            ->get()
-                            ->toarray();
-       } catch (Exception $e) {
-           alert()->error('Error', 'An error has occurred, try again, if the problem persists contact support.');
-           return back();
-       }
-    }
-
-    // ==========================================================================
 
     public function verificarDocumento()
     {
@@ -228,6 +195,9 @@ class AdministradorController extends Controller
                 return response()->json('no_existe_documento');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             return response()->json("error_exception");
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\ApiClient;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(ApiClient::class, function () {
+            $baseUri = rtrim((string) config('services.api.base_uri'), '/');
+
+            return new ApiClient([
+                'base_uri' => $baseUri === '' ? null : $baseUri.'/',
+                'timeout' => (float) config('services.api.timeout', 60),
+                'connect_timeout' => 5.0,
+            ]);
+        });
     }
 
     /**

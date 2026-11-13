@@ -42,6 +42,9 @@ class ClientePotencialController extends Controller
                 return view('cliente_potencial.index', compact('clientes'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -68,6 +71,9 @@ class ClientePotencialController extends Controller
                 return view('cliente_potencial.create');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -94,6 +100,9 @@ class ClientePotencialController extends Controller
                 return new ClientePotencialStore();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return back();
         }
@@ -122,6 +131,9 @@ class ClientePotencialController extends Controller
                 return view('cliente_potencial.cliente_historial', compact('cliente'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -159,6 +171,9 @@ class ClientePotencialController extends Controller
                 return view('cliente_potencial.edit', compact('cliente'));
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -186,6 +201,9 @@ class ClientePotencialController extends Controller
                 return new ClienteUpdate();
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             alert()->error("Ha ocurrido un error!");
             return redirect()->to(route('login'));
         }
@@ -205,17 +223,7 @@ class ClientePotencialController extends Controller
     }
 
     // ========================================================
-    
-    private function shareData()
-    {
-        view()->share('tipo_documento', TipoDocumento::orderBy('decripcion_documento', 'asc')->pluck('decripcion_documento', 'id_tipo_documento'));
-        view()->share('tipo_persona', TipoPersona::orderBy('tipo_persona', 'asc')->pluck('tipo_persona', 'id_tipo_persona'));
-        view()->share('paises', Pais::orderBy('descripcion_pais', 'asc')->pluck('descripcion_pais', 'id_pais'));
-        view()->share('departamentos', DepartamentoEstado::orderBy('descripcion_departamento', 'asc')->pluck('descripcion_departamento', 'id_departamento_estado'));
-        view()->share('ciudades', Ciudad::orderBy('descripcion_ciudad', 'asc')->pluck('descripcion_ciudad', 'id_ciudad'));
-        view()->share('referido_por', ReferidoPor::orderBy('referido_por', 'asc')->pluck('referido_por', 'id_referido_por'));
-        view()->share('red_social', RedSocial::orderBy('red_social', 'asc')->pluck('red_social', 'id_red_social'));
-    }
+    
 
     // ========================================================
 
@@ -312,6 +320,9 @@ class ClientePotencialController extends Controller
                 return response()->json('no_existe_cli_celular');
             }
         } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
             return response()->json("error_exception");
         }
     }
