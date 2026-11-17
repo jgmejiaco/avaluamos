@@ -10,55 +10,55 @@
             <!-- ***************************************************** -->
             <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
                 <li class="nav-item">
-                    <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-toggle="tab" role="tab" aria-controls="nav_cliente" aria-selected="true">Cliente</a>
+                    <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_cliente" aria-selected="true">Cliente</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
+                    <a class="nav-link" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_info_inmueble" id="nav_info_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_info_inmueble">Info Inmueble</a>
+                    <a class="nav-link" href="#nav_info_inmueble" id="nav_info_inmueble_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_info_inmueble">Info Inmueble</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_caracteristicas_inmueble" id="nav_caracteristicas_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_caracteristicas_inmueble">Características del Inmueble</a>
+                    <a class="nav-link" href="#nav_caracteristicas_inmueble" id="nav_caracteristicas_inmueble_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_caracteristicas_inmueble">Características del Inmueble</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_acabados_inmueble" id="nav_acabados_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_acabados_inmueble">Acabados Inmueble</a>
+                    <a class="nav-link" href="#nav_acabados_inmueble" id="nav_acabados_inmueble_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_acabados_inmueble">Acabados Inmueble</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_calificacion_inmueble" id="nav_calificacion_inmueble_tab" data-toggle="tab" role="tab" aria-controls="nav_calificacion_inmueble">Calificación Inmueble</a>
+                    <a class="nav-link" href="#nav_calificacion_inmueble" id="nav_calificacion_inmueble_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_calificacion_inmueble">Calificación Inmueble</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_dotacion_comunal" id="nav_dotacion_comunal_tab" data-toggle="tab" role="tab" aria-controls="nav_dotacion_comunal">Dotación Comunal</a>
+                    <a class="nav-link" href="#nav_dotacion_comunal" id="nav_dotacion_comunal_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_dotacion_comunal">Dotación Comunal</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_info_sector" id="nav_info_sector_tab" data-toggle="tab" role="tab" aria-controls="nav_info_sector">Info Sector</a>
+                    <a class="nav-link" href="#nav_info_sector" id="nav_info_sector_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_info_sector">Info Sector</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_condiciones_urbanisticas" id="nav_condiciones_urbanisticas_tab" data-toggle="tab" role="tab" aria-controls="nav_condiciones_urbanisticas">Condiciones Urbanisticas</a>
+                    <a class="nav-link" href="#nav_condiciones_urbanisticas" id="nav_condiciones_urbanisticas_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_condiciones_urbanisticas">Condiciones Urbanisticas</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_estado_conservacion" id="nav_estado_conservacion_tab" data-toggle="tab" role="tab" aria-controls="nav_estado_conservacion">Estado Conservación</a>
+                    <a class="nav-link" href="#nav_estado_conservacion" id="nav_estado_conservacion_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_estado_conservacion">Estado Conservación</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_observaciones_generales" id="nav_observaciones_generales_tab" data-toggle="tab" role="tab" aria-controls="nav_observaciones_generales">Observaciones Generales</a>
+                    <a class="nav-link" href="#nav_observaciones_generales" id="nav_observaciones_generales_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_observaciones_generales">Observaciones Generales</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_fotografias" id="nav_fotografias_tab" data-toggle="tab" role="tab" aria-controls="nav_fotografias">Registro Fotográfico</a>
+                    <a class="nav-link" href="#nav_fotografias" id="nav_fotografias_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_fotografias">Registro Fotográfico</a>
                 </li>
                 <!-- ================================== -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#nav_valor_estimado_avaluo" id="nav_valor_estimado_avaluo_tab" data-toggle="tab" role="tab" aria-controls="nav_valor_estimado_avaluo">Valor Estimado Avalúo</a>
+                    <a class="nav-link" href="#nav_valor_estimado_avaluo" id="nav_valor_estimado_avaluo_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_valor_estimado_avaluo">Valor Estimado Avalúo</a>
                 </li>
             </ul>
             <!-- ***************************************************** -->

@@ -2,14 +2,6 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/plugins/typeahead.js-master/dist/typehead-min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/daterangepicker/daterangepicker.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/datatables/buttons/css/buttons.dataTables.min.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/chosen.min.css')}}"> --}}
-    {{-- <style>
-        .select2-container{
-            z-index: 99999 !important;
-        }
-    </style> --}}
 @endsection
 @section('title', $informe ? $informe->inf_descripcion : 'Informe')
 @section('content')
@@ -117,15 +109,8 @@
 
 @section('scripts')
 <script src="{{asset('assets/plugins/typeahead.js-master/dist/typeahead.bundle.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/buttons.flash.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/jszip.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/pdfmake.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/buttons/js/vfs_fonts.js')}}"></script>
 <script>
+
 
     informeDateRangePicker.locale.format='DD/MM/YYYY';
     url = '{{route('informe.prueba')}}';

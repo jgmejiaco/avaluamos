@@ -19,7 +19,7 @@
                 <div class="panel-body p-2">
                     <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
+                            <a class="nav-link active" href="#nav_visita_tecnica" id="nav_visita_tecnica_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_visita_tecnica" aria-selected="true">Visita Técnica</a>
                         </li>
                     </ul>
                     <!-- ================================== -->

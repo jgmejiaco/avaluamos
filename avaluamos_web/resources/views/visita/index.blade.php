@@ -88,42 +88,39 @@
 {{-- ====================================================== --}}
 
 @section('scripts')
-    <script src="{{asset('DataTables/datatables.min.js')}}"></script>
-    <script src="{{asset('DataTables/Buttons-2.3.4/js/buttons.html5.min.js')}}"></script>
-
     <script>
-        $( document ).ready(function()
-        {
-
-            // // INICIO DataTable LIST USER'S
+        $(document).ready(function() {
             $("#tabla_visitas").DataTable({
                 dom: 'Blfrtip',
-                "infoEmpty": "No hay registros",
-                stripe: true, 
-                "bSort": false,
-                "buttons": [
+                buttons: [
                     {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        className: 'waves-effect waves-light btn-rounded btn-sm btn-primary',
-                        init: function(api, node, config) {
-                            $(node).removeClass('dt-button')
+                        extend: 'pdf',
+                        text: 'PDF',
+                        className: 'btn btn-sm btn-danger rounded-pill',
+                        title: 'Lista_de_Visitas',
+                        customize: function(doc) {
+                            doc.pageOrientation = 'landscape';
+                            doc.pageSize = 'LETTER';
                         }
                     },
                     {
-                        extend: 'excelHtml5',
+                        extend: 'excel',
                         text: 'Excel',
-                        className: 'waves-effect waves-light btn-rounded btn-sm btn-primary mr-3',
-                        customize: function( xlsx ) {
-                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                            $('row:first c', sheet).attr( 's', '42' );
-                        }
+                        className: 'btn btn-sm btn-success rounded-pill',
+                        title: 'Lista_de_Visitas'
                     }
                 ],
-                "pageLength": 25,
-                "scrollX": true,                 
+                language: {
+                    url: "{{ asset('dataTable2.3.1/language/es-Es.json') }}"
+                },
+                pageLength: 10,
+                lengthMenu: [[10, 15, 20, 25, 30, 35, 40, 45, 50, -1], [10, 15, 20, 25, 30, 35, 40, 45, 50, "Todos"]],
+                scrollX: true,
+                bSort: true,
+                stripe: true,
+                responsive: true,
+                infoEmpty: "No hay registros disponibles"
             });
-            // CIERRE DataTable LIST USER'S
         });
     </script>
 @endsection

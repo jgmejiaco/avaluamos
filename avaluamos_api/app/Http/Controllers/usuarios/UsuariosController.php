@@ -143,84 +143,6 @@ class UsuariosController extends Controller
         }
     }
 
-
-    public function cambiarClaveLogin(Request $request, $idUsuario)
-    {
-        $claveNueva = request('clave', null);
-
-        try {
-            Usuario::where('id_usuario',$idUsuario)
-                ->update([
-                    'clave' => Hash::make($claveNueva),
-            ]);
-            return response()->json(true);
-
-        } catch (Exception $e) {
-            return response()->json(['error_bd' => $e->getMessage()]);
-        }
-    }
-
-    public function cambiarClaveUsuario(Request $request, $idUsuario)
-    {
-        $claveNueva = request('clave', null);
-
-        try {
-            // Al actualizar, cambiamos la clave Y generamos un nuevo token aleatorio.
-            // Esto "rompe" la coincidencia con cualquier sesión activa del usuario.
-            Usuario::where('id_usuario', $idUsuario)
-                ->update([
-                    'clave'         => Hash::make($claveNueva),
-                    'session_token' => Str::random(40), // <--- Aquí cambiamos el token de sesión
-                ]);
-                
-            return response()->json(true);
-
-        } catch (Exception $e) {
-            return response()->json(['error_bd' => $e->getMessage()], 500);
-        }
-    }
-
-    public function consultaRecuperarClave(Request $request)
-    {
-        $email = request('email', null);
-        $identificacion = request('identificacion', null);
-
-        try {
-            return Usuario::select('id_usuario','usuario','identificacion','email')
-                ->where('email', $email)
-                ->where('identificacion', $identificacion)
-                ->first();
-                
-        } catch (Exception $e) {
-            return response()->json('error_bd');
-        }
-    }
-
-    public function inactivarUsuario($idUsuario)
-    {
-        try {
-
-            $user = Usuario::find($idUsuario);
-            $user->id_estado = 2;
-            $user->save();
-
-        } catch (Exception $e) {
-            return response()->json('error_bd');
-        }
-    }
-
-    public function actualizarClaveFallas(Request $request, $idUsuario)
-    {
-        $contador = request('clave_fallas', null);
-        try {
-            $user = Usuario::find($idUsuario);
-            $user->clave_fallas = $contador;
-            $user->save();
-        } catch (Exception $e) {
-            return response()->json('error_bd');
-        }
-    }
-
     public function validarEmail(Request $request)
     {
         $email = $request->input('email');
@@ -231,89 +153,180 @@ class UsuariosController extends Controller
         ]);
     }
 
-    public function validarIdentificacion(Request $request)
+    public function verificarDocumentoStore(Request $request)
     {
-        $identificacion = $request->input('identificacion');
-        $existe = Usuario::where('identificacion', $identificacion)->exists();
-        
-        return response()->json([
-            'valido' => !$existe
-        ]);
-    }
+        $usuidTipoDocumento = request('usuidTipoDocumento', null);
+        $usuNumeroDocumento = request('usuNumeroDocumento', null);
 
-    public function validarEmailLogin(Request $request)
-    {
-        $email = $request->input('email');
-
-        $user = Usuario::with('empresa')
-            ->leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
-            ->where('email', $email)
-            ->first();
-
-        return response()->json($user);
-    }
-
-    public function consultaUsuarioLogueado($idUsuario)
-    {
-        $user = Usuario::leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
-            ->leftJoin('empresas', 'empresas.id_empresa', '=', 'usuarios.id_empresa')
-            ->where('id_usuario', $idUsuario)
-            ->select(
-                'nombre_usuario',
-                'apellido_usuario',
-                'name AS rol',
-                'logo_empresa',
-                'nombre_empresa'
-            )
-            ->first();
-
-        return response()->json($user);
-    }
-
-    public function consultarSessionToken($idUsuario)
-    {
         try {
-            $sessionTokenUser = DB::connection('mysql')
-                                ->table('usuarios')
-                                ->select('session_token')
-                                ->where('id_usuario', $idUsuario)
-                                ->first();
+            $verificarDocumento = Usuario::select('id_tipo_documento', 'numero_documento')
+                        ->where('id_tipo_documento', $usuidTipoDocumento)
+                        ->where('numero_documento', $usuNumeroDocumento)
+                        ->first();
+
+            if(isset($verificarDocumento) && !is_null($verificarDocumento) && !empty($verificarDocumento)) {
+                return response()->json('existe_documento');
+            } else {
+                return response()->json('no_existe_documento');
+            }
+        } catch (Exception $e) {
+            return response()->json("error_exception");
+        }
+    }
+
+
+    // public function cambiarClaveLogin(Request $request, $idUsuario)
+    // {
+    //     $claveNueva = request('clave', null);
+
+    //     try {
+    //         Usuario::where('id_usuario',$idUsuario)
+    //             ->update([
+    //                 'clave' => Hash::make($claveNueva),
+    //         ]);
+    //         return response()->json(true);
+
+    //     } catch (Exception $e) {
+    //         return response()->json(['error_bd' => $e->getMessage()]);
+    //     }
+    // }
+
+    // public function cambiarClaveUsuario(Request $request, $idUsuario)
+    // {
+    //     $claveNueva = request('clave', null);
+
+    //     try {
+    //         // Al actualizar, cambiamos la clave Y generamos un nuevo token aleatorio.
+    //         // Esto "rompe" la coincidencia con cualquier sesión activa del usuario.
+    //         Usuario::where('id_usuario', $idUsuario)
+    //             ->update([
+    //                 'clave'         => Hash::make($claveNueva),
+    //                 'session_token' => Str::random(40), // <--- Aquí cambiamos el token de sesión
+    //             ]);
+                
+    //         return response()->json(true);
+
+    //     } catch (Exception $e) {
+    //         return response()->json(['error_bd' => $e->getMessage()], 500);
+    //     }
+    // }
+
+    // public function consultaRecuperarClave(Request $request)
+    // {
+    //     $email = request('email', null);
+    //     $identificacion = request('identificacion', null);
+
+    //     try {
+    //         return Usuario::select('id_usuario','usuario','identificacion','email')
+    //             ->where('email', $email)
+    //             ->where('identificacion', $identificacion)
+    //             ->first();
+                
+    //     } catch (Exception $e) {
+    //         return response()->json('error_bd');
+    //     }
+    // }
+
+    // public function inactivarUsuario($idUsuario)
+    // {
+    //     try {
+
+    //         $user = Usuario::find($idUsuario);
+    //         $user->id_estado = 2;
+    //         $user->save();
+
+    //     } catch (Exception $e) {
+    //         return response()->json('error_bd');
+    //     }
+    // }
+
+    // public function actualizarClaveFallas(Request $request, $idUsuario)
+    // {
+    //     $contador = request('clave_fallas', null);
+    //     try {
+    //         $user = Usuario::find($idUsuario);
+    //         $user->clave_fallas = $contador;
+    //         $user->save();
+    //     } catch (Exception $e) {
+    //         return response()->json('error_bd');
+    //     }
+    // }
+
+    
+
+    // public function validarEmailLogin(Request $request)
+    // {
+    //     $email = $request->input('email');
+
+    //     $user = Usuario::with('empresa')
+    //         ->leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
+    //         ->where('email', $email)
+    //         ->first();
+
+    //     return response()->json($user);
+    // }
+
+    // public function consultaUsuarioLogueado($idUsuario)
+    // {
+    //     $user = Usuario::leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
+    //         ->leftJoin('empresas', 'empresas.id_empresa', '=', 'usuarios.id_empresa')
+    //         ->where('id_usuario', $idUsuario)
+    //         ->select(
+    //             'nombre_usuario',
+    //             'apellido_usuario',
+    //             'name AS rol',
+    //             'logo_empresa',
+    //             'nombre_empresa'
+    //         )
+    //         ->first();
+
+    //     return response()->json($user);
+    // }
+
+    // public function consultarSessionToken($idUsuario)
+    // {
+    //     try {
+    //         $sessionTokenUser = DB::connection('mysql')
+    //                             ->table('usuarios')
+    //                             ->select('session_token')
+    //                             ->where('id_usuario', $idUsuario)
+    //                             ->first();
             
-            // Si el usuario no existe, devolvemos un token nulo claramente
-            if (!$sessionTokenUser) {
-                return response()->json(['session_token' => null], 404);
-            }
+    //         // Si el usuario no existe, devolvemos un token nulo claramente
+    //         if (!$sessionTokenUser) {
+    //             return response()->json(['session_token' => null], 404);
+    //         }
 
-            return response()->json($sessionTokenUser);
+    //         return response()->json($sessionTokenUser);
 
-        } catch (Exception $e) {
-            return response()->json(['error_bd' => $e->getMessage()], 500);
-        }
-    }
+    //     } catch (Exception $e) {
+    //         return response()->json(['error_bd' => $e->getMessage()], 500);
+    //     }
+    // }
 
-    public function actualizarTokenSesion(Request $request, $idUsuario)
-    {
-        // 1. Validación básica
-        if (!$request->has('session_token')) {
-            return response()->json(['error' => 'Token no proporcionado'], 400);
-        }
+    // public function actualizarTokenSesion(Request $request, $idUsuario)
+    // {
+    //     // 1. Validación básica
+    //     if (!$request->has('session_token')) {
+    //         return response()->json(['error' => 'Token no proporcionado'], 400);
+    //     }
 
-        try {
-            // 2. Intentar la actualización
-            $actualizado = Usuario::where('id_usuario', $idUsuario)
-                ->update([
-                    'session_token' => $request->session_token,
-                    // Si tienes un campo de auditoría en la tabla usuarios, podrías usar $request->id_audit
-                ]);
+    //     try {
+    //         // 2. Intentar la actualización
+    //         $actualizado = Usuario::where('id_usuario', $idUsuario)
+    //             ->update([
+    //                 'session_token' => $request->session_token,
+    //                 // Si tienes un campo de auditoría en la tabla usuarios, podrías usar $request->id_audit
+    //             ]);
 
-            if ($actualizado) {
-                return response()->json(true);
-            }
+    //         if ($actualizado) {
+    //             return response()->json(true);
+    //         }
 
-            return response()->json(['error' => 'Usuario no encontrado'], 404);
+    //         return response()->json(['error' => 'Usuario no encontrado'], 404);
 
-        } catch (Exception $e) {
-            return response()->json(['error_bd' => $e->getMessage()], 500);
-        }
-    }
+    //     } catch (Exception $e) {
+    //         return response()->json(['error_bd' => $e->getMessage()], 500);
+    //     }
+    // }
 }

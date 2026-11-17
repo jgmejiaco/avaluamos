@@ -8,58 +8,38 @@
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Avaluamos - @yield('title')</title>
-        @yield('css')
+
         {{-- Favicon --}}
         <link rel="shortcut icon" href="{{asset('imagenes/logo_avaluamos.png')}}" type="image/x-icon">
 
-        {{-- ========================================= --}}
+        {{-- Bootstrap 5.3.2 --}}
+        <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.5.3.2.min.css')}}">
 
-        <!-- Bootstrap 5.2.3-->
-        <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" >
-
-        <!-- Bootstrap CSS 5.3.2 -->
-        {{-- <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.5.3.2.min.css')}}" > --}}
-
-        {{-- ========================================= --}}
-
-        <!--  Js -->
-        {{-- <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script> --}}
-        <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-        
-        {{-- ========================================= --}}
-
-        {{-- SELECT2 --}}
-        {{-- <link rel="stylesheet" href="{{asset('vendor/select2-4.1.0/dist/css/select2.min.css')}}"> --}}
-
-        {{-- ========================================= --}}
-
-        <!-- Styles -->
+        {{-- FontAwesome --}}
         <link rel="stylesheet" href="{{asset('font-awesome-4.5.0/css/font-awesome.min.css')}}">
-        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-        {{-- ========================================= --}}
+        {{-- Select2 --}}
+        <link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}">
 
-        <!-- Google Fonts -->
-        {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> --}}
-        {{-- <link href="https://fonts.googleapis.com/css?family=PT+Sans:300,400,700,900" rel="stylesheet" type="text/css"> --}}
-        {{-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic" rel="stylesheet" type="text/css"> --}}
-        {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css"> --}}
-
-        {{-- ========================================= --}}
+        {{-- DataTables --}}
+        <link href="{{asset('dataTable2.3.1/css/1.13.7dataTables.bootstrap5.min.css')}}" rel="stylesheet">
+        <link href="{{asset('dataTable2.3.1/css/2.4.2buttons.bootstrap5.min.css')}}" rel="stylesheet">
 
         {{-- Sweetalert2 --}}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.min.css')}}">
-    </head>
 
-    {{-- =========================================================================== --}}
-    {{-- =========================================================================== --}}
+        {{-- Estilos propios --}}
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+        {{-- jQuery (antes de cualquier plugin) --}}
+        <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+
+        @yield('css')
+    </head>
 
     <body>
         <div class="container-fluid">
             <div class="row">
-                {{-- ===================================== --}}
                 @if(Request()->path() == '/' || Request()->path() == "login")
                     @include('layouts.topbar_login')
                 @elseif(Request()->path() == "recuperar")
@@ -68,8 +48,6 @@
                     @include('layouts.topbar')
                 @endif
 
-                {{-- ===================================== --}}
-
                 <div class="flex-center position-ref full-height">
                     <div class="content">
                         @yield('content')
@@ -77,27 +55,27 @@
                 </div>
             </div>
         </div>
+
         @include('layouts.footer')
 
-        {{-- ======================================================== --}}
-        {{-- ======================================================== --}}
+        {{-- Bootstrap 5.3.2 (bundle incluye Popper) --}}
+        <script src="{{asset('bootstrap/bootstrap5.3.2.bundle.min.js')}}"></script>
 
-        @yield('scripts')
+        {{-- Select2 --}}
+        <script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
 
-        <!-- BOOTSTRAP Bundle JS 5.3.2 -->
-        {{-- <script src="{{asset('bootstrap/bootstrap5.3.2.bundle.min.js')}}"></script> --}}
-        {{-- <script src="{{asset('bootstrap/popper-2.11.8.min.js')}}"></script> --}}
-        {{-- <script src="{{asset('bootstrap/bootstrap-5.3.3.min.js')}}"></script> --}}
+        {{-- DataTables Core --}}
+        <script src="{{ asset('dataTable2.3.1/js/1.13.7jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('dataTable2.3.1/js/1.13.7dataTables.bootstrap5.min.js') }}"></script>
 
-        <script src="{{asset('bootstrap/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('bootstrap/1.12.9_popper.min.js')}}"></script>
-        <script src="{{asset('bootstrap/4.0.0_bootstrap.min.js')}}"></script>
+        {{-- DataTables Buttons --}}
+        <script src="{{ asset('dataTable2.3.1/js/2.4.2dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('dataTable2.3.1/js/3.10.1jszip.min.js') }}"></script>
+        <script src="{{ asset('dataTable2.3.1/js/0.1.53pdfmake.min.js') }}"></script>
+        <script src="{{ asset('dataTable2.3.1/js/0.1.53vfs_fonts.js') }}"></script>
+        <script src="{{ asset('dataTable2.3.1/js/2.4.2buttons.html5.min.js') }}"></script>
 
-        <!-- SELECT2 -->
-        {{-- <script src="{{asset('vendor/select2-4.1.0/dist/js/select2.min.js')}}"></script> --}}
-
-        {{-- Sweetalert --}}
-        <script src="{{asset('js/sweetalert2.all.js')}}"></script>
+        {{-- Sweetalert2 --}}
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 
         <script>
@@ -137,8 +115,9 @@
             })();
             @endif
         </script>
-        
-        <!-- SCRIPTS -->
+
+        @yield('scripts')
+
         @include('sweetalert::alert')
     </body>
 </html>

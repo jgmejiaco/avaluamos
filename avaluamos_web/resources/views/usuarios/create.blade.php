@@ -2,8 +2,6 @@
 @section('title', 'Create')
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/chosen/chosen.min.css')}}">
 @stop
 
 {{-- ========================================================== --}}
@@ -28,7 +26,7 @@
     {{-- ==================================================== --}}
 
     {!! Form::open(['method' => 'POST', 'route' => ['usuarios.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!}
-    @csrf
+        @csrf
 
         @include('usuarios.fields')
 
@@ -41,51 +39,61 @@
 
 @section('scripts')
     <script>
-        $( document ).ready(function()
-        {
-            // $('.select2').select2({
-            //     placeholder: 'Seleccionar...',
-            //     allowClear: true,
-            //     disabled: false
-            // });
-            
-            // ==============================================
-            
-            $('#numero_documento').blur(function () {
-                let usuidTipoDocumento = $('#id_tipo_documento').val();
-                let usuNumeroDocumento = $('#numero_documento').val();
-                
+        $(document).ready(function () {
+
+            $('#numero_documento').on('focusout', function () {
+                const usuidTipoDocumento = $('#id_tipo_documento').val();
+                const usuNumeroDocumento = $('#numero_documento').val();
+
+                if (!usuNumeroDocumento) {
+                    return;
+                }
+
+                if (!usuidTipoDocumento) {
+                    Swal.fire(
+                        'Atención!',
+                        'Debe seleccionar el tipo de documento antes de validar el número.',
+                        'warning'
+                    );
+                    $('#id_tipo_documento').focus();
+                    return;
+                }
+
                 $.ajax({
-                    url: "{{route('verificar_documento')}}",
-                    type: "POST",
-                    dataType: "JSON",
+                    url:      "{{ route('verificar_documento_store') }}",
+                    method:   'POST',
+                    dataType: 'json',
                     data: {
-                        '_token': "{{ csrf_token() }}",
-                        'usuidTipoDocumento': usuidTipoDocumento,
-                        'usuNumeroDocumento': usuNumeroDocumento,
-                    },
-                    success: function (respuesta) {
-                        console.log(respuesta);
-
-                        if (respuesta == "existe_documento") {
-                            Swal.fire(
-                                'Cuidado!',
-                                'Este tipo y número de documento ya existe!',
-                                'warning'
-                            )
-                            $('#numero_documento').val('');
-                        }
-
-                        if (respuesta == "error_exception") {
-                            Swal.fire(
-                                'Error!',
-                                'No fue posible consultar el documento, intente nuevamente!',
-                                'error'
-                            )
-                        }
+                        _token: @json(csrf_token()),
+                        usuidTipoDocumento: usuidTipoDocumento,
+                        usuNumeroDocumento: usuNumeroDocumento
                     }
+                }).done(function (respuesta) {
+                    if (respuesta === 'existe_documento') {
+                        Swal.fire(
+                            'Cuidado!',
+                            'Este tipo y número de documento ya existe!',
+                            'warning'
+                        );
+                        $('#numero_documento').val('');
+                    }
+
+                    if (respuesta === 'error_exception') {
+                        Swal.fire(
+                            'Error!',
+                            'No fue posible consultar el documento, intente nuevamente!',
+                            'error'
+                        );
+                    }
+                }).fail(function (xhr) {
+                    console.log('error verificar documento', xhr.status, xhr.responseText);
+                    Swal.fire(
+                        'Error!',
+                        'No fue posible consultar el documento, intente nuevamente!',
+                        'error'
+                    );
                 });
-            })
-        });
+            }); // fIN $('#numero_documento').on('focusout', function ()
+        }); // FIN $(document).ready(function ()
     </script>
-@endsection
+@stop

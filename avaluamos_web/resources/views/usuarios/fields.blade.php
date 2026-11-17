@@ -27,7 +27,7 @@
                 <label for="id_cargo" class="form-label">Cargo
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_cargo', collect(['' => 'Seleccionar...'])->union($cargo), null, ['class' => 'form-control select2', 'id' => 'id_cargo', 'required']) !!}
+                {!! Form::select('id_cargo', collect(['' => 'Seleccionar...'])->union($cargo), null, ['class' => 'form-select select2', 'id' => 'id_cargo', 'required']) !!}
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <label for="id_tipo_documento" class="form-label">Tipo de Documento
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_tipo_documento', collect(['' => 'Seleccionar...'])->union($descripcion_documento), null, ['class' => 'form-control select2', 'id' => 'id_tipo_documento', 'required']) !!}
+                {!! Form::select('id_tipo_documento', collect(['' => 'Seleccionar...'])->union($descripcion_documento), null, ['class' => 'form-select', 'id' => 'id_tipo_documento', 'required']) !!}
             </div>
         </div>
 
@@ -91,14 +91,14 @@
 
         {{-- ======================= --}}
 
-        <div class="col-12 col-md-3">
+        {{-- <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="estado" class="form-label" data-placeholder="Estado">Estado
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::select('id_estado', collect(['' => 'Seleccionar...'])->union($estado), null, ['class' => 'form-control select2', 'id' => 'id_estado', 'required']) !!}
             </div>
-        </div>
+        </div> --}}
     </div>
 
     {{-- ========================================================= --}}

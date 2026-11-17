@@ -9,8 +9,6 @@ use App\Traits\AsignarPermisosPorRol;
 
 class UsuarioStore implements Responsable
 {
-    use AsignarPermisosPorRol;
-
     public function toResponse($request)
     {
         $nombreUsuario = request('nombre_usuario', null);

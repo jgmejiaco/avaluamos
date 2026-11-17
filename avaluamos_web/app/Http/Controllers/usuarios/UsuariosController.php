@@ -150,27 +150,26 @@ class UsuariosController extends Controller
     // ==========================================================================
 
 
-    public function verificarDocumento()
+    public function verificarDocumentoStore()
     {
-        $usuidTipoDocumento = request('usuidTipoDocumento', null);
-        $usuNumeroDocumento = request('usuNumeroDocumento', null);
-
         try {
-            $verificarDocumento = Usuario::select('id_tipo_documento', 'numero_documento')
-                        ->where('id_tipo_documento', $usuidTipoDocumento)
-                        ->where('numero_documento', $usuNumeroDocumento)
-                        ->first();
+            $response = $this->getClientApi()->post('verificar_documento_store', [
+                'json' => [
+                    'usuidTipoDocumento' => request('usuidTipoDocumento', null),
+                    'usuNumeroDocumento' => request('usuNumeroDocumento', null),
+                ],
+            ]);
 
-            if(isset($verificarDocumento) && !is_null($verificarDocumento) && !empty($verificarDocumento)) {
-                return response()->json('existe_documento');
-            } else {
-                return response()->json('no_existe_documento');
-            }
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta);
+
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            return response()->json("error_exception");
+
+            return response()->json('error_exception');
         }
     }
 }
