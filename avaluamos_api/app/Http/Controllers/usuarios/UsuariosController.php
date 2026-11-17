@@ -151,7 +151,7 @@ class UsuariosController extends Controller
             }
 
             return response()->json('no_existe_correo');
-            
+
         } catch (Exception $e) {
             return response()->json('error_exception');
         }
@@ -160,19 +160,25 @@ class UsuariosController extends Controller
     // ======================================================================
     // ======================================================================
 
-    public function consultaUsuario()
+    public function consultarAliasUsuarioStore()
     {
+        $aliasUsuario = trim((string) request('nombre_usuario', ''));
+
+        if ($aliasUsuario === '') {
+            return response()->json('alias_vacio');
+        }
+
         try {
-            $usuario = request('usuario', null);
+            $existeAlias = Usuario::where('nombre_usuario', $aliasUsuario)->exists();
 
-            // Consultamos si ya existe este usuario específico
-            $consultaUsuario = Usuario::where('usuario', $usuario)->first();
-
-            if ($consultaUsuario) {
-                return response()->json($consultaUsuario);
+            if ($existeAlias) {
+                return response()->json('existe_alias');
             }
+
+            return response()->json('no_existe_alias');
+            
         } catch (Exception $e) {
-            return response()->json(['error_bd'=>$e->getMessage()]);
+            return response()->json('error_exception');
         }
     }
 

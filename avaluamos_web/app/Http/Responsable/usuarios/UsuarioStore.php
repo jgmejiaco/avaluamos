@@ -34,13 +34,11 @@ class UsuarioStore implements Responsable
         $usuario           = strtolower($usuario);
         $complemento = "";
 
-        while($this->consultaUsuario($usuario.$complemento)) {
-            $complemento++;
-        }
-
-        // ===================================================================
-
         try {
+            while ($this->consultaAliasUsuario($usuario.$complemento)) {
+                $complemento++;
+            }
+
             $nuevoUsuario = Usuario::create([
                 'nombre_usuario'    => $usuario.$complemento,
                 'clave'             => Hash::make($numeroDocumento),
@@ -56,13 +54,17 @@ class UsuarioStore implements Responsable
                 'celular'           => $celular,
             ]);
 
-            if($nuevoUsuario) {
-                alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevoUsuario->usuario . ' y la clave es: ' . $numeroDocumento);
+            if ($nuevoUsuario) {
+                alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevoUsuario->nombre_usuario . ' y la clave es: ' . $numeroDocumento);
                 return redirect()->to(route('usuarios.index'));
             }
 
         } catch (Exception $e) {
-            // dd($e);
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error UsuarioStore: '.$e->getMessage());
             alert()->error('Error', 'Ha ocurrido un error creando el usuario, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
         }
@@ -71,21 +73,28 @@ class UsuarioStore implements Responsable
     // ===================================================================
     // ===================================================================
 
-    private function consultaUsuario($usuario)
+    private function consultaAliasUsuario($aliasUsuario)
     {
         try {
-            $usuario = Usuario::where('nombre_usuario', $usuario)->first();
-            return $usuario;
+            $response = $this->getClientApi()->post('consultar_alias_usuario_store', [
+                'json' => [
+                    'nombre_usuario' => $aliasUsuario,
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return $respuesta === 'existe_alias';
+
 
         } catch (Exception $e) {
             if (FalloServicio::esConexion($e)) {
                 throw $e;
             }
 
-            logger()->error('Error UsuarioStore: '.$e->getMessage());
-            alert()->error('Error cargando los usuarios.');
+            logger()->error('Error UsuarioStore consultaAliasUsuario: '.$e->getMessage());
 
-            return redirect()->route('inicio');
+            throw $e;
         }
     }
 }
