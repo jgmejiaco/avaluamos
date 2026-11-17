@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="actividad_predominante" class="form-label text-uppercase">Actividad Predominante<span class="text-danger">*</span></label>
-                        {!! Form::select('actividad_predominante', collect(['' => 'Seleccionar...'])->union($uso_inmueble), isset($editarVisita) ? $editarVisita->actividad_predominante : null, ['class' => 'form-control select2', 'id' => 'actividad_predominante', 'required']) !!}
+                        {!! Form::select('actividad_predominante', collect(['' => 'Seleccionar...'])->union($uso_inmueble), isset($editarVisita) ? $editarVisita->actividad_predominante : null, ['class' => 'form-select', 'id' => 'actividad_predominante', 'required']) !!}
                     </div>
                 </div>
 

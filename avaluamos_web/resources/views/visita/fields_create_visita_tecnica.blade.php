@@ -144,7 +144,7 @@
                     <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('dirigido_a', collect(['' => 'Seleccionar...'])->union($dirigido_a), null, ['class' => 'form-control select2', 'id' => 'dirigido_a','required']) !!}
+                    {!! Form::select('dirigido_a', collect(['' => 'Seleccionar...'])->union($dirigido_a), null, ['class' => 'form-select', 'id' => 'dirigido_a','required']) !!}
                 </div>
             </div>
 
@@ -155,7 +155,7 @@
                     <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('tipo_doc_empresa', collect(['' => 'Seleccionar...'])->union($tipo_documento), null, ['class' => 'form-control', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
+                    {!! Form::select('tipo_doc_empresa', collect(['' => 'Seleccionar...'])->union($tipo_documento), null, ['class' => 'form-select', 'id' => 'tipo_doc_empresa', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
 
@@ -232,7 +232,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="pais" class="form-label text-uppercase">País</label>
-                    {!! Form::select('pais', collect(['' => 'Seleccionar...'])->union($paises), null, ['class' => 'form-control select2', 'id' => 'pais']) !!}
+                    {!! Form::select('pais', collect(['' => 'Seleccionar...'])->union($paises), null, ['class' => 'form-select', 'id' => 'pais']) !!}
                 </div>
             </div>
 
@@ -241,7 +241,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="departamento" class="form-label text-uppercase">Departamento</label>
-                    {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), null, ['class' => 'form-control select2', 'id' => 'departamento']) !!}
+                    {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), null, ['class' => 'form-select', 'id' => 'departamento']) !!}
                 </div>
             </div>
 
@@ -252,7 +252,7 @@
                     <label for="ciudad" class="form-label text-uppercase">Municipio
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), null, ['class' => 'form-control select2', 'id' => 'ciudad', 'required']) !!}
+                    {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), null, ['class' => 'form-select', 'id' => 'ciudad', 'required']) !!}
                 </div>
             </div>
 
@@ -261,7 +261,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="comuna" class="form-label text-uppercase">Comuna</label>
-                    {!! Form::select('comuna', collect(['' => 'Seleccionar...'])->union($comunas), null, ['class' => 'form-control select2', 'id' => 'comuna']) !!}
+                    {!! Form::select('comuna', collect(['' => 'Seleccionar...'])->union($comunas), null, ['class' => 'form-select', 'id' => 'comuna']) !!}
                 </div>
             </div>
             
@@ -318,7 +318,7 @@
                     <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), null, ['class' => 'form-control select2', 'id' => 'tipo_inmueble', 'required']) !!}
+                    {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), null, ['class' => 'form-select', 'id' => 'tipo_inmueble', 'required']) !!}
                 </div>
             </div>
 
@@ -336,7 +336,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="estrato" class="form-label text-uppercase">Estrato<span class="text-danger">*</span></label>
-                    {!! Form::select('estrato', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-control select2', 'id' => 'estrato', 'required']) !!}
+                    {!! Form::select('estrato', collect(['' => 'Seleccionar...'])->union($indicador_numerico), null, ['class' => 'form-select', 'id' => 'estrato', 'required']) !!}
                 </div>
             </div>
 
@@ -405,7 +405,7 @@
                     <label for="visitado" class="form-label text-uppercase">Visitado
                         <span class="text-danger">*</span>
                     </label>
-                    {!! Form::select('visitado', collect(['' => 'Seleccionar...'])->union($si_no), 2, ['class' => 'form-control select2', 'id' => 'visitado', 'required']) !!}
+                    {!! Form::select('visitado', collect(['' => 'Seleccionar...'])->union($si_no), 2, ['class' => 'form-select', 'id' => 'visitado', 'required']) !!}
                 </div>
             </div>
 
@@ -433,7 +433,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
                     <label for="visitador" class="form-label text-uppercase">visitador</label>
-                    {!! Form::select('visitador', collect(['' => 'Seleccionar...'])->union($avaluador), null, ['class' => 'form-control text-uppercase select2', 'id' => 'visitador']) !!}
+                    {!! Form::select('visitador', collect(['' => 'Seleccionar...'])->union($avaluador), null, ['class' => 'form-select text-uppercase', 'id' => 'visitador']) !!}
                 </div>
             </div>
         </div> {{-- FIN div_ubicacion_detalles --}}
