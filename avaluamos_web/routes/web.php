@@ -29,10 +29,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('home', 'HomeController');
     });
 
-    Route::group(['namespace' => 'App\Http\Controllers\admin'], function () {
-        Route::resource('administrador', 'AdministradorController');
-        Route::post('editar_usuario', 'AdministradorController@update')->name('editar_usuario');
-        Route::post('verificar_documento', 'AdministradorController@verificarDocumento')->name('verificar_documento');
+    Route::group(['namespace' => 'App\Http\Controllers\usuarios'], function () {
+        Route::resource('usuarios', 'UsuariosController');
+        Route::post('editar_usuario', 'UsuariosController@update')->name('editar_usuario');
+        Route::post('verificar_documento', 'UsuariosController@verificarDocumento')->name('verificar_documento');
     });
 
     Route::group(['namespace' => 'App\Http\Controllers\permisos'], function () {

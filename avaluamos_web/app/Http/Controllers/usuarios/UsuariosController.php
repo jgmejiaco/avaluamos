@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\usuarios;
 
 use App\Http\Controllers\Controller;
 use Exception;
@@ -12,10 +12,10 @@ use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
-use App\Http\Responsable\admin\UsuarioStore;
-use App\Http\Responsable\admin\UsuarioUpdate;
+use App\Http\Responsable\usuarios\UsuarioStore;
+use App\Http\Responsable\usuarios\UsuarioUpdate;
 
-class AdministradorController extends Controller
+class UsuariosController extends Controller
 {
     public function __construct()
     {
@@ -30,7 +30,7 @@ class AdministradorController extends Controller
     public function index()
     {
         try {
-            return view('administrador.index');
+            return view('usuarios.index');
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -51,7 +51,7 @@ class AdministradorController extends Controller
     public function create()
     {
         try {
-            return view('administrador.create');
+            return view('usuarios.create');
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responsable\admin;
+namespace App\Http\Responsable\usuarios;
 
 use App\User;
 use Exception;
@@ -98,12 +98,12 @@ class UsuarioStore implements Responsable
                 {
                     DB::connection('mysql')->commit();
                     alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevoUsuario->usuario . ' y la clave es: ' . $numeroDocumento);
-                    return redirect()->to(route('administrador.index'));
+                    return redirect()->to(route('usuarios.index'));
 
                 } else {
                     DB::connection('mysql')->rollback();
                     alert()->error('Error', 'Ha ocurrido un error al crear el usuario, por favor contacte a Soporte.');
-                    return redirect()->to(route('administrador.index'));
+                    return redirect()->to(route('usuarios.index'));
                 }
 
             }

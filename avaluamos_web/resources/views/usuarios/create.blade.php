@@ -21,16 +21,16 @@
     
     <div class="row">
         <div class="col-12">
-            <a class="btn btn-warning" href="{{route('administrador.index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Regresar</a>
+            <a class="btn btn-warning" href="{{route('usuarios.index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Regresar</a>
         </div>
     </div>
     
     {{-- ==================================================== --}}
 
-    {!! Form::open(['method' => 'POST', 'route' => ['administrador.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['usuarios.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!}
     @csrf
 
-        @include('administrador.fields')
+        @include('usuarios.fields')
 
     {!! Form::close() !!}
 @stop

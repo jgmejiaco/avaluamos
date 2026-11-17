@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responsable\admin;
+namespace App\Http\Responsable\usuarios;
 
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
@@ -45,12 +45,12 @@ class UsuarioUpdate implements Responsable
             {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Usuario editado satisfactoriamente');
-                return redirect()->to(route('administrador.index'));
+                return redirect()->to(route('usuarios.index'));
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Error al editar el usuario, por favor contacte a Soporte.');
-                return redirect()->to(route('administrador.index'));
+                return redirect()->to(route('usuarios.index'));
             }
 
         } catch (Exception $e) {

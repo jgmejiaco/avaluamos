@@ -15,7 +15,7 @@
 
     <div class="row p-b-20 float-right">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <a href="{{route('administrador.create')}}" class="btn btn-primary">Crear Nuevo Usuario</a>
+            <a href="{{route('usuarios.create')}}" class="btn btn-primary">Crear Nuevo Usuario</a>
         </div>
     </div>
     <div class="row p-t-30">
