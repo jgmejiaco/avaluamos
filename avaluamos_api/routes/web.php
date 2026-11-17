@@ -25,4 +25,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth_or_app_key'], function 
 // Con sesión iniciada.
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
     $router->get('config_inicial_trait', 'traits\TraitsController@getConfigInicial');
+
+    // USUARIOS
+    $router->get('usuarios_index', 'usuarios\UsuariosController@index');
 });
