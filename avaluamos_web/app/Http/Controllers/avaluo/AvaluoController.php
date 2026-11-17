@@ -76,23 +76,15 @@ class AvaluoController extends Controller
     public function index()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $avaluosIndex = $this->avaluosIndex();
+            return view('avaluo.index', compact('avaluosIndex'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $avaluosIndex = $this->avaluosIndex();
-                return view('avaluo.index', compact('avaluosIndex'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Error Exception!");
-            // return redirect()->to(route('login'));
+            // return redirect()->to(route('inicio'));
             return back();
         }
     }
@@ -150,19 +142,11 @@ class AvaluoController extends Controller
     public function edit($idVisita)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $calcularAvaluo = $this->calcularAvaluo($idVisita);
+            $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
+            // dd($calcularAvaluo);
+            return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $calcularAvaluo = $this->calcularAvaluo($idVisita);
-                $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
-                // dd($calcularAvaluo);
-                return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -194,16 +178,8 @@ class AvaluoController extends Controller
     public function avaluoClienteUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoClienteUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoClienteUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -219,16 +195,8 @@ class AvaluoController extends Controller
     public function avaluoVisitaTecnicaUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoVisitaTecnicaUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoVisitaTecnicaUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -244,16 +212,8 @@ class AvaluoController extends Controller
     public function avaluoInfoJuridicaUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoInfoJuridicaUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoInfoJuridicaUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -269,16 +229,8 @@ class AvaluoController extends Controller
     public function avaluoInfoInmuebleUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoInfoInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoInfoInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -294,16 +246,8 @@ class AvaluoController extends Controller
     public function avaluoCaracteristicasInmuebleUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoCaracteristicasInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoCaracteristicasInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -319,16 +263,8 @@ class AvaluoController extends Controller
     public function avaluoAcabadosInmuebleUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoAcabadosInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoAcabadosInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -344,16 +280,8 @@ class AvaluoController extends Controller
     public function avaluoCalificacionInmuebleUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoCalificacionInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoCalificacionInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -369,16 +297,8 @@ class AvaluoController extends Controller
     public function avaluoDotacionComunalUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoDotacionComunalUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoDotacionComunalUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -394,16 +314,8 @@ class AvaluoController extends Controller
     public function avaluoInfoSectorUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoInfoSectorUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoInfoSectorUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -419,16 +331,8 @@ class AvaluoController extends Controller
     public function avaluoCondiUrbanisticasUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoCondiUrbanisticasUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoCondiUrbanisticasUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -444,16 +348,8 @@ class AvaluoController extends Controller
     public function avaluoObserGeneralesUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoObserGeneralesUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoObserGeneralesUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -469,16 +365,8 @@ class AvaluoController extends Controller
     public function avaluoRegFotograficoUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoRegFotograficoUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoRegFotograficoUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -494,16 +382,8 @@ class AvaluoController extends Controller
     public function avaluoValorEstimadoUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoValorEstimadoUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoValorEstimadoUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -519,16 +399,8 @@ class AvaluoController extends Controller
     public function avaluoEstadoConservacionUpdate()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new AvaluoEstadoConservacionUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new AvaluoEstadoConservacionUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;

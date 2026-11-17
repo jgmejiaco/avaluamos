@@ -32,23 +32,15 @@ class ClientePotencialController extends Controller
     public function index(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $clientes = $this->consultarClientes();
+            return view('cliente_potencial.index', compact('clientes'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $clientes = $this->consultarClientes();
-                return view('cliente_potencial.index', compact('clientes'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -60,22 +52,14 @@ class ClientePotencialController extends Controller
     public function create()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return view('cliente_potencial.create');
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return view('cliente_potencial.create');
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -88,16 +72,8 @@ class ClientePotencialController extends Controller
     public function store(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new ClientePotencialStore();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new ClientePotencialStore();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -116,23 +92,15 @@ class ClientePotencialController extends Controller
     public function show($id)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $cliente = $this->consultarClienteIndividual($id);
+            return view('cliente_potencial.cliente_historial', compact('cliente'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $cliente = $this->consultarClienteIndividual($id);
-                return view('cliente_potencial.cliente_historial', compact('cliente'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -145,32 +113,24 @@ class ClientePotencialController extends Controller
     public function edit($idCliente)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $cliente = $this->consultarClienteIndividual($idCliente);
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $cliente = $this->consultarClienteIndividual($idCliente);
-
-                if ($cliente) {
-                    if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
-                        $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
-                    } else {
-                        $cliente->fecha_nacimiento = null;
-                    }
+            if ($cliente) {
+                if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
+                    $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
+                } else {
+                    $cliente->fecha_nacimiento = null;
                 }
-
-                return view('cliente_potencial.edit', compact('cliente'));
             }
+
+            return view('cliente_potencial.edit', compact('cliente'));
+
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -184,22 +144,14 @@ class ClientePotencialController extends Controller
     public function update(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new ClienteUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new ClienteUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 

@@ -26,23 +26,15 @@ class DirigidoEmpresaController extends Controller
     public function index(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $empresas = $this->consultarEmpresasIndex();
+            return view('dirigido_empresa.index', compact('empresas'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $empresas = $this->consultarEmpresasIndex();
-                return view('dirigido_empresa.index', compact('empresas'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -65,22 +57,14 @@ class DirigidoEmpresaController extends Controller
     public function store(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new DirigidoEmpresaStore();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new DirigidoEmpresaStore();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -116,22 +100,14 @@ class DirigidoEmpresaController extends Controller
     public function update(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new DirigidoEmpresaUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new DirigidoEmpresaUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 

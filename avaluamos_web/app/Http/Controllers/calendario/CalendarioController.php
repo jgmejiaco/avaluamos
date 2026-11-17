@@ -31,16 +31,8 @@ class CalendarioController extends Controller
     public function index(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return view('calendario.index');
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return view('calendario.index');
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -73,16 +65,8 @@ class CalendarioController extends Controller
     public function store(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new CalendarioStore();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new CalendarioStore();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -130,16 +114,8 @@ class CalendarioController extends Controller
     public function update(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new CalendarioUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new CalendarioUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;

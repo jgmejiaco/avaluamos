@@ -22,21 +22,13 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $usuLogueado = session('id_usuario');
+            $usuario = Usuario::select('nombres')->where('id_usuario',$usuLogueado)->first();
+            return view('home',compact('usuario'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $usuLogueado = session('id_usuario');
-                $usuario = Usuario::select('nombres')->where('id_usuario',$usuLogueado)->first();
-                return view('home',compact('usuario'));
-            }
         } catch (Exception $e) {
             alert()->error("Error Exception!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 

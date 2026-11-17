@@ -30,22 +30,14 @@ class AdministradorController extends Controller
     public function index()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return view('administrador.index');
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return view('administrador.index');
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -59,22 +51,14 @@ class AdministradorController extends Controller
     public function create()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return view('administrador.create');
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return view('administrador.create');
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -89,22 +73,14 @@ class AdministradorController extends Controller
     public function store(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new UsuarioStore();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new UsuarioStore();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -146,22 +122,14 @@ class AdministradorController extends Controller
     public function update(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new UsuarioUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new UsuarioUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 

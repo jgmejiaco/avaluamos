@@ -5,6 +5,7 @@ namespace App\Http\Controllers\inicio_sesion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\inicio_sesion\RecuperarClave;
@@ -12,6 +13,11 @@ use Carbon\Carbon;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -126,12 +132,8 @@ class LoginController extends Controller
                 }
             }
 
-            Session::forget('id_usuario');
-            Session::forget('usuario');
-            Session::forget('id_rol');
-            Session::forget('sesion_iniciada');
+            Auth::logout();
             Session::flush();
-            $request->session()->flush();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 

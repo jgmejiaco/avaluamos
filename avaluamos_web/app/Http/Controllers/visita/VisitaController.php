@@ -83,23 +83,15 @@ class VisitaController extends Controller
     public function index()
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $todasVisitas = $this->visitasIndex();
+            return view('visita.index', compact('todasVisitas'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $todasVisitas = $this->visitasIndex();
-                return view('visita.index', compact('todasVisitas'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
             alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('login'));
+            return redirect()->to(route('inicio'));
         }
     }
 
@@ -114,17 +106,9 @@ class VisitaController extends Controller
     public function create($clienteId)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
+            return view('visita.create',compact('crearVisitaCliente'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
-                return view('visita.create',compact('crearVisitaCliente'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -146,16 +130,8 @@ class VisitaController extends Controller
     public function store(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaStore();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaStore();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -191,17 +167,9 @@ class VisitaController extends Controller
     public function edit($idVisita)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            $editarVisita = $this->editarVisita($idVisita);
+            return view('visita.edit', compact('editarVisita'));
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                $editarVisita = $this->editarVisita($idVisita);
-                return view('visita.edit', compact('editarVisita'));
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -233,16 +201,8 @@ class VisitaController extends Controller
     public function visitaClienteUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaClienteUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaClienteUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -258,16 +218,8 @@ class VisitaController extends Controller
     public function visitaTecnicaUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaTecnicaUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaTecnicaUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -283,16 +235,8 @@ class VisitaController extends Controller
     public function visitaInfoInmuebleUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaInfoInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaInfoInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -308,16 +252,8 @@ class VisitaController extends Controller
     public function visitaCaracteristicasInmuebleUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaCaracteristicasInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaCaracteristicasInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -333,16 +269,8 @@ class VisitaController extends Controller
     public function visitaAcabadosInmuebleUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaAcabadosInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaAcabadosInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -358,16 +286,8 @@ class VisitaController extends Controller
     public function visitaCalificacionInmuebleUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaCalificacionInmuebleUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaCalificacionInmuebleUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -383,16 +303,8 @@ class VisitaController extends Controller
     public function visitaDotacionComunalUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaDotacionComunalUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaDotacionComunalUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -408,16 +320,8 @@ class VisitaController extends Controller
     public function visitaInfoSectorUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaInfoSectorUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaInfoSectorUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -433,16 +337,8 @@ class VisitaController extends Controller
     public function visitaCondiUrbanisticasUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaCondiUrbanisticasUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaCondiUrbanisticasUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -458,16 +354,8 @@ class VisitaController extends Controller
     public function visitaObserGeneralesUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaObserGeneralesUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaObserGeneralesUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -483,16 +371,8 @@ class VisitaController extends Controller
     public function visitaRegFotograficoUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaRegFotograficoUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaRegFotograficoUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -508,16 +388,8 @@ class VisitaController extends Controller
     public function visitaValorEstimadoUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaValorEstimadoUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaValorEstimadoUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
@@ -533,16 +405,8 @@ class VisitaController extends Controller
     public function visitaEstadoConservacionUpdate(Request $request)
     {
         try {
-            $sesion = $this->validarVariablesSesion();
+            return new VisitaEstadoConservacionUpdate();
 
-            if (empty($sesion[0]) || is_null($sesion[0]) &&
-                empty($sesion[1]) || is_null($sesion[1]) &&
-                empty($sesion[2]) || is_null($sesion[2]) && !$sesion[3])
-            {
-                return view('inicio_sesion.login');
-            } else {
-                return new VisitaEstadoConservacionUpdate();
-            }
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;

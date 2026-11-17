@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     use SoftDeletes;
 
@@ -28,4 +28,13 @@ class Usuario extends Model
         'id_cargo',
         'id_rol',
     ];
+
+    protected $hidden = [
+        'clave',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->clave;
+    }
 }

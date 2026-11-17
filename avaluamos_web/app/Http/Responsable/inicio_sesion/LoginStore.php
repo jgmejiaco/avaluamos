@@ -2,11 +2,13 @@
 
 namespace App\Http\Responsable\inicio_sesion;
 
+use App\Models\Usuario;
 use App\Support\FalloServicio;
 use App\Traits\MetodosTrait;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\Auth;
 
 class LoginStore implements Responsable
 {
@@ -61,6 +63,14 @@ class LoginStore implements Responsable
 
     private function crearVariablesSesion($data)
     {
+        $usuario = Usuario::find($data->usuario->id_usuario);
+
+        if (! $usuario) {
+            throw new Exception('No se encontró el usuario autenticado en la aplicación.');
+        }
+
+        Auth::login($usuario);
+
         session()->put('api_jwt_token', $data->access_token);
         session()->put('api_jwt_exp', $this->expiracionDelToken($data->access_token));
         session()->put('id_usuario', $data->usuario->id_usuario);
