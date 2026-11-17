@@ -12,6 +12,7 @@ use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
 use App\Models\Estado;
+use App\Http\Responsable\usuarios\UsuarioIndex;
 use App\Http\Responsable\usuarios\UsuarioStore;
 use App\Http\Responsable\usuarios\UsuarioUpdate;
 
@@ -30,13 +31,13 @@ class UsuariosController extends Controller
     public function index()
     {
         try {
-            return view('usuarios.index');
+            return new UsuarioIndex();
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            alert()->error("Ha ocurrido un error!");
+            alert()->error("Error cargando los usuarios!");
             return redirect()->to(route('inicio'));
         }
     }

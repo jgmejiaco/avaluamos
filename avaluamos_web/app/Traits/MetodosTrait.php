@@ -45,27 +45,6 @@ trait MetodosTrait
          return $this->clientApi;
      }
 
-    public function validarVariablesSesion()
-    {
-        $variablesSesion = [];
-
-        $idUsuario = session('id_usuario');
-        array_push($variablesSesion, $idUsuario);
-
-        $usuario = session('usuario');
-        array_push($variablesSesion, $usuario);
-
-        $rolUsuario = session('id_rol');
-        array_push($variablesSesion, $rolUsuario);
-
-        $sesionIniciada = session('sesion_iniciada');
-        array_push($variablesSesion, $sesionIniciada);
-
-        return $variablesSesion;
-    }
-
-   
-
     public function cargarConfiguracionInicial()
     {
         try {
@@ -94,7 +73,6 @@ trait MetodosTrait
         view()->share('descripcion_documento', $this->catalogo('tipos_documento', 'decripcion_documento', 'id_tipo_documento'));
         view()->share('ciudad', $this->catalogo('ciudades', 'descripcion_ciudad', 'id_ciudad'));
         view()->share('estado', $this->catalogo('estados', 'descripcion_estado', 'id_estado'));
-        view()->share('usuarios', $this->filas('usuarios'));
 
         view()->share('tipo_documento', $this->catalogo('tipos_documento', 'decripcion_documento', 'id_tipo_documento'));
         view()->share('tipo_persona', $this->catalogo('tipos_persona', 'tipo_persona', 'id_tipo_persona'));
@@ -137,6 +115,7 @@ trait MetodosTrait
         view()->share('factor_pendiente', $this->catalogo('factores_pendiente', 'factor_pendiente', 'id_factor_pendiente'));
         view()->share('factor_ubicacion', $this->catalogo('factores_ubicacion', 'factor_ubicacion', 'id_factor_ubicacion'));
         view()->share('estado_conservacion_opciones', $this->catalogo('estados_conservacion', 'estado_conservacion_opciones', 'id_estado_conservacion_opciones'));
+        
         view()->share('roles', $this->filas('roles'));
     }
 
