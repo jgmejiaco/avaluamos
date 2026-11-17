@@ -5,7 +5,6 @@ namespace App\Http\Controllers\cliente_potencial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\admin\AdministradorController;
 use Exception;
 use App\Models\Cliente;
 use App\Models\TipoDocumento;
@@ -33,8 +32,7 @@ class ClientePotencialController extends Controller
     public function index(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -62,8 +60,7 @@ class ClientePotencialController extends Controller
     public function create()
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -91,8 +88,7 @@ class ClientePotencialController extends Controller
     public function store(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -120,8 +116,7 @@ class ClientePotencialController extends Controller
     public function show($id)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -150,8 +145,7 @@ class ClientePotencialController extends Controller
     public function edit($idCliente)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -190,8 +184,7 @@ class ClientePotencialController extends Controller
     public function update(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&

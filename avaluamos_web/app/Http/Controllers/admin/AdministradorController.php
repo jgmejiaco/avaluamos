@@ -204,25 +204,5 @@ class AdministradorController extends Controller
             return response()->json("error_exception");
         }
     }
-    
-    // ==========================================================================
-
-    public function validarVariablesSesion()
-    {
-        $variablesSesion =[];
-
-        $idUsuario = session('id_usuario');
-        array_push($variablesSesion, $idUsuario);
-
-        $usuario = session('usuario');
-        array_push($variablesSesion, $usuario);
-
-        $rolUsuario = session('id_rol');
-        array_push($variablesSesion, $rolUsuario);
-
-        $sesionIniciada = session('sesion_iniciada');
-        array_push($variablesSesion, $sesionIniciada);
-
-        return $variablesSesion;
-    }
 }
+

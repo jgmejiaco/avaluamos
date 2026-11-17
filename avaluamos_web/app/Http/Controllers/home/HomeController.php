@@ -5,7 +5,6 @@ namespace App\Http\Controllers\home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
-use App\Http\Controllers\admin\AdministradorController;
 use App\Models\Usuario;
 
 class HomeController extends Controller
@@ -23,8 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&

@@ -10,7 +10,6 @@ use App\Models\TipoDocumento;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
 use App\Models\DirigidoA;
-use App\Http\Controllers\admin\AdministradorController;
 
 class DirigidoEmpresaController extends Controller
 {
@@ -27,8 +26,7 @@ class DirigidoEmpresaController extends Controller
     public function index(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -67,8 +65,7 @@ class DirigidoEmpresaController extends Controller
     public function store(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -119,8 +116,7 @@ class DirigidoEmpresaController extends Controller
     public function update(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&

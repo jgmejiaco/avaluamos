@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\admin\AdministradorController;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Cargo;
@@ -84,8 +83,7 @@ class VisitaController extends Controller
     public function index()
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -116,8 +114,7 @@ class VisitaController extends Controller
     public function create($clienteId)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -149,8 +146,7 @@ class VisitaController extends Controller
     public function store(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -195,8 +191,7 @@ class VisitaController extends Controller
     public function edit($idVisita)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -238,8 +233,7 @@ class VisitaController extends Controller
     public function visitaClienteUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -264,8 +258,7 @@ class VisitaController extends Controller
     public function visitaTecnicaUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -290,8 +283,7 @@ class VisitaController extends Controller
     public function visitaInfoInmuebleUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -316,8 +308,7 @@ class VisitaController extends Controller
     public function visitaCaracteristicasInmuebleUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -342,8 +333,7 @@ class VisitaController extends Controller
     public function visitaAcabadosInmuebleUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -368,8 +358,7 @@ class VisitaController extends Controller
     public function visitaCalificacionInmuebleUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -394,8 +383,7 @@ class VisitaController extends Controller
     public function visitaDotacionComunalUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -420,8 +408,7 @@ class VisitaController extends Controller
     public function visitaInfoSectorUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -446,8 +433,7 @@ class VisitaController extends Controller
     public function visitaCondiUrbanisticasUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -472,8 +458,7 @@ class VisitaController extends Controller
     public function visitaObserGeneralesUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -498,8 +483,7 @@ class VisitaController extends Controller
     public function visitaRegFotograficoUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -524,8 +508,7 @@ class VisitaController extends Controller
     public function visitaValorEstimadoUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -550,8 +533,7 @@ class VisitaController extends Controller
     public function visitaEstadoConservacionUpdate(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&

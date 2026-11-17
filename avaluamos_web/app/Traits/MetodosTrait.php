@@ -8,24 +8,63 @@ use Exception;
 
 trait MetodosTrait
 {
+    public function checkDatabaseConnection($rutaPerfil = null)
+    {
+        try {
+            $this->getClientApi()->get('salud');
+
+            if (is_string($rutaPerfil) && $rutaPerfil !== '') {
+                return view($rutaPerfil);
+            }
+
+            return response()->json(['status' => 'ok']);
+        } catch (Exception $e) {
+            return FalloServicio::respuesta(request());
+        }
+    }
+
+    // ==========================================================================
+
     protected $baseUri;
     protected $clientApi;
     protected $configData = null;
+
 
     /**
      * Cliente HTTP compartido durante el request.
      * La configuración (base_uri, timeouts, JWT) vive en AppServiceProvider.
      */
-    protected function getClientApi()
+     protected function getClientApi()
+     {
+         $this->baseUri = rtrim((string) config('services.api.base_uri'), '/');
+ 
+         if (! $this->clientApi) {
+             $this->clientApi = app(Client::class);
+         }
+ 
+         return $this->clientApi;
+     }
+
+    public function validarVariablesSesion()
     {
-        $this->baseUri = rtrim((string) config('services.api.base_uri'), '/');
+        $variablesSesion = [];
 
-        if (! $this->clientApi) {
-            $this->clientApi = app(Client::class);
-        }
+        $idUsuario = session('id_usuario');
+        array_push($variablesSesion, $idUsuario);
 
-        return $this->clientApi;
+        $usuario = session('usuario');
+        array_push($variablesSesion, $usuario);
+
+        $rolUsuario = session('id_rol');
+        array_push($variablesSesion, $rolUsuario);
+
+        $sesionIniciada = session('sesion_iniciada');
+        array_push($variablesSesion, $sesionIniciada);
+
+        return $variablesSesion;
     }
+
+   
 
     public function cargarConfiguracionInicial()
     {
@@ -101,20 +140,7 @@ trait MetodosTrait
         view()->share('roles', $this->filas('roles'));
     }
 
-    public function checkDatabaseConnection($rutaPerfil = null)
-    {
-        try {
-            $this->getClientApi()->get('salud');
-
-            if (is_string($rutaPerfil) && $rutaPerfil !== '') {
-                return view($rutaPerfil);
-            }
-
-            return response()->json(['status' => 'ok']);
-        } catch (Exception $e) {
-            return FalloServicio::respuesta(request());
-        }
-    }
+    
 
     private function catalogo($clave, $etiqueta, $id)
     {

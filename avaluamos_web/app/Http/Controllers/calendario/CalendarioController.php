@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
-use App\Http\Controllers\admin\AdministradorController;
 use App\Http\Responsable\calendario\CalendarioStore;
 use App\Http\Responsable\calendario\CalendarioUpdate;
 use App\Models\TipoInmueble;
@@ -32,8 +31,7 @@ class CalendarioController extends Controller
     public function index(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -75,8 +73,7 @@ class CalendarioController extends Controller
     public function store(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -133,8 +130,7 @@ class CalendarioController extends Controller
     public function update(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&

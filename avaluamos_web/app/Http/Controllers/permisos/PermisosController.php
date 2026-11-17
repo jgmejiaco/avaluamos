@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\Rol;
 use App\Http\Responsable\permisos\PermisoUpdate;
-use App\Http\Controllers\admin\AdministradorController;
 
 class PermisosController extends Controller
 {
@@ -24,8 +23,7 @@ class PermisosController extends Controller
     public function index()
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
@@ -107,8 +105,7 @@ class PermisosController extends Controller
     public function update(Request $request)
     {
         try {
-            $adminCtrl = new AdministradorController();
-            $sesion = $adminCtrl->validarVariablesSesion();
+            $sesion = $this->validarVariablesSesion();
 
             if (empty($sesion[0]) || is_null($sesion[0]) &&
                 empty($sesion[1]) || is_null($sesion[1]) &&
