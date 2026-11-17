@@ -11,6 +11,11 @@ use App\Http\Controllers\admin\AdministradorController;
 
 class PermisosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,6 @@ class PermisosController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 return view('permisos.index');
             }
         } catch (Exception $e) {
@@ -137,8 +141,8 @@ class PermisosController extends Controller
     }
 
     // ==========================================================================
-
+
 
     // ==========================================================================
-
+
 }

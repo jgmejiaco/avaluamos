@@ -20,6 +20,11 @@ use App\Http\Responsable\cliente_potencial\ClienteUpdate;
 
 class ClientePotencialController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,6 @@ class ClientePotencialController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $clientes = $this->consultarClientes();
-                $this->shareData();
                 return view('cliente_potencial.index', compact('clientes'));
             }
         } catch (Exception $e) {
@@ -67,7 +71,6 @@ class ClientePotencialController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 return view('cliente_potencial.create');
             }
         } catch (Exception $e) {
@@ -127,7 +130,6 @@ class ClientePotencialController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $cliente = $this->consultarClienteIndividual($id);
-                $this->shareData();
                 return view('cliente_potencial.cliente_historial', compact('cliente'));
             }
         } catch (Exception $e) {
@@ -167,7 +169,6 @@ class ClientePotencialController extends Controller
                     }
                 }
 
-                $this->shareData();
                 return view('cliente_potencial.edit', compact('cliente'));
             }
         } catch (Exception $e) {
@@ -223,7 +224,7 @@ class ClientePotencialController extends Controller
     }
 
     // ========================================================
-    
+    
 
     // ========================================================
 

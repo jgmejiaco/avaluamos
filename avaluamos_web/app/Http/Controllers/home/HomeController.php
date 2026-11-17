@@ -10,6 +10,11 @@ use App\Models\Usuario;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *

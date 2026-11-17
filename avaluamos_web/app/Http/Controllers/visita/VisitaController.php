@@ -71,6 +71,11 @@ use PhpParser\Node\Expr\FuncCall;
 
 class VisitaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -89,7 +94,6 @@ class VisitaController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $todasVisitas = $this->visitasIndex();
-                $this->shareData();
                 return view('visita.index', compact('todasVisitas'));
             }
         } catch (Exception $e) {
@@ -122,8 +126,6 @@ class VisitaController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
-                $this->shareData();
-                
                 return view('visita.create',compact('crearVisitaCliente'));
             }
         } catch (Exception $e) {
@@ -203,7 +205,6 @@ class VisitaController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $editarVisita = $this->editarVisita($idVisita);
-                $this->shareData();
                 return view('visita.edit', compact('editarVisita'));
             }
         } catch (Exception $e) {
@@ -585,7 +586,7 @@ class VisitaController extends Controller
 
     //=========================================================
     //=========================================================
-
+
 
     //=========================================================
     //=========================================================

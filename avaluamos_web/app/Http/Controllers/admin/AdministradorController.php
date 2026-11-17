@@ -17,6 +17,11 @@ use App\Http\Responsable\admin\UsuarioUpdate;
 
 class AdministradorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +38,6 @@ class AdministradorController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 return view('administrador.index');
             }
         } catch (Exception $e) {
@@ -63,7 +67,6 @@ class AdministradorController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 return view('administrador.create');
             }
         } catch (Exception $e) {

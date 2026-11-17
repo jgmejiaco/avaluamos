@@ -64,6 +64,11 @@ use App\Http\Responsable\avaluo\AvaluoEstadoConservacionUpdate;
 
 class AvaluoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -82,7 +87,6 @@ class AvaluoController extends Controller
                 return view('inicio_sesion.login');
             } else {
                 $avaluosIndex = $this->avaluosIndex();
-                $this->shareData();
                 return view('avaluo.index', compact('avaluosIndex'));
             }
         } catch (Exception $e) {
@@ -159,8 +163,6 @@ class AvaluoController extends Controller
             } else {
                 $calcularAvaluo = $this->calcularAvaluo($idVisita);
                 $calcularAvaluo2 = $this->calcularAvaluo2($idVisita);
-                $this->shareData();
-
                 // dd($calcularAvaluo);
                 return view('avaluo.edit', compact('calcularAvaluo', 'calcularAvaluo2'));
             }
@@ -569,7 +571,7 @@ class AvaluoController extends Controller
 
     //=========================================================
     //=========================================================
-
+
 
     //=========================================================
     //=========================================================

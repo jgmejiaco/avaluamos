@@ -18,6 +18,11 @@ use App\Models\InformeCampo;
 
 class InformeCampoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Ejemplo
      * @param Request $request [description]

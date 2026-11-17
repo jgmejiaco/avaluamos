@@ -14,6 +14,11 @@ use App\Http\Controllers\admin\AdministradorController;
 
 class DirigidoEmpresaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +36,6 @@ class DirigidoEmpresaController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 $empresas = $this->consultarEmpresasIndex();
                 return view('dirigido_empresa.index', compact('empresas'));
             }
@@ -149,7 +153,7 @@ class DirigidoEmpresaController extends Controller
     }
 
     // ========================================================
-    
+    
 
     // ========================================================
 

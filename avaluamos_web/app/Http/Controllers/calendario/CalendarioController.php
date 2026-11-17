@@ -19,6 +19,11 @@ use App\Models\SiNo;
 
 class CalendarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('compartirShareData');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +41,6 @@ class CalendarioController extends Controller
             {
                 return view('inicio_sesion.login');
             } else {
-                $this->shareData();
                 return view('calendario.index');
             }
         } catch (Exception $e) {
@@ -166,7 +170,7 @@ class CalendarioController extends Controller
 
     //=========================================================
     //=========================================================
-
+
 
     //=========================================================
     //=========================================================
@@ -261,5 +265,5 @@ class CalendarioController extends Controller
     }
 
     // ========================================================
-
+
 }
