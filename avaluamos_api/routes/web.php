@@ -29,6 +29,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     // USUARIOS
     $router->get('usuarios_index', 'usuarios\UsuariosController@index');
     $router->post('verificar_documento_store', 'usuarios\UsuariosController@verificarDocumentoStore');
-    $router->post('consultar_usuario_store', 'usuarios\UsuariosController@consultarUsuarioStore');
+    $router->post('verificar_correo_store', 'usuarios\UsuariosController@verificarCorreoStore');
+    $router->post('consultar_alias_usuario_store', 'usuarios\UsuariosController@consultarAliasUsuarioStore');
     $router->get('usuarios_store', 'usuarios\UsuariosController@store');
 });

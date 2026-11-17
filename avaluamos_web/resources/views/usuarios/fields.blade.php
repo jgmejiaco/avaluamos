@@ -65,10 +65,7 @@
         </div>
 
         {{-- ======================= --}}
-        {{-- @php
-            use Carbon\Carbon;
-            // $fecha_nacimiento_formato = isset($usuario) ? Carbon::parse($usuario->fecha_nacimiento) : null;
-        @endphp --}}
+        
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="correo" class="form-label">Correo
@@ -88,17 +85,6 @@
                 {!! Form::text('celular', null, ['class' => 'form-control', 'id' => 'celular', 'required']) !!}
             </div>
         </div>
-
-        {{-- ======================= --}}
-
-        {{-- <div class="col-12 col-md-3">
-            <div class="form-group">
-                <label for="estado" class="form-label" data-placeholder="Estado">Estado
-                    <span class="text-danger">*</span>
-                </label>
-                {!! Form::select('id_estado', collect(['' => 'Seleccionar...'])->union($estado), null, ['class' => 'form-select', 'id' => 'id_estado', 'required']) !!}
-            </div>
-        </div> --}}
     </div>
 
     {{-- ========================================================= --}}

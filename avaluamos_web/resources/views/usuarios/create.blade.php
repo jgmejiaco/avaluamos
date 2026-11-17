@@ -40,10 +40,14 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
+            function mostrarErrorConsulta(mensaje) {
+                Swal.fire('Error!', mensaje, 'error');
+            }
 
             $('#numero_documento').on('focusout', function () {
                 const usuidTipoDocumento = $('#id_tipo_documento').val();
                 const usuNumeroDocumento = $('#numero_documento').val();
+                const msgErrorDocumento = 'No fue posible consultar el documento, intente nuevamente!';
 
                 if (!usuNumeroDocumento) {
                     return;
@@ -79,21 +83,79 @@
                     }
 
                     if (respuesta === 'error_exception') {
-                        Swal.fire(
-                            'Error!',
-                            'No fue posible consultar el documento, intente nuevamente!',
-                            'error'
-                        );
+                        mostrarErrorConsulta(msgErrorDocumento);
                     }
                 }).fail(function (xhr) {
                     console.log('error verificar documento', xhr.status, xhr.responseText);
-                    Swal.fire(
-                        'Error!',
-                        'No fue posible consultar el documento, intente nuevamente!',
-                        'error'
-                    );
+                    mostrarErrorConsulta(msgErrorDocumento);
                 });
             }); // fIN $('#numero_documento').on('focusout', function ()
+
+            // ===========================================================================
+
+            let peticionCorreo = null;
+
+            $('#correo').on('focusout', function () {
+                const usuCorreo = $.trim($('#correo').val() || '');
+                const msgErrorCorreo = 'No fue posible consultar el correo, intente nuevamente!';
+
+                if (!usuCorreo) {
+                    return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usuCorreo)) {
+                    Swal.fire(
+                        'Atención!',
+                        'Ingrese un correo válido.',
+                        'warning'
+                    );
+                    $('#correo').val('');
+                    return;
+                }
+
+                if (peticionCorreo) {
+                    peticionCorreo.abort();
+                }
+
+                peticionCorreo = $.ajax({
+                    url:      "{{ route('verificar_correo_store') }}",
+                    method:   'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: @json(csrf_token()),
+                        usuCorreo: usuCorreo
+                    }
+                }).done(function (respuesta) {
+                    // Solo actuar si el correo del input sigue siendo el consultado
+                    if ($.trim($('#correo').val() || '') !== usuCorreo) {
+                        return;
+                    }
+
+                    if (respuesta === 'existe_correo') {
+                        Swal.fire(
+                            'Cuidado!',
+                            'Este correo ya existe!',
+                            'warning'
+                        );
+                        $('#correo').val('');
+                        return;
+                    }
+
+                    if (respuesta === 'error_exception') {
+                        mostrarErrorConsulta(msgErrorCorreo);
+                    }
+                }).fail(function (xhr, textStatus) {
+                    if (textStatus === 'abort') {
+                        return;
+                    }
+                    console.log('error verificar correo', xhr.status, xhr.responseText);
+                    mostrarErrorConsulta(msgErrorCorreo);
+                });
+            }); // fIN $('#correo').on('focusout', function ()
+
+            // ===========================================================================
+
+
         }); // FIN $(document).ready(function ()
     </script>
 @stop

@@ -108,50 +108,8 @@ class UsuariosController extends Controller
         //
     }
 
-    public function consultarId()
-    {
-        $identificacion = request('identificacion', null);
-        
-        // Consultamos si ya existe un usuario con la cedula ingresada
-        return Usuario::where('identificacion', $identificacion)->first();
-    }
-
-    public function consultaUsuario()
-    {
-        try {
-            $usuario = request('usuario', null);
-
-            // Consultamos si ya existe este usuario específico
-            $consultaUsuario = Usuario::where('usuario', $usuario)->first();
-
-            if ($consultaUsuario) {
-                return response()->json($consultaUsuario);
-            }
-        } catch (Exception $e) {
-            return response()->json(['error_bd'=>$e->getMessage()]);
-        }
-    }
-
-
-    public function queryUsuarioUpdate($idUsuario)
-    {
-        try {
-            // Consultamos el id del usuario
-            return Usuario::where('id_usuario', $idUsuario)->first();
-        } catch (Exception $e) {
-            return response()->json('error_bd');
-        }
-    }
-
-    public function validarEmail(Request $request)
-    {
-        $email = $request->input('email');
-        $existe = Usuario::where('email', $email)->exists();
-        
-        return response()->json([
-            'valido' => !$existe
-        ]);
-    }
+    // ======================================================================
+    // ======================================================================
 
     public function verificarDocumentoStore(Request $request)
     {
@@ -173,6 +131,76 @@ class UsuariosController extends Controller
             return response()->json("error_exception");
         }
     }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function verificarCorreoStore(Request $request)
+    {
+        $usuCorreo = trim((string) request('usuCorreo', ''));
+
+        if ($usuCorreo === '') {
+            return response()->json('correo_vacio');
+        }
+
+        try {
+            $existeCorreo = Usuario::whereRaw('LOWER(correo) = ?', [strtolower($usuCorreo)])->exists();
+
+            if ($existeCorreo) {
+                return response()->json('existe_correo');
+            }
+
+            return response()->json('no_existe_correo');
+            
+        } catch (Exception $e) {
+            return response()->json('error_exception');
+        }
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function consultaUsuario()
+    {
+        try {
+            $usuario = request('usuario', null);
+
+            // Consultamos si ya existe este usuario específico
+            $consultaUsuario = Usuario::where('usuario', $usuario)->first();
+
+            if ($consultaUsuario) {
+                return response()->json($consultaUsuario);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error_bd'=>$e->getMessage()]);
+        }
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    // public function consultarId()
+    // {
+    //     $identificacion = request('identificacion', null);
+        
+    //     // Consultamos si ya existe un usuario con la cedula ingresada
+    //     return Usuario::where('identificacion', $identificacion)->first();
+    // }
+
+
+    // public function queryUsuarioUpdate($idUsuario)
+    // {
+    //     try {
+    //         // Consultamos el id del usuario
+    //         return Usuario::where('id_usuario', $idUsuario)->first();
+    //     } catch (Exception $e) {
+    //         return response()->json('error_bd');
+    //     }
+    // }
+
+    
+
+    
 
 
     // public function cambiarClaveLogin(Request $request, $idUsuario)

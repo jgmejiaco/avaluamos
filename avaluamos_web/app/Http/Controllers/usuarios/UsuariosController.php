@@ -172,5 +172,38 @@ class UsuariosController extends Controller
             return response()->json('error_exception');
         }
     }
-}
+
+    // ==========================================================================
+
+    public function verificarCorreoStore()
+    {
+        try {
+            $usuCorreo = trim((string) request('usuCorreo', ''));
+
+            if ($usuCorreo === '') {
+                return response()->json('correo_vacio');
+            }
+
+            $response = $this->getClientApi()->post('verificar_correo_store', [
+                'json' => [
+                    'usuCorreo' => $usuCorreo,
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta);
+
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            return response()->json('error_exception');
+        }
+    }
+
+    // ==========================================================================
+
+} // FIN class UsuariosController extends Controller
 

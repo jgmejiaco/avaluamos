@@ -24,16 +24,9 @@ class UsuarioStore implements Responsable
         $idCargo         = request('id_cargo', null);
         $idRol           = request('id_rol', null);
         $idEstado        = 1;
-        
-        // Consultamos si ya existe un usuario con la cedula ingresada
-        $consulta_cedula = Usuario::where('numero_documento', $numeroDocumento)->first();
-        
-        if(isset($consulta_cedula) && !empty($consulta_cedula) && !is_null($consulta_cedula)) {
-            alert()->info('Info', 'Este número de documento ya existe.');
-            return back();
-        }
 
-        
+        // ===================================================================
+
         // Contruimos el nombre de usuario
         $separar_apellidos = explode(" ", $apellidos);
         $usuario           = substr($this->quitarCaracteresEspeciales(trim($nombres)), 0,1) . trim($this->quitarCaracteresEspeciales($separar_apellidos[0]));
@@ -46,7 +39,6 @@ class UsuarioStore implements Responsable
         }
 
         // ===================================================================
-
 
         try {
             $nuevoUsuario = Usuario::create([
