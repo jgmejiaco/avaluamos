@@ -15,6 +15,9 @@ class UsuarioUpdate implements Responsable
         $this->idUsuario = $idUsuario;
     }
 
+    // ======================================================================
+    // ======================================================================
+
     public function toResponse($request)
     {
         $usuario = Usuario::find($this->idUsuario);
@@ -52,9 +55,9 @@ class UsuarioUpdate implements Responsable
         }
     }
 
-    /**
-     * JUAN GUILLERMO → Juan Guillermo | MEJÍA CORREA → Mejía Correa
-     */
+    // ======================================================================
+    // ======================================================================
+    
     private function formatoNombrePropio(?string $texto): ?string
     {
         if ($texto === null || trim($texto) === '') {

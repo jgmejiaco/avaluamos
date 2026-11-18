@@ -18,13 +18,11 @@ class UsuarioIndex implements Responsable
                 'query' => [],
             ]);
 
-            $data = json_decode($response->getBody()->getContents());
-            $usuarios = collect($data->usuarios ?? [])->map(function ($usuario) {
-                return (object) $usuario;
-            });
+            $respuesta = json_decode($response->getBody()->getContents());
+            $usuarios = $respuesta->usuarios ?? [];
 
             return view('usuarios.index', compact('usuarios'));
-            
+
         } catch (Exception $e) {
             if (FalloServicio::esConexion($e)) {
                 throw $e;

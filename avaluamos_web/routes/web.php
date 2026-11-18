@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\inicio_sesion\LoginController@index')->name('inicio');
 
-Route::get('check_db_conexion', 'App\Http\Controllers\inicio_sesion\LoginController@checkDatabaseConnection')->name('check_db_conexion');
+Route::get('connection_bd_check', 'App\Http\Controllers\inicio_sesion\LoginController@connectionBdCheck')->name('connection_bd_check');
 
 Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
     Route::resource('login', 'LoginController')->only(['index', 'store']);

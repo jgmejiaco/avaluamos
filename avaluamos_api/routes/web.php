@@ -19,7 +19,7 @@ $router->group(['prefix' => 'api/auth'], function () use ($router) {
 
 // Sin sesión de usuario, o con JWT. La app entra con X-App-Api-Key.
 $router->group(['prefix' => 'api', 'middleware' => 'auth_or_app_key'], function () use ($router) {
-    $router->get('salud', 'salud\SaludController@index');
+    $router->get('connection_bd_check', 'connection_bd\ConnectionBdCheckController@index');
 });
 
 // Con sesión iniciada.

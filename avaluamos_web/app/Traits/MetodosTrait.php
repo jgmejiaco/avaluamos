@@ -8,10 +8,10 @@ use Exception;
 
 trait MetodosTrait
 {
-    public function checkDatabaseConnection($rutaPerfil = null)
+    public function connectionBdCheck($rutaPerfil = null)
     {
         try {
-            $this->getClientApi()->get('salud');
+            $this->getClientApi()->get('connection_bd_check');
 
             if (is_string($rutaPerfil) && $rutaPerfil !== '') {
                 return view($rutaPerfil);

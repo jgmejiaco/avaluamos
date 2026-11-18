@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Responsable\salud;
+namespace App\Http\Responsable\connection_bd;
 
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\DB;
 
-class SaludConsulta implements Responsable
+class ConnectionBdCheck implements Responsable
 {
     public function toResponse($request)
     {

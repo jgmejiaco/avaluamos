@@ -11,17 +11,11 @@ class UsuarioStore implements Responsable
 {
     public function toResponse($request)
     {
-        $nombreUsuario   = request('nombre_usuario', null);
-        $nombres         = request('nombres', null);
-        $apellidos       = request('apellidos', null);
-        $idTipoDocumento = request('id_tipo_documento', null);
-        $numeroDocumento = request('numero_documento', null);
-        $correo          = request('correo', null);
-        $celular         = request('celular', null);
-        $idCargo         = request('id_cargo', null);
-        $idRol           = request('id_rol', null);
-        $idEstado        = request('id_estado', 1);
-        $clave           = request('clave', null);
+        $nombreUsuario   = $request->input('nombre_usuario');
+        $nombres         = $request->input('nombres');
+        $apellidos       = $request->input('apellidos');
+        $numeroDocumento = $request->input('numero_documento');
+        $clave           = $request->input('clave');
 
         if (empty($nombreUsuario) || empty($numeroDocumento) || empty($nombres) || empty($apellidos)) {
             return response()->json([
@@ -31,26 +25,26 @@ class UsuarioStore implements Responsable
         }
 
         try {
-            $nuevoUsuario = Usuario::create([
-                'nombre_usuario'    => $nombreUsuario,
-                'clave'             => Hash::make($clave ?: $numeroDocumento),
-                'clave_fallas'      => 0,
-                'nombres'           => $this->formatoNombrePropio($nombres),
-                'apellidos'         => $this->formatoNombrePropio($apellidos),
-                'id_tipo_documento' => $idTipoDocumento,
-                'numero_documento'  => $numeroDocumento,
-                'id_estado'         => $idEstado,
-                'id_rol'            => $idRol,
-                'id_cargo'          => $idCargo,
-                'correo'            => $correo,
-                'celular'           => $celular,
-            ]);
+            $usuario = new Usuario();
+            $usuario->nombre_usuario    = $nombreUsuario;
+            $usuario->clave             = Hash::make($clave ?: $numeroDocumento);
+            $usuario->clave_fallas      = 0;
+            $usuario->nombres           = $this->formatoNombrePropio($nombres);
+            $usuario->apellidos         = $this->formatoNombrePropio($apellidos);
+            $usuario->id_tipo_documento = $request->input('id_tipo_documento');
+            $usuario->numero_documento  = $numeroDocumento;
+            $usuario->id_estado         = $request->input('id_estado', 1);
+            $usuario->id_rol            = $request->input('id_rol');
+            $usuario->id_cargo          = $request->input('id_cargo');
+            $usuario->correo            = $request->input('correo');
+            $usuario->celular           = $request->input('celular');
+            $usuario->save();
 
             return response()->json([
                 'success'        => true,
                 'message'        => 'Usuario creado correctamente',
-                'nombre_usuario' => $nuevoUsuario->nombre_usuario,
-                'id_usuario'     => $nuevoUsuario->id_usuario,
+                'nombre_usuario' => $usuario->nombre_usuario,
+                'id_usuario'     => $usuario->id_usuario,
             ], 201);
 
         } catch (Exception $e) {
