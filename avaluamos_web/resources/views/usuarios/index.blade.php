@@ -51,10 +51,9 @@
                                 <td>{{$usuario->descripcion_cargo}}</td>
                                 <td>{{$usuario->nombre_rol}}</td>
                                 <td>{{$usuario->descripcion_estado}}</td>
-                                
                                 <td>
-                                    <button class="btn btn-primary" onclick="editarUsuario('{{$usuario->id_usuario}}','{{$usuario->nombre_usuario}}','{{$usuario->nombres}}','{{$usuario->apellidos}}','{{$usuario->id_tipo_documento}}','{{$usuario->decripcion_documento}}','{{$usuario->numero_documento}}','{{$usuario->correo}}','{{$usuario->celular}}','{{$usuario->id_cargo}}','{{$usuario->descripcion_cargo}}','{{$usuario->id_rol}}','{{$usuario->nombre_rol}}','{{$usuario->id_estado}}','{{$usuario->descripcion_estado}}')">
-                                        <i class="fa fa-pencil" aria-hidden="true">Editar</i>
+                                    <button type="button" class="btn btn-primary btn-editar-usuario" title="Editar" data-id="{{$usuario->id_usuario}}">
+                                        <i class="fa fa-solid fa-pencil"> Editar</i>
                                     </button>
                                 </td>
                             </tr>
@@ -64,6 +63,22 @@
             </div>
         </div>
     </div>
+
+    {{-- ====================================================== --}}
+    {{-- ====================================================== --}}
+
+    {{-- INICIO Modal Editar Usuario --}}
+    <div class="modal fade" id="modalEditarUsuario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-0 p-3" id="modalEditarUsuarioContent">
+                {{-- El contenido AJAX se cargará aquí --}}
+            </div> {{-- FIN modal-content --}}
+        </div> {{-- FIN modal-dialog --}}
+    </div> {{-- FIN modal --}}
+    {{-- FINAL Modal Editar Usuario --}}
+
+    {{-- ====================================================== --}}
+    {{-- ====================================================== --}}
 
     {{-- <div id="loaderGif" class="ocultar">
         <img src="{{asset('img/processing.gif')}}" alt="processing">
@@ -113,192 +128,41 @@
 
         //==========================================//
 
-        let cargos = @json($cargo);
-        let roles = @json($rol);
-        let tipoDocumento = @json($descripcion_documento);
-        let estados = @json($estado);
+        $(document).on('click', '.btn-editar-usuario', function () {
+            // Sí es necesaria: cada botón tiene su data-id; aquí leemos el del clic
+            const idUsuario = $(this).data('id');
+            const urlEditar = @json(url('usuarios')).replace(/\/?$/, '') + '/' + idUsuario + '/edit';
 
-        function editarUsuario(idUsuario,usuario,nombres,apellidos,idTipoDocumento,TipoDocumento,numeroDocumento,correo,celular,idCargo,cargo,idRol,rol,idEstado,estado) {
-            formEditarUsuario = '';
-
-            formEditarUsuario += `
-                {!! Form::open(['method' => 'POST', 'route' => ['editar_usuario'], 'id' => 'form_editar_usuario', 'class' => 'login100-form', 'autocomplete' => 'off']) !!}
-                @csrf
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `<input type="hidden" name="id_usuario" value="${idUsuario}">`;
-
-            // ====================================
-
-            formEditarUsuario += `  <div class="form-group mt-3 d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Nombres</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="usu_nombres" value="${nombres}">
-                                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarUsuario += `  <div class="form-group mt-3 d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Apellidos</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="usu_apellidos" value="${apellidos}">
-                                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarUsuario += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="usu_cargo" class="form-label text-uppercase fs-5 w-100 1-md-50">Cargo</label>
-                            <select class="form-control select2 w-100 1-md-50" id="usu_cargo" name="usu_cargo">
-            `;
-                                if (idCargo == null || idCargo == "") {
-                                    formEditarUsuario += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarUsuario += `<option value="${idCargo}" selected >${cargo}</option>`;
-                                }
-            
-                                $.each(cargos, function(id_cargo, des_cargo){
-                                    formEditarUsuario += ' <option value="'+id_cargo+'">'+des_cargo+'</option>';
-                                });
-
-            formEditarUsuario += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarUsuario += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="usu_rol" class="form-label text-uppercase fs-5 w-100 1-md-50">Rol</label>
-                            <select class="form-control select2 w-100 1-md-50" id="usu_rol" name="usu_rol">
-            `;
-                                if (idRol == null || idRol == "") {
-                                    formEditarUsuario += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarUsuario += `<option value="${idRol}" selected >${rol}</option>`;
-                                }
-            
-                                $.each(roles, function(id_rol, des_rol){
-                                    formEditarUsuario += ' <option value="'+id_rol+'">'+des_rol+'</option>';
-                                });
-
-            formEditarUsuario += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="usu_id_doc" class="form-label text-uppercase fs-5 w-100 1-md-50">Tipo Documento</label>
-                            <select class="form-control select2 w-100 1-md-50" id="usu_id_doc" name="usu_id_doc">
-            `;
-                                if (idTipoDocumento == null || idTipoDocumento == "") {
-                                    formEditarUsuario += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarUsuario += `<option value="${idTipoDocumento}" selected >${TipoDocumento}</option>`;
-                                }
-            
-                                $.each(tipoDocumento, function(idDoc, tipDoc){
-                                    formEditarUsuario += ' <option value="'+idDoc+'">'+tipDoc+'</option>';
-                                });
-
-            formEditarUsuario += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Número Documento</label>
-                                        <input type="text" class="form-control text-uppercase w-100 1-md-50" name="usu_documento" value="${numeroDocumento}">
-                                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Correo</label>
-                                        <input type="text" class="form-control w-100 1-md-50" name="usu_correo" value="${correo}">
-                                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `  <div class="form-group d-flex align-items-center">
-                                        <label class="form-label text-uppercase fs-5 w-100 1-md-50">Celular</label>
-                                        <input type="text" class="form-control w-100 1-md-50" name="usu_celular" value="${celular}">
-                                    </div>
-            `;
-
-            // ====================================
-            
-            formEditarUsuario += `
-                    <div class="col-12">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="usu_estado" class="form-label text-uppercase fs-5 w-100 1-md-50">Estado</label>
-                            <select class="form-control select2 w-100 1-md-50" id="usu_estado" name="usu_estado">
-            `;
-                                if (idEstado == null || idEstado == "") {
-                                    formEditarUsuario += `<option value="" selected >Seleccionar...</option>`;
-                                } else {
-                                    formEditarUsuario += `<option value="${idEstado}" selected >${estado}</option>`;
-                                }
-            
-                                $.each(estados, function(id_estado, d_estado){
-                                    formEditarUsuario += ' <option value="'+id_estado+'">'+d_estado+'</option>';
-                                });
-
-            formEditarUsuario += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <input type="submit" class="btn btn-primary rounded-pill mt-3 mb-3" value="Editar Usuario" id="btn_editar_usuario">
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            formEditarUsuario += `
-                    {!! Form::close() !!}
-            `;
-
-            // ===========================================================
-            
-            Swal.fire({
-                title: '<strong>EDICIÓN BÁSICA</strong>',
-                icon: 'info',
-                type: 'info',
-                html: formEditarUsuario,
-                showCloseButton: true,
-                showCancelButton: false,
-                showConfirmButton: false,
-                cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar!',
-                cancelButtonAriaLabel: 'Thumbs down',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                width: 400,
-                padding: '2em',
+            $.ajax({
+                url: urlEditar, // GET /usuarios/{id}/edit  →  UsuariosController@edit
+                type: 'GET',
+                data: {
+                    tipo_modal: 'editar_usuario'
+                },
+                beforeSend: function () {
+                    $('#modalEditarUsuarioContent').html('<div class="text-center p-5"><i class="fa fa-spinner fa-spin fa-2x"></i> Cargando...</div>');
+                    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarUsuario'));
+                    modal.show();
+                },
+                success: function (html) {
+                    // HTML del formulario (Blade) que devolvió UsuarioEdit
+                    $('#modalEditarUsuarioContent').html(html);
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403 && xhr.responseText) {
+                        $('#modalEditarUsuarioContent').html(xhr.responseText);
+                        setTimeout(() => {
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarUsuario')).hide();
+                        }, 3000);
+                    } else {
+                        $('#modalEditarUsuarioContent').html('<div class="alert alert-danger">Error al cargar el formulario.</div>');
+                    }
+                }
             });
-        }
+        });
+
+        //==========================================//
+
+
     </script>
 @endsection

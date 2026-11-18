@@ -5,7 +5,7 @@
                 <label for="nombres" class="form-label">Nombres
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::text('nombres', null, ['class' => 'form-control text-uppercase', 'id' => 'nombres', 'required']) !!}
+                {!! Form::text('nombres', null, ['class' => 'form-control', 'id' => 'nombres', 'required']) !!}
             </div>
         </div>
 
@@ -16,7 +16,7 @@
                 <label for="apellidos" class="form-label">Apellidos
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::text('apellidos', null, ['class' => 'form-control text-uppercase', 'id' => 'apellidos', 'required']) !!}
+                {!! Form::text('apellidos', null, ['class' => 'form-control', 'id' => 'apellidos', 'required']) !!}
             </div>
         </div>
 

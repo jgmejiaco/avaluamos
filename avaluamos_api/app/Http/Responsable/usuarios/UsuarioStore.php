@@ -35,8 +35,8 @@ class UsuarioStore implements Responsable
                 'nombre_usuario'    => $nombreUsuario,
                 'clave'             => Hash::make($clave ?: $numeroDocumento),
                 'clave_fallas'      => 0,
-                'nombres'           => strtoupper($nombres),
-                'apellidos'         => strtoupper($apellidos),
+                'nombres'           => $this->formatoNombrePropio($nombres),
+                'apellidos'         => $this->formatoNombrePropio($apellidos),
                 'id_tipo_documento' => $idTipoDocumento,
                 'numero_documento'  => $numeroDocumento,
                 'id_estado'         => $idEstado,
@@ -60,5 +60,17 @@ class UsuarioStore implements Responsable
                 'error'   => $e->getMessage(),
             ], 500);
         }
+    }
+
+    /**
+     * JUAN GUILLERMO → Juan Guillermo | MEJÍA CORREA → Mejía Correa
+     */
+    private function formatoNombrePropio(?string $texto): ?string
+    {
+        if ($texto === null || trim($texto) === '') {
+            return $texto;
+        }
+
+        return mb_convert_case(trim($texto), MB_CASE_TITLE, 'UTF-8');
     }
 }

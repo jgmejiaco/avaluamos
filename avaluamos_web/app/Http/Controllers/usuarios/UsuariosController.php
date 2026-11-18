@@ -14,6 +14,7 @@ use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Http\Responsable\usuarios\UsuarioIndex;
 use App\Http\Responsable\usuarios\UsuarioStore;
+use App\Http\Responsable\usuarios\UsuarioEdit;
 use App\Http\Responsable\usuarios\UsuarioUpdate;
 
 class UsuariosController extends Controller
@@ -106,9 +107,18 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idUsuario)
     {
-        
+        try {
+            return new UsuarioEdit($idUsuario);
+
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+            alert()->error("Ha ocurrido un error!");
+            return redirect()->to(route('inicio'));
+        }
     }
 
     // ==========================================================================
@@ -120,10 +130,10 @@ class UsuariosController extends Controller
     //  * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($idUsuario)
     {
         try {
-            return new UsuarioUpdate();
+            return new UsuarioUpdate($idUsuario);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {

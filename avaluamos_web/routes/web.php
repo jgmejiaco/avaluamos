@@ -33,7 +33,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('usuarios', 'UsuariosController');
         Route::post('verificar_documento_store', 'UsuariosController@verificarDocumentoStore')->name('verificar_documento_store');
         Route::post('verificar_correo_store', 'UsuariosController@verificarCorreoStore')->name('verificar_correo_store');
-        Route::post('editar_usuario', 'UsuariosController@update')->name('editar_usuario');
     });
 
     Route::group(['namespace' => 'App\Http\Controllers\permisos'], function () {

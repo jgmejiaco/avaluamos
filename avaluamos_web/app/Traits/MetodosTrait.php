@@ -44,6 +44,20 @@ trait MetodosTrait
 
     // ==========================================================================
 
+    /**
+     * JUAN GUILLERMO → Juan Guillermo | MEJÍA CORREA → Mejía Correa
+     */
+    public function formatoNombrePropio(?string $texto): ?string
+    {
+        if ($texto === null || trim($texto) === '') {
+            return $texto;
+        }
+
+        return mb_convert_case(trim($texto), MB_CASE_TITLE, 'UTF-8');
+    }
+
+    // ==========================================================================
+
     protected $baseUri;
     protected $clientApi;
     protected $configData = null;
