@@ -3436,6 +3436,17 @@ div label input {margin-right: 100px;}
 /* FIN Media Query TopMenu  */
 /* ========================================= */
 
+/*
+ * El nav del tema usa z-index:9999 (position:fixed).
+ * Bootstrap modal ~1055 queda detrás del menú; subir modal y backdrop.
+ */
+.modal-backdrop {
+	z-index: 10040 !important;
+}
+.modal {
+	z-index: 10050 !important;
+}
+
 /* ========================================================================== */
 /* ========================================================================== */
 /* ========================================================================== */

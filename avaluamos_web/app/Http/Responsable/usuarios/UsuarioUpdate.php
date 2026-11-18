@@ -2,7 +2,7 @@
 
 namespace App\Http\Responsable\usuarios;
 
-use App\Models\Usuario;
+use App\Support\FalloServicio;
 use App\Traits\MetodosTrait;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
@@ -11,42 +11,46 @@ class UsuarioUpdate implements Responsable
 {
     use MetodosTrait;
 
+    protected $idUsuario;
+
+    public function __construct($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+    }
+
     public function toResponse($request)
     {
-        $idUsuario    = request('id_usuario', null);
-        $usuNombres   = $this->formatoNombrePropio(request('usu_nombres', null));
-        $usuApellidos = $this->formatoNombrePropio(request('usu_apellidos', null));
-        $usuCargo     = request('usu_cargo', null);
-        $usuRol       = request('usu_rol', null);
-        $usuIdDoc     = request('usu_id_doc', null);
-        $usuDocumento = request('usu_documento', null);
-        $usuCorreo    = request('usu_correo', null);
-        $usuCelular   = request('usu_celular', null);
-        $usuEstado    = request('usu_estado', null);
-        
-        // ===================================================================
-
         try {
-            $editarUsuario = Usuario::where('id_usuario', $idUsuario)
-                ->update([
-                    'nombres'           => $usuNombres,
-                    'apellidos'         => $usuApellidos,
-                    'id_tipo_documento' => $usuIdDoc,
-                    'numero_documento'  => $usuDocumento,
-                    'id_rol'            => $usuRol,
-                    'id_cargo'          => $usuCargo,
-                    'correo'            => $usuCorreo,
-                    'celular'           => $usuCelular,
-                    'id_estado'         => $usuEstado,
+            $response = $this->getClientApi()->put('usuario_update/'.$this->idUsuario, [
+                'json' => [
+                    'usu_nombres'   => request('usu_nombres', null),
+                    'usu_apellidos' => request('usu_apellidos', null),
+                    'usu_cargo'     => request('usu_cargo', null),
+                    'usu_rol'       => request('usu_rol', null),
+                    'usu_id_doc'    => request('usu_id_doc', null),
+                    'usu_documento' => request('usu_documento', null),
+                    'usu_correo'    => request('usu_correo', null),
+                    'usu_celular'   => request('usu_celular', null),
+                    'usu_estado'    => request('usu_estado', null),
+                ],
             ]);
 
-            if($editarUsuario) {
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            if (! empty($respuesta->success)) {
                 alert()->success('Proceso Exitoso', 'Usuario editado satisfactoriamente');
                 return redirect()->to(route('usuarios.index'));
-
             }
 
+            alert()->error('Error', $respuesta->message ?? 'No fue posible editar el usuario.');
+            return back();
+
         } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error UsuarioUpdate: '.$e->getMessage());
             alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
         }

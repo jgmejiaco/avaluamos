@@ -2,22 +2,16 @@
 
 namespace App\Http\Responsable\usuarios;
 
+use App\Models\Usuario;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Http\Request;
-use App\Models\Usuario;
-use App\Traits\AsignarPermisosPorRol;
 
 class UsuarioUpdate implements Responsable
 {
-    use AsignarPermisosPorRol;
-
-    protected $request;
     protected $idUsuario;
 
-    public function __construct(Request $request, $idUsuario)
+    public function __construct($idUsuario)
     {
-        $this->request = $request;
         $this->idUsuario = $idUsuario;
     }
 
@@ -25,36 +19,48 @@ class UsuarioUpdate implements Responsable
     {
         $usuario = Usuario::find($this->idUsuario);
 
-        if ($usuario) {
-            try {
-                $idRolAnterior = $usuario->id_rol;
-                $idRol = $request->input('id_rol');
-
-                $usuario->nombre_usuario = $request->input('nombre_usuario');
-                $usuario->apellido_usuario = $request->input('apellido_usuario');
-                $usuario->id_tipo_documento = $request->input('id_tipo_documento');
-                $usuario->identificacion = $request->input('identificacion');
-                $usuario->email = $request->input('email');
-                $usuario->id_rol = $idRol;
-                $usuario->id_tipo_persona = $request->input('id_tipo_persona');
-                $usuario->numero_telefono = $request->input('numero_telefono');
-                $usuario->celular = $request->input('celular');
-                $usuario->id_genero = $request->input('id_genero');
-                $usuario->direccion = $request->input('direccion');
-                $usuario->id_estado = $request->input('id_estado');
-                $usuario->fecha_contrato = $request->input('fecha_contrato');
-                $usuario->fecha_terminacion_contrato = $request->input('fecha_terminacion_contrato');
-                $usuario->id_empresa = $request->input('id_empresa');
-                $usuario->update();
-
-                if ($idRolAnterior != $idRol) {
-                    $this->asignarPermisosPorRol($idRol, $usuario);
-                }
-
-                return response()->json(['success' => true]);
-            } catch (Exception $e) {
-                return response()->json(['error_bd' => $e->getMessage()]);
-            }
+        if (! $usuario) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No existe usuario',
+            ], 404);
         }
+
+        try {
+            $usuario->nombres           = $this->formatoNombrePropio($request->input('usu_nombres'));
+            $usuario->apellidos         = $this->formatoNombrePropio($request->input('usu_apellidos'));
+            $usuario->id_tipo_documento = $request->input('usu_id_doc');
+            $usuario->numero_documento  = $request->input('usu_documento');
+            $usuario->id_rol            = $request->input('usu_rol');
+            $usuario->id_cargo          = $request->input('usu_cargo');
+            $usuario->correo            = $request->input('usu_correo');
+            $usuario->celular           = $request->input('usu_celular');
+            $usuario->id_estado         = $request->input('usu_estado');
+            $usuario->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Usuario editado correctamente',
+            ]);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error actualizando el usuario',
+                'error'   => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * JUAN GUILLERMO → Juan Guillermo | MEJÍA CORREA → Mejía Correa
+     */
+    private function formatoNombrePropio(?string $texto): ?string
+    {
+        if ($texto === null || trim($texto) === '') {
+            return $texto;
+        }
+
+        return mb_convert_case(trim($texto), MB_CASE_TITLE, 'UTF-8');
     }
 }

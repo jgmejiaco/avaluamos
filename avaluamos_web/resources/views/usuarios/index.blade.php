@@ -69,13 +69,13 @@
 
     {{-- INICIO Modal Editar Usuario --}}
     <div class="modal fade" id="modalEditarUsuario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 p-3" id="modalEditarUsuarioContent">
                 {{-- El contenido AJAX se cargará aquí --}}
-            </div> {{-- FIN modal-content --}}
-        </div> {{-- FIN modal-dialog --}}
-    </div> {{-- FIN modal --}}
-    {{-- FINAL Modal Editar Usuario --}}
+            </div> {{-- FIN modal-content --}}
+        </div> {{-- FIN modal-dialog --}}
+    </div> {{-- FIN modal --}}
+    {{-- FINAL Modal Editar Usuario --}}
 
     {{-- ====================================================== --}}
     {{-- ====================================================== --}}
