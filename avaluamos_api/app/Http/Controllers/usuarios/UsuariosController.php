@@ -51,7 +51,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        return new UsuarioStore($request);
+        return new UsuarioStore();
     }
 
     /**

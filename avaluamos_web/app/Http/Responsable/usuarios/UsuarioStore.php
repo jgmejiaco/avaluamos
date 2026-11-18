@@ -2,12 +2,10 @@
 
 namespace App\Http\Responsable\usuarios;
 
-use App\Models\Usuario;
 use App\Support\FalloServicio;
 use App\Traits\MetodosTrait;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Support\Facades\Hash;
 
 class UsuarioStore implements Responsable
 {
@@ -25,39 +23,51 @@ class UsuarioStore implements Responsable
         $idRol           = request('id_rol', null);
         $idEstado        = 1;
 
-        // ===================================================================
-
-        // Contruimos el nombre de usuario
-        $separar_apellidos = explode(" ", $apellidos);
-        $usuario           = substr($this->quitarCaracteresEspeciales(trim($nombres)), 0,1) . trim($this->quitarCaracteresEspeciales($separar_apellidos[0]));
-        $usuario           = str_replace(['Ñ', 'ñ'], 'n', $usuario);
-        $usuario           = strtolower($usuario);
-        $complemento = "";
+        // Construimos el alias / nombre de usuario
+        $separarApellidos = explode(' ', $apellidos);
+        $aliasUsuario     = substr($this->quitarCaracteresEspeciales(trim($nombres)), 0, 1)
+            .trim($this->quitarCaracteresEspeciales($separarApellidos[0]));
+        $aliasUsuario     = str_replace(['Ñ', 'ñ'], 'n', $aliasUsuario);
+        $aliasUsuario     = strtolower($aliasUsuario);
+        $complemento      = '';
 
         try {
-            while ($this->consultaAliasUsuario($usuario.$complemento)) {
+            while ($this->consultaAliasUsuario($aliasUsuario.$complemento)) {
                 $complemento++;
             }
 
-            $nuevoUsuario = Usuario::create([
-                'nombre_usuario'    => $usuario.$complemento,
-                'clave'             => Hash::make($numeroDocumento),
-                'clave_fallas'      => 0,
-                'nombres'           => strtoupper($nombres),
-                'apellidos'         => strtoupper($apellidos),
-                'id_tipo_documento' => $idTipoDocumento,
-                'numero_documento'  => $numeroDocumento,
-                'id_estado'         => $idEstado,
-                'id_rol'            => $idRol,
-                'id_cargo'          => $idCargo,
-                'correo'            => $correo,
-                'celular'           => $celular,
+            $nombreUsuario = $aliasUsuario.$complemento;
+
+            $response = $this->getClientApi()->post('usuarios_store', [
+                'json' => [
+                    'nombre_usuario'    => $nombreUsuario,
+                    'nombres'           => $nombres,
+                    'apellidos'         => $apellidos,
+                    'id_tipo_documento' => $idTipoDocumento,
+                    'numero_documento'  => $numeroDocumento,
+                    'correo'            => $correo,
+                    'celular'           => $celular,
+                    'id_cargo'          => $idCargo,
+                    'id_rol'            => $idRol,
+                    'id_estado'         => $idEstado,
+                    // Clave en texto plano: el hash se hace en la API
+                    'clave'             => $numeroDocumento,
+                ],
             ]);
 
-            if ($nuevoUsuario) {
-                alert()->success('Successful Process', 'Usuario creado satisfactoriamente: ' . $nuevoUsuario->nombre_usuario . ' y la clave es: ' . $numeroDocumento);
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            if (! empty($respuesta->success)) {
+                alert()->success(
+                    'Successful Process',
+                    'Usuario creado satisfactoriamente: '.$nombreUsuario.' y la clave es: '.$numeroDocumento
+                );
+
                 return redirect()->to(route('usuarios.index'));
             }
+
+            alert()->error('Error', $respuesta->message ?? 'No fue posible crear el usuario.');
+            return back();
 
         } catch (Exception $e) {
             if (FalloServicio::esConexion($e)) {
@@ -70,7 +80,6 @@ class UsuarioStore implements Responsable
         }
     }
 
-    // ===================================================================
     // ===================================================================
 
     private function consultaAliasUsuario($aliasUsuario)
@@ -86,7 +95,6 @@ class UsuarioStore implements Responsable
 
             return $respuesta === 'existe_alias';
 
-
         } catch (Exception $e) {
             if (FalloServicio::esConexion($e)) {
                 throw $e;
@@ -98,4 +106,3 @@ class UsuarioStore implements Responsable
         }
     }
 }
-
