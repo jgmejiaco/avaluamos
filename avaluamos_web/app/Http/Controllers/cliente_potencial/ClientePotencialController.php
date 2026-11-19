@@ -132,13 +132,13 @@ class ClientePotencialController extends Controller
      * Resource: PUT /cliente_potencial/{cliente_potencial}
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $cliente_potencial
+     * @param  int  $clientePotencial 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $cliente_potencial)
+    public function update(Request $request, $clientePotencial )
     {
         try {
-            return new ClientePotencialUpdate($cliente_potencial);
+            return new ClientePotencialUpdate($clientePotencial );
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -166,23 +166,26 @@ class ClientePotencialController extends Controller
     
     public function verificarCelular()
     {
-        $cliCelular = request('cliCelular', null);
-
         try {
-            $verificarCliCelular = Cliente::select('cli_celular')
-                                    ->where('cli_celular', $cliCelular)
-                                    ->first();
+            $cliCelular = request('cliCelular', null);
 
-            if(isset($verificarCliCelular) && !is_null($verificarCliCelular) && !empty($verificarCliCelular)) {
-                return response()->json('existe_cli_celular');
-            } else {
-                return response()->json('no_existe_cli_celular');
-            }
+            $response = $this->getClientApi()->post('cliente_verificar_celular', [
+                'json' => [
+                    'cliCelular' => $cliCelular,
+                ],
+            ]);
+
+            $clienteVerificarCelular = json_decode($response->getBody()->getContents());
+
+            return response()->json($clienteVerificarCelular);
+
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            return response()->json("error_exception");
+
+            logger()->error('Error verificarCelular: '.$e->getMessage());
+            return response()->json('error_exception');
         }
     }
 
@@ -190,15 +193,30 @@ class ClientePotencialController extends Controller
 
     public function consultarCiudadDpto()
     {
-        $idDpto = request('id_dpto', null);
+        try {
+            $idDpto = request('id_dpto', null);
 
-        return DB::table('ciudad')
-                    ->select(
-                        'id_ciudad',
-                        'descripcion_ciudad',
-                    )
-                    ->where('id_departamento_estado', $idDpto)
-                    ->orderBy('descripcion_ciudad', 'asc')
-                    ->get();
+            if ($idDpto === null || $idDpto === '' || $idDpto === '-1') {
+                return response()->json([]);
+            }
+
+            $response = $this->getClientApi()->post('cliente_consultar_ciudad_dpto', [
+                'json' => [
+                    'id_dpto' => $idDpto,
+                ],
+            ]);
+
+            $clienteCiudadesDpto = json_decode($response->getBody()->getContents());
+
+            return response()->json($clienteCiudadesDpto);
+
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error consultarCiudadDpto: '.$e->getMessage());
+            return response()->json([]);
+        }
     }
 }

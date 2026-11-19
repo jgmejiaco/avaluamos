@@ -9,6 +9,8 @@ use App\Http\Responsable\cliente_potencial\ClientePotencialIndex;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 use App\Http\Responsable\cliente_potencial\ClientePotencialEdit;
 use App\Http\Responsable\cliente_potencial\ClientePotencialUpdate;
+use App\Http\Responsable\cliente_potencial\ClienteVerificarCelular;
+use App\Http\Responsable\cliente_potencial\ClienteConsultarCiudadDpto;
 
 
 class ClientePotencialController extends Controller
@@ -107,28 +109,20 @@ class ClientePotencialController extends Controller
     // ======================================================================
     // ======================================================================
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $idClientePotencial
-     * @return \Illuminate\Http\Response
-     */
-    public function individual($idClientePotencial)
+    public function clienteVerificarCelular()
     {
-        // return new ClientePotencialIndividual($idClientePotencial);
+        return new ClienteVerificarCelular();
     }
 
     // ======================================================================
     // ======================================================================
 
-    
+    public function clienteConsultarCiudadDpto()
+    {
+        return new ClienteConsultarCiudadDpto();
+    }
 
     // ======================================================================
     // ======================================================================
-
-    
-    // ======================================================================
-    // ======================================================================
-
 
 }

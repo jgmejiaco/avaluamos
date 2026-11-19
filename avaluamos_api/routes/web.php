@@ -47,4 +47,18 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->get('cliente_potencial_edit/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@edit');
     $router->put('cliente_potencial_update/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@update');
     $router->post('cliente_potencial_individual/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@individual');
+    $router->post('cliente_verificar_celular', 'cliente_potencial\ClientePotencialController@clienteVerificarCelular');
+    $router->post('cliente_consultar_ciudad_dpto', 'cliente_potencial\ClientePotencialController@clienteConsultarCiudadDpto');
+
+    // VISITAS
+    $router->get('visitas_index', 'visitas\VisitasController@index');
+    $router->post('visita_create_cliente/{idCliente}', 'visitas\VisitasController@visitaCreateCliente');
+    $router->post('visita_consultar_empresa/{idEmpresa}', 'visitas\VisitasController@visitaConsultarEmpresa');
+    $router->post('visitas_store', 'visitas\VisitasController@store');
+    $router->post('visita_store_consulta_predio', 'visitas\VisitasController@visitaStoreConsultaPredio');
+    $router->get('visitas_edit/{idVisita}', 'visitas\VisitasController@edit');
+    $router->put('visitas_update/{idVisita}', 'visitas\VisitasController@update');
+    $router->post('visita_direccion_consulta_predio', 'visitas\VisitasController@visitaDireccionConsultaPredio');
+    $router->post('visita_consultar_factor_pendiente', 'visitas\VisitasController@visitaConsultarFactorPendiente');
+    $router->post('visita_consultar_factor_ubicacion', 'visitas\VisitasController@visitaConsultarFactorUbicacion');
 });
