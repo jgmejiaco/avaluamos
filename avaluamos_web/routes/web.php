@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::group(['namespace' => 'App\Http\Controllers\dirigido_empresa'], function () {
         Route::resource('dirigido_empresa', 'DirigidoEmpresaController');
         Route::post('validar_empresa', 'DirigidoEmpresaController@validarEmpresa')->name('validar_empresa');
-        Route::post('editar_empresa', 'DirigidoEmpresaController@update')->name('editar_empresa');
     });
 
     Route::group(['namespace' => 'App\Http\Controllers\visita'], function () {

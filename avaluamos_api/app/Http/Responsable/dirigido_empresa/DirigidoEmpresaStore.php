@@ -10,9 +10,9 @@ class DirigidoEmpresaStore implements Responsable
 {
     public function toResponse($request)
     {
-        $nombreEmpresa   = $request->input('nombre_empresa');
         $idTipoDocumento = $request->input('id_tipo_documento');
         $numeroDocumento = $request->input('numero_documento');
+        $nombreEmpresa   = $request->input('nombre_empresa') ?? $request->input('dirigido_a');
         $usuLogueado     = $request->input('usu_logueado');
 
         if (empty($nombreEmpresa) || empty($idTipoDocumento) || empty($numeroDocumento)) {
@@ -24,7 +24,7 @@ class DirigidoEmpresaStore implements Responsable
 
         try {
             $empresa = new DirigidoA();
-            $empresa->dirigido_a        = mb_strtoupper(trim((string) $nombreEmpresa), 'UTF-8');
+            $empresa->dirigido_a        = $this->formatoNombrePropio((string) $nombreEmpresa);
             $empresa->id_tipo_documento = $idTipoDocumento;
             $empresa->numero_documento  = $numeroDocumento;
             $empresa->usu_logueado      = $usuLogueado;
@@ -43,5 +43,14 @@ class DirigidoEmpresaStore implements Responsable
                 'error'   => $e->getMessage(),
             ], 500);
         }
+    }
+
+    private function formatoNombrePropio(?string $texto): ?string
+    {
+        if ($texto === null || trim($texto) === '') {
+            return $texto;
+        }
+
+        return mb_convert_case(trim($texto), MB_CASE_TITLE, 'UTF-8');
     }
 }

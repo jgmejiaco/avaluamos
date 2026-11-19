@@ -157,6 +157,7 @@
                 },
                 success: function (html) {
                     $('#modalEditarDirigidoEmpresaContent').html(html);
+                    aplicarReglasDocumentoEditarEmpresa();
                 },
                 error: function (xhr) {
                     if (xhr.status === 403 && xhr.responseText) {
@@ -172,6 +173,72 @@
         });
 
         // =========================================================================
+        // =========================================================================
+
+        function formatoNombrePropio(texto) {
+            if (texto == null || String(texto).trim() === '') {
+                return texto;
+            }
+
+            return String(texto)
+                .trim()
+                .toLocaleLowerCase('es-ES')
+                .replace(/(^|[\s\-_/])(\S)/g, function (_, sep, char) {
+                    return sep + char.toLocaleUpperCase('es-ES');
+                });
+        }
+
+        $(document).on('blur', '#nombre_empresa, #nombre_empresa_editar', function () {
+            $(this).val(formatoNombrePropio($(this).val()));
+        });
+
+        // =========================================================================
+        // id=0 "A Quien Interese": tipo/número de documento no obligatorios
+        // =========================================================================
+
+        function esEmpresaEspecialSinDocumento(idEmpresa) {
+            return String(idEmpresa) === '0';
+        }
+
+        function aplicarReglasDocumentoEditarEmpresa() {
+            const idEmpresa = $('#id_empresa_editar').val();
+            const especial = esEmpresaEspecialSinDocumento(idEmpresa);
+
+            $('#id_tipo_documento_editar, #numero_documento_editar').prop('required', !especial);
+            $('.req-doc-editar').toggle(!especial);
+        }
+
+        $(document).on('submit', '[id^="formEditarEmpresa_"]', function (e) {
+            aplicarReglasDocumentoEditarEmpresa();
+
+            const idEmpresa = $('#id_empresa_editar').val();
+            const nombreEmpresa = $.trim($('#nombre_empresa_editar').val() || '');
+
+            if (!nombreEmpresa) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nombre requerido',
+                    text: 'El nombre de la empresa es obligatorio.'
+                });
+                return;
+            }
+
+            if (!esEmpresaEspecialSinDocumento(idEmpresa)) {
+                const tipoDocumento = $('#id_tipo_documento_editar').val();
+                const numeroDocumento = $.trim($('#numero_documento_editar').val() || '');
+
+                if (!tipoDocumento || !numeroDocumento) {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Datos incompletos',
+                        text: 'Tipo y número de documento son obligatorios.'
+                    });
+                }
+            }
+        });
+
         // =========================================================================
 
         $(document).on('blur', '#numero_documento', function () {
@@ -212,6 +279,8 @@
                 }
             });
         });
+
+        // =========================================================================
 
     </script>
 @endsection

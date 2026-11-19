@@ -37,5 +37,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
     // DIRIGIDO A EMPRESAS
     $router->get('dirigido_empresa_index', 'dirigido_empresa\DirigidoEmpresasController@index');
+    $router->post('dirigido_empresa_store', 'dirigido_empresa\DirigidoEmpresasController@store');
     $router->get('dirigido_empresa_edit/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@edit');
+    $router->put('dirigido_empresa_update/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@update');
 });

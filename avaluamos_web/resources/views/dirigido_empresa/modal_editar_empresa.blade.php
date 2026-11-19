@@ -22,25 +22,24 @@
             <div class="col-12 col-md-6">
                 <div class="form-group d-flex flex-column">
                     <label for="id_tipo_documento_editar" class="form-label text-uppercase">Tipo Documento
-                        <span class="text-danger">*</span>
+                        <span class="text-danger req-doc-editar">*</span>
                     </label>
                     {!! Form::select(
                         'id_tipo_documento_editar',
                         collect(['' => 'Seleccionar...'])->union($tipo_documento),
                         $empresa->id_tipo_documento ?? null,
-                        ['class' => 'form-select', 'id' => 'id_tipo_documento_editar', 'required' => 'required']
+                        ['class' => 'form-select', 'id' => 'id_tipo_documento_editar']
                     ) !!}
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group d-flex flex-column">
                     <label for="numero_documento_editar" class="form-label text-uppercase">Número Documento
-                        <span class="text-danger">*</span>
+                        <span class="text-danger req-doc-editar">*</span>
                     </label>
                     {!! Form::text('numero_documento_editar', $empresa->numero_documento ?? null, [
                         'class' => 'form-control',
                         'id' => 'numero_documento_editar',
-                        'required' => 'required',
                     ]) !!}
                 </div>
             </div>

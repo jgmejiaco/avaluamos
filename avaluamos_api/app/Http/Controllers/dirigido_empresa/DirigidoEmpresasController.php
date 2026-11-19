@@ -51,7 +51,7 @@ class DirigidoEmpresasController extends Controller
      */
     public function store(Request $request)
     {
-        // return new DirigidoEmpresaStore();
+        return new DirigidoEmpresaStore();
     }
 
     /**
@@ -86,12 +86,12 @@ class DirigidoEmpresasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $idDirigidoA
      * @return \Illuminate\Http\Response
      */
-    public function update($idUsuario)
+    public function update($idDirigidoA)
     {
-        // return new DirigidoEmpresaUpdate($idUsuario);
+        return new DirigidoEmpresaUpdate($idDirigidoA);
     }
 
     // ======================================================================
@@ -111,77 +111,17 @@ class DirigidoEmpresasController extends Controller
     // ======================================================================
     // ======================================================================
 
-    // public function verificarDocumentoStore(Request $request)
-    // {
-    //     $usuidTipoDocumento = request('usuidTipoDocumento', null);
-    //     $usuNumeroDocumento = request('usuNumeroDocumento', null);
-
-    //     try {
-    //         $verificarDocumento = Usuario::select('id_tipo_documento', 'numero_documento')
-    //                     ->where('id_tipo_documento', $usuidTipoDocumento)
-    //                     ->where('numero_documento', $usuNumeroDocumento)
-    //                     ->first();
-
-    //         if(isset($verificarDocumento) && !is_null($verificarDocumento) && !empty($verificarDocumento)) {
-    //             return response()->json('existe_documento');
-    //         } else {
-    //             return response()->json('no_existe_documento');
-    //         }
-    //     } catch (Exception $e) {
-    //         return response()->json("error_exception");
-    //     }
-    // }
+    
 
     // ======================================================================
     // ======================================================================
 
-    // public function verificarCorreoStore(Request $request)
-    // {
-    //     $usuCorreo = trim((string) request('usuCorreo', ''));
-
-    //     if ($usuCorreo === '') {
-    //         return response()->json('correo_vacio');
-    //     }
-
-    //     try {
-    //         $existeCorreo = Usuario::whereRaw('LOWER(correo) = ?', [strtolower($usuCorreo)])->exists();
-
-    //         if ($existeCorreo) {
-    //             return response()->json('existe_correo');
-    //         }
-
-    //         return response()->json('no_existe_correo');
-
-    //     } catch (Exception $e) {
-    //         return response()->json('error_exception');
-    //     }
-    // }
+    
 
     // ======================================================================
     // ======================================================================
 
-    // public function consultarAliasUsuarioStore()
-    // {
-    //     $aliasUsuario = trim((string) request('nombre_usuario', ''));
-
-    //     if ($aliasUsuario === '') {
-    //         return response()->json('alias_vacio');
-    //     }
-
-    //     try {
-    //         $existeAlias = Usuario::where('nombre_usuario', $aliasUsuario)->exists();
-
-    //         if ($existeAlias) {
-    //             return response()->json('existe_alias');
-    //         }
-
-    //         return response()->json('no_existe_alias');
-            
-    //     } catch (Exception $e) {
-    //         return response()->json('error_exception');
-    //     }
-    // }
-
+    
     // ======================================================================
     // ======================================================================
 

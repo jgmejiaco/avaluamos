@@ -106,13 +106,13 @@ class DirigidoEmpresaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $dirigido_empresa
+     * @param  int  $idDirigidoA
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $dirigido_empresa)
+    public function update(Request $request, $idDirigidoA)
     {
         try {
-            return new DirigidoEmpresaUpdate($dirigido_empresa);
+            return new DirigidoEmpresaUpdate($idDirigidoA);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
