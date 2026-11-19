@@ -17,7 +17,10 @@
 
         <div class="row mb-5">
             <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-primary float-right" id="crear_empresa">Crear Nueva Empresa</button>
+                <button type="button" class="btn btn-primary rounded" id="crear_empresa"
+                    data-bs-toggle="modal" data-bs-target="#modalCrearDirigidoEmpresa">
+                    Crear Nueva Empresa
+                </button>
             </div>
         </div>
 
@@ -60,6 +63,18 @@
     </div>
     
     {{-- ====================================================== --}}
+    {{-- ====================================================== --}}
+
+    {{-- INICIO Modal Crear Dirigido Empresa --}}
+    <div class="modal fade" id="modalCrearDirigidoEmpresa" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                @include('dirigido_empresa.modal_crear_empresa')
+            </div>
+        </div>
+    </div>
+    {{-- FINAL Modal Crear Dirigido Empresa --}}
+
     {{-- ====================================================== --}}
 
     {{-- INICIO Modal Editar Dirigido Empresa --}}
@@ -159,142 +174,44 @@
         // =========================================================================
         // =========================================================================
 
-        let tipo_documento = @json($tipo_documento);
+        $(document).on('blur', '#numero_documento', function () {
+            const csrfToken = document.querySelector('#form_dirigido_empresa input[name="_token"]')?.value
+                || document.querySelector('input[name="_token"]')?.value;
+            const idTipoDocumento = $('#id_tipo_documento').val();
+            const numeroDocumento = $('#numero_documento').val();
 
-        $('#crear_empresa').click(function () {
+            if (!idTipoDocumento || !numeroDocumento) {
+                return;
+            }
 
-            let form_crear_empresa = ''
-
-            form_crear_empresa += `
-                {!! Form::open(['method' => 'POST', 'route' => ['dirigido_empresa.store'], 'class'  => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_dirigido_empresa']) !!}
-                    @csrf
-            `;
-
-            // ====================================
-
-            form_crear_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="id_tipo_documento" class="form-label text-uppercase">Tipo Documento
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control" id="id_tipo_documento" name="id_tipo_documento" required>
-                                <option value="" selected >Seleccionar...</option>
-            `;
-                                $.each(tipo_documento, function(index, element){
-                                    form_crear_empresa += ' <option value="'+index+'">'+element+'</option>'
-                                });
-
-            form_crear_empresa += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_crear_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="numero_documento" class="form-label text-uppercase">Numero Documento
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="numero_documento" id="numero_documento" class="form-control text-uppercase" required>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_crear_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nombre_empresa" class="form-label text-uppercase">Nombre Empresa
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="nombre_empresa" id="nombre_empresa" class="form-control text-uppercase" required>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_crear_empresa += `
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <input type="submit" class="btn btn-primary rounded-pill mt-5" value="Crear Empresa" id="btn_crear_empresa">
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_crear_empresa += `
-                    {!! Form::close() !!}
-            `;
-
-            // ================================================
-
-            Swal.fire ({
-                title: '<strong>Crear Empresa</strong>',
-                icon: 'info',
-                type: 'info',
-                html: form_crear_empresa,
-                showCloseButton: true,
-                showCancelButton: false,
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                focusConfirm: false,
-                cancelButtonText:'<i class="fa fa-thumbs-down"> Cancelar</i>',
-                cancelButtonAriaLabel: 'Thumbs down'
-            });
-
-            // ================================================
-
-            $('#numero_documento').blur(function () {
-                var csrfToken = document.querySelector('input[name="_token"]').value;
-                let idTipoDocumento = $('#id_tipo_documento').val();
-                let numeroDocumento = $('#numero_documento').val();
-
-                console.log(idTipoDocumento);
-                console.log(numeroDocumento);
-
-                $.ajax({
-                    url: "{{route('validar_empresa')}}",
-                    type: "POST",
-                    datatype: "JSON",
-                    data:{
-                        _token: csrfToken,
-                        'id_tipo_documento': idTipoDocumento,
-                        'numero_documento': numeroDocumento
-                    },
-                    success: function (respuesta) {
-                        console.log(respuesta);
-
-                        if (respuesta == "existe_empresa") {
-                            Swal.fire({
-                                icon: 'warning',
-                                type: 'warning',
-                                title: 'Esta empresa ya existe!',
-                                text: 'Verifique por favor',
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
-                        }
-
-                        if (respuesta == "error_exception") {
-                            Swal.fire({
-                                icon: 'error',
-                                type: 'error',
-                                title: 'Error Exception!',
-                                text: 'Verifique por favor con soporte técnico',
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            })
-                        }
+            $.ajax({
+                url: "{{ route('validar_empresa') }}",
+                type: 'POST',
+                datatype: 'JSON',
+                data: {
+                    _token: csrfToken,
+                    id_tipo_documento: idTipoDocumento,
+                    numero_documento: numeroDocumento
+                },
+                success: function (respuesta) {
+                    if (respuesta == 'existe_empresa') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Esta empresa ya existe!',
+                            text: 'Verifique por favor'
+                        });
                     }
-                });
-            })
-        })
+
+                    if (respuesta == 'error_exception') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error Exception!',
+                            text: 'Verifique por favor con soporte técnico'
+                        });
+                    }
+                }
+            });
+        });
 
     </script>
 @endsection
