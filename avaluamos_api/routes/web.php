@@ -34,4 +34,8 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('usuarios_store', 'usuarios\UsuariosController@store');
     $router->get('usuario_edit/{idUsuario}', 'usuarios\UsuariosController@edit');
     $router->put('usuario_update/{idUsuario}', 'usuarios\UsuariosController@update');
+
+    // DIRIGIDO A EMPRESAS
+    $router->get('dirigido_empresa_index', 'dirigido_empresa\DirigidoEmpresasController@index');
+    $router->get('dirigido_empresa_edit/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@edit');
 });

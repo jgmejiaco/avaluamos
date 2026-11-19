@@ -3,7 +3,7 @@
         <div class="container-fluid p-0">
             <div class="d-sm-none d-md-inline-flex">
                 <a class="" href="#">
-                    <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="">
+                    <img src="{{asset('img/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="">
                 </a>
             </div>
         </div>

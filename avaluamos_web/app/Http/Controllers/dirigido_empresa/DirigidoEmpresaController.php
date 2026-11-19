@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Models\TipoDocumento;
+use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaIndex;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
+use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaEdit;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
 use App\Models\DirigidoA;
 
@@ -26,8 +28,8 @@ class DirigidoEmpresaController extends Controller
     public function index(Request $request)
     {
         try {
-            $empresas = $this->consultarEmpresasIndex();
-            return view('dirigido_empresa.index', compact('empresas'));
+
+            return new DirigidoEmpresaIndex();
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -81,26 +83,36 @@ class DirigidoEmpresaController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * El resource usa el parámetro {dirigido_empresa}.
      *
-     * @param  int  $id
+     * @param  int  $idDirigidoA
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idDirigidoA)
     {
+        try {
+            return new DirigidoEmpresaEdit($idDirigidoA);
 
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+            alert()->error("Ha ocurrido un error al editar la empresa.");
+            return redirect()->to(route('dirigido_empresa.index'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $dirigido_empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $dirigido_empresa)
     {
         try {
-            return new DirigidoEmpresaUpdate();
+            return new DirigidoEmpresaUpdate($dirigido_empresa);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -122,29 +134,6 @@ class DirigidoEmpresaController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    // ========================================================
-    
-
-    // ========================================================
-
-    public function consultarEmpresasIndex()
-    {
-        return DB::table('dirigido_a')
-                    ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
-                    ->leftjoin('usuarios', 'usuarios.id_usuario', '=', 'dirigido_a.usu_logueado')
-                    ->select('dirigido_a.id_dirigido_a',
-                                'dirigido_a.dirigido_a',
-                                'dirigido_a.numero_documento',
-                                'tipo_documento.id_tipo_documento',
-                                'tipo_documento.decripcion_documento',
-                                'tipo_documento.decripcion_documento',
-                                'usuarios.nombre_usuario',
-                                )
-                    ->whereNull('dirigido_a.deleted_at')
-                    ->orderBy('dirigido_a.dirigido_a', 'ASC')
-                    ->get();
     }
 
     // ========================================================

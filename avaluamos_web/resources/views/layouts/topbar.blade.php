@@ -3,7 +3,7 @@
         <div class="row p-0 w-100 text-lg-center align-items-lg-center">
             <div class="logo-container col-4 col-md-2">
                 <a class="w-100 text-center" href="/home">
-                    <img src="{{asset('imagenes/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="text-center">
+                    <img src="{{asset('img/logo-blanco-noBg.png')}}" alt="Logo" width="100" height="80" class="text-center">
                 </a>
             </div>
             {{-- ========================================== --}}

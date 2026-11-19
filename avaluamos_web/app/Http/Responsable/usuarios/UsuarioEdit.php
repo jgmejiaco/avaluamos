@@ -26,7 +26,8 @@ class UsuarioEdit implements Responsable
 
             $usuario = json_decode($response->getBody()->getContents());
 
-            if (empty($usuario) || empty($usuario->id_usuario)) {
+            // No usar empty() sobre el id: empty(0) === true en PHP
+            if (! is_object($usuario) || ! isset($usuario->id_usuario)) {
                 return response(
                     '<div class="alert alert-warning m-3">No se encontró el usuario.</div>',
                     404

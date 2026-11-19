@@ -13,12 +13,19 @@ use App\Models\DirigidoA;
 
 class DirigidoEmpresaUpdate implements Responsable
 {
+    protected $idDirigidoA;
+
+    public function __construct($idDirigidoA = null)
+    {
+        $this->idDirigidoA = $idDirigidoA;
+    }
+
     public function toResponse($request)
     {
-        $idEmpresa = strtoupper(request('id_empresa_editar', null));
-        $idTipoDocumentoEditar = strtoupper(request('id_tipo_documento_editar', null));
-        $numeroDocumentoEditar = strtoupper(request('numero_documento_editar', null));
-        $nombreEmpresaEditar = strtoupper(request('nombre_empresa_editar', null));
+        $idEmpresa = $this->idDirigidoA ?? request('id_empresa_editar', null);
+        $idTipoDocumentoEditar = request('id_tipo_documento_editar', null);
+        $numeroDocumentoEditar = request('numero_documento_editar', null);
+        $nombreEmpresaEditar = request('nombre_empresa_editar', null);
 
         // ========================================================
 

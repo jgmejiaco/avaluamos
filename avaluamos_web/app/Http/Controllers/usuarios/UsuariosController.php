@@ -116,8 +116,8 @@ class UsuariosController extends Controller
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('inicio'));
+            alert()->error("Ha ocurrido un error al editar el usuario.");
+            return redirect()->to(route('usuarios.index'));
         }
     }
 
@@ -139,8 +139,8 @@ class UsuariosController extends Controller
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            alert()->error("Ha ocurrido un error!");
-            return redirect()->to(route('inicio'));
+            alert()->error("Ha ocurrido un error al actualizar el usuario.");
+            return redirect()->to(route('usuarios.index'));
         }
     }
 

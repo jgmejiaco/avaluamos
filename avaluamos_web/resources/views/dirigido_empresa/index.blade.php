@@ -46,15 +46,8 @@
                                     <td>{{isset($empresa) ? $empresa->numero_documento : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->nombre_usuario : null}}</td>
                                     <td>
-                                        @php
-                                            $idEmpresa = $empresa->id_dirigido_a;
-                                            $dirigidoA = $empresa->dirigido_a;
-                                            $tipoDocumento = $empresa->id_tipo_documento;
-                                            $documento = $empresa->decripcion_documento;
-                                            $numeroDocumento = $empresa->numero_documento;
-                                        @endphp
-                                        <button class="btn btn-info" id="" onclick="editarEmpresa('{{$idEmpresa}}','{{$dirigidoA}}','{{$tipoDocumento}}','{{$documento}}','{{$numeroDocumento}}')">
-                                            <i class="fa fa-key" aria-hidden="true"></i> Editar
+                                        <button type="button" class="btn btn-primary btn-editar-dirigido-empresa" title="Editar" data-id-dirigido-a="{{ $empresa->id_dirigido_a }}">
+                                            <i class="fa fa-pencil" aria-hidden="true"> Editar</i>
                                         </button>
                                     </td>
                                 </tr>
@@ -65,6 +58,23 @@
             </div>
         </div>
     </div>
+    
+    {{-- ====================================================== --}}
+    {{-- ====================================================== --}}
+
+    {{-- INICIO Modal Editar Dirigido Empresa --}}
+    <div class="modal fade" id="modalEditarDirigidoEmpresa" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 p-3" id="modalEditarDirigidoEmpresaContent">
+                {{-- El contenido AJAX se cargará aquí --}}
+            </div> {{-- FIN modal-content --}}
+        </div> {{-- FIN modal-dialog --}}
+    </div> {{-- FIN modal --}}
+    {{-- FINAL Modal Editar Dirigido Empresa --}}
+
+    {{-- ====================================================== --}}
+    {{-- ====================================================== --}}
+
 @stop
 
 {{-- ====================================================== --}}
@@ -102,6 +112,47 @@
                 stripe: true,
                 responsive: true,
                 infoEmpty: "No hay registros disponibles"
+            });
+        });
+
+        // =========================================================================
+        // =========================================================================
+
+        $(document).on('click', '.btn-editar-dirigido-empresa', function () {
+            // id 0 es válido; solo rechazar null/undefined/''
+            const idDirigidoA = $(this).attr('data-id-dirigido-a');
+
+            if (idDirigidoA === undefined || idDirigidoA === null || idDirigidoA === '') {
+                $('#modalEditarDirigidoEmpresaContent').html('<div class="alert alert-warning m-3">No se pudo identificar la empresa.</div>');
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarDirigidoEmpresa')).show();
+                return;
+            }
+
+            const urlEditar = @json(url('dirigido_empresa')).replace(/\/?$/, '') + '/' + idDirigidoA + '/edit';
+
+            $.ajax({
+                url: urlEditar,
+                type: 'GET',
+                data: {
+                    tipo_modal: 'editar_dirigido_empresa'
+                },
+                beforeSend: function () {
+                    $('#modalEditarDirigidoEmpresaContent').html('<div class="text-center p-5"><i class="fa fa-spinner fa-spin fa-2x"></i> Cargando...</div>');
+                    bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarDirigidoEmpresa')).show();
+                },
+                success: function (html) {
+                    $('#modalEditarDirigidoEmpresaContent').html(html);
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403 && xhr.responseText) {
+                        $('#modalEditarDirigidoEmpresaContent').html(xhr.responseText);
+                        setTimeout(() => {
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEditarDirigidoEmpresa')).hide();
+                        }, 3000);
+                    } else {
+                        $('#modalEditarDirigidoEmpresaContent').html(xhr.responseText || '<div class="alert alert-danger">Error al cargar el formulario.</div>');
+                    }
+                }
             });
         });
 
@@ -245,100 +296,5 @@
             })
         })
 
-        // =========================================================================
-        // =========================================================================
-
-        function editarEmpresa(idEmpresa,empresa,idDocumento,tipoDocumento,documento) {
-            let form_editar_empresa = ''
-
-            form_editar_empresa += `
-                {!! Form::open(['method' => 'POST', 'route' => ['editar_empresa'], 'class'  => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_empresa_editar']) !!}
-                    @csrf
-            `;
-
-            // ====================================
-
-            form_editar_empresa += ` <input type="hidden" name="id_empresa_editar" id="id_empresa_editar" value="${idEmpresa}" required >`;
-
-            // ====================================
-
-            form_editar_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="id_tipo_documento_editar" class="form-label text-uppercase">Tipo Documento
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control" id="id_tipo_documento_editar" name="id_tipo_documento_editar" required>
-                                <option value="${idDocumento}" selected >${tipoDocumento}</option>
-            `;
-                                $.each(tipo_documento, function(id_documento, documento){
-                                    form_editar_empresa += ' <option value="'+id_documento+'">'+documento+'</option>'
-                                });
-
-            form_editar_empresa += `
-                            </select>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_editar_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="numero_documento_editar" class="form-label text-uppercase">Numero Documento
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="numero_documento_editar" id="numero_documento_editar" class="form-control text-uppercase" value="${documento}" required>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_editar_empresa += `
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nombre_empresa_editar" class="form-label text-uppercase">Nombre Empresa
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="nombre_empresa_editar" id="nombre_empresa_editar" class="form-control text-uppercase" value="${empresa}" required>
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_editar_empresa += `
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <input type="submit" class="btn btn-primary rounded-pill mt-5" value="Editar Empresa" id="btn_editar_empresa">
-                        </div>
-                    </div>
-            `;
-
-            // ====================================
-
-            form_editar_empresa += `
-                    {!! Form::close() !!}
-            `;
-
-            // ================================================
-
-            Swal.fire ({
-                title: '<strong>Editar Empresa</strong>',
-                icon: 'info',
-                type: 'info',
-                html: form_editar_empresa,
-                showCloseButton: true,
-                showCancelButton: false,
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                focusConfirm: false,
-                cancelButtonText:'<i class="fa fa-thumbs-down"> Cancelar</i>',
-                cancelButtonAriaLabel: 'Thumbs down'
-            });
-        }
     </script>
 @endsection

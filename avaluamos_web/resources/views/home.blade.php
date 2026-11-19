@@ -13,7 +13,7 @@
         <div class="d-flex flex-column justify-content-center align-items-center">
             <h3 class="mb-5">Bienvenid@ {{$usuario->nombres}}</h3>
 
-            <img src="{{asset('imagenes/home4.jpg')}}" alt="home">
+            <img src="{{asset('img/home4.jpg')}}" alt="home">
         </div>
     </div>
 @endsection

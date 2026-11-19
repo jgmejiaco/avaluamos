@@ -10,7 +10,7 @@
         <title>Avaluamos - @yield('title')</title>
 
         {{-- Favicon --}}
-        <link rel="shortcut icon" href="{{asset('imagenes/logo_avaluamos.png')}}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('img/logo_avaluamos.png')}}" type="image/x-icon">
 
         {{-- Bootstrap 5.3.2 --}}
         <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.5.3.2.min.css')}}">

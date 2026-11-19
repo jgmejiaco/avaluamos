@@ -18,12 +18,10 @@ class DirigidoEmpresaIndex implements Responsable
                 'query' => [],
             ]);
 
-            $data = json_decode($response->getBody()->getContents());
-            $dirigidoEmpresa = collect($data->dirigidoEmpresa ?? [])->map(function ($dirigidoEmpresa) {
-                return (object) $dirigidoEmpresa;
-            });
+            $respuesta = json_decode($response->getBody()->getContents());
+            $empresas = $respuesta->dirigidoEmpresas ?? [];
 
-            return view('dirigido_empresa.index', compact('dirigidoEmpresa'));
+            return view('dirigido_empresa.index', compact('empresas'));
             
         } catch (Exception $e) {
             if (FalloServicio::esConexion($e)) {
