@@ -15,7 +15,10 @@ use App\Models\Ciudad;
 use App\Models\ReferidoPor;
 use App\Models\RedSocial;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
-use App\Http\Responsable\cliente_potencial\ClienteUpdate;
+use App\Http\Responsable\cliente_potencial\ClientePotencialUpdate;
+use App\Http\Responsable\cliente_potencial\ClientePotencialIndex;
+use App\Http\Responsable\cliente_potencial\ClientePotencialEdit;
+use App\Http\Responsable\cliente_potencial\ClientePotencialShow;
 
 class ClientePotencialController extends Controller
 {
@@ -32,14 +35,14 @@ class ClientePotencialController extends Controller
     public function index(Request $request)
     {
         try {
-            $clientes = $this->consultarClientes();
-            return view('cliente_potencial.index', compact('clientes'));
+
+            return new ClientePotencialIndex();
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            alert()->error("Ha ocurrido un error!");
+            alert()->error("Ha ocurrido un error cargando los clientes potenciales.");
             return redirect()->to(route('inicio'));
         }
     }
@@ -52,6 +55,7 @@ class ClientePotencialController extends Controller
     public function create()
     {
         try {
+
             return view('cliente_potencial.create');
 
         } catch (Exception $e) {
@@ -86,14 +90,13 @@ class ClientePotencialController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idCliente
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idCliente)
     {
         try {
-            $cliente = $this->consultarClienteIndividual($id);
-            return view('cliente_potencial.cliente_historial', compact('cliente'));
+            return new ClientePotencialShow($idCliente);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -113,17 +116,7 @@ class ClientePotencialController extends Controller
     public function edit($idCliente)
     {
         try {
-            $cliente = $this->consultarClienteIndividual($idCliente);
-
-            if ($cliente) {
-                if (isset($cliente->fecha_nacimiento) && !is_null($cliente->fecha_nacimiento) && !empty($cliente->fecha_nacimiento) ) {
-                    $cliente->fecha_nacimiento = date('Y-m-d', $cliente->fecha_nacimiento);
-                } else {
-                    $cliente->fecha_nacimiento = null;
-                }
-            }
-
-            return view('cliente_potencial.edit', compact('cliente'));
+            return new ClientePotencialEdit($idCliente);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -136,15 +129,16 @@ class ClientePotencialController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * Resource: PUT /cliente_potencial/{cliente_potencial}
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $cliente_potencial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $cliente_potencial)
     {
         try {
-            return new ClienteUpdate();
+            return new ClientePotencialUpdate($cliente_potencial);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -166,87 +160,6 @@ class ClientePotencialController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    // ========================================================
-    
-
-    // ========================================================
-
-    
-    public function consultarClientes()
-    {
-        return DB::table('clientes')
-                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
-                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
-                ->leftjoin('pais', 'pais.id_pais', '=', 'clientes.id_pais')
-                ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'clientes.id_dpto_estado')
-                ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
-                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
-                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
-                ->leftjoin('usuarios', 'usuarios.id_usuario', '=', 'clientes.usu_logueado')
-                ->select('id_cliente',
-                            'cli_nombres',
-                            'id_doc_cliente',
-                            'decripcion_documento',
-                            'documento_cliente',
-                            'fecha_nacimiento',
-                            'cli_celular',
-                            'cli_email',
-                            'clientes.id_tipo_persona',
-                            'tipo_persona',
-                            'pais.id_pais',
-                            'descripcion_pais',
-                            'departamento_estado.id_departamento_estado',
-                            'descripcion_departamento',
-                            'ciudad.id_ciudad',
-                            'descripcion_ciudad',
-                            'referido_por.id_referido_por',
-                            'referido_por',
-                            'redes_sociales.id_red_social',
-                            'red_social',
-                            'nombre_quien_refiere',
-                            'empresa_que_refiere',
-                            'usuarios.nombre_usuario',
-                        )
-                ->whereNull('clientes.deleted_at')
-                ->orderBy('clientes.id_cliente', 'DESC')
-                ->get();
-    }
-
-    // ========================================================
-    
-    public function consultarClienteIndividual($idcliente)
-    {
-        return DB::table('clientes')
-                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'clientes.id_doc_cliente')
-                ->leftjoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
-                ->leftjoin('pais', 'pais.id_pais', '=', 'clientes.id_pais')
-                ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'clientes.id_dpto_estado')
-                ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'clientes.id_ciudad')
-                ->leftjoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
-                ->leftjoin('redes_sociales', 'redes_sociales.id_red_social', '=', 'clientes.id_red_social')
-                ->select(   'id_cliente',
-                            'cli_nombres',
-                            'id_doc_cliente',
-                            'decripcion_documento',
-                            'documento_cliente',
-                            'fecha_nacimiento',
-                            'cli_celular',
-                            'cli_email',
-                            'clientes.id_tipo_persona',
-                            'tipo_persona',
-                            'clientes.id_pais',
-                            'clientes.id_dpto_estado',
-                            'clientes.id_ciudad',
-                            'clientes.id_referido_por',
-                            'clientes.id_red_social',
-                            'nombre_quien_refiere',
-                            'empresa_que_refiere',
-                        )
-                ->where('id_cliente', $idcliente)
-                ->whereNull('clientes.deleted_at')
-                ->first();
     }
 
     // ========================================================

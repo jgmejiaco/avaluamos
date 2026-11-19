@@ -4,15 +4,10 @@ namespace App\Http\Controllers\dirigido_empresa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Exception;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaIndex;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaEdit;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
-use Illuminate\Support\Facades\Hash;
-use App\Models\DirigidoEmpresa;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 
 
 class DirigidoEmpresasController extends Controller

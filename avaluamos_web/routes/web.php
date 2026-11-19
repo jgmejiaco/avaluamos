@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['namespace' => 'App\Http\Controllers\cliente_potencial'], function () {
         Route::resource('cliente_potencial', 'ClientePotencialController');
-        Route::get('editar_cliente/{idCliente}', 'ClientePotencialController@edit')->name('editar_cliente');
         Route::post('verificar_celular', 'ClientePotencialController@verificarCelular')->name('verificar_celular');
         Route::post('consultar_ciudad_dpto', 'ClientePotencialController@consultarCiudadDpto')->name('consultar_ciudad_dpto');
     });
@@ -54,7 +53,6 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['namespace' => 'App\Http\Controllers\visita'], function () {
         Route::resource('visita', 'VisitaController');
-        Route::get('crear_visita/{idCliente}', 'VisitaController@create')->name('crear_visita');
         Route::post('consultar_empresa', 'VisitaController@consultarEmpresa')->name('consultar_empresa');
         Route::get('editar_visita/{id}', 'VisitaController@edit')->name('editar_visita');
         Route::post('visita_cliente_update', 'VisitaController@visitaClienteUpdate')->name('visita_cliente_update');

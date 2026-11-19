@@ -78,9 +78,9 @@
                                     <td>{{$cliente->nombre_usuario}}</td>
 
                                     <td>
-                                        <a href="{{route('editar_cliente',$cliente->id_cliente)}}" class="btn btn-warning rounded">Editar Cliente</a>
+                                        <a href="{{ route('cliente_potencial.edit', $cliente->id_cliente) }}" class="btn btn-warning rounded">Editar Cliente</a>
 
-                                        <a href="{{route('crear_visita',$cliente->id_cliente)}}" class="btn btn-success mt-2">Crear Visita</a>
+                                        <a href="{{ route('visita.create', ['id_cliente' => $cliente->id_cliente]) }}" class="btn btn-success mt-2 rounded">Crear Visita</a>
                                     </td>
                                 </tr>
                             @endforeach

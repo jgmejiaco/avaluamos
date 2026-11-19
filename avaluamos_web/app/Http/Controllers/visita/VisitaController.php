@@ -100,14 +100,22 @@ class VisitaController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * Resource: GET /visita/create?id_cliente={id}
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($clienteId)
+    public function create(Request $request)
     {
         try {
+            $clienteId = $request->query('id_cliente');
+
+            if ($clienteId === null || $clienteId === '') {
+                alert()->warning('Debe indicar el cliente para crear la visita.');
+                return redirect()->route('cliente_potencial.index');
+            }
+
             $crearVisitaCliente = $this->cliVisitaCreate($clienteId);
-            return view('visita.create',compact('crearVisitaCliente'));
+            return view('visita.create', compact('crearVisitaCliente'));
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {

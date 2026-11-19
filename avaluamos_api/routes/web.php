@@ -40,4 +40,11 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('dirigido_empresa_store', 'dirigido_empresa\DirigidoEmpresasController@store');
     $router->get('dirigido_empresa_edit/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@edit');
     $router->put('dirigido_empresa_update/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@update');
+
+    // CLIENTE POTENCIAL
+    $router->get('cliente_potencial_index', 'cliente_potencial\ClientePotencialController@index');
+    $router->post('cliente_potencial_store', 'cliente_potencial\ClientePotencialController@store');
+    $router->get('cliente_potencial_edit/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@edit');
+    $router->put('cliente_potencial_update/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@update');
+    $router->post('cliente_potencial_individual/{idClientePotencial}', 'cliente_potencial\ClientePotencialController@individual');
 });

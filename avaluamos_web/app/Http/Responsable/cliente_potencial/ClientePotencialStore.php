@@ -2,83 +2,62 @@
 
 namespace App\Http\Responsable\cliente_potencial;
 
+use App\Exceptions\ApiOperacionFallidaException;
+use App\Support\FalloServicio;
+use App\Traits\MetodosTrait;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Support\Facades\DB;
-use Jenssegers\Date\Date;
-use App\Models\Cliente;
 
 class ClientePotencialStore implements Responsable
 {
+    use MetodosTrait;
+
     public function toResponse($request)
     {
-        $cliNombres = strtoupper(request('nombre_solicitante', null));
-        $idDocCliente = request('id_doc_cliente', null);
-        $documentoCliente = strtoupper(request('documento_cliente', null));
-        $fechaNacimiento = request('fecha_nacimiento', null);
-        $cliCelular = request('celular', null);
-        $cliEmail = request('correo', null);
-        $idTipoPersona = request('tipo_persona', null);
-        $idPais = request('pais', null);
-        $idDepartamento = request('departamento', null);
-        $idCiudad = request('municipio', null);
-        $idReferidoPor = request('id_referido_por', null);
-        $idRedSocial = request('id_red_social', null);
-        $nombreQuienRefiere = request('nombre_quien_refiere', null);
-        $empresaQueRefiere = request('empresa_que_refiere', null);
-        $usuLogueado = session('id_usuario');
-
-        // ==============================================================================
-        
-        if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
-            // $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
-            $fechaNacimiento = strtotime($fechaNacimiento);
-
-        } else {
-            $fechaNacimiento = null;
-        }
-
-        // ==============================================================================
-
-        DB::connection('mysql')->beginTransaction();
-
         try {
-            $nuevoCliente = Cliente::create([
-                                'cli_nombres' => $cliNombres,
-                                'id_doc_cliente' => $idDocCliente,
-                                'documento_cliente' => $documentoCliente,
-                                'fecha_nacimiento' => $fechaNacimiento,
-                                'cli_celular' => $cliCelular,
-                                'cli_email' => $cliEmail,
-                                'id_tipo_persona' => $idTipoPersona,
-                                'id_pais' => $idPais,
-                                'id_dpto_estado' => $idDepartamento,
-                                'id_ciudad' => $idCiudad,
-                                'id_referido_por' => $idReferidoPor,
-                                'id_red_social' => $idRedSocial,
-                                'nombre_quien_refiere' => $nombreQuienRefiere,
-                                'empresa_que_refiere' => $empresaQueRefiere,
-                                'empresa_que_refiere' => $empresaQueRefiere,
-                                'usu_logueado' => $usuLogueado,
-                            ]);
+            $response = $this->getClientApi()->post('cliente_potencial_store', [
+                'json' => [
+                    'nombre_solicitante'   => request('nombre_solicitante'),
+                    'id_doc_cliente'       => request('id_doc_cliente'),
+                    'documento_cliente'    => request('documento_cliente'),
+                    'fecha_nacimiento'     => request('fecha_nacimiento'),
+                    'celular'              => request('celular'),
+                    'correo'               => request('correo'),
+                    'tipo_persona'         => request('tipo_persona'),
+                    'pais'                 => request('pais'),
+                    'departamento'         => request('departamento'),
+                    'municipio'            => request('municipio'),
+                    'id_referido_por'      => request('id_referido_por'),
+                    'id_red_social'        => request('id_red_social'),
+                    'nombre_quien_refiere' => request('nombre_quien_refiere'),
+                    'empresa_que_refiere'  => request('empresa_que_refiere'),
+                    'usu_logueado'         => session('id_usuario'),
+                ],
+            ]);
 
-            if($nuevoCliente)
-            {
-                DB::connection('mysql')->commit();
-                alert()->success('Proceso Exitoso', 'Cliente creado satisfactoriamente');
-                return redirect()->to(route('cliente_potencial.index'));
+            $respuesta = json_decode($response->getBody()->getContents());
 
-            } else {
-                DB::connection('mysql')->rollback();
-                alert()->error('Error', 'Ha ocurrido un error al crear el Cliente, por favor contacte a Soporte.');
-                return redirect()->to(route('cliente_potencial.index'));
+            if (empty($respuesta->success)) {
+                throw new ApiOperacionFallidaException(
+                    $respuesta->message ?? 'No fue posible crear el cliente.'
+                );
             }
-        }
-        catch (Exception $e)
-        {
-            DB::connection('mysql')->rollback();
-            alert()->error('Error', 'Error excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
+
+            alert()->success('Proceso Exitoso', 'Cliente creado satisfactoriamente');
+            return redirect()->to(route('cliente_potencial.index'));
+
+        } catch (ApiOperacionFallidaException $e) {
+            alert()->error('Error', $e->getMessage());
+            return back();
+
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error ClientePotencialStore: '.$e->getMessage());
+            alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
         }
-    } // CIERRE toResponse
-} // CIERRE Clase
+    }
+}
