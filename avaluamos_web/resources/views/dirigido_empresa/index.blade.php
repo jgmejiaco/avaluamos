@@ -46,7 +46,7 @@
                                     <td>{{isset($empresa) ? $empresa->numero_documento : null}}</td>
                                     <td>{{isset($empresa) ? $empresa->nombre_usuario : null}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-editar-dirigido-empresa" title="Editar" data-id-dirigido-a="{{ $empresa->id_dirigido_a }}">
+                                        <button type="button" class="btn btn-primary rounded btn-editar-dirigido-empresa" title="Editar" data-id-dirigido-a="{{ $empresa->id_dirigido_a }}">
                                             <i class="fa fa-pencil" aria-hidden="true"> Editar</i>
                                         </button>
                                     </td>

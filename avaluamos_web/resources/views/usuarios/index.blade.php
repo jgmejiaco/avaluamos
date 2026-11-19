@@ -52,7 +52,7 @@
                                 <td>{{$usuario->nombre_rol}}</td>
                                 <td>{{$usuario->descripcion_estado}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-editar-usuario" title="Editar" data-id="{{$usuario->id_usuario}}">
+                                    <button type="button" class="btn btn-primary rounded btn-editar-usuario" title="Editar" data-id="{{$usuario->id_usuario}}">
                                         <i class="fa fa-solid fa-pencil"> Editar</i>
                                     </button>
                                 </td>

@@ -154,12 +154,12 @@
         </div> --}}
 
         <div class="d-flex justify-content-center mt-3">
-            <button id="btn_editar_user_{{ $usuario->id_usuario }}" type="submit" class="btn btn-success me-3"
+            <button id="btn_editar_user_{{ $usuario->id_usuario }}" type="submit" class="btn btn-success me-3 rounded"
                 title="Guardar Configuración">
                 <i class="fa fa-floppy-o" aria-hidden="true"> Editar</i>
             </button>
 
-            <button id="btn_cancelar_user_{{ $usuario->id_usuario }}" type="button" class="btn btn-secondary"
+            <button id="btn_cancelar_user_{{ $usuario->id_usuario }}" type="button" class="btn btn-secondary rounded"
                 title="Cancelar" data-bs-dismiss="modal">
                 <i class="fa fa-times" aria-hidden="true"> Cancelar</i>
             </button>

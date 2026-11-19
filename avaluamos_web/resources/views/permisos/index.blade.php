@@ -130,7 +130,7 @@
                                         <td></td>
                                     @else
                                         <td class="text-center" style="vertical-align: middle">
-                                            <button class="btn btn-info" id="btn_permiso" onclick="editarPermiso({{$rol->id_rol}})">
+                                            <button class="btn btn-info rounded" id="btn_permiso" onclick="editarPermiso({{$rol->id_rol}})">
                                                 <i class="fa fa-key" aria-hidden="true"></i>Editar Rol
                                             </button>
                                         </td>
