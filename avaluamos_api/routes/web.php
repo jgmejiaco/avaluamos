@@ -95,4 +95,9 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->put('visita_valor_estimado_update/{idVisita}', 'visitas\VisitasController@visitaValorEstimadoUpdate');
 
     // ======================================================================
+
+    // AVALÚOS
+    $router->get('avaluos_index', 'avaluos\AvaluosController@index');
+    $router->get('avaluo_edit/{idVisita}', 'avaluos\AvaluosController@edit');
+    $router->post('avaluo_visita_create_cliente/{idVisita}', 'avaluos\AvaluosController@avaluoVisitaCreateCliente');
 });
