@@ -8,6 +8,9 @@ use Exception;
 use App\Http\Responsable\avaluos\AvaluoIndex;
 use App\Http\Responsable\avaluos\AvaluoEdit;
 use App\Http\Responsable\avaluos\AvaluoVisitaCreateCliente;
+use App\Http\Responsable\avaluos\AvaluoConsultarEmpresa;
+use App\Http\Responsable\avaluos\AvaluoConsultarFactorPendiente;
+use App\Http\Responsable\avaluos\AvaluoConsultarFactorUbicacion;
 
 
 class AvaluosController extends Controller
@@ -109,6 +112,30 @@ class AvaluosController extends Controller
     public function avaluoVisitaCreateCliente($idVisita)
     {
         return new AvaluoVisitaCreateCliente($idVisita);
+    }
+
+     // ======================================================================
+    // ======================================================================
+    
+    public function avaluoConsultarEmpresa($idEmpresa)
+    {
+        return new AvaluoConsultarEmpresa($idEmpresa);
+    }
+    
+    // ======================================================================
+    // ======================================================================
+
+    public function avaluoConsultarFactorPendiente()
+    {
+        return new AvaluoConsultarFactorPendiente();
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function avaluoConsultarFactorUbicacion()
+    {
+        return new AvaluoConsultarFactorUbicacion();
     }
 
     // ======================================================================

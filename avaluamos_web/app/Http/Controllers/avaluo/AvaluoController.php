@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\avaluo;
 
 use App\Http\Controllers\Controller;
+use App\Support\FalloServicio;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;
@@ -435,25 +435,28 @@ class AvaluoController extends Controller
     //=========================================================
     //=========================================================
 
-
-    //=========================================================
-    //=========================================================
-
     public function consultarEmpresa(Request $request)
     {
-        $idEmpresa = request('id_dirigido_a', null);
+        try {
+            $idEmpresa = request('id_dirigido_a', null);
 
-        $consultarEmpresa = DB::table('dirigido_a')
-                ->leftjoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'dirigido_a.id_tipo_documento')
-                ->select('dirigido_a.id_tipo_documento',
-                            'tipo_documento.decripcion_documento',
-                            'dirigido_a.numero_documento'
-                        )
-                ->whereNull('dirigido_a.deleted_at')
-                ->where('id_dirigido_a', $idEmpresa)
-                ->first();
+            if ($idEmpresa === null || $idEmpresa === '' || $idEmpresa === '-1') {
+                return response()->json(null);
+            }
 
-        return response()->json($consultarEmpresa);
+            $response = $this->getClientApi()->post('avaluo_consultar_empresa/'.$idEmpresa);
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta->avaluoConsultarEmpresa ?? null);
+
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error consultarEmpresa: '.$e->getMessage());
+            return response()->json(null);
+        }
     }
 
     //=========================================================
@@ -461,21 +464,61 @@ class AvaluoController extends Controller
 
     public function consultarFactorPendiente()
     {
-        $id_factor_pendiente = request('id_factor_pendiente', null);
+        try {
+            $idFactorPendiente = request('id_factor_pendiente', null);
 
-        return FactorPendiente::select('valor_pendiente')
-                                ->where('id_factor_pendiente', $id_factor_pendiente)
-                                ->first();
+            if ($idFactorPendiente === null || $idFactorPendiente === '' || $idFactorPendiente === '-1') {
+                return response()->json(null);
+            }
+
+            $response = $this->getClientApi()->post('avaluo_consultar_factor_pendiente', [
+                'json' => [
+                    'id_factor_pendiente' => $idFactorPendiente,
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta->factorPendiente ?? null);
+
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error consultarFactorPendiente: '.$e->getMessage());
+            return response()->json(null);
+        }
     }
 
     //=========================================================
 
     public function consultarFactorUbicacion()
     {
-        $id_factor_ubicacion = request('id_factor_ubicacion', null);
+        try {
+            $idFactorUbicacion = request('id_factor_ubicacion', null);
 
-        return FactorUbicacion::select('valor_ubicacion')
-                                ->where('id_factor_ubicacion', $id_factor_ubicacion)
-                                ->first();
+            if ($idFactorUbicacion === null || $idFactorUbicacion === '' || $idFactorUbicacion === '-1') {
+                return response()->json(null);
+            }
+
+            $response = $this->getClientApi()->post('avaluo_consultar_factor_ubicacion', [
+                'json' => [
+                    'id_factor_ubicacion' => $idFactorUbicacion,
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta->factorUbicacion ?? null);
+
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error consultarFactorUbicacion: '.$e->getMessage());
+            return response()->json(null);
+        }
     }
 }

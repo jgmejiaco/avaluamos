@@ -138,7 +138,6 @@ class VisitasController extends Controller
         return new VisitaConsultarEmpresa($idEmpresa);
     }
     
-
     // ======================================================================
     // ======================================================================
 

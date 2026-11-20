@@ -100,4 +100,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->get('avaluos_index', 'avaluos\AvaluosController@index');
     $router->get('avaluo_edit/{idVisita}', 'avaluos\AvaluosController@edit');
     $router->post('avaluo_visita_create_cliente/{idVisita}', 'avaluos\AvaluosController@avaluoVisitaCreateCliente');
+    $router->post('avaluo_consultar_empresa/{idEmpresa}', 'avaluos\AvaluosController@avaluoConsultarEmpresa');
+    $router->post('avaluo_consultar_factor_pendiente', 'avaluos\AvaluosController@avaluoConsultarFactorPendiente');
+    $router->post('avaluo_consultar_factor_ubicacion', 'avaluos\AvaluosController@avaluoConsultarFactorUbicacion');
 });

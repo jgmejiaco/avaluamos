@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
         Route::post('avaluo_reg_fotografico_update', 'AvaluoController@avaluoRegFotograficoUpdate')->name('avaluo_reg_fotografico_update');
         Route::post('avaluo_valor_estimado_update', 'AvaluoController@avaluoValorEstimadoUpdate')->name('avaluo_valor_estimado_update');
         Route::post('avaluo_estado_conservacion_update', 'AvaluoController@avaluoEstadoConservacionUpdate')->name('avaluo_estado_conservacion_update');
+        Route::post('consultar_empresa', 'AvaluoController@consultarEmpresa')->name('consultar_empresa');
         Route::post('consultar_factor_pendiente', 'AvaluoController@consultarFactorPendiente')->name('consultar_factor_pendiente');
         Route::post('consultar_factor_ubicacion', 'AvaluoController@consultarFactorUbicacion')->name('consultar_factor_ubicacion');
     });
