@@ -71,7 +71,7 @@
                                     <td>{{$visita->fecha_informe}}</td>
                                     <td>{{$visita->nombre_usuario}}</td>
                                     <td>
-                                        <a href="{{route('editar_visita',$visita->id_visita)}}" class="btn btn-info rounded" id="ver_cliente">
+                                        <a href="{{ route('visita.edit', $visita->id_visita) }}" class="btn btn-info rounded" id="ver_cliente">
                                             <i class="fa fa-key" aria-hidden="true"></i> Editar Visita
                                         </a>
                                     </td>

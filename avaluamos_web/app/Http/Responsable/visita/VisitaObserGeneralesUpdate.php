@@ -28,12 +28,12 @@ class VisitaObserGeneralesUpdate implements Responsable
             if($editarObserGeneralesComunal) {
                 DB::connection('mysql')->commit();
                 alert()->success('Proceso Exitoso', 'Observaciones Generales editada satisfactoriamente');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect()->route('visita.edit', $idVisita);
 
             } else {
                 DB::connection('mysql')->rollback();
                 alert()->error('Error', 'Error al editar las Observaciones Generales, por favor contacte a Soporte.');
-                return redirect('editar_visita/'.$idVisita);
+                return redirect()->route('visita.edit', $idVisita);
                 // return redirect('editar_visita/'.$id_visita.'/actualizar#nav-familiar');
             }
         }

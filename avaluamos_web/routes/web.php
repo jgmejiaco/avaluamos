@@ -54,7 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::group(['namespace' => 'App\Http\Controllers\visita'], function () {
         Route::resource('visita', 'VisitaController');
         Route::post('consultar_empresa', 'VisitaController@consultarEmpresa')->name('consultar_empresa');
-        Route::get('editar_visita/{id}', 'VisitaController@edit')->name('editar_visita');
         Route::post('visita_cliente_update', 'VisitaController@visitaClienteUpdate')->name('visita_cliente_update');
         Route::post('visita_tecnica_update', 'VisitaController@visitaTecnicaUpdate')->name('visita_tecnica_update');
         Route::post('visita_info_juridica_update', 'VisitaController@visitaInfoJuridicaUpdate')->name('visita_info_juridica_update');
