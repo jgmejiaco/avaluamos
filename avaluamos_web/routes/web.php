@@ -77,7 +77,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('calendario', 'CalendarioController');
         Route::post('consultar_visitas_calendario', 'CalendarioController@consultarVisitasCalendario')->name('consultar_visitas_calendario');
         Route::post('consultar_visita_calendario', 'CalendarioController@consultarVisitaCalendario')->name('consultar_visita_calendario');
-        Route::post('editar_visita_calendario', 'CalendarioController@update')->name('editar_visita_calendario');
     });
 
     Route::group(['namespace' => 'App\Http\Controllers\avaluo'], function () {

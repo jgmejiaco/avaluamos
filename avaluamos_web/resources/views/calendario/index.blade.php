@@ -29,9 +29,7 @@
         }
     </style>
 
-    {{-- INICIO CSS FULL CALENDAR "LOCAL" --}}
-    <link rel="stylesheet" href="{{asset('fullcalendar/css/fullcalendar.min.css')}}" />
-    {{-- FINAL CSS FULL CALENDAR "LOCAL" --}}
+    @include('layouts.fullcalendar_assets', ['tipo' => 'css'])
 @endsection
 
 {{-- ============================================================== --}}
@@ -76,21 +74,51 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal Crear Visita Calendario --}}
+    <div class="modal fade" id="modalCrearVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalCrearVisitaCalendarioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="modalCrearVisitaCalendarioLabel">Agendamiento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    @include('calendario.partials.modal_crear_visita')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btn_crear_visita_calendario">Crear Visita</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal Editar Visita Calendario --}}
+    <div class="modal fade" id="modalEditarVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalEditarVisitaCalendarioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="modalEditarVisitaCalendarioLabel">Editar Visita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    @include('calendario.partials.modal_editar_visita')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btn_editar_visita_calendario">Editar Visita</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 {{-- ============================================================== --}}
 {{-- ============================================================== --}}
 
 @section('scripts')
-    {{-- INICIO SCRIPT FULL CALENDAR "LOCAL" --}}
-    <script src="{{asset('fullcalendar/moment/cdnjs.cloudflare.com_ajax_libs_moment.js_2.24.0_moment.min.js')}}"></script>
-    <script src="{{asset('fullcalendar/js/fullcalendar.min.js')}}"></script>
-    <script src="{{asset('fullcalendar/js/locale/es.js')}}"></script>
-    {{-- FIN SCRIPT FULL CALENDAR "LOCAL" --}}
-
-    {{-- ===================================================== --}}
-    {{-- ===================================================== --}}
-    {{-- ===================================================== --}}
+    @include('layouts.fullcalendar_assets', ['tipo' => 'js'])
 
     <script>
        // Obtener la selección actual
@@ -114,9 +142,233 @@
                 }
             });
 
-            let tipoInmuebles = @json($tipo_inmueble);
-            let ciudades = @json($ciudades_dpto);
-            let siNo = @json($si_no_calendario);
+            $(document).on('click', '#btn_crear_visita_calendario', function () {
+                let nombreCliente = $('#nombre_cliente').val();
+                let celular = $('#celular').val();
+                let tipoInmueble = $('#tipo_inmueble').val();
+                let ciudad = $('#ciudad').val();
+                let barrio = $('#barrio').val();
+                let direccion = $('#direccion').val();
+                let fechaVisita = $('#fecha_visita').val();
+                let visitado = $('#visitado').val();
+
+                $.ajax({
+                    url: "{{ route('calendario.store') }}",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'nombre_cliente': nombreCliente,
+                        'celular': celular,
+                        'tipo_inmueble': tipoInmueble,
+                        'ciudad': ciudad,
+                        'barrio': barrio,
+                        'direccion': direccion,
+                        'fecha_visita': fechaVisita,
+                        'visitado': visitado
+                    },
+                    success: function (respuesta) {
+                        let modalCrear = document.getElementById('modalCrearVisitaCalendario');
+                        bootstrap.Modal.getOrCreateInstance(modalCrear).hide();
+
+                        if (respuesta == "visita_creada") {
+                            Swal.fire(
+                                'Bien!',
+                                'La visita ha sido creada satisfacoriamente!',
+                                'success'
+                            );
+                            window.location.reload();
+                        }
+
+                        if (respuesta == "visita_no_creada") {
+                            Swal.fire(
+                                'Precacuión!',
+                                'La visita NO ha sido creada!',
+                                'warning'
+                            );
+                            window.location.reload();
+                        }
+
+                        if (respuesta == "error_exception") {
+                            Swal.fire(
+                                'Erro!',
+                                'Error de Excepción, por favor contacte a soporte!',
+                                'error'
+                            );
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '#btn_editar_visita_calendario', function () {
+                let idVisitaCalendarioEditar = $('#id_visita_calendario_editar').val();
+                let nombreClienteEditar = $('#nombre_cliente_editar').val();
+                let celularEditar = $('#celular_editar').val();
+                let tipoInmuebleEditar = $('#tipo_inmueble_editar').val();
+                let ciudadEditar = $('#ciudad_editar').val();
+                let barrioEditar = $('#barrio_editar').val();
+                let direccionEditar = $('#direccion_editar').val();
+                let fechaVisitaEditar = $('#fecha_visita_editar').val();
+                let visitadoEditar = $('#visitado_editar').val();
+
+                $.ajax({
+                    url: "{{ route('calendario.update', ['calendario' => '__ID__']) }}".replace('__ID__', idVisitaCalendarioEditar),
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        '_method': 'PUT',
+                        'id_visita_calendario_editar': idVisitaCalendarioEditar,
+                        'nombre_cliente_editar': nombreClienteEditar,
+                        'celular_editar': celularEditar,
+                        'tipo_inmueble_editar': tipoInmuebleEditar,
+                        'ciudad_editar': ciudadEditar,
+                        'barrio_editar': barrioEditar,
+                        'direccion_editar': direccionEditar,
+                        'fecha_visita_editar': fechaVisitaEditar,
+                        'visitado_editar': visitadoEditar
+                    },
+                    success: function (respuesta) {
+                        let modalEditar = document.getElementById('modalEditarVisitaCalendario');
+                        bootstrap.Modal.getOrCreateInstance(modalEditar).hide();
+
+                        if (respuesta == "visita_editada") {
+                            Swal.fire(
+                                'Bien!',
+                                'La visita ha sido editada satisfacoriamente!',
+                                'success'
+                            );
+                            window.location.reload();
+                        }
+
+                        if (respuesta == "visita_no_editada") {
+                            Swal.fire(
+                                'Precacuión!',
+                                'La visita NO ha sido editada!',
+                                'warning'
+                            );
+                            window.location.reload();
+                        }
+
+                        if (respuesta == "error_exception") {
+                            Swal.fire(
+                                'Erro!',
+                                'Error de Excepción, por favor contacte a soporte!',
+                                'error'
+                            );
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            function fechaHoyYmd() {
+                let hoy = new Date();
+                let hoyDia = hoy.getDate();
+                let hoyMes = hoy.getMonth() + 1;
+                let hoyYear = hoy.getFullYear();
+
+                if (hoyDia < 10) hoyDia = '0' + hoyDia;
+                if (hoyMes < 10) hoyMes = '0' + hoyMes;
+
+                return hoyYear + '-' + hoyMes + '-' + hoyDia;
+            }
+
+            function actualizarFechaVisitaCalendario(event, revertFunc) {
+                let nuevaFecha = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                let fechaVisitaDia = nuevaFecha.substring(0, 10);
+
+                if (fechaVisitaDia < fechaHoyYmd()) {
+                    Swal.fire(
+                        'Atención!',
+                        'No es posible mover una visita a fechas pasadas.',
+                        'error'
+                    );
+                    if (typeof revertFunc === 'function') {
+                        revertFunc();
+                    }
+                    return;
+                }
+
+                let fechaVisitaEditar = nuevaFecha.replace(' ', 'T').substring(0, 16);
+
+                $.ajax({
+                    url: "{{ route('consultar_visita_calendario') }}",
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: { 'id_visita_calendario': event.id },
+                    success: function (response) {
+                        if (!response || !response.id_visita_calendario) {
+                            Swal.fire('Error!', 'No se pudo consultar la visita.', 'error');
+                            if (typeof revertFunc === 'function') {
+                                revertFunc();
+                            }
+                            return;
+                        }
+
+                        $.ajax({
+                            url: "{{ route('calendario.update', ['calendario' => '__ID__']) }}".replace('__ID__', response.id_visita_calendario),
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: {
+                                '_token': "{{ csrf_token() }}",
+                                '_method': 'PUT',
+                                'id_visita_calendario_editar': response.id_visita_calendario,
+                                'nombre_cliente_editar': response.nombre_cliente,
+                                'celular_editar': response.celular,
+                                'tipo_inmueble_editar': response.t_inmueble,
+                                'ciudad_editar': response.municipio,
+                                'barrio_editar': response.barrio,
+                                'direccion_editar': response.direccion,
+                                'fecha_visita_editar': fechaVisitaEditar,
+                                'visitado_editar': response.visita_cumplida
+                            },
+                            success: function (respuesta) {
+                                if (respuesta == 'visita_editada') {
+                                    Swal.fire(
+                                        'Bien!',
+                                        'La fecha de la visita fue actualizada.',
+                                        'success'
+                                    );
+                                    return;
+                                }
+
+                                if (typeof revertFunc === 'function') {
+                                    revertFunc();
+                                }
+
+                                if (respuesta == 'visita_no_editada') {
+                                    Swal.fire(
+                                        'Precacuión!',
+                                        'La visita NO ha sido editada!',
+                                        'warning'
+                                    );
+                                    return;
+                                }
+
+                                Swal.fire(
+                                    'Erro!',
+                                    'Error de Excepción, por favor contacte a soporte!',
+                                    'error'
+                                );
+                            },
+                            error: function () {
+                                if (typeof revertFunc === 'function') {
+                                    revertFunc();
+                                }
+                                Swal.fire('Erro!', 'No se pudo actualizar la fecha de la visita.', 'error');
+                            }
+                        });
+                    },
+                    error: function () {
+                        if (typeof revertFunc === 'function') {
+                            revertFunc();
+                        }
+                        Swal.fire('Erro!', 'No se pudo consultar la visita.', 'error');
+                    }
+                });
+            }
 
             // ===============================================
             // ===============================================
@@ -168,255 +420,24 @@
 
                             let event = {"start": start, "end": end};
 
-                            let hoy = new Date();
-                            let hoy_year = hoy.getFullYear();
-                            let hoy_mes = hoy.getMonth() + 1;
-                            let hoy_dia = hoy.getDate();
-                            let hoy_hora = hoy.getHours();
-                            let hoy_minutos = hoy.getMinutes();
-                            let hoy_segundos = hoy.getSeconds();
+                            // Comparar solo día: en vista mes FullCalendar usa 00:00:00
+                            let fechaVisitaDia = event.start.substring(0, 10);
 
-                            if (hoy_dia < 10) hoy_dia = '0' + hoy_dia;
-                            if (hoy_mes < 10) hoy_mes = '0' + hoy_mes;
+                            if (fechaVisitaDia >= fechaHoyYmd()) {
+                                let fechaVisitaInput = event.start.replace(' ', 'T').substring(0, 16);
+                                let modalCrear = document.getElementById('modalCrearVisitaCalendario');
 
-                            let fechaActual = hoy_year + '-' + hoy_mes + '-' + hoy_dia + ' ' + hoy_hora + ':' + hoy_minutos + ':' + hoy_segundos;
-                            let fechaVisita = event.start;
+                                $('#modalCrearVisitaCalendario').find('input[type="text"], input[type="datetime-local"]').val('');
+                                $('#tipo_inmueble, #ciudad, #visitado').val('');
+                                $('#fecha_visita').val(fechaVisitaInput);
 
-                            if(fechaVisita >= fechaActual){
-
-                                let formCalendarioVisita = '';
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="flex-row-edit mt-2">
-                                        <div class="form-group flex-column-edit">
-                                            <label for="nombre_cliente" class="fs-14">Nombre cliente
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input name="nombre_cliente" type="text" class="form-control" id="nombre_cliente" required>
-                                        </div>
-
-                                        <div class="form-group flex-column-edit">
-                                            <label for="celular" class="fs-14">Celular
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input name="celular" type="text" class="form-control" id="celular" required>
-                                        </div>
-                                    </div>
-                                `;
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="flex-row-edit mt-2">
-                                        <div class="form-group flex-column-edit">
-                                            <label for="tipo_inmueble" class="fs-14">Tipo Inmueble
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <select class="form-control w-100" id="tipo_inmueble" name="tipo_inmueble" required>
-                                                <option value="" selected >Seleccione...</option>
-                                `;
-                                                $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
-                                                    formCalendarioVisita += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
-                                                });
-                                formCalendarioVisita += `
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group flex-column-edit">
-                                            <label for="ciudad" class="fs-14">Municipio
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <select class="form-control w-100" id="ciudad" name="ciudad" required>
-                                                <option value="" selected >Seleccione...</option>
-                                `;
-                                                const sortedCiudades = Object.entries(ciudades).sort((a, b) => a[1].localeCompare(b[1]));
-
-                                                sortedCiudades.forEach(([idCiudad, ciudadDpto]) => {
-                                                    formCalendarioVisita += ` <option value="${idCiudad}">${ciudadDpto}</option>`;
-                                                });
-                                formCalendarioVisita += `
-                                            </select>
-                                        </div>
-                                    </div>
-                                `;
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="flex-row-edit mt-2">
-                                        <div class="form-group flex-column-edit">
-                                            <label for="barrio" class="fs-14">Barrio
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input name="barrio" type="text" class="form-control" id="barrio" required>
-                                        </div>
-
-                                        <div class="form-group flex-column-edit">
-                                            <label for="direccion" class="fs-14">Dirección
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input name="direccion" type="text" class="form-control" id="direccion" required>
-                                        </div>
-                                    </div>
-                                `;
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <div class="flex-row-edit mt-2">
-                                        <div class="form-group flex-column-edit">
-                                            <label for="fecha_visita" class="fs-14">Fecha Visita
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="datetime-local" name="fecha_visita" class="form-control" id="fecha_visita" value="${fechaVisita}" required>
-                                        </div>
-
-                                        <div class="form-group flex-column-edit">
-                                            <label for="visitado" class="fs-14">visitado
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <select class="form-control" id="visitado" name="visitado" required>
-                                                <option value="" selected >Seleccione...</option>
-                                `;
-                                                $.each(siNo, function(idSiNo, dSiNo){
-                                                    formCalendarioVisita += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
-                                                });
-                                formCalendarioVisita += `
-                                            </select>
-                                        </div>
-                                    </div>
-                                `;
-
-                                // =============================================
-
-                                formCalendarioVisita += `
-                                    <input type="button" class="btn btn-primary mt-3" id="btn_crear_visita_calendario" value="Crear Visita">
-                                `;
-
-                                // =============================================
-
-                                swal({
-                                    title: '<strong>AGENDAMIENTO</strong>',
-                                    icon: 'warning',
-                                    type: 'warning',
-                                    html: formCalendarioVisita,
-                                    showCancelButton: false,
-                                    cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
-                                    showCloseButton: true,
-                                    focusConfirm: false,
-                                    showConfirmButton: false,
-                                    confirmButtonText: '<i class="fa fa-thumbs-up"></i> Guardar!',
-                                    confirmButtonAriaLabel: 'Thumbs up, great!',
-                                    cancelButtonAriaLabel: 'Thumbs down',
-                                    allowOutsideClick: false,
-                                    padding:'2em',
-                                    position: 'bottom',
-                                    width: 500,
-                                });
-
-                                //=======================================//
-
-                                $('#btn_crear_visita_calendario').on('click', function () {
-                                    let nombreCliente = $('#nombre_cliente').val();
-                                    let celular = $('#celular').val();
-                                    let tipoInmueble = $('#tipo_inmueble').val();
-                                    let ciudad = $('#ciudad').val();
-                                    console.log(ciudad);
-                                    let barrio = $('#barrio').val();
-                                    let direccion = $('#direccion').val();
-                                    let fechaVisita = $('#fecha_visita').val();
-                                    let visitado = $('#visitado').val();
-
-                                    $.ajax({
-                                        url: "{{route('calendario.store')}}",
-                                        type: "POST",
-                                        dataType: "JSON",
-                                        data: {
-                                            '_token': "{{ csrf_token() }}",
-                                            'nombre_cliente':nombreCliente,
-                                            'celular':celular,
-                                            'tipo_inmueble':tipoInmueble,
-                                            'ciudad':ciudad,
-                                            'barrio':barrio,
-                                            'direccion':direccion,
-                                            'fecha_visita':fechaVisita,
-                                            'visitado':visitado
-                                        },
-                                        success: function (respuesta) {
-                                            if (respuesta == "visita_creada") {
-                                                Swal.fire(
-                                                    'Bien!',
-                                                    'La visita ha sido creada satisfacoriamente!',
-                                                    'success'
-                                                );
-                                                window.location.reload();
-                                            }
-
-                                            if (respuesta == "visita_no_creada") {
-                                                Swal.fire(
-                                                    'Precacuión!',
-                                                    'La visita NO ha sido creada!',
-                                                    'warning'
-                                                )
-                                                window.location.reload();
-                                            }
-
-                                            if (respuesta == "error_exception") {
-                                                Swal.fire(
-                                                    'Erro!',
-                                                    'Error de Excepción, por favor contacte a soporte!',
-                                                    'error'
-                                                )
-                                                window.location.reload();
-                                            }
-                                        }
-                                    });
-                                });
-
-                                // =============================================
-
-                                // $('.chosen.swal').select2({});
-
-                                // =============================================
-
-                                // let form_modal_infra = $("#form_modal_infra");
-
-                                // form_modal_infra.validate({
-                                //     rules:{
-                                //         id_tipo_categoria:{required:true},
-                                //         sed_codigo:{required:true},
-                                //         id_tipo_mtto:{required:true},
-                                //     },
-                                //     errorPlacement: function(error, element) {
-                                //         error.appendTo( element.parent() );
-                                //     }
-                                // });
-
-                                // =============================================
-
-                                // $( "#id_tipo_categoria" ).change(function() {
-                                //     let id_tipo_categoria = $('#id_tipo_categoria option:selected').text();
-
-                                //     if (id_tipo_categoria == "EXTINTOR VEHÍCULOS")
-                                //     {
-                                //         $('#div_segaut_codigo_create').show('slow');
-                                //     }
-                                //     else
-                                //     {
-                                //         $('#div_segaut_codigo_create').hide('slow');
-
-                                //     }
-                                // });
-
-                                // =============================================
+                                bootstrap.Modal.getOrCreateInstance(modalCrear).show();
                             } else {
-                                swal({
-                                    title: 'Atenci&oacute;n!',
-                                    text: "No es posible crear una visita en fechas pasadas.",
-                                    type: 'error'
-                                });
+                                Swal.fire(
+                                    'Atención!',
+                                    'No es posible crear una visita en fechas pasadas.',
+                                    'error'
+                                );
                             }
                         },
 
@@ -439,293 +460,33 @@
                                 data:{'id_visita_calendario':idVisita},
                                 success:function(response)
                                 {
-                                    console.log(response.id_visita_calendario);
-                                    let formCalendarioVisitaEditar = '';
+                                    let fechaVisitaEditar = (response.fecha_visita_calendario || '').replace(' ', 'T').substring(0, 16);
 
-                                    formCalendarioVisitaEditar += `<input name="id_visita_calendario_editar" type="hidden" id="id_visita_calendario_editar" value="${response.id_visita_calendario}"><br>`;
+                                    $('#id_visita_calendario_editar').val(response.id_visita_calendario);
+                                    $('#nombre_cliente_editar').val(response.nombre_cliente);
+                                    $('#celular_editar').val(response.celular);
+                                    $('#tipo_inmueble_editar').val(response.t_inmueble);
+                                    $('#ciudad_editar').val(response.municipio);
+                                    $('#barrio_editar').val(response.barrio);
+                                    $('#direccion_editar').val(response.direccion);
+                                    $('#fecha_visita_editar').val(fechaVisitaEditar);
+                                    $('#visitado_editar').val(response.visita_cumplida);
 
-                                    // =============================================
-
-                                    formCalendarioVisitaEditar += `
-                                        <div class="flex-row-edit mt-2">
-                                            <div class="form-group flex-column-edit">
-                                                <label for="nombre_cliente_editar" class="fs-14">Nombre cliente
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="nombre_cliente_editar" type="text" class="form-control" id="nombre_cliente_editar" value="${response.nombre_cliente}" required>
-                                            </div>
-
-                                            <div class="form-group flex-column-edit">
-                                                <label for="celular_editar" class="fs-14">Celular
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="celular_editar" type="text" class="form-control" id="celular_editar" value="${response.celular}" required>
-                                            </div>
-                                        </div>
-                                    `;
-
-                                    // =============================================
-
-                                    formCalendarioVisitaEditar += `
-                                        <div class="flex-row-edit mt-2">
-                                            <div class="form-group flex-column-edit">
-                                                <label for="tipo_inmueble_editar" class="fs-14">Tipo Inmueble
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select class="form-control w-100" id="tipo_inmueble_editar" name="tipo_inmueble_editar" required>
-                                                    <option value="${response.t_inmueble}" selected >${response.tipo_inmueble}</option>
-                                    `;
-                                                    $.each(tipoInmuebles, function(idTInmueble, tipoInmueble){
-                                                        formCalendarioVisitaEditar += ' <option value="'+idTInmueble+'">'+tipoInmueble+'</option>'
-                                                    });
-                                    formCalendarioVisitaEditar += `
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group flex-column-edit">
-                                                <label for="ciudad_editar" class="fs-14">Municipio
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select class="form-control w-100" id="ciudad_editar" name="ciudad_editar" required>
-                                                    <option value="${response.municipio}" selected >${response.ciudadDpto}</option>
-                                    `;
-                                                    const sortedCiudades = Object.entries(ciudades).sort((a, b) => a[1].localeCompare(b[1]));
-
-                                                    sortedCiudades.forEach(([idCiudad, ciudadDpto]) => {
-                                                        formCalendarioVisitaEditar += ` <option value="${idCiudad}">${ciudadDpto}</option>`;
-                                                    });
-                                    formCalendarioVisitaEditar += `
-                                                </select>
-                                            </div>
-                                        </div>
-                                    `;
-
-                                    // =============================================
-
-                                    formCalendarioVisitaEditar += `
-                                        <div class="flex-row-edit mt-2">
-                                            <div class="form-group flex-column-edit">
-                                                <label for="barrio_editar" class="fs-14">Barrio
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="barrio_editar" type="text" class="form-control" id="barrio_editar" value="${response.barrio}" required>
-                                            </div>
-
-                                            <div class="form-group flex-column-edit">
-                                                <label for="direccion_editar" class="fs-14">Dirección
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input name="direccion_editar" type="text" class="form-control" id="direccion_editar" value="${response.direccion}" required>
-                                            </div>
-                                        </div>
-                                    `;
-
-                                    // =============================================
-
-                                    formCalendarioVisitaEditar += `
-                                        <div class="flex-row-edit mt-2">
-                                            <div class="form-group flex-column-edit">
-                                                <label for="fecha_visita_editar" class="fs-14">Fecha Visita
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input type="datetime-local" name="fecha_visita_editar" class="form-control" id="fecha_visita_editar" value="${response.fecha_visita_calendario}" required>
-                                            </div>
-
-                                            <div class="form-group flex-column-edit">
-                                                <label for="visitado_editar" class="fs-14">visitado
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <select class="form-control" id="visitado_editar" name="visitado_editar" required>
-                                                    <option value="${response.visita_cumplida}" selected >${response.descripcion_si_no}</option>
-                                    `;
-                                                    $.each(siNo, function(idSiNo, dSiNo){
-                                                        formCalendarioVisitaEditar += ' <option value="'+idSiNo+'">'+dSiNo+'</option>'
-                                                    });
-                                    formCalendarioVisitaEditar += `
-                                                </select>
-                                            </div>
-                                        </div>
-                                    `;
-
-                                    // =============================================
-
-                                    formCalendarioVisitaEditar += `
-                                        <input type="button" class="btn btn-primary mt-5" value="Editar Visita" id="btnEditarVisita">
-                                    `;
-
-                                    // =============================================
-
-                                    swal({
-                                        icon: 'info',
-                                        type: 'info',
-                                        title: '<strong>Editar Visita</strong>',
-                                        html: formCalendarioVisitaEditar,
-                                        showCancelButton: false,
-                                        cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
-                                        showCloseButton: true,
-                                        focusConfirm: false,
-                                        showConfirmButton: false,
-                                        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Guardar!',
-                                        confirmButtonAriaLabel: 'Thumbs up, great!',
-                                        cancelButtonAriaLabel: 'Thumbs down',
-                                        allowOutsideClick: false,
-                                        padding:'2em',
-                                        position: 'bottom',
-                                        width: 500,
-                                    });
-
-                                    //=======================================//
-
-                                    $('#btnEditarVisita').on('click', function () {
-                                        let idVisitaCalendarioEditar = $('#id_visita_calendario_editar').val();
-                                        let nombreClienteEditar = $('#nombre_cliente_editar').val();
-                                        let celularEditar = $('#celular_editar').val();
-                                        let tipoInmuebleEditar = $('#tipo_inmueble_editar').val();
-                                        let ciudadEditar = $('#ciudad_editar').val();
-                                        let barrioEditar = $('#barrio_editar').val();
-                                        let direccionEditar = $('#direccion_editar').val();
-                                        let fechaVisitaEditar = $('#fecha_visita_editar').val();
-                                        let visitadoEditar = $('#visitado_editar').val();
-
-                                        $.ajax({
-                                            url: "{{route('editar_visita_calendario')}}",
-                                            type: "POST",
-                                            dataType: "JSON",
-                                            data: {
-                                                '_token': "{{ csrf_token() }}",
-                                                'id_visita_calendario_editar':idVisitaCalendarioEditar,
-                                                'nombre_cliente_editar':nombreClienteEditar,
-                                                'celular_editar':celularEditar,
-                                                'tipo_inmueble_editar':tipoInmuebleEditar,
-                                                'ciudad_editar':ciudadEditar,
-                                                'barrio_editar':barrioEditar,
-                                                'direccion_editar':direccionEditar,
-                                                'fecha_visita_editar':fechaVisitaEditar,
-                                                'visitado_editar':visitadoEditar
-                                            },
-                                            success: function (respuesta) {
-                                                if (respuesta == "visita_editada") {
-                                                    Swal.fire(
-                                                        'Bien!',
-                                                        'La visita ha sido editada satisfacoriamente!',
-                                                        'success'
-                                                    );
-                                                    window.location.reload();
-                                                }
-
-                                                if (respuesta == "visita_no_editada") {
-                                                    Swal.fire(
-                                                        'Precacuión!',
-                                                        'La visita NO ha sido editada!',
-                                                        'warning'
-                                                    )
-                                                    window.location.reload();
-                                                }
-
-                                                if (respuesta == "error_exception") {
-                                                    Swal.fire(
-                                                        'Erro!',
-                                                        'Error de Excepción, por favor contacte a soporte!',
-                                                        'error'
-                                                    )
-                                                    window.location.reload();
-                                                }
-                                            }
-                                        });
-                                    });
-
-                                    // =============================================
-
-                                    // INICIO - Estilo Calendario
-                                    // let minDate = moment().subtract(120, 'years');
-                                    // optionsDatePicker.timePicker24Hour = false;
-                                    // optionsDatePicker.locale.format='DD-MM-YYYY';
-                                    // optionsDatePicker.timePicker = false;
-                                    // optionsDatePicker.autoUpdateInput = false;
-                                    // optionsDatePicker.minDate = minDate.format('DD-MM-YYYY');
-                                    // optionsDatePicker.drops = 'up';
-                                    // FIN - Estilo Calendario
-
-                                    // $('.datapicker').daterangepicker(optionsDatePicker).on('apply.daterangepicker', function(ev, picker) {
-                                    //     $(this).val(picker.startDate.format('DD-MM-YYYY'));
-                                    // });
-
-                                    // $('.fecha_mtto_ejecutado_editar').val('');
-
-                                    //=======================================//
-
-                                    // $('.chosen.swal').select2({});
-
-                                    // =============================================
-
-
-
-                                    // =============================================
-
-
+                                    let modalEditar = document.getElementById('modalEditarVisitaCalendario');
+                                    bootstrap.Modal.getOrCreateInstance(modalEditar).show();
                                 }
                             });
                         },
 
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
+                        // Mover visita (arrastrar)
+                        eventDrop: function (event, delta, revertFunc) {
+                            actualizarFechaVisitaCalendario(event, revertFunc);
+                        },
 
-                        // eventResize: function(event, delta)
-                        // {
-                            // var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-                            // var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-                            // var title = event.title;
-                            // var id = event.id;
-                            // $.ajax({
-                            //     url:"/full-calender/action",
-                            //     type:"POST",
-                            //     data:{
-                            //         title: title,
-                            //         start: start,
-                            //         end: end,
-                            //         id: id,
-                            //         type: 'update'
-                            //     },
-                            //     success:function(response)
-                            //     {
-                            //         calendar.fullCalendar('refetchEvents');
-                            //         alert("Event Updated Successfully");
-                            //     }
-                            // })
-                        // },
-
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
-                        // ========================================================================================
-
-                        // eventDrop: function(event, delta)
-                        // {
-                            // var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-                            // var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-                            // var title = event.title;
-                            // var id = event.id;
-                            // $.ajax({
-                            //     url:"/full-calender/action",
-                            //     type:"POST",
-                            //     data:{
-                            //         title: title,
-                            //         start: start,
-                            //         end: end,
-                            //         id: id,
-                            //         type: 'update'
-                            //     },
-                            //     success:function(response)
-                            //     {
-                            //         calendar.fullCalendar('refetchEvents');
-                            //         alert("Event Updated Successfully");
-                            //     }
-                            // })
-                        // },
+                        // Redimensionar visita (vista semana/día)
+                        eventResize: function (event, delta, revertFunc) {
+                            actualizarFechaVisitaCalendario(event, revertFunc);
+                        },
                     }); // FIN Full Calendar
                 } // FIN Succes (response.visitasCalendario)
             }); // FIN AJAX

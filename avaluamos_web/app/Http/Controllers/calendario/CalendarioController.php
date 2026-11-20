@@ -111,10 +111,11 @@ class CalendarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $calendario)
     {
         try {
-            return new CalendarioUpdate();
+
+            return new CalendarioUpdate($calendario);
 
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
@@ -150,46 +151,19 @@ class CalendarioController extends Controller
     public function consultarVisitasCalendario()
     {
         try {
-            $consultarVisitasCalendario = DB::table('calendario')
-                                    ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
-                                    ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
-                                    ->leftjoin('si_no', 'si_no.id_si_no', '=', 'calendario.visita_cumplida')
-                                    ->select(
-                                        'id_visita_calendario',
-                                        'nombre_cliente',
-                                        'municipio',
-                                        'descripcion_ciudad',
-                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
-                                        'visita_cumplida'
-                                    )
-                                    ->get();
+            $response = $this->getClientApi()->get('calendario_consultar_visitas');
+            $respuesta = json_decode($response->getBody()->getContents());
 
-            $arrayVisitasCalendario = array();
+            return response()->json([
+                'visitas_calendario' => $respuesta->visitas_calendario ?? [],
+            ]);
 
-            foreach ($consultarVisitasCalendario as $visita)
-            {
-                 if (isset($visita->visita_cumplida) && !is_null($visita->visita_cumplida) && !empty($visita->visita_cumplida) && $visita->visita_cumplida == 1) {
-                    $colorVisita = "#449D44";
-                } else {
-                    $colorVisita = "red";
-                }
-
-                array_push($arrayVisitasCalendario,
-                    array(
-                        "id" => $visita->id_visita_calendario,
-                        "title" => "\n". $visita->nombre_cliente ." - ". $visita->descripcion_ciudad,
-                        "start" => $visita->fecha_visita_calendario,
-                        "color" => $colorVisita,
-                    )
-                );
-            }
-
-            return response()->json(["visitas_calendario" => $arrayVisitasCalendario]);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
+
+            logger()->error('Error consultarVisitasCalendario: '.$e->getMessage());
             alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
             return back();
         }
@@ -202,35 +176,21 @@ class CalendarioController extends Controller
         $idVisitaCalendario = request('id_visita_calendario', null);
 
         try {
-            $consultarVisitaCalendario = DB::table('calendario')
-                                    ->leftjoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'calendario.tipo_inmueble')
-                                    ->leftjoin('ciudad', 'ciudad.id_ciudad', '=', 'calendario.municipio')
-                                    ->leftjoin('si_no', 'si_no.id_si_no', '=', 'calendario.visita_cumplida')
-                                    ->leftjoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'ciudad.id_departamento_estado')
-                                    ->select(
-                                        'id_visita_calendario',
-                                        'nombre_cliente',
-                                        'celular',
-                                        'calendario.tipo_inmueble as t_inmueble',
-                                        'tipo_inmueble.tipo_inmueble',
-                                        'municipio',
-                                        'descripcion_ciudad',
-                                        'calendario.barrio',
-                                        'calendario.direccion',
-                                        DB::raw('DATE_FORMAT(FROM_UNIXTIME(fecha_visita_calendario), "%Y-%m-%d %H:%i") as fecha_visita_calendario'),
-                                        'calendario.visita_cumplida',
-                                        'si_no.descripcion_si_no',
-                                        DB::raw("CONCAT(ciudad.descripcion_ciudad, '-', departamento_estado.descripcion_departamento) as ciudadDpto"),
-                                    )
-                                    ->where('id_visita_calendario', $idVisitaCalendario)
-                                    ->first();
+            if ($idVisitaCalendario === null || $idVisitaCalendario === '') {
+                return response()->json(null);
+            }
 
-            return response()->json($consultarVisitaCalendario);
-        }
-        catch (Exception $e) {
+            $response = $this->getClientApi()->get('calendario_consultar_visita_individual/'.$idVisitaCalendario);
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta->visitaCalendario ?? null);
+
+        } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
+
+            logger()->error('Error consultarVisitaCalendario: '.$e->getMessage());
             alert()->error('Error', 'Error exception, intente de nuevo, si el problema continua, contacte a soporte.');
             return back();
         }

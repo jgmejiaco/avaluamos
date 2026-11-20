@@ -119,4 +119,12 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->put('avaluo_reg_fotografico_update/{idVisita}', 'avaluos\AvaluosController@avaluoRegFotograficoUpdate');
     $router->put('avaluo_valor_estimado_update/{idVisita}', 'avaluos\AvaluosController@avaluoValorEstimadoUpdate');
     $router->put('avaluo_info_juridica_update/{idVisita}', 'avaluos\AvaluosController@avaluoInfoJuridicaUpdate');
+
+    // CALENDARIO
+    // $router->get('calendario_index', 'calendario\CalendarioController@index');
+    $router->post('calendario_store', 'calendario\CalendarioController@store');
+    $router->get('calendario_consultar_visitas', 'calendario\CalendarioController@calendarioConsultarVisitas');
+    $router->get('calendario_consultar_visita_individual/{idVisitaIndividual}', 'calendario\CalendarioController@calendarioConsultarVisitaIndividual');
+    // $router->get('calendario_edit/{idCalendario}', 'calendario\CalendarioController@edit');
+    $router->put('calendario_update/{idVisitaEditar}', 'calendario\CalendarioController@update');
 });
