@@ -7,10 +7,24 @@ use Illuminate\Http\Request;
 use Exception;
 use App\Http\Responsable\avaluos\AvaluoIndex;
 use App\Http\Responsable\avaluos\AvaluoEdit;
+use App\Http\Responsable\avaluos\update\AvaluoClienteUpdate;
 use App\Http\Responsable\avaluos\AvaluoVisitaCreateCliente;
 use App\Http\Responsable\avaluos\AvaluoConsultarEmpresa;
 use App\Http\Responsable\avaluos\AvaluoConsultarFactorPendiente;
 use App\Http\Responsable\avaluos\AvaluoConsultarFactorUbicacion;
+use App\Http\Responsable\avaluos\update\AvaluoTecnicaUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoInfoInmuebleUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoCaracteristicasInmuebleUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoAcabadosInmuebleUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoCalificacionInmuebleUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoDotacionComunalUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoInfoSectorUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoCondiUrbanisticasUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoEstadoConservacionUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoObserGeneralesUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoRegFotograficoUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoValorEstimadoUpdate;
+use App\Http\Responsable\avaluos\update\AvaluoInfoJuridicaUpdate;
 
 
 class AvaluosController extends Controller
@@ -89,7 +103,7 @@ class AvaluosController extends Controller
      */
     public function update($idVisita)
     {
-        //
+        return new AvaluoClienteUpdate($idVisita);
     }
 
     // ======================================================================
@@ -141,100 +155,104 @@ class AvaluosController extends Controller
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoVisitaTecnicaUpdate($idVisita)
-    // {
-    //     return new AvaluoVisitaTecnicaUpdate($idVisita);
-    // }
+    public function avaluoTecnicaUpdate($idVisita)
+    {
+        return new AvaluoTecnicaUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoInfoInmuebleUpdate($idVisita)
-    // {
-    //     return new AvaluoInfoInmuebleUpdate($idVisita);
-    // }
+    public function avaluoInfoInmuebleUpdate($idVisita)
+    {
+        return new AvaluoInfoInmuebleUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoCaracteristicasInmuebleUpdate($idVisita)
-    // {
-    //     return new AvaluoCaracteristicasInmuebleUpdate($idVisita);
-    // }
+    public function avaluoCaracteristicasInmuebleUpdate($idVisita)
+    {
+        return new AvaluoCaracteristicasInmuebleUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoAcabadosInmuebleUpdate($idVisita)
-    // {
-    //     return new AvaluoAcabadosInmuebleUpdate($idVisita);
-    // }
+    public function avaluoAcabadosInmuebleUpdate($idVisita)
+    {
+        return new AvaluoAcabadosInmuebleUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoCalificacionInmuebleUpdate($idVisita)
-    // {
-    //     return new AvaluoCalificacionInmuebleUpdate($idVisita);
-    // }
+    public function avaluoCalificacionInmuebleUpdate($idVisita)
+    {
+        return new AvaluoCalificacionInmuebleUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoDotacionComunalUpdate($idVisita)
-    // {
-    //     return new AvaluoDotacionComunalUpdate($idVisita);
-    // }
+    public function avaluoDotacionComunalUpdate($idVisita)
+    {
+        return new AvaluoDotacionComunalUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoInfoSectorUpdate($idVisita)
-    // {
-    //     return new AvaluoInfoSectorUpdate($idVisita);
-    // }
+    public function avaluoInfoSectorUpdate($idVisita)
+    {
+        return new AvaluoInfoSectorUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoCondiUrbanisticasUpdate($idVisita)
-    // {
-    //     return new AvaluoCondiUrbanisticasUpdate($idVisita);
-    // }
+    public function avaluoCondiUrbanisticasUpdate($idVisita)
+    {
+        return new AvaluoCondiUrbanisticasUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoEstadoConservacionUpdate($idVisita)
-    // {
-    //     return new AvaluoEstadoConservacionUpdate($idVisita);
-    // }
+    public function avaluoEstadoConservacionUpdate($idVisita)
+    {
+        return new AvaluoEstadoConservacionUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoObserGeneralesUpdate($idVisita)
-    // {
-    //     return new AvaluoObserGeneralesUpdate($idVisita);
-    // }
+    public function avaluoObserGeneralesUpdate($idVisita)
+    {
+        return new AvaluoObserGeneralesUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoRegFotograficoUpdate($idVisita)
-    // {
-    //     return new AvaluoRegFotograficoUpdate($idVisita);
-    // }
+    public function avaluoRegFotograficoUpdate($idVisita)
+    {
+        return new AvaluoRegFotograficoUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
-    // public function avaluoValorEstimadoUpdate($idVisita)
-    // {
-    //     return new AvaluoValorEstimadoUpdate($idVisita);
-    // }
+    public function avaluoValorEstimadoUpdate($idVisita)
+    {
+        return new AvaluoValorEstimadoUpdate($idVisita);
+    }
 
     // ======================================================================
     // ======================================================================
 
+    public function avaluoInfoJuridicaUpdate($idVisita)
+    {
+        return new AvaluoInfoJuridicaUpdate($idVisita);
+    }
 }

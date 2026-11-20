@@ -99,8 +99,24 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     // AVALÚOS
     $router->get('avaluos_index', 'avaluos\AvaluosController@index');
     $router->get('avaluo_edit/{idVisita}', 'avaluos\AvaluosController@edit');
+    $router->put('avaluo_update/{idVisita}', 'avaluos\AvaluosController@update');
     $router->post('avaluo_visita_create_cliente/{idVisita}', 'avaluos\AvaluosController@avaluoVisitaCreateCliente');
     $router->post('avaluo_consultar_empresa/{idEmpresa}', 'avaluos\AvaluosController@avaluoConsultarEmpresa');
     $router->post('avaluo_consultar_factor_pendiente', 'avaluos\AvaluosController@avaluoConsultarFactorPendiente');
     $router->post('avaluo_consultar_factor_ubicacion', 'avaluos\AvaluosController@avaluoConsultarFactorUbicacion');
+
+    // AVALÚOS TODOS LOS UPDATE
+    $router->put('avaluo_tecnica_update/{idVisita}', 'avaluos\AvaluosController@avaluoTecnicaUpdate');
+    $router->put('avaluo_info_inmueble_update/{idVisita}', 'avaluos\AvaluosController@avaluoInfoInmuebleUpdate');
+    $router->put('avaluo_caracteristicas_inmueble_update/{idVisita}', 'avaluos\AvaluosController@avaluoCaracteristicasInmuebleUpdate');
+    $router->put('avaluo_acabados_inmueble_update/{idVisita}', 'avaluos\AvaluosController@avaluoAcabadosInmuebleUpdate');
+    $router->put('avaluo_calificacion_inmueble_update/{idVisita}', 'avaluos\AvaluosController@avaluoCalificacionInmuebleUpdate');
+    $router->put('avaluo_dotacion_comunal_update/{idVisita}', 'avaluos\AvaluosController@avaluoDotacionComunalUpdate');
+    $router->put('avaluo_info_sector_update/{idVisita}', 'avaluos\AvaluosController@avaluoInfoSectorUpdate');
+    $router->put('avaluo_condi_urbanisticas_update/{idVisita}', 'avaluos\AvaluosController@avaluoCondiUrbanisticasUpdate');
+    $router->put('avaluo_estado_conservacion_update/{idVisita}', 'avaluos\AvaluosController@avaluoEstadoConservacionUpdate');
+    $router->put('avaluo_obser_generales_update/{idVisita}', 'avaluos\AvaluosController@avaluoObserGeneralesUpdate');
+    $router->put('avaluo_reg_fotografico_update/{idVisita}', 'avaluos\AvaluosController@avaluoRegFotograficoUpdate');
+    $router->put('avaluo_valor_estimado_update/{idVisita}', 'avaluos\AvaluosController@avaluoValorEstimadoUpdate');
+    $router->put('avaluo_info_juridica_update/{idVisita}', 'avaluos\AvaluosController@avaluoInfoJuridicaUpdate');
 });
