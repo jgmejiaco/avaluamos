@@ -15,6 +15,18 @@ use App\Http\Responsable\visitas\VisitaDireccionConsultaPredio;
 use App\Http\Responsable\visitas\VisitaConsultarFactorPendiente;
 use App\Http\Responsable\visitas\VisitaConsultarFactorUbicacion;
 use App\Http\Responsable\visitas\VisitaStoreConsultaPredio;
+use App\Http\Responsable\visitas\update\VisitaTecnicaUpdate;
+use App\Http\Responsable\visitas\update\VisitaInfoInmuebleUpdate;
+use App\Http\Responsable\visitas\update\VisitaCaracteristicasInmuebleUpdate;
+use App\Http\Responsable\visitas\update\VisitaAcabadosInmuebleUpdate;
+use App\Http\Responsable\visitas\update\VisitaCalificacionInmuebleUpdate;
+use App\Http\Responsable\visitas\update\VisitaDotacionComunalUpdate;
+use App\Http\Responsable\visitas\update\VisitaInfoSectorUpdate;
+use App\Http\Responsable\visitas\update\VisitaCondiUrbanisticasUpdate;
+use App\Http\Responsable\visitas\update\VisitaEstadoConservacionUpdate;
+use App\Http\Responsable\visitas\update\VisitaObserGeneralesUpdate;
+use App\Http\Responsable\visitas\update\VisitaRegFotograficoUpdate;
+use App\Http\Responsable\visitas\update\VisitaValorEstimadoUpdate;
 
 
 class VisitasController extends Controller
@@ -157,6 +169,102 @@ class VisitasController extends Controller
     public function visitaStoreConsultaPredio()
     {
         return new VisitaStoreConsultaPredio();
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaTecnicaUpdate($idVisita)
+    {
+        return new VisitaTecnicaUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaInfoInmuebleUpdate($idVisita)
+    {
+        return new VisitaInfoInmuebleUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaCaracteristicasInmuebleUpdate($idVisita)
+    {
+        return new VisitaCaracteristicasInmuebleUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaAcabadosInmuebleUpdate($idVisita)
+    {
+        return new VisitaAcabadosInmuebleUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaCalificacionInmuebleUpdate($idVisita)
+    {
+        return new VisitaCalificacionInmuebleUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaDotacionComunalUpdate($idVisita)
+    {
+        return new VisitaDotacionComunalUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaInfoSectorUpdate($idVisita)
+    {
+        return new VisitaInfoSectorUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaCondiUrbanisticasUpdate($idVisita)
+    {
+        return new VisitaCondiUrbanisticasUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaEstadoConservacionUpdate($idVisita)
+    {
+        return new VisitaEstadoConservacionUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaObserGeneralesUpdate($idVisita)
+    {
+        return new VisitaObserGeneralesUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaRegFotograficoUpdate($idVisita)
+    {
+        return new VisitaRegFotograficoUpdate($idVisita);
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaValorEstimadoUpdate($idVisita)
+    {
+        return new VisitaValorEstimadoUpdate($idVisita);
     }
 
     // ======================================================================
