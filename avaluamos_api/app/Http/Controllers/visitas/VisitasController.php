@@ -93,7 +93,7 @@ class VisitasController extends Controller
      */
     public function update($idVisita)
     {
-        return new VisitaUpdate($idVisita);
+        //
     }
 
     // ======================================================================
