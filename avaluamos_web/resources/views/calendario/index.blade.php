@@ -142,7 +142,21 @@
                 }
             });
 
+            function mostrarProcesando(mensaje) {
+                Swal.fire({
+                    title: mensaje || 'Procesando...',
+                    text: 'Por favor espere',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false,
+                    didOpen: function () {
+                        Swal.showLoading();
+                    }
+                });
+            }
+
             $(document).on('click', '#btn_crear_visita_calendario', function () {
+                let $btn = $(this);
                 let nombreCliente = $('#nombre_cliente').val();
                 let celular = $('#celular').val();
                 let tipoInmueble = $('#tipo_inmueble').val();
@@ -166,6 +180,13 @@
                         'direccion': direccion,
                         'fecha_visita': fechaVisita,
                         'visitado': visitado
+                    },
+                    beforeSend: function () {
+                        $btn.prop('disabled', true);
+                        mostrarProcesando('Creando visita...');
+                    },
+                    complete: function () {
+                        $btn.prop('disabled', false);
                     },
                     success: function (respuesta) {
                         let modalCrear = document.getElementById('modalCrearVisitaCalendario');
@@ -197,11 +218,15 @@
                             );
                             window.location.reload();
                         }
+                    },
+                    error: function () {
+                        Swal.fire('Erro!', 'No se pudo crear la visita.', 'error');
                     }
                 });
             });
 
             $(document).on('click', '#btn_editar_visita_calendario', function () {
+                let $btn = $(this);
                 let idVisitaCalendarioEditar = $('#id_visita_calendario_editar').val();
                 let nombreClienteEditar = $('#nombre_cliente_editar').val();
                 let celularEditar = $('#celular_editar').val();
@@ -228,6 +253,13 @@
                         'direccion_editar': direccionEditar,
                         'fecha_visita_editar': fechaVisitaEditar,
                         'visitado_editar': visitadoEditar
+                    },
+                    beforeSend: function () {
+                        $btn.prop('disabled', true);
+                        mostrarProcesando('Editando visita...');
+                    },
+                    complete: function () {
+                        $btn.prop('disabled', false);
                     },
                     success: function (respuesta) {
                         let modalEditar = document.getElementById('modalEditarVisitaCalendario');
@@ -259,6 +291,9 @@
                             );
                             window.location.reload();
                         }
+                    },
+                    error: function () {
+                        Swal.fire('Erro!', 'No se pudo editar la visita.', 'error');
                     }
                 });
             });
@@ -292,6 +327,7 @@
                 }
 
                 let fechaVisitaEditar = nuevaFecha.replace(' ', 'T').substring(0, 16);
+                mostrarProcesando('Actualizando fecha...');
 
                 $.ajax({
                     url: "{{ route('consultar_visita_calendario') }}",
