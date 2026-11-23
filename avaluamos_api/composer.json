@@ -8,6 +8,7 @@
         "php": "^8.4.27",
         "laravel/lumen-framework": "^11.2",
         "owen-it/laravel-auditing": "^13.7",
+        "spatie/laravel-permission": "^6.25",
         "tymon/jwt-auth": "^2.3"
     },
     "require-dev": {

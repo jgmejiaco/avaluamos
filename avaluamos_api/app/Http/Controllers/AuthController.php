@@ -84,6 +84,14 @@ class AuthController extends Controller
     {
         $authUser = Auth::user();
 
+        $this->sincronizarRolSpatie($authUser, (int) ($authUser->id_rol ?? 0));
+
+        $authUser->loadMissing('roles', 'permissions');
+
+        $nombreRolSpatie = $authUser->getRoleNames()->first();
+        $permisosRutas = $authUser->getAllPermissions()->pluck('name')->values()->all();
+        $esAdministrador = $authUser->hasRole('Administrador');
+
         $usuario = Usuario::leftJoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
             ->where('usuarios.id_usuario', $authUser->id_usuario)
             ->select(
@@ -102,6 +110,13 @@ class AuthController extends Controller
             )
             ->first();
 
+        if ($usuario) {
+            $usuario->nombre_rol_spatie = $nombreRolSpatie ?: ($usuario->nombre_rol ?? '');
+            $usuario->es_administrador = $esAdministrador;
+            $usuario->permisos_rutas = $permisosRutas;
+            $usuario->roles_spatie = $authUser->getRoleNames()->values()->all();
+        }
+
         return response()->json([
             'status'       => 'success',
             'access_token' => $token,
@@ -109,5 +124,25 @@ class AuthController extends Controller
             'expires_in'   => Auth::factory()->getTTL() * 60,
             'usuario'      => $usuario,
         ]);
+    }
+
+    private function sincronizarRolSpatie(Usuario $usuario, int $idRolLegacy): void
+    {
+        if ($usuario->roles()->exists()) {
+            return;
+        }
+
+        $mapa = [
+            1 => 'Administrador',
+            2 => 'Avaluador',
+            3 => 'Visitador',
+            4 => 'Empleado',
+        ];
+
+        $nombreRol = $mapa[$idRolLegacy] ?? null;
+
+        if ($nombreRol) {
+            $usuario->syncRoles([$nombreRol]);
+        }
     }
 }

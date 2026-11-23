@@ -13,204 +13,53 @@
                 </button>
                 {{-- <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarNavDropdown"> --}}
                 <div class="collapse d-lg-flex justify-content-lg-center" id="navbarNavDropdown">
-                    @php
-                        $idUsuario = $permiso->id_usuario;
-                        $idRol = $permiso->id_rol;
-                        $modUsuario = $permiso->mod_usuario;
-                        $modClientes = $permiso->mod_clientes;
-                        $modCalendario = $permiso->mod_calendario;
-                        $modVisitas = $permiso->mod_visitas;
-                        $modAvaluo = $permiso->mod_avaluo;
-                        $modInformes = $permiso->mod_informes;
-                    @endphp
-
-                    {{-- =================================== --}}
-
                     <ul class="navbar-nav">
-                        {{-- AVALUADOR --}}
-                        @if ($idUsuario && ($idRol == 2))
-                            @if ($modUsuario == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR USUARIOS</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/permisos">Permisos</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modClientes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR CLIENTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/dirigido_empresa">Empresas</a></li>
-                                        <li><a class="dropdown-item" href="/cliente_potencial">Clientes</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modCalendario == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/calendario">CALENDARIO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modVisitas == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/visita">VISITAS</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modAvaluo == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/avaluos">AVALÚO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modInformes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
-                                        <li><a class="dropdown-item" href="/visita">Informe 2</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                        {{-- VISITADOR --}}
-                        @elseif($idUsuario && ($idRol == 3))
-                            @if ($modUsuario == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR USUARIOS</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/permisos">Permisos</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modClientes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR CLIENTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/dirigido_empresa">Empresas</a></li>
-                                        <li><a class="dropdown-item" href="/cliente_potencial">Clientes</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modCalendario == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/calendario">CALENDARIO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modVisitas == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/visita">VISITAS</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modAvaluo == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/avaluos">AVALÚO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modInformes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
-                                        <li><a class="dropdown-item" href="/visita">Informe 2</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                        {{-- EMPLEADO --}}
-                        @elseif($idUsuario && ($idRol == 4))
-                            @if ($modUsuario == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR USUARIOS</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/permisos">Permisos</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modClientes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR CLIENTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/dirigido_empresa">Empresas</a></li>
-                                        <li><a class="dropdown-item" href="/cliente_potencial">Clientes</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modCalendario == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/calendario">CALENDARIO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modVisitas == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/visita">VISITAS</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modAvaluo == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/avaluos">AVALÚO</a>
-                                </li>
-                            @endif
-                            {{-- ==================== --}}
-                            @if ($modInformes == 1)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
-                                        <li><a class="dropdown-item" href="/visita">Informe 2</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                        {{-- ADMINISTRADOR --}}
-                        @else
+                        @if($permisos->tienePermisoRuta('usuarios.index') || $permisos->tienePermisoRuta('roles.index') || $permisos->tienePermisoRuta('asignar_permisos.index'))
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR USUARIOS</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/permisos">Permisos</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
-                                    {{-- <li><a class="dropdown-item" href="/informe">Informe Avaluo</a></li> --}}
+                                    @if($permisos->tienePermisoRuta('roles.index'))
+                                        <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
+                                    @endif
+                                    @if($permisos->tienePermisoRuta('asignar_permisos.index'))
+                                        <li><a class="dropdown-item" href="{{ route('asignar_permisos.index') }}">Asignar Permisos</a></li>
+                                    @endif
+                                    @if($permisos->tienePermisoRuta('usuarios.index'))
+                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
+                                    @endif
                                 </ul>
                             </li>
-                            {{-- ==================== --}}
+                        @endif
+
+                        @if($permisos->tienePermisoRuta('dirigido_empresa.index') || $permisos->tienePermisoRuta('cliente_potencial.index'))
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR CLIENTES</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/dirigido_empresa">Empresas</a></li>
-                                    <li><a class="dropdown-item" href="/cliente_potencial">Clientes</a></li>
+                                    @if($permisos->tienePermisoRuta('dirigido_empresa.index'))
+                                        <li><a class="dropdown-item" href="{{ route('dirigido_empresa.index') }}">Empresas</a></li>
+                                    @endif
+                                    @if($permisos->tienePermisoRuta('cliente_potencial.index'))
+                                        <li><a class="dropdown-item" href="{{ route('cliente_potencial.index') }}">Clientes</a></li>
+                                    @endif
                                 </ul>
                             </li>
-                            {{-- ==================== --}}
+                        @endif
+
+                        @if($permisos->tienePermisoRuta('calendario.index'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/calendario">CALENDARIO</a>
+                                <a class="nav-link text-white" href="{{ route('calendario.index') }}">CALENDARIO</a>
                             </li>
-                            {{-- ==================== --}}
+                        @endif
+
+                        @if($permisos->tienePermisoRuta('visita.index'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/visita">VISITAS</a>
+                                <a class="nav-link text-white" href="{{ route('visita.index') }}">VISITAS</a>
                             </li>
-                            {{-- ==================== --}}
+                        @endif
+
+                        @if($permisos->tienePermisoRuta('avaluos.index') || $permisos->tienePermisoRuta('calcular_avaluo'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/avaluos">AVALÚO</a>
-                            </li>
-                            {{-- ==================== --}}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">INFORMES</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/cotizador">Informe Clientes</a></li>
-                                    <li><a class="dropdown-item" href="/visita">Informe 2</a></li>
-                                </ul>
+                                <a class="nav-link text-white" href="{{ route('avaluos.index') }}">AVALÚO</a>
                             </li>
                         @endif
                     </ul>

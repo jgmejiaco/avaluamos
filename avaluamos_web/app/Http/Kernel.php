@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verificar.token' => \App\Http\Middleware\VerificarTokenSesion::class,
         'compartirShareData' => \App\Http\Middleware\CompartirMetodosTrait::class,
+        'permission' => \App\Http\Middleware\CheckPermission::class,
     ];
 }

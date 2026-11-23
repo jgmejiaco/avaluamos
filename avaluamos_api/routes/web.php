@@ -127,4 +127,18 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->get('calendario_consultar_visita_individual/{idVisitaIndividual}', 'calendario\CalendarioController@calendarioConsultarVisitaIndividual');
     // $router->get('calendario_edit/{idCalendario}', 'calendario\CalendarioController@edit');
     $router->put('calendario_update/{idVisitaEditar}', 'calendario\CalendarioController@update');
+
+    // ======================================================================
+
+    // ROLES (Spatie)
+    $router->get('rol_index', 'roles\RolesController@index');
+    $router->post('rol_store', 'roles\RolesController@store');
+    $router->get('rol_edit/{idRol}', 'roles\RolesController@edit');
+    $router->put('rol_update/{idRol}', 'roles\RolesController@update');
+    $router->post('consultar_rol', 'roles\RolesController@consultarRol');
+
+    // ASIGNAR PERMISOS (Spatie)
+    $router->get('asignar_permiso_index', 'asignar_permisos\AsignarPermisosController@index');
+    $router->get('consultar_permisos_rol', 'asignar_permisos\AsignarPermisosController@consultarPermisosRol');
+    $router->post('asignar_permiso_rol', 'asignar_permisos\AsignarPermisosController@store');
 });

@@ -8,18 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Usuario extends Model implements AuthenticatableContract, JWTSubject, Auditable
 {
     use Authenticatable;
-    use SoftDeletes, AuditableTrait;
+    use SoftDeletes;
+    use AuditableTrait;
+    use HasRoles;
 
     protected $connection = 'mysql';
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     protected $dates = ['deleted_at'];
     public $timestamps = true;
+    protected $guard_name = 'web';
     protected $fillable = [
         'nombre_usuario',
         'clave',

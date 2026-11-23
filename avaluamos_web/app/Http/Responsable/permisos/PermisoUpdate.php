@@ -19,31 +19,25 @@ class PermisoUpdate implements Responsable
         $modAvaluo = request('mod_avaluo', null);
         $modInformes = request('mod_informes', null);
 
-        DB::connection('mysql')->beginTransaction();
-
         try {
             $editarPermisoRol = Rol::where('id_rol',$idRol)
                     ->update([
-                        'mod_usuario' => $modUsuario,
-                        'mod_clientes' => $modClientes,
+                        'mod_usuario'    => $modUsuario,
+                        'mod_clientes'   => $modClientes,
                         'mod_calendario' => $modCalendario,
-                        'mod_visitas' => $modVisitas,
-                        'mod_avaluo' => $modAvaluo,
-                        'mod_informes' => $modInformes,
+                        'mod_visitas'    => $modVisitas,
+                        'mod_avaluo'     => $modAvaluo,
+                        'mod_informes'   => $modInformes,
                     ]);
 
             if($editarPermisoRol) {
-                DB::connection('mysql')->commit();
                 return response()->json('permiso_editado');
 
             } else {
-                DB::connection('mysql')->rollback();
                 return response()->json('permiso_no_editado');
             }
 
         } catch (Exception $e) {
-            dd($e);
-            DB::connection('mysql')->rollback();
             return response()->json('error_exception');
         }
     }

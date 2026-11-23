@@ -71,6 +71,10 @@ class LoginStore implements Responsable
 
         Auth::login($usuario);
 
+        $nombreRol = $data->usuario->nombre_rol_spatie
+            ?? $data->usuario->nombre_rol
+            ?? '';
+
         session()->put('api_jwt_token', $data->access_token);
         session()->put('api_jwt_exp', $this->expiracionDelToken($data->access_token));
         session()->put('id_usuario', $data->usuario->id_usuario);
@@ -78,17 +82,9 @@ class LoginStore implements Responsable
         session()->put('nombres', $data->usuario->nombres ?? '');
         session()->put('apellidos', $data->usuario->apellidos ?? '');
         session()->put('id_rol', $data->usuario->id_rol);
-        session()->put('nombre_rol', $data->usuario->nombre_rol ?? '');
-        session()->put('permiso', [
-            'id_usuario'     => $data->usuario->id_usuario,
-            'id_rol'         => $data->usuario->id_rol,
-            'mod_usuario'    => $data->usuario->mod_usuario ?? null,
-            'mod_clientes'   => $data->usuario->mod_clientes ?? null,
-            'mod_calendario' => $data->usuario->mod_calendario ?? null,
-            'mod_visitas'    => $data->usuario->mod_visitas ?? null,
-            'mod_avaluo'     => $data->usuario->mod_avaluo ?? null,
-            'mod_informes'   => $data->usuario->mod_informes ?? null,
-        ]);
+        session()->put('nombre_rol', $nombreRol);
+        session()->put('es_administrador', (bool) ($data->usuario->es_administrador ?? false));
+        session()->put('permisos_rutas', (array) ($data->usuario->permisos_rutas ?? []));
         session()->put('sesion_iniciada', true);
     }
 

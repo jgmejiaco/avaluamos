@@ -32,10 +32,12 @@ $app->configure('app');
 date_default_timezone_set($app->make('config')->get('app.timezone', 'America/Bogota'));
 $app->configure('auth');
 $app->configure('database');
+$app->configure('cache');
 $app->withEloquent();
 $app->configure('services');
 $app->configure('audit');
 $app->configure('cors');
+$app->configure('permission');
 
 $app->middleware([
     \Illuminate\Http\Middleware\HandleCors::class,
@@ -46,9 +48,13 @@ $app->routeMiddleware([
     'auth_or_app_key' => App\Http\Middleware\AuthenticateOrAppKey::class,
 ]);
 
+$app->register(Illuminate\Cache\CacheServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(OwenIt\Auditing\AuditingServiceProvider::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
+
+$app->alias('cache', Illuminate\Cache\CacheManager::class);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
