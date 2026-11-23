@@ -74,6 +74,12 @@
         <script src="{{ asset('dataTable2.3.1/js/0.1.53pdfmake.min.js') }}"></script>
         <script src="{{ asset('dataTable2.3.1/js/0.1.53vfs_fonts.js') }}"></script>
         <script src="{{ asset('dataTable2.3.1/js/2.4.2buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('js/datatables-defaults.js') }}"></script>
+        <script>
+            $.extend(true, $.fn.dataTable.defaults, {
+                language: { url: @json(asset('dataTable2.3.1/language/es-Es.json')) }
+            });
+        </script>
 
         {{-- Sweetalert2 --}}
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>

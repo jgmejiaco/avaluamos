@@ -87,8 +87,6 @@
     <script>
         $(document).ready(function () {
             $('#tabla_roles').DataTable({
-                language: { url: "{{ asset('dataTable2.3.1/language/es-Es.json') }}" },
-                pageLength: 10,
                 order: [[1, 'asc']]
             });
 

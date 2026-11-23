@@ -3317,13 +3317,32 @@ div label input {margin-right: 100px;}
 	color: white;
 }
 
-.dt-buttons {
-	margin-bottom: 2em;
+/* DataTables: alineación global (length/buscar e info/paginación en la misma fila) */
+div.dataTables_wrapper .dt-buttons {
+	margin-bottom: 0.5rem;
 }
 
-.dataTables_filter{
-	margin-top: 1em;
-	margin-bottom: 1em;
+div.dataTables_wrapper .dataTables_length,
+div.dataTables_wrapper .dataTables_filter,
+div.dataTables_wrapper .dataTables_info,
+div.dataTables_wrapper .dataTables_paginate {
+	margin-top: 0;
+	margin-bottom: 0.75rem;
+}
+
+div.dataTables_wrapper .dataTables_filter {
+	text-align: right;
+}
+
+div.dataTables_wrapper .dataTables_paginate {
+	text-align: right;
+}
+
+@media (max-width: 767.98px) {
+	div.dataTables_wrapper .dataTables_filter,
+	div.dataTables_wrapper .dataTables_paginate {
+		text-align: left;
+	}
 }
 
 /* ========================================= */

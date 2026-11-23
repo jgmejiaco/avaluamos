@@ -78,7 +78,7 @@
     <script>
         $(document).ready(function() {
             $("#tbl_avaluos").DataTable({
-                dom: 'Blfrtip',
+                dom: window.dataTableDomConBotones,
                 buttons: [
                     {
                         extend: 'pdf',
@@ -97,16 +97,7 @@
                         title: 'Lista_de_Avaluos'
                     }
                 ],
-                language: {
-                    url: "{{ asset('dataTable2.3.1/language/es-Es.json') }}"
-                },
-                pageLength: 10,
-                lengthMenu: [[10, 15, 20, 25, 30, 35, 40, 45, 50, -1], [10, 15, 20, 25, 30, 35, 40, 45, 50, "Todos"]],
-                scrollX: true,
-                bSort: true,
-                stripe: true,
-                responsive: true,
-                infoEmpty: "No hay registros disponibles"
+                scrollX: true
             });
         });
     </script>
