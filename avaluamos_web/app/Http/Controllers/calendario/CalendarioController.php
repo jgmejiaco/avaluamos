@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers\calendario;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\DB;
-use Exception;
-use Jenssegers\Date\Date;
-use Carbon\Carbon;
 use App\Http\Responsable\calendario\CalendarioStore;
 use App\Http\Responsable\calendario\CalendarioUpdate;
-use App\Models\TipoInmueble;
-use App\Models\Ciudad;
-use App\Models\SiNo;
+use Exception;
+use Illuminate\Http\Request;
 
 class CalendarioController extends Controller
 {

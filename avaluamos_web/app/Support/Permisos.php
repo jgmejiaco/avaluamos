@@ -2,13 +2,11 @@
 
 namespace App\Support;
 
-use Illuminate\Support\Facades\Auth;
-
 class Permisos
 {
     public function tienePermisoRuta(?string $routeName): bool
     {
-        if (! $routeName || ! session('sesion_iniciada') || ! Auth::check()) {
+        if (! $routeName || ! session('sesion_iniciada') || ! session('api_jwt_token')) {
             return false;
         }
 

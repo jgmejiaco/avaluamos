@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class VerificarTokenSesion
@@ -42,7 +41,6 @@ class VerificarTokenSesion
     {
         $mensaje = 'Se cerró la sesión por caducidad de la sesión.';
 
-        Auth::logout();
         Session::flush();
         Session::put('sesion_expirada', $mensaje);
 

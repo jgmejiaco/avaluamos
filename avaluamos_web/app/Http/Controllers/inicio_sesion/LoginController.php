@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\inicio_sesion;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use App\Http\Responsable\inicio_sesion\LoginStore;
 use App\Http\Responsable\inicio_sesion\RecuperarClave;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -132,7 +131,6 @@ class LoginController extends Controller
                 }
             }
 
-            Auth::logout();
             Session::flush();
             $request->session()->invalidate();
             $request->session()->regenerateToken();

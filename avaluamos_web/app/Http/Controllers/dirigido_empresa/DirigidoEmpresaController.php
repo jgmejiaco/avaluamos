@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\dirigido_empresa;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Exception;
-use App\Models\TipoDocumento;
+use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaEdit;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaIndex;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaStore;
-use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaEdit;
 use App\Http\Responsable\dirigido_empresa\DirigidoEmpresaUpdate;
-use App\Models\DirigidoA;
+use Exception;
+use Illuminate\Http\Request;
 
 class DirigidoEmpresaController extends Controller
 {
@@ -140,30 +137,23 @@ class DirigidoEmpresaController extends Controller
     
     public function validarEmpresa(Request $request)
     {
-        $idTipoDocumento = request('id_tipo_documento', null);
-        $numeroDocumento = request('numero_documento', null);
-
         try {
-            $validarEmpresa = DirigidoA::select('id_dirigido_a',
-                                                'dirigido_a',
-                                                'id_tipo_documento',
-                                                'numero_documento')
-                                        ->whereNull('deleted_at')
-                                        ->where('id_tipo_documento', $idTipoDocumento)
-                                        ->where('numero_documento', $numeroDocumento)
-                                        ->first();
+            $response = $this->getClientApi()->post('dirigido_empresa_consultar', [
+                'json' => [
+                    'id_tipo_documento' => request('id_tipo_documento', null),
+                    'numero_documento'  => request('numero_documento', null),
+                ],
+            ]);
 
-            if(isset($validarEmpresa) && !is_null($validarEmpresa) && !empty($validarEmpresa)) {
-                return response()->json('existe_empresa');
-            } else {
-                return response()->json('no_existe_empresa');
-            }
+            $respuesta = json_decode($response->getBody()->getContents());
 
+            return response()->json($respuesta);
         } catch (Exception $e) {
             if (\App\Support\FalloServicio::esConexion($e)) {
                 throw $e;
             }
-            return response()->json("error_exception");
+
+            return response()->json('error_exception');
         }
     }
 }

@@ -2,13 +2,11 @@
 
 namespace App\Http\Responsable\inicio_sesion;
 
-use App\Models\Usuario;
 use App\Support\FalloServicio;
 use App\Traits\MetodosTrait;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Support\Facades\Auth;
 
 class LoginStore implements Responsable
 {
@@ -63,24 +61,24 @@ class LoginStore implements Responsable
 
     private function crearVariablesSesion($data)
     {
-        $usuario = Usuario::find($data->usuario->id_usuario);
-
-        if (! $usuario) {
+        if (empty($data->access_token) || empty($data->usuario->id_usuario)) {
             throw new Exception('No se encontró el usuario autenticado en la aplicación.');
         }
 
-        Auth::login($usuario);
+        // Usuario y permisos ya vienen de auth/login (API, sin JWT previo).
+        // No se consulta BD local ni se necesita un segundo endpoint.
+        $usuarioApi = $data->usuario;
 
         session()->put('api_jwt_token', $data->access_token);
         session()->put('api_jwt_exp', $this->expiracionDelToken($data->access_token));
-        session()->put('id_usuario', $data->usuario->id_usuario);
-        session()->put('usuario', $data->usuario->nombre_usuario);
-        session()->put('nombres', $data->usuario->nombres ?? '');
-        session()->put('apellidos', $data->usuario->apellidos ?? '');
-        session()->put('id_rol', $data->usuario->id_rol);
-        session()->put('nombre_rol', $data->usuario->nombre_rol ?? '');
-        session()->put('es_administrador', (bool) ($data->usuario->es_administrador ?? false));
-        session()->put('permisos_rutas', (array) ($data->usuario->permisos_rutas ?? []));
+        session()->put('id_usuario', $usuarioApi->id_usuario);
+        session()->put('usuario', $usuarioApi->nombre_usuario);
+        session()->put('nombres', $usuarioApi->nombres ?? '');
+        session()->put('apellidos', $usuarioApi->apellidos ?? '');
+        session()->put('id_rol', $usuarioApi->id_rol);
+        session()->put('nombre_rol', $usuarioApi->nombre_rol ?? '');
+        session()->put('es_administrador', (bool) ($usuarioApi->es_administrador ?? false));
+        session()->put('permisos_rutas', (array) ($usuarioApi->permisos_rutas ?? []));
         session()->put('sesion_iniciada', true);
     }
 

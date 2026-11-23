@@ -9,12 +9,12 @@ use App\Http\Responsable\visitas\VisitaIndex;
 use App\Http\Responsable\visitas\VisitaCreateCliente;
 use App\Http\Responsable\visitas\VisitaStore;
 use App\Http\Responsable\visitas\VisitaEdit;
-use App\Http\Responsable\visitas\VisitaUpdate;
 use App\Http\Responsable\visitas\VisitaConsultarEmpresa;
 use App\Http\Responsable\visitas\VisitaDireccionConsultaPredio;
 use App\Http\Responsable\visitas\VisitaConsultarFactorPendiente;
 use App\Http\Responsable\visitas\VisitaConsultarFactorUbicacion;
 use App\Http\Responsable\visitas\VisitaStoreConsultaPredio;
+use App\Http\Responsable\visitas\update\VisitaClienteUpdate;
 use App\Http\Responsable\visitas\update\VisitaTecnicaUpdate;
 use App\Http\Responsable\visitas\update\VisitaInfoInmuebleUpdate;
 use App\Http\Responsable\visitas\update\VisitaCaracteristicasInmuebleUpdate;
@@ -168,6 +168,13 @@ class VisitasController extends Controller
     public function visitaStoreConsultaPredio()
     {
         return new VisitaStoreConsultaPredio();
+    }
+    // ======================================================================
+    // ======================================================================
+
+    public function visitaClienteUpdate($idCliente)
+    {
+        return new VisitaClienteUpdate($idCliente);
     }
 
     // ======================================================================

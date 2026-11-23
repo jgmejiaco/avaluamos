@@ -2,23 +2,14 @@
 
 namespace App\Http\Controllers\cliente_potencial;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Exception;
-use App\Models\Cliente;
-use App\Models\TipoDocumento;
-use App\Models\TipoPersona;
-use App\Models\Pais;
-use App\Models\DepartamentoEstado;
-use App\Models\Ciudad;
-use App\Models\ReferidoPor;
-use App\Models\RedSocial;
+use App\Http\Responsable\cliente_potencial\ClientePotencialEdit;
+use App\Http\Responsable\cliente_potencial\ClientePotencialIndex;
+use App\Http\Responsable\cliente_potencial\ClientePotencialShow;
 use App\Http\Responsable\cliente_potencial\ClientePotencialStore;
 use App\Http\Responsable\cliente_potencial\ClientePotencialUpdate;
-use App\Http\Responsable\cliente_potencial\ClientePotencialIndex;
-use App\Http\Responsable\cliente_potencial\ClientePotencialEdit;
-use App\Http\Responsable\cliente_potencial\ClientePotencialShow;
+use Exception;
+use Illuminate\Http\Request;
 
 class ClientePotencialController extends Controller
 {

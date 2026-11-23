@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\usuarios;
 
 use App\Http\Controllers\Controller;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Usuario;
-use App\Models\Cargo;
-use App\Models\TipoDocumento;
-use App\Models\Ciudad;
-use App\Models\Estado;
+use App\Http\Responsable\usuarios\UsuarioEdit;
 use App\Http\Responsable\usuarios\UsuarioIndex;
 use App\Http\Responsable\usuarios\UsuarioStore;
-use App\Http\Responsable\usuarios\UsuarioEdit;
 use App\Http\Responsable\usuarios\UsuarioUpdate;
+use Exception;
+use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {

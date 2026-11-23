@@ -5,14 +5,13 @@ namespace App\Http\Middleware;
 use App\Support\Permisos;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermission
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (! session('sesion_iniciada') || ! Auth::check()) {
+        if (! session('sesion_iniciada') || ! session('api_jwt_token')) {
             return redirect()->route('inicio');
         }
 

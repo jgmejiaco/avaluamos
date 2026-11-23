@@ -9,9 +9,10 @@ $router->get('/', function () use ($router) {
 // ======================================================================
 // ======================================================================
 
-// Sin sesión: solo el inicio de sesión entrega el JWT.
+// Sin sesión: login y recuperación de clave (sin JWT).
 $router->group(['prefix' => 'api/auth'], function () use ($router) {
     $router->post('login', 'AuthController@login');
+    $router->post('recuperar_clave_consultar', 'inicio_sesion\InicioSesionController@recuperarClaveConsultar');
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->post('me', 'AuthController@me');
@@ -54,6 +55,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('dirigido_empresa_store', 'dirigido_empresa\DirigidoEmpresasController@store');
     $router->get('dirigido_empresa_edit/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@edit');
     $router->put('dirigido_empresa_update/{idDirigidoA}', 'dirigido_empresa\DirigidoEmpresasController@update');
+    $router->post('dirigido_empresa_consultar', 'dirigido_empresa\DirigidoEmpresasController@dirigidoEmpresaConsultar');
 
     // ======================================================================
 
@@ -79,7 +81,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('visita_direccion_consulta_predio', 'visitas\VisitasController@visitaDireccionConsultaPredio');
     $router->post('visita_consultar_factor_pendiente', 'visitas\VisitasController@visitaConsultarFactorPendiente');
     $router->post('visita_consultar_factor_ubicacion', 'visitas\VisitasController@visitaConsultarFactorUbicacion');
-
+    
     // VISITA TODOS LOS UPDATE
     $router->put('visita_tecnica_update/{idVisita}', 'visitas\VisitasController@visitaTecnicaUpdate');
     $router->put('visita_info_inmueble_update/{idVisita}', 'visitas\VisitasController@visitaInfoInmuebleUpdate');
@@ -93,6 +95,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->put('visita_obser_generales_update/{idVisita}', 'visitas\VisitasController@visitaObserGeneralesUpdate');
     $router->put('visita_reg_fotografico_update/{idVisita}', 'visitas\VisitasController@visitaRegFotograficoUpdate');
     $router->put('visita_valor_estimado_update/{idVisita}', 'visitas\VisitasController@visitaValorEstimadoUpdate');
+    $router->put('Visita_cliente_update/{idCliente}', 'visitas\VisitasController@visitaClienteUpdate');
 
     // ======================================================================
 

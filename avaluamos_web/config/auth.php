@@ -60,15 +60,12 @@ return [
     */
 
     'providers' => [
+        // Auth Eloquent local no se usa: login = API + sesión (sesion_iniciada / JWT).
+        // Se deja un modelo del framework solo para no romper el boot de Auth.
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Usuario::class,
+            'model' => Illuminate\Foundation\Auth\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

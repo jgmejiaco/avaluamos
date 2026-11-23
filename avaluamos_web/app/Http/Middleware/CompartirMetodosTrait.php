@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Traits\MetodosTrait;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class CompartirMetodosTrait
 {
@@ -12,7 +11,7 @@ class CompartirMetodosTrait
 
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && session('api_jwt_token')) {
+        if (session('sesion_iniciada') && session('api_jwt_token')) {
             $this->shareData();
         }
 

@@ -2,13 +2,16 @@
 
 namespace App\Http\Responsable\visita;
 
+use App\Exceptions\ApiOperacionFallidaException;
+use App\Support\FalloServicio;
+use App\Traits\MetodosTrait;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
-use Jenssegers\Date\Date;
-use App\Models\Cliente;
 
 class VisitaClienteUpdate implements Responsable
 {
+    use MetodosTrait;
+
     public function toResponse($request)
     {
         $idVisita           = request('id_visita', null);
@@ -28,106 +31,51 @@ class VisitaClienteUpdate implements Responsable
         $nombreQuienRefiere = request('nombre_quien_refiere', null);
         $empresaQueRefiere  = request('empresa_que_refiere', null);
 
-        // ==============================================================================
-
-        if ($cliTipoDoc != "-1" || $cliTipoDoc != -1) {
-            $cliTipoDoc = request('cli_tipo_doc', null);
-        } else {
-            $cliTipoDoc = null;
-        }
-
-        // ==============================
-        
-        if (isset($fechaNacimiento) && !is_null($fechaNacimiento) && !empty($fechaNacimiento)) {
-            // $fechaNacimiento = Date::parse($fechaNacimiento)->timestamp;
+        if (isset($fechaNacimiento) && ! is_null($fechaNacimiento) && ! empty($fechaNacimiento)) {
             $fechaNacimiento = strtotime($fechaNacimiento);
         } else {
             $fechaNacimiento = null;
         }
-        
-        // ==============================
-
-        if ($tipoPersona != "-1" || $tipoPersona != -1) {
-            $tipoPersona = request('tipo_persona', null);
-        } else {
-            $tipoPersona = null;
-        }
-
-        // ==============================
-        
-        if ($cliPais != "-1" || $cliPais != -1) {
-            $cliPais = request('cli_pais', null);
-        } else {
-            $cliPais = null;
-        }
-
-        // ==============================
-        
-        if ($cliDpto != "-1" || $cliDpto != -1) {
-            $cliDpto = request('cli_dpto', null);
-        } else {
-            $cliDpto = null;
-        }
-
-        // ==============================
-
-        if ($cliCiudad != "-1" || $cliCiudad != -1) {
-            $cliCiudad = request('cli_ciudad', null);
-        } else {
-            $cliCiudad = null;
-        }
-        
-        // ==============================
-
-        if ($referidoPor != "-1" || $referidoPor != -1) {
-            $referidoPor = request('referido_por', null);
-        } else {
-            $referidoPor = null;
-        }
-
-        // ==============================
-
-        if ($redSocial != "-1" || $redSocial != -1) {
-            $redSocial = request('red_social', null);
-        } else {
-            $redSocial = null;
-        }
-
-        
-        // ==============================================================================
-        // ==============================================================================
 
         try {
-            $editarCliente = Cliente::where('id_cliente', $idCliente)
-                    ->update([
-                            'cli_nombres'          => $cliNombres,
-                            'id_doc_cliente'       => $cliTipoDoc,
-                            'documento_cliente'    => $docCliente,
-                            'fecha_nacimiento'     => $fechaNacimiento,
-                            'cli_celular'          => $cliCelular,
-                            'cli_email'            => $cliCorreo,
-                            'id_tipo_persona'      => $tipoPersona,
-                            'id_pais'              => $cliPais,
-                            'id_dpto_estado'       => $cliDpto,
-                            'id_ciudad'            => $cliCiudad,
-                            'id_referido_por'      => $referidoPor,
-                            'id_red_social'        => $redSocial,
-                            'nombre_quien_refiere' => $nombreQuienRefiere,
-                            'empresa_que_refiere'  => $empresaQueRefiere,
-                        ]);
+            $response = $this->getClientApi()->put('Visita_cliente_update/'.$idCliente, [
+                'json' => [
+                    'cli_nombres'          => $cliNombres,
+                    'id_doc_cliente'       => $cliTipoDoc,
+                    'documento_cliente'    => $docCliente,
+                    'fecha_nacimiento'     => $fechaNacimiento,
+                    'cli_celular'          => $cliCelular,
+                    'cli_email'            => $cliCorreo,
+                    'id_tipo_persona'      => $tipoPersona,
+                    'id_pais'              => $cliPais,
+                    'id_dpto_estado'       => $cliDpto,
+                    'id_ciudad'            => $cliCiudad,
+                    'id_referido_por'      => $referidoPor,
+                    'id_red_social'        => $redSocial,
+                    'nombre_quien_refiere' => $nombreQuienRefiere,
+                    'empresa_que_refiere'  => $empresaQueRefiere,
+                ],
+            ]);
 
-            if($editarCliente) {
-                alert()->success('Proceso Exitoso', 'Cliente editado satisfactoriamente');
-                return redirect()->route('visita.edit', $idVisita);
+            $respuesta = json_decode($response->getBody()->getContents());
 
-            } else {
-                alert()->error('Error', 'Ha ocurrido un error al editar el cliente la visita, por favor contacte a Soporte.');
-                return redirect()->route('visita.edit', $idVisita);
+            if (empty($respuesta->success)) {
+                throw new ApiOperacionFallidaException(
+                    $respuesta->message ?? 'Ha ocurrido un error al editar el cliente la visita, por favor contacte a Soporte.'
+                );
             }
-        }
-        catch (Exception $e)
-        {
-            dd($e);
+
+            alert()->success('Proceso Exitoso', 'Cliente editado satisfactoriamente');
+            return redirect()->route('visita.edit', $idVisita);
+        } catch (ApiOperacionFallidaException $e) {
+            alert()->error('Error', $e->getMessage());
+            return redirect()->route('visita.edit', $idVisita);
+        } catch (Exception $e) {
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error VisitaClienteUpdate: '.$e->getMessage());
             alert()->error('Error', 'Excepción, intente de nuevo, si el problema persiste, contacte a Soporte.');
             return back();
         }

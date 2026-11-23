@@ -2,20 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Illuminate\Http\Request;
 
-class Authenticate extends Middleware
+class Authenticate
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Autenticación por sesión API (JWT), no por Auth Eloquent local.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @param  \Closure  $next
+     * @param  string  ...$guards
+     * @return mixed
      */
-    protected function redirectTo($request)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
-        if (! $request->expectsJson()) {
-            return route('inicio');
+        if (! session('sesion_iniciada') || ! session('api_jwt_token')) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Unauthenticated.'], 401);
+            }
+
+            return redirect()->route('inicio');
         }
+
+        return $next($request);
     }
 }
