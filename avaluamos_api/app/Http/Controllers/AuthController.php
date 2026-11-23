@@ -12,15 +12,15 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'usuario' => 'required|string',
-            'clave' => 'required|string',
+            'clave'   => 'required|string',
         ]);
 
         $usuario = Usuario::where('nombre_usuario', $request->input('usuario'))->first();
 
         if (! $usuario) {
             return response()->json([
-                'status' => 'error',
-                'code' => 'no_existe',
+                'status'  => 'error',
+                'code'    => 'no_existe',
                 'message' => 'No hay registro de este usuario.',
             ], 401);
         }
@@ -32,15 +32,15 @@ class AuthController extends Controller
 
         if ((int) $usuario->id_estado === 2) {
             return response()->json([
-                'status' => 'error',
-                'code' => 'inactivo',
+                'status'  => 'error',
+                'code'    => 'inactivo',
                 'message' => 'El usuario está inactivo.',
             ], 401);
         }
 
         $credentials = [
             'nombre_usuario' => $usuario->nombre_usuario,
-            'password' => $request->input('clave'),
+            'password'       => $request->input('clave'),
         ];
 
         if (! $token = Auth::attempt($credentials)) {
@@ -48,8 +48,8 @@ class AuthController extends Controller
             $usuario->save();
 
             return response()->json([
-                'status' => 'error',
-                'code' => 'credenciales',
+                'status'  => 'error',
+                'code'    => 'credenciales',
                 'message' => 'Credenciales inválidas.',
             ], 401);
         }
@@ -61,7 +61,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'status' => 'success',
-            'data' => Auth::user(),
+            'data'   => Auth::user(),
         ]);
     }
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
         Auth::logout();
 
         return response()->json([
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Sesión cerrada correctamente.',
         ]);
     }
@@ -82,16 +82,32 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        $authUser = Auth::user();
+
+        $usuario = Usuario::leftJoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
+            ->where('usuarios.id_usuario', $authUser->id_usuario)
+            ->select(
+                'usuarios.id_usuario',
+                'usuarios.nombre_usuario',
+                'usuarios.nombres',
+                'usuarios.apellidos',
+                'usuarios.id_rol',
+                'rol.nombre_rol',
+                'rol.mod_usuario',
+                'rol.mod_clientes',
+                'rol.mod_calendario',
+                'rol.mod_visitas',
+                'rol.mod_avaluo',
+                'rol.mod_informes'
+            )
+            ->first();
+
         return response()->json([
-            'status' => 'success',
+            'status'       => 'success',
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60,
-            'usuario' => [
-                'id_usuario' => Auth::user()->id_usuario,
-                'nombre_usuario' => Auth::user()->nombre_usuario,
-                'id_rol' => Auth::user()->id_rol,
-            ],
+            'token_type'   => 'bearer',
+            'expires_in'   => Auth::factory()->getTTL() * 60,
+            'usuario'      => $usuario,
         ]);
     }
 }

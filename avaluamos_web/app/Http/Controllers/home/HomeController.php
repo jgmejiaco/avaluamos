@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Support\ApiClient;
+use App\Support\FalloServicio;
 use Exception;
-use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -22,95 +23,80 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            $usuLogueado = session('id_usuario');
-            $usuario = Usuario::select('nombres')->where('id_usuario',$usuLogueado)->first();
-            return view('home',compact('usuario'));
+            $nombreCompleto = $this->nombreUsuarioLogueado();
 
+            return view('home', compact('nombreCompleto'));
         } catch (Exception $e) {
-            alert()->error("Error Exception!");
+            if (FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            alert()->error('Error Exception!');
             return redirect()->to(route('inicio'));
         }
     }
 
-    // ======================================================================
+    /**
+     * Nombre desde sesión (llenada por login API) o fallback GET usuario_edit.
+     */
+    private function nombreUsuarioLogueado(): string
+    {
+        $nombres = session('nombres');
+        $apellidos = session('apellidos');
+
+        if (($nombres !== null && $nombres !== '') || ($apellidos !== null && $apellidos !== '')) {
+            return trim($nombres.' '.$apellidos);
+        }
+
+        $idUsuario = session('id_usuario');
+
+        if (! $idUsuario) {
+            return 'Visitante';
+        }
+
+        $response = app(ApiClient::class)->get('usuario_edit/'.$idUsuario);
+        $usuario = json_decode($response->getBody()->getContents());
+
+        if (! is_object($usuario) || ! isset($usuario->id_usuario)) {
+            return 'Visitante';
+        }
+
+        session()->put('nombres', $usuario->nombres ?? '');
+        session()->put('apellidos', $usuario->apellidos ?? '');
+        session()->put('nombre_rol', $usuario->nombre_rol ?? session('nombre_rol'));
+
+        return $usuario->nombre_completo
+            ?? trim(($usuario->nombres ?? '').' '.($usuario->apellidos ?? ''))
+            ?: 'Visitante';
+    }
+
     // ======================================================================
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        
+        //
     }
 
-    // ======================================================================
-    // ======================================================================
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        
+        //
     }
 
-    // ======================================================================
-    // ======================================================================
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    // ======================================================================
-    // ======================================================================
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-    
-    // ======================================================================
-    // ======================================================================
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    // ======================================================================
-    // ======================================================================
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
