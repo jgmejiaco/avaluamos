@@ -5,14 +5,14 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mt-3">
             <h1 class="text-center text-uppercase">Roles</h1>
         </div>
     </div>
 
     <div class="row p-b-20 float-right mb-3">
         <div class="col-12">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearRol">
+            <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#modalCrearRol">
                 Crear Rol
             </button>
         </div>

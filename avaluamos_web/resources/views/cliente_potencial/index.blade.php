@@ -13,8 +13,8 @@
     @php
         use Carbon\Carbon;
     @endphp
-    <div class="container-fluid p-5">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row mt-3">
             <div class="col-12">
                 <h2 class="text-center text-uppercase">Clientes</h2>
             </div>
@@ -22,15 +22,15 @@
 
         {{-- ====================================================== --}}
 
-        <div class="row mb-5">
+        <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary float-right">Crear Nuevo Cliente</a>
+                <a href="{{route('cliente_potencial.create')}}" class="btn btn-primary rounded">Crear Nuevo Cliente</a>
             </div>
         </div>
 
         {{-- ====================================================== --}}
 
-        <div class="row" style="margin-top: 5em !important;">
+        <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered w-100" id="tabla_visitas" aria-describedby="tbl editar visitas">
