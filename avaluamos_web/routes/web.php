@@ -9,18 +9,23 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'App\Http\Controllers\inicio_sesion\LoginController@index')->name('inicio');
-
 Route::get('connection_bd_check', 'App\Http\Controllers\inicio_sesion\LoginController@connectionBdCheck')->name('connection_bd_check');
 
-Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
-    Route::resource('login', 'LoginController')->only(['index', 'store']);
-    Route::get('login_usuario', 'LoginController@index')->name('login_usuario');
-    Route::get('logout', 'LoginController@logout')->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/', 'App\Http\Controllers\inicio_sesion\LoginController@index')->name('inicio');
 
-    Route::get('recuperar', 'LoginController@resetPassword')->name('recuperar_clave');
-    Route::post('validar', 'LoginController@validarDatos')->name('validar_datos');
-    Route::get('actualizar/{expiration}', 'LoginController@actualizarContraseña')->name('actualizar_clave');
+    Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
+        Route::resource('login', 'LoginController')->only(['index', 'store']);
+        Route::get('login_usuario', 'LoginController@index')->name('login_usuario');
+
+        Route::get('recuperar', 'LoginController@resetPassword')->name('recuperar_clave');
+        Route::post('validar', 'LoginController@validarDatos')->name('validar_datos');
+        Route::get('actualizar/{expiration}', 'LoginController@actualizarContraseña')->name('actualizar_clave');
+    });
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () {
+    Route::get('logout', 'LoginController@logout')->name('logout');
 });
 
 Route::middleware('auth')->group(function () {

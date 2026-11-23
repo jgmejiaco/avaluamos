@@ -25,7 +25,7 @@
 
             <div class="mb-4">
                 {{-- <label class="">Usuario</label> --}}
-                <input class="w-100 form-control" type="text" name="usuario" id="usuario" placeholder="Usuario">
+                <input class="w-100 form-control" type="text" name="usuario" id="usuario" placeholder="Usuario" autocomplete="username" value="">
             </div>
 
             <div class="">
@@ -33,7 +33,7 @@
                     <i class="zmdi zmdi-eye"></i>
                 </span>
                 {{-- <label class="">Contraseña</label> --}}
-                <input class="w-100 form-control" type="password" name="clave" id="clave" placeholder="Clave">
+                <input class="w-100 form-control" type="password" name="clave" id="clave" placeholder="Clave" autocomplete="current-password" value="">
             </div>
 
             <div class="mt-5 d-flex justify-content-center">
@@ -51,8 +51,15 @@
 
 @section('scripts')
     <script>
-        $( document ).ready(function() {
-            // $("#username").trigger('focus');
+        // Si el navegador restaura login desde bfcache tras “atrás”, forzar recarga
+        // para que el middleware guest redirija (usuario ya autenticado).
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted) {
+                window.location.reload();
+                return;
+            }
+
+            document.getElementById('clave').value = '';
         });
     </script>
 @stop

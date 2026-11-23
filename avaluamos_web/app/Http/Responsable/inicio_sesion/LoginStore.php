@@ -3,6 +3,7 @@
 namespace App\Http\Responsable\inicio_sesion;
 
 use App\Support\FalloServicio;
+use App\Support\RedirectReplace;
 use App\Traits\MetodosTrait;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
@@ -34,7 +35,8 @@ class LoginStore implements Responsable
             $data = json_decode($response->getBody()->getContents());
             $this->crearVariablesSesion($data);
 
-            return redirect('home');
+            // replace: no deja el POST/login apilado para el botón atrás
+            return RedirectReplace::to(url('home'));
         } catch (ClientException $e) {
             $body = json_decode((string) $e->getResponse()->getBody());
             $codigo = $body->code ?? '';
