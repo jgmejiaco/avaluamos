@@ -19,6 +19,8 @@ class AvaluoEdit implements Responsable
     public function toResponse($request)
     {
         try {
+            // Solo joins necesarios para IDs/textos usados en el SELECT.
+            // Evitar joins de catálogo no seleccionados: MySQL limita a 61 tablas por query.
             $avaluo = Visita::leftJoin('clientes', 'clientes.id_cliente', '=', 'visitas.id_cliente')
                 ->leftJoin('tipo_persona', 'tipo_persona.id_tipo_persona', '=', 'clientes.id_tipo_persona')
                 ->leftJoin('referido_por', 'referido_por.id_referido_por', '=', 'clientes.id_referido_por')
@@ -33,43 +35,9 @@ class AvaluoEdit implements Responsable
                 ->leftJoin('ciudad as cliente_ciudad', 'cliente_ciudad.id_ciudad', '=', 'clientes.id_ciudad')
                 ->leftJoin('ciudad as visita_ciudad', 'visita_ciudad.id_ciudad', '=', 'visitas.id_ciudad')
                 ->leftJoin('tipo_inmueble', 'tipo_inmueble.id_tipo_inmueble', '=', 'visitas.id_tipo_inmueble')
-                ->leftJoin('indicador_numerico as estrato', 'estrato.id_indicador_numerico', '=', 'visitas.id_estrato')
-                ->leftJoin('si_no', 'si_no.id_si_no', '=', 'visitas.id_visitado')
                 ->leftJoin('usuarios', 'usuarios.id_usuario', '=', 'visitas.id_visitador')
                 ->leftJoin('info_inmueble', 'info_inmueble.id_visita', '=', 'visitas.id_visita')
-                ->leftJoin('tipo_vivienda', 'tipo_vivienda.id_tipo_vivienda', '=', 'info_inmueble.id_tipo_vivienda')
-                ->leftJoin('uso_inmueble', 'uso_inmueble.id_uso_inmueble', '=', 'info_inmueble.id_uso_inmueble')
-                ->leftJoin('tipo_suelo', 'tipo_suelo.id_tipo_suelo', '=', 'info_inmueble.id_tipo_suelo')
-                ->leftJoin('topografia', 'topografia.id_topografia', '=', 'info_inmueble.id_topografia')
-                ->leftJoin('forma', 'forma.id_forma', '=', 'info_inmueble.id_forma')
-                ->leftJoin('indicador_numerico as pisos_inmueble', 'pisos_inmueble.id_indicador_numerico', '=', 'info_inmueble.pisos_inmueble')
-                ->leftJoin('indicador_numerico as pisos_edificio', 'pisos_edificio.id_indicador_numerico', '=', 'info_inmueble.pisos_edificio')
-                ->leftJoin('si_no as remodelado', 'remodelado.id_si_no', '=', 'info_inmueble.remodelado')
-                ->leftJoin('condicion_inmueble', 'condicion_inmueble.id_condicion_inmueble', '=', 'info_inmueble.id_condicion_inmueble')
                 ->leftJoin('caracteristicas_inmueble', 'caracteristicas_inmueble.id_visita', '=', 'visitas.id_visita')
-                ->leftJoin('indicador_numerico as cocinas', 'cocinas.id_indicador_numerico', '=', 'caracteristicas_inmueble.cocinas')
-                ->leftJoin('indicador_numerico as habitaciones', 'habitaciones.id_indicador_numerico', '=', 'caracteristicas_inmueble.habitaciones')
-                ->leftJoin('indicador_numerico as salas', 'salas.id_indicador_numerico', '=', 'caracteristicas_inmueble.salas')
-                ->leftJoin('indicador_numerico as habitaciones_servicio', 'habitaciones_servicio.id_indicador_numerico', '=', 'caracteristicas_inmueble.habitaciones_servicio')
-                ->leftJoin('indicador_numerico as comedores', 'comedores.id_indicador_numerico', '=', 'caracteristicas_inmueble.comedores')
-                ->leftJoin('indicador_numerico as banios_servicio', 'banios_servicio.id_indicador_numerico', '=', 'caracteristicas_inmueble.banios_servicio')
-                ->leftJoin('indicador_numerico as banios_social', 'banios_social.id_indicador_numerico', '=', 'caracteristicas_inmueble.banios_social')
-                ->leftJoin('indicador_numerico as banios_privado', 'banios_privado.id_indicador_numerico', '=', 'caracteristicas_inmueble.banios_privado')
-                ->leftJoin('indicador_numerico as balcones', 'balcones.id_indicador_numerico', '=', 'caracteristicas_inmueble.balcones')
-                ->leftJoin('indicador_numerico as zona_ropa', 'zona_ropa.id_indicador_numerico', '=', 'caracteristicas_inmueble.zona_ropa')
-                ->leftJoin('indicador_numerico as estudios', 'estudios.id_indicador_numerico', '=', 'caracteristicas_inmueble.estudios')
-                ->leftJoin('indicador_numerico as patios', 'patios.id_indicador_numerico', '=', 'caracteristicas_inmueble.patios')
-                ->leftJoin('indicador_numerico as vestier', 'vestier.id_indicador_numerico', '=', 'caracteristicas_inmueble.vestier')
-                ->leftJoin('indicador_numerico as escala_emergencia', 'escala_emergencia.id_indicador_numerico', '=', 'caracteristicas_inmueble.escala_emergencia')
-                ->leftJoin('indicador_numerico as closets', 'closets.id_indicador_numerico', '=', 'caracteristicas_inmueble.closets')
-                ->leftJoin('indicador_numerico as shut_basura', 'shut_basura.id_indicador_numerico', '=', 'caracteristicas_inmueble.shut_basura')
-                ->leftJoin('indicador_numerico as parqueaderos', 'parqueaderos.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_parqueaderos')
-                ->leftJoin('indicador_numerico as cuarto_util', 'cuarto_util.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_cuarto_util')
-                ->leftJoin('indicador_numerico as kioskos', 'kioskos.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_kioskos')
-                ->leftJoin('indicador_numerico as piscinas', 'piscinas.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_piscinas')
-                ->leftJoin('indicador_numerico as establos', 'establos.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_establos')
-                ->leftJoin('indicador_numerico as billares', 'billares.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_billares')
-                ->leftJoin('indicador_numerico as ascensores', 'ascensores.id_indicador_numerico', '=', 'caracteristicas_inmueble.cant_ascensores')
                 ->leftJoin('acabados_inmueble', 'acabados_inmueble.id_visita', '=', 'visitas.id_visita')
                 ->leftJoin('calificacion_inmueble', 'calificacion_inmueble.id_visita', '=', 'visitas.id_visita')
                 ->leftJoin('dotacion_comunal', 'dotacion_comunal.id_visita', '=', 'visitas.id_visita')
@@ -122,7 +90,7 @@ class AvaluoEdit implements Responsable
                     'tipo_inmueble.id_tipo_inmueble',
                     'tipo_inmueble.tipo_inmueble',
                     'visitas.area',
-                    'estrato.id_indicador_numerico as estrato',
+                    'visitas.id_estrato as estrato',
                     'visitas.numero_inmueble',
                     'visitas.porcentaje_descuento',
                     'visitas.valor_cotizacion',

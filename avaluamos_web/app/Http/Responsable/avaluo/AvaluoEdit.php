@@ -28,7 +28,7 @@ class AvaluoEdit implements Responsable
 
             if (! is_object($calcularAvaluo) || ! isset($calcularAvaluo->id_visita)) {
                 alert()->warning('No se encontró el avalúo.');
-                return redirect()->route('avaluo.index');
+                return redirect()->route('avaluos.index');
             }
 
             return view('avaluo.edit', compact('calcularAvaluo'));
@@ -41,7 +41,7 @@ class AvaluoEdit implements Responsable
             logger()->error('Error AvaluoEdit: '.$e->getMessage());
             alert()->error('Error cargando el avalúo.');
 
-            return redirect()->route('avaluo.index');
+            return redirect()->route('avaluos.index');
         }
     }
 }
