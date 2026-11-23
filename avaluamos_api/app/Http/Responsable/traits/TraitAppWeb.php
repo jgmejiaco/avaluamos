@@ -23,7 +23,7 @@ use App\Models\Pais;
 use App\Models\PuertasMaterial;
 use App\Models\RedSocial;
 use App\Models\ReferidoPor;
-use App\Models\Rol;
+use App\Models\Role;
 use App\Models\SiNo;
 use App\Models\SistemaConstructivo;
 use App\Models\TipoBanio;
@@ -53,16 +53,18 @@ class TraitAppWeb
     {
         try {
             return response()->json([
-                'roles' => Rol::orderBy('nombre_rol', 'asc')->get([
-                    'id_rol',
-                    'nombre_rol',
-                    'mod_usuario',
-                    'mod_clientes',
-                    'mod_calendario',
-                    'mod_visitas',
-                    'mod_avaluo',
-                    'mod_informes',
-                ]),
+                'roles' => Role::where('guard_name', 'web')
+                    ->orderBy('name', 'asc')
+                    ->get(['id', 'name'])
+                    ->map(function ($rol) {
+                        return [
+                            'id' => $rol->id,
+                            'name' => $rol->name,
+                            'id_rol' => $rol->id,
+                            'nombre_rol' => $rol->name,
+                        ];
+                    })
+                    ->values(),
                 'cargos' => Cargo::orderBy('descripcion_cargo', 'asc')->get(['id_cargo', 'descripcion_cargo']),
                 'tipos_documento' => TipoDocumento::orderBy('decripcion_documento', 'asc')->get(['id_tipo_documento', 'decripcion_documento']),
                 'ciudades' => Ciudad::orderBy('descripcion_ciudad', 'asc')->get(['id_ciudad', 'descripcion_ciudad']),
@@ -73,7 +75,11 @@ class TraitAppWeb
                 'referidos' => ReferidoPor::orderBy('referido_por', 'asc')->get(['id_referido_por', 'referido_por']),
                 'redes_sociales' => RedSocial::orderBy('red_social', 'asc')->get(['id_red_social', 'red_social']),
                 'dirigido_a' => DirigidoA::orderBy('dirigido_a', 'asc')->get(['id_dirigido_a', 'dirigido_a']),
-                'avaluadores' => Usuario::orderBy('nombres', 'asc')->whereIn('id_rol', [1, 2, 4])->get(['id_usuario', 'nombres']),
+                'avaluadores' => Usuario::orderBy('nombres', 'asc')
+                    ->whereHas('roles', function ($q) {
+                        $q->whereIn('name', ['Administrador', 'Avaluador', 'Empleado']);
+                    })
+                    ->get(['id_usuario', 'nombres']),
                 'tipos_vivienda' => TipoVivienda::orderBy('tipo_vivienda', 'asc')->get(['id_tipo_vivienda', 'tipo_vivienda']),
                 'tipos_inmueble' => TipoInmueble::orderBy('tipo_inmueble', 'asc')->get(['id_tipo_inmueble', 'tipo_inmueble']),
                 'usos_inmueble' => UsoInmueble::orderBy('uso_inmueble', 'asc')->get(['id_uso_inmueble', 'uso_inmueble']),
@@ -115,7 +121,7 @@ class TraitAppWeb
                     ->pluck('ciudadDpto', 'id_ciudad'),
                 'usuarios' => DB::table('usuarios')
                     ->leftJoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
-                    ->leftJoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
+                    ->leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
                     ->leftJoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
                     ->leftJoin('estado', 'estado.id_estado', '=', 'usuarios.id_estado')
                     ->select(
@@ -128,8 +134,8 @@ class TraitAppWeb
                         'usuarios.numero_documento',
                         'usuarios.correo',
                         'usuarios.celular',
-                        'rol.id_rol',
-                        'rol.nombre_rol',
+                        'roles.id as id_rol',
+                        'roles.name as nombre_rol',
                         'cargo.id_cargo',
                         'cargo.descripcion_cargo',
                         'estado.id_estado',

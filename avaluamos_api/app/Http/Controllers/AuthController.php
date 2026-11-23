@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,17 +83,25 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        /** @var Usuario $authUser */
         $authUser = Auth::user();
 
-        $this->sincronizarRolSpatie($authUser, (int) ($authUser->id_rol ?? 0));
+        if (! $authUser instanceof Usuario) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Usuario no autenticado.',
+            ], 401);
+        }
+
+        $this->asignarRolDesdeId($authUser, (int) ($authUser->id_rol ?? 0));
 
         $authUser->loadMissing('roles', 'permissions');
 
-        $nombreRolSpatie = $authUser->getRoleNames()->first();
+        $nombreRol = $authUser->getRoleNames()->first() ?: '';
         $permisosRutas = $authUser->getAllPermissions()->pluck('name')->values()->all();
         $esAdministrador = $authUser->hasRole('Administrador');
 
-        $usuario = Usuario::leftJoin('rol', 'rol.id_rol', '=', 'usuarios.id_rol')
+        $usuario = Usuario::leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
             ->where('usuarios.id_usuario', $authUser->id_usuario)
             ->select(
                 'usuarios.id_usuario',
@@ -100,18 +109,12 @@ class AuthController extends Controller
                 'usuarios.nombres',
                 'usuarios.apellidos',
                 'usuarios.id_rol',
-                'rol.nombre_rol',
-                'rol.mod_usuario',
-                'rol.mod_clientes',
-                'rol.mod_calendario',
-                'rol.mod_visitas',
-                'rol.mod_avaluo',
-                'rol.mod_informes'
+                'roles.name as nombre_rol'
             )
             ->first();
 
         if ($usuario) {
-            $usuario->nombre_rol_spatie = $nombreRolSpatie ?: ($usuario->nombre_rol ?? '');
+            $usuario->nombre_rol = $nombreRol ?: ($usuario->nombre_rol ?? '');
             $usuario->es_administrador = $esAdministrador;
             $usuario->permisos_rutas = $permisosRutas;
             $usuario->roles_spatie = $authUser->getRoleNames()->values()->all();
@@ -126,23 +129,23 @@ class AuthController extends Controller
         ]);
     }
 
-    private function sincronizarRolSpatie(Usuario $usuario, int $idRolLegacy): void
+    /**
+     * id_rol apunta a roles.id (Spatie). Sincroniza model_has_roles.
+     */
+    private function asignarRolDesdeId(Usuario $usuario, int $idRol): void
     {
-        if ($usuario->roles()->exists()) {
+        if ($idRol <= 0) {
             return;
         }
 
-        $mapa = [
-            1 => 'Administrador',
-            2 => 'Avaluador',
-            3 => 'Visitador',
-            4 => 'Empleado',
-        ];
+        $rol = Role::where('guard_name', 'web')->find($idRol);
 
-        $nombreRol = $mapa[$idRolLegacy] ?? null;
+        if (! $rol) {
+            return;
+        }
 
-        if ($nombreRol) {
-            $usuario->syncRoles([$nombreRol]);
+        if (! $usuario->hasRole($rol->name)) {
+            $usuario->syncRoles([$rol->name]);
         }
     }
 }

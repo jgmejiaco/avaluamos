@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
-use App\Models\Rol;
 use App\Models\Cargo;
 use App\Models\TipoDocumento;
 use App\Models\Ciudad;

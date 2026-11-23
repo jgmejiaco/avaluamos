@@ -175,31 +175,23 @@ class RolesAndPermissionsSeeder extends Seeder
         $visitador->syncPermissions($permisosVisitador);
         $empleado->syncPermissions($permisosEmpleado);
 
-        // Mapear usuarios existentes: id_rol legacy -> rol Spatie
-        $mapaRoles = [
-            1 => 'Administrador',
-            2 => 'Avaluador',
-            3 => 'Visitador',
-            4 => 'Empleado',
-        ];
-
+        // id_rol = roles.id (Spatie). Sincronizar model_has_roles.
         Usuario::query()
             ->whereNull('deleted_at')
             ->orderBy('id_usuario')
-            ->chunkById(100, function ($usuarios) use ($mapaRoles) {
+            ->chunkById(100, function ($usuarios) {
                 foreach ($usuarios as $usuario) {
-                    $nombreRol = $mapaRoles[(int) $usuario->id_rol] ?? null;
+                    $rol = Role::where('guard_name', 'web')->find($usuario->id_rol);
 
-                    if (! $nombreRol) {
+                    if (! $rol) {
                         continue;
                     }
 
-                    $usuario->syncRoles([$nombreRol]);
+                    $usuario->syncRoles([$rol->name]);
                 }
             }, 'id_usuario');
 
-        // Nota: la tabla legacy `rol` (mod_*) aún no se elimina en este paso.
-        $this->command?->info('Roles y permisos Spatie sembrados. Usuarios sincronizados desde id_rol.');
+        $this->command?->info('Roles y permisos Spatie sembrados. Usuarios sincronizados con roles.id.');
     }
 
     private function permisosDeModulos(array $permisosPorModulo, array $modulos): array

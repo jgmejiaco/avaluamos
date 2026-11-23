@@ -2,6 +2,7 @@
 
 namespace App\Http\Responsable\usuarios;
 
+use App\Models\Role;
 use App\Models\Usuario;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
@@ -15,9 +16,6 @@ class UsuarioUpdate implements Responsable
         $this->idUsuario = $idUsuario;
     }
 
-    // ======================================================================
-    // ======================================================================
-
     public function toResponse($request)
     {
         $usuario = Usuario::find($this->idUsuario);
@@ -29,23 +27,34 @@ class UsuarioUpdate implements Responsable
             ], 404);
         }
 
+        $idRol = (int) $request->input('usu_rol');
+        $rol = Role::where('guard_name', 'web')->find($idRol);
+
+        if (! $rol) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El rol seleccionado no existe',
+            ], 422);
+        }
+
         try {
             $usuario->nombres           = $this->formatoNombrePropio($request->input('usu_nombres'));
             $usuario->apellidos         = $this->formatoNombrePropio($request->input('usu_apellidos'));
             $usuario->id_tipo_documento = $request->input('usu_id_doc');
             $usuario->numero_documento  = $request->input('usu_documento');
-            $usuario->id_rol            = $request->input('usu_rol');
+            $usuario->id_rol            = $rol->id;
             $usuario->id_cargo          = $request->input('usu_cargo');
             $usuario->correo            = $request->input('usu_correo');
             $usuario->celular           = $request->input('usu_celular');
             $usuario->id_estado         = $request->input('usu_estado');
             $usuario->save();
 
+            $usuario->syncRoles([$rol->name]);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Usuario editado correctamente',
             ]);
-
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
@@ -55,9 +64,6 @@ class UsuarioUpdate implements Responsable
         }
     }
 
-    // ======================================================================
-    // ======================================================================
-    
     private function formatoNombrePropio(?string $texto): ?string
     {
         if ($texto === null || trim($texto) === '') {
