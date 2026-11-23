@@ -49,6 +49,7 @@ $app->routeMiddleware([
 ]);
 
 $app->register(Illuminate\Cache\CacheServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(OwenIt\Auditing\AuditingServiceProvider::class);
