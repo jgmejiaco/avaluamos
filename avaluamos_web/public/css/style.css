@@ -3338,6 +3338,11 @@ div.dataTables_wrapper .dataTables_paginate {
 	text-align: right;
 }
 
+/* Fila info + paginador: separar del table (vence margin:0 del CSS de DataTables BS5) */
+div.table-responsive > div.dataTables_wrapper > div.row:last-child {
+	margin-top: 2rem;
+}
+
 @media (max-width: 767.98px) {
 	div.dataTables_wrapper .dataTables_filter,
 	div.dataTables_wrapper .dataTables_paginate {
