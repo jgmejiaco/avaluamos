@@ -111,37 +111,7 @@ class TraitAppWeb
                 'factores_pendiente' => FactorPendiente::orderBy('id_factor_pendiente', 'asc')->get(['id_factor_pendiente', 'factor_pendiente']),
                 'factores_ubicacion' => FactorUbicacion::orderBy('id_factor_ubicacion', 'asc')->get(['id_factor_ubicacion', 'factor_ubicacion']),
                 'estados_conservacion' => EstadoConservacionOpciones::orderBy('estado_conservacion_opciones', 'asc')->get(['id_estado_conservacion_opciones', 'estado_conservacion_opciones']),
-                'ciudades_dpto' => DB::table('ciudad')
-                    ->leftJoin('departamento_estado', 'departamento_estado.id_departamento_estado', '=', 'ciudad.id_departamento_estado')
-                    ->select(
-                        'ciudad.id_ciudad',
-                        DB::raw("CONCAT(ciudad.descripcion_ciudad, '-', departamento_estado.descripcion_departamento) as ciudadDpto")
-                    )
-                    ->orderBy('ciudadDpto', 'asc')
-                    ->pluck('ciudadDpto', 'id_ciudad'),
-                'usuarios' => DB::table('usuarios')
-                    ->leftJoin('tipo_documento', 'tipo_documento.id_tipo_documento', '=', 'usuarios.id_tipo_documento')
-                    ->leftJoin('roles', 'roles.id', '=', 'usuarios.id_rol')
-                    ->leftJoin('cargo', 'cargo.id_cargo', '=', 'usuarios.id_cargo')
-                    ->leftJoin('estado', 'estado.id_estado', '=', 'usuarios.id_estado')
-                    ->select(
-                        'usuarios.id_usuario',
-                        'usuarios.nombre_usuario',
-                        'usuarios.nombres',
-                        'usuarios.apellidos',
-                        'tipo_documento.id_tipo_documento',
-                        'tipo_documento.decripcion_documento',
-                        'usuarios.numero_documento',
-                        'usuarios.correo',
-                        'usuarios.celular',
-                        'roles.id as id_rol',
-                        'roles.name as nombre_rol',
-                        'cargo.id_cargo',
-                        'cargo.descripcion_cargo',
-                        'estado.id_estado',
-                        'estado.descripcion_estado'
-                    )
-                    ->get(),
+                'ciudades_dpto' => $this->ciudadesConDepartamento(),
             ]);
         } catch (Exception $e) {
             return response()->json([
@@ -149,5 +119,29 @@ class TraitAppWeb
                 'detalle' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
+    }
+
+    /**
+     * Mapa id_ciudad => "Ciudad-Departamento" para selects.
+     * withTrashed(): equivale al antiguo DB::table (sin filtrar soft deletes).
+     */
+    private function ciudadesConDepartamento()
+    {
+        $ciudad = (new Ciudad)->getTable();
+        $departamento = (new DepartamentoEstado)->getTable();
+
+        return Ciudad::withTrashed()
+            ->leftJoin(
+                $departamento,
+                "{$departamento}.id_departamento_estado",
+                '=',
+                "{$ciudad}.id_departamento_estado"
+            )
+            ->select(
+                "{$ciudad}.id_ciudad",
+                DB::raw("CONCAT({$ciudad}.descripcion_ciudad, '-', {$departamento}.descripcion_departamento) as ciudadDpto")
+            )
+            ->orderBy('ciudadDpto', 'asc')
+            ->pluck('ciudadDpto', 'id_ciudad');
     }
 }
