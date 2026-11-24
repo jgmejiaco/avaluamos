@@ -8,7 +8,7 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <div class="form-group d-flex flex-column">
-                        <label for="observaciones_generales" class="form-label text-uppercase">Observaciones Generales<span class="text-danger">*</span></label>
+                        <label for="observaciones_generales" class="form-label text-uppercase mb-0">Observaciones Generales<span class="text-danger">*</span></label>
                         {!! Form::textarea('observaciones_generales', isset($calcularAvaluo) ? $calcularAvaluo->observaciones_generales : null, ['class' => 'form-control', 'id' => 'observaciones_generales', 'required']) !!}
                     </div>
                 </div>

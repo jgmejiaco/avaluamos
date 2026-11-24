@@ -14,11 +14,11 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mt-3 mb-3">
             <div class="col-12">
-                <h2 class="text-center text-uppercase">visita cliente:
+                <h1 class="text-center text-uppercase">visita cliente:
                     <span class="text-primary"> {{$editarVisita->cli_nombres}}</span>
-                </h2>
+                </h1>
             </div>
         </div>
 

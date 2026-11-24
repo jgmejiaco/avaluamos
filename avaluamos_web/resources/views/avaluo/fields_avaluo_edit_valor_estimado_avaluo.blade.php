@@ -8,7 +8,7 @@
             <div class="row mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
-                        <label for="valor_estimado_inmueble" class="form-label text-uppercase">Valor Estimado Inmueble<span class="text-danger">*</span></label>
+                        <label for="valor_estimado_inmueble" class="form-label text-uppercase mb-0">Valor Estimado Inmueble<span class="text-danger">*</span></label>
                         {!! Form::text('valor_estimado_inmueble', isset($calcularAvaluo) ? $calcularAvaluo->valor_estimado_inmueble : null, ['class' => 'form-control', 'id' => 'valor_estimado_inmueble', 'required']) !!}
                     </div>
                 </div>

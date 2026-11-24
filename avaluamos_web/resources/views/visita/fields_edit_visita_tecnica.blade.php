@@ -7,27 +7,27 @@
         <h4 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h4>
 
         <div class="row mb-2 mt-2" id="div_dirigido_a">
-            <div class="col-12 col-md-4" id="">
+            <div class="col-12 col-md-4 mt-5" id="">
                 <div class="form-group d-flex flex-column">
-                    <label for="dirigido_a" class="form-label text-uppercase">Nombre Dirigido A<span class="text-danger">*</span></label>
+                    <label for="dirigido_a" class="form-label text-uppercase mb-0">Nombre Dirigido A<span class="text-danger">*</span></label>
                     {!! Form::select('dirigido_a', collect(['' => 'Seleccionar...'])->union($dirigido_a), isset($editarVisita) ? $editarVisita->id_dirigido_a : null, ['class' => 'form-select', 'id' => 'dirigido_a', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 mt-5">
                 <div class="form-group d-flex flex-column">
-                    <label for="tipo_doc_empresa" class="form-label text-uppercase">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
+                    <label for="tipo_doc_empresa" class="form-label text-uppercase mb-0">Tipo Documento Dirigido A<span class="text-danger">*</span></label>
                     {!! Form::select('tipo_doc_empresa', collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($editarVisita) ? $editarVisita->id_doc_empresa : '', ['class' => 'form-select', 'id' => 'tipo_doc_empresa', 'readonly'=>'true','required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 mt-5">
                 <div class="form-group d-flex flex-column">
-                    <label for="doc_dirigido_a" class="form-label text-uppercase">Documento Dirigido A<span class="text-danger">*</span></label>
+                    <label for="doc_dirigido_a" class="form-label text-uppercase mb-0">Documento Dirigido A<span class="text-danger">*</span></label>
                     {!! Form::text('doc_dirigido_a', isset($editarVisita) ? $editarVisita->documento_empresa : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_dirigido_a', 'readonly' => 'true', 'required']) !!}
                 </div>
             </div>
@@ -41,8 +41,8 @@
         {{-- ========================================================= --}}
 
         <div class="row mb-1" id="div_objeto_avaluo">
-            <div class="col-12 mt-5 mb-5">
-                <label for="objeto_avaluo" class="form-label text-uppercase">Objeto Avalúo<span class="text-danger">*</span></label>
+            <div class="col-12 mt-4 mb-4">
+                <label for="objeto_avaluo" class="form-label text-uppercase mb-0">Objeto Avalúo<span class="text-danger">*</span></label>
 
                 @php
                     $arrayObjetoAvaluo = isset($editarVisita) ? explode(', ', $editarVisita->objeto_avaluo) : [];
@@ -51,7 +51,7 @@
                 <div class="border rounded d-flex justify-content-around p-5">
                     @foreach(['Comercial', 'Jurídico', 'Rentas', 'Contable', 'Financiero', 'Reforma Vivienda', 'Compra Vivienda'] as $valor)
                         <div>
-                            <label for="{{ strtoupper($valor) }}" class="form-label text-uppercase">{{ $valor }}</label>
+                            <label for="{{ strtoupper($valor) }}" class="form-label text-uppercase mb-0">{{ $valor }}</label>
                             {!! Form::checkbox('objeto_avaluo[]', $valor, in_array($valor, $arrayObjetoAvaluo), ['class' => '', 'id' => strtoupper($valor)]) !!}
                         </div>
                     @endforeach
@@ -69,7 +69,7 @@
         <div class="row mb-1" id="div_visita_tecnica">
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
-                    <label for="pais" class="form-label text-uppercase">País<span class="text-danger">*</span></label>
+                    <label for="pais" class="form-label text-uppercase mb-0">País<span class="text-danger">*</span></label>
                     {!! Form::select('pais', collect(['' => 'Seleccionar...'])->union($paises), isset($editarVisita) ? $editarVisita->visita_pais : null, ['class' => 'form-select', 'id' => 'pais', 'required']) !!}
                 </div>
             </div>
@@ -78,7 +78,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
-                    <label for="departamento" class="form-label text-uppercase">Departamento<span class="text-danger">*</span></label>
+                    <label for="departamento" class="form-label text-uppercase mb-0">Departamento<span class="text-danger">*</span></label>
                     {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), isset($editarVisita) ? $editarVisita->id_vis_dpto : null, ['class' => 'form-select', 'id' => 'vis_dpto', 'required']) !!}
                 </div>
             </div>
@@ -87,7 +87,7 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
-                    <label for="ciudad" class="form-label text-uppercase">Municipio<span class="text-danger">*</span></label>
+                    <label for="ciudad" class="form-label text-uppercase mb-0">Municipio<span class="text-danger">*</span></label>
                     {!! Form::select('ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($editarVisita) ? $editarVisita->vis_ciudad : null, ['class' => 'form-select', 'id' => 'vis_ciudad', 'required']) !!}
                 </div>
             </div>
@@ -96,52 +96,52 @@
             
             <div class="col-12 col-md-3">
                 <div class="form-group d-flex flex-column">
-                    <label for="comuna" class="form-label text-uppercase">Comuna</label>
+                    <label for="comuna" class="form-label text-uppercase mb-0">Comuna</label>
                     {!! Form::select('comuna', collect(['' => 'Seleccionar...'])->union($comunas), isset($editarVisita) ? $editarVisita->id_comuna : null, ['class' => 'form-select', 'id' => 'comuna']) !!}
                 </div>
             </div>
             
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="sector" class="form-label text-uppercase">Sector</label>
+                    <label for="sector" class="form-label text-uppercase mb-0">Sector</label>
                     {!! Form::text('sector', isset($editarVisita) ? $editarVisita->sector : null, ['class' => 'form-control text-uppercase', 'id' => 'sector']) !!}
                 </div>
             </div>
             
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-3 mt-4" id="">
                 <div class="form-group d-flex flex-column">
-                    <label for="cerca_de" class="form-label text-uppercase">Cerca De</label>
+                    <label for="cerca_de" class="form-label text-uppercase mb-0">Cerca De</label>
                     {!! Form::text('cerca_de', isset($editarVisita) ? $editarVisita->cerca_de : null, ['class' => 'form-control', 'id' => 'cerca_de']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="barrio" class="form-label text-uppercase">Barrio</label>
+                    <label for="barrio" class="form-label text-uppercase mb-0">Barrio</label>
                     {!! Form::text('barrio', isset($editarVisita) ? $editarVisita->barrio : null, ['class' => 'form-control text-uppercase', 'id' => 'barrio']) !!}
                 </div>
             </div>
             
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="unidad_edificio" class="form-label text-uppercase">Urb/Unidad/Edificio</label>
+                    <label for="unidad_edificio" class="form-label text-uppercase mb-0">Urb/Unidad/Edificio</label>
                     {!! Form::text('unidad_edificio', isset($editarVisita) ? $editarVisita->unidad_edificio : null, ['class' => 'form-control', 'id' => 'unidad_edificio']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="direccion" class="form-label text-uppercase">Dirección</label>
+                    <label for="direccion" class="form-label text-uppercase mb-0">Dirección</label>
                     {!! Form::text('direccion', isset($editarVisita) ? $editarVisita->direccion : null, ['class' => 'form-control text-uppercase', 'id' => 'direccion']) !!}
                 </div>
             </div>
@@ -149,88 +149,88 @@
             {{-- ======================= --}}
 
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="tipo_inmueble" class="form-label text-uppercase">Tipo Inmueble<span class="text-danger">*</span></label>
+                    <label for="tipo_inmueble" class="form-label text-uppercase mb-0">Tipo Inmueble<span class="text-danger">*</span></label>
                     {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), isset($editarVisita) ? $editarVisita->id_tipo_inmueble : null, ['class' => 'form-select', 'id' => 'tipo_inmueble', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="area" class="form-label text-uppercase">Área</label>
+                    <label for="area" class="form-label text-uppercase mb-0">Área</label>
                     {!! Form::text('area', isset($editarVisita) ? $editarVisita->area : null, ['class' => 'form-control text-uppercase', 'id' => 'area']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="estrato" class="form-label text-uppercase">Estrato<span class="text-danger">*</span></label>
+                    <label for="estrato" class="form-label text-uppercase mb-0">Estrato<span class="text-danger">*</span></label>
                     {!! Form::select('estrato', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($editarVisita) ? $editarVisita->estrato : null, ['class' => 'form-select', 'id' => 'estrato', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="numero_inmueble" class="form-label text-uppercase">Número Inmueble</label>
+                    <label for="numero_inmueble" class="form-label text-uppercase mb-0">Número Inmueble</label>
                     {!! Form::text('numero_inmueble', isset($editarVisita) ? $editarVisita->numero_inmueble : null, ['class' => 'form-control text-uppercase', 'id' => 'numero_inmueble']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="porcentaje_descuento" class="form-label text-uppercase">Porcentaje Descuento<span class="text-danger">*</span></label>
+                    <label for="porcentaje_descuento" class="form-label text-uppercase mb-0">Porcentaje Descuento<span class="text-danger">*</span></label>
                     {!! Form::number('porcentaje_descuento', isset($editarVisita) ? $editarVisita->porcentaje_descuento : null, ['class' => 'form-control text-uppercase', 'id' => 'porcentaje_descuento', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="valor_cotizacion" class="form-label text-uppercase">Valor Cotizacion<span class="text-danger">*</span></label>
+                    <label for="valor_cotizacion" class="form-label text-uppercase mb-0">Valor Cotizacion<span class="text-danger">*</span></label>
                     {!! Form::number('valor_cotizacion', isset($editarVisita) ? $editarVisita->valor_cotizacion : null, ['class' => 'form-control text-uppercase', 'id' => 'valor_cotizacion', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="latitud" class="form-label text-uppercase">Latitud<span class="text-danger">*</span></label>
+                    <label for="latitud" class="form-label text-uppercase mb-0">Latitud<span class="text-danger">*</span></label>
                     {!! Form::text('latitud', isset($editarVisita) ? $editarVisita->latitud : null, ['class' => 'form-control', 'id' => 'latitud', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="longitud" class="form-label text-uppercase">Longitud<span class="text-danger">*</span></label>
+                    <label for="longitud" class="form-label text-uppercase mb-0">Longitud<span class="text-danger">*</span></label>
                     {!! Form::text('longitud', isset($editarVisita) ? $editarVisita->longitud : null, ['class' => 'form-control', 'id' => 'longitud', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12" id="">
+            <div class="col-12 mt-4" id="">
                 <div class="form-group d-flex flex-column">
-                    <label for="obser_visita_tecnica" class="form-label text-uppercase">Observaciones Visita Técnica<span class="text-danger">*</span></label>
-                    {!! Form::textarea('obser_visita_tecnica', isset($editarVisita) ? $editarVisita->obser_visita : null, ['class' => 'form-control', 'id' => 'obser_visita_tecnica', 'required']) !!}
+                    <label for="obser_visita_tecnica" class="form-label text-uppercase mb-0">Observaciones Visita Técnica<span class="text-danger">*</span></label>
+                    {!! Form::textarea('obser_visita_tecnica', isset($editarVisita) ? $editarVisita->obser_visita : null, ['class' => 'form-control', 'id' => 'obser_visita_tecnica', 'rows' => 4, 'required']) !!}
                 </div>
             </div>
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="visitado" class="form-label text-uppercase">Visitado<span class="text-danger">*</span></label>
+                    <label for="visitado" class="form-label text-uppercase mb-0">Visitado<span class="text-danger">*</span></label>
                     {!! Form::select('visitado', collect(['' => 'Seleccionar...'])->union($si_no), isset($editarVisita) ? $editarVisita->id_visitado : null, ['class' => 'form-select', 'id' => 'visitado', 'required']) !!}
                 </div>
             </div>
@@ -243,18 +243,18 @@
                 $fechaVisita = isset($fechaVisitaTimeStamp) ? Carbon::parse($editarVisita->fecha_visita)->toDateString() : null;
             @endphp
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="fecha_visita" class="form-label text-uppercase">Fecha Inspección<span class="text-danger">*</span></label>
+                    <label for="fecha_visita" class="form-label text-uppercase mb-0">Fecha Inspección<span class="text-danger">*</span></label>
                     {!! Form::date('fecha_visita', isset($editarVisita) ? $fechaVisita : null, ['class' => 'form-control', 'id' => 'fecha_visita', 'required']) !!}
                 </div>
             </div>
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-3 mt-4" id="">
                 <div class="form-group d-flex flex-column">
-                    <label for="hora_visita" class="form-label text-uppercase">Hora Visita<span class="text-danger">*</span></label>
+                    <label for="hora_visita" class="form-label text-uppercase mb-0">Hora Visita<span class="text-danger">*</span></label>
                     {!! Form::time('hora_visita', isset($editarVisita) ? $editarVisita->hora_visita : null, ['class' => 'form-control', 'id' => 'hora_visita', 'required']) !!}
                 </div>
             </div>
@@ -262,9 +262,9 @@
             {{-- ======================= --}}
             
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
-                    <label for="visitador" class="form-label text-uppercase">visitador<span class="text-danger">*</span></label>
+                    <label for="visitador" class="form-label text-uppercase mb-0">visitador<span class="text-danger">*</span></label>
                     {!! Form::select('visitador', collect(['' => 'Seleccionar...'])->union($avaluador), isset($editarVisita) ? $editarVisita->id_visitador : null, ['class' => 'form-select text-uppercase', 'id' => 'visitador', 'required']) !!}
                 </div>
             </div>

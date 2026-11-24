@@ -6,10 +6,10 @@
             {!! Form::hidden('id_cliente', isset($editarVisita) ? $editarVisita->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
             <h4 class="text-uppercase">REGISTRO FOTOGRÁFICO</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_fachada" class="form-label text-uppercase">Fachada</label>
+                        <label for="rf_fachada" class="form-label text-uppercase mb-0">Fachada</label>
                         <div class="div-file">
                             {!! Form::file('rf_fachada', ['class' => 'form-control file', 'id' => 'rf_fachada', 'onchange' => 'displaySelectedFile("rf_fachada","selected_rf_fachada")']) !!}
                         </div>
@@ -29,7 +29,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_entrada" class="form-label text-uppercase">Entrada</label>
+                        <label for="rf_entrada" class="form-label text-uppercase mb-0">Entrada</label>
                         <div class="div-file">
                             {!! Form::file('rf_entrada', ['class' => 'form-control file', 'id' => 'rf_entrada', 'onchange' => 'displaySelectedFile("rf_entrada","selected_rf_entrada")']) !!}
                         </div>
@@ -50,7 +50,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_sala1" class="form-label text-uppercase">sala 1</label>
+                        <label for="rf_sala1" class="form-label text-uppercase mb-0">sala 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_sala1', ['class' => 'form-control file', 'id' => 'rf_sala1', 'onchange' => 'displaySelectedFile("rf_sala1","selected_rf_sala1")']) !!}
                         </div>
@@ -71,7 +71,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_sala2" class="form-label text-uppercase">sala 2</label>
+                        <label for="rf_sala2" class="form-label text-uppercase mb-0">sala 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_sala2', ['class' => 'form-control file', 'id' => 'rf_sala2', 'onchange' => 'displaySelectedFile("rf_sala2","selected_rf_sala2")']) !!}
                         </div>
@@ -92,7 +92,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_sala3" class="form-label text-uppercase">sala 3</label>
+                        <label for="rf_sala3" class="form-label text-uppercase mb-0">sala 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_sala3', ['class' => 'form-control file', 'id' => 'rf_sala3', 'onchange' => 'displaySelectedFile("rf_sala3","selected_rf_sala3")']) !!}
                         </div>
@@ -113,7 +113,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_comedor1" class="form-label text-uppercase">comedor 1</label>
+                        <label for="rf_comedor1" class="form-label text-uppercase mb-0">comedor 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_comedor1', ['class' => 'form-control file', 'id' => 'rf_comedor1', 'onchange' => 'displaySelectedFile("rf_comedor1","selected_rf_comedor1")']) !!}
                         </div>
@@ -134,7 +134,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_comedor2" class="form-label text-uppercase">comedor 2</label>
+                        <label for="rf_comedor2" class="form-label text-uppercase mb-0">comedor 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_comedor2', ['class' => 'form-control file', 'id' => 'rf_comedor2', 'onchange' => 'displaySelectedFile("rf_comedor2","selected_rf_comedor2")']) !!}
                         </div>
@@ -155,7 +155,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_comedor3" class="form-label text-uppercase">comedor 3</label>
+                        <label for="rf_comedor3" class="form-label text-uppercase mb-0">comedor 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_comedor3', ['class' => 'form-control file', 'id' => 'rf_comedor3', 'onchange' => 'displaySelectedFile("rf_comedor3","selected_rf_comedor3")']) !!}
                         </div>
@@ -176,7 +176,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cocina1" class="form-label text-uppercase">cocina 1</label>
+                        <label for="rf_cocina1" class="form-label text-uppercase mb-0">cocina 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_cocina1', ['class' => 'form-control file', 'id' => 'rf_cocina1', 'onchange' => 'displaySelectedFile("rf_cocina1","selected_rf_cocina1")']) !!}
                         </div>
@@ -197,7 +197,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cocina2" class="form-label text-uppercase">cocina 2</label>
+                        <label for="rf_cocina2" class="form-label text-uppercase mb-0">cocina 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_cocina2', ['class' => 'form-control file', 'id' => 'rf_cocina2', 'onchange' => 'displaySelectedFile("rf_cocina2","selected_rf_cocina2")']) !!}
                         </div>
@@ -218,7 +218,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cocina3" class="form-label text-uppercase">cocina 3</label>
+                        <label for="rf_cocina3" class="form-label text-uppercase mb-0">cocina 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_cocina3', ['class' => 'form-control file', 'id' => 'rf_cocina3', 'onchange' => 'displaySelectedFile("rf_cocina3","selected_rf_cocina3")']) !!}
                         </div>
@@ -239,7 +239,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion1" class="form-label text-uppercase">habitación 1</label>
+                        <label for="rf_habitacion1" class="form-label text-uppercase mb-0">habitación 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion1', ['class' => 'form-control file', 'id' => 'rf_habitacion1', 'onchange' => 'displaySelectedFile("rf_habitacion1","selected_rf_habitacion1")']) !!}
                         </div>
@@ -260,7 +260,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion2" class="form-label text-uppercase">habitación 2</label>
+                        <label for="rf_habitacion2" class="form-label text-uppercase mb-0">habitación 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion2', ['class' => 'form-control file', 'id' => 'rf_habitacion2', 'onchange' => 'displaySelectedFile("rf_habitacion2","selected_rf_habitacion2")']) !!}
                         </div>
@@ -281,7 +281,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion3" class="form-label text-uppercase">habitación 3</label>
+                        <label for="rf_habitacion3" class="form-label text-uppercase mb-0">habitación 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion3', ['class' => 'form-control file', 'id' => 'rf_habitacion3', 'onchange' => 'displaySelectedFile("rf_habitacion3","selected_rf_habitacion3")']) !!}
                         </div>
@@ -302,7 +302,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion4" class="form-label text-uppercase">habitación 4</label>
+                        <label for="rf_habitacion4" class="form-label text-uppercase mb-0">habitación 4</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion4', ['class' => 'form-control file', 'id' => 'rf_habitacion4', 'onchange' => 'displaySelectedFile("rf_habitacion4","selected_rf_habitacion4")']) !!}
                         </div>
@@ -323,7 +323,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion5" class="form-label text-uppercase">habitación 5</label>
+                        <label for="rf_habitacion5" class="form-label text-uppercase mb-0">habitación 5</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion5', ['class' => 'form-control file', 'id' => 'rf_habitacion5', 'onchange' => 'displaySelectedFile("rf_habitacion5","selected_rf_habitacion5")']) !!}
                         </div>
@@ -344,7 +344,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion6" class="form-label text-uppercase">habitación 6</label>
+                        <label for="rf_habitacion6" class="form-label text-uppercase mb-0">habitación 6</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion6', ['class' => 'form-control file', 'id' => 'rf_habitacion6', 'onchange' => 'displaySelectedFile("rf_habitacion6","selected_rf_habitacion6")']) !!}
                         </div>
@@ -365,7 +365,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_habitacion7" class="form-label text-uppercase">habitación 7</label>
+                        <label for="rf_habitacion7" class="form-label text-uppercase mb-0">habitación 7</label>
                         <div class="div-file">
                             {!! Form::file('rf_habitacion7', ['class' => 'form-control file', 'id' => 'rf_habitacion7', 'onchange' => 'displaySelectedFile("rf_habitacion7","selected_rf_habitacion7")']) !!}
                         </div>
@@ -386,7 +386,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_bano1" class="form-label text-uppercase">baño 1</label>
+                        <label for="rf_bano1" class="form-label text-uppercase mb-0">baño 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_bano1', ['class' => 'form-control file', 'id' => 'rf_bano1', 'onchange' => 'displaySelectedFile("rf_bano1","selected_rf_bano1")']) !!}
                         </div>
@@ -407,7 +407,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_bano2" class="form-label text-uppercase">baño 2</label>
+                        <label for="rf_bano2" class="form-label text-uppercase mb-0">baño 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_bano2', ['class' => 'form-control file', 'id' => 'rf_bano2', 'onchange' => 'displaySelectedFile("rf_bano2","selected_rf_bano2")']) !!}
                         </div>
@@ -428,7 +428,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_bano3" class="form-label text-uppercase">baño 3</label>
+                        <label for="rf_bano3" class="form-label text-uppercase mb-0">baño 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_bano3', ['class' => 'form-control file', 'id' => 'rf_bano3', 'onchange' => 'displaySelectedFile("rf_bano3","selected_rf_bano3")']) !!}
                         </div>
@@ -449,7 +449,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_patio1" class="form-label text-uppercase">patio 1</label>
+                        <label for="rf_patio1" class="form-label text-uppercase mb-0">patio 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_patio1', ['class' => 'form-control file', 'id' => 'rf_patio1', 'onchange' => 'displaySelectedFile("rf_patio1","selected_rf_patio1")']) !!}
                         </div>
@@ -470,7 +470,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_patio2" class="form-label text-uppercase">patio 2</label>
+                        <label for="rf_patio2" class="form-label text-uppercase mb-0">patio 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_patio2', ['class' => 'form-control file', 'id' => 'rf_patio2', 'onchange' => 'displaySelectedFile("rf_patio2","selected_rf_patio2")']) !!}
                         </div>
@@ -491,7 +491,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_patio3" class="form-label text-uppercase">patio 3</label>
+                        <label for="rf_patio3" class="form-label text-uppercase mb-0">patio 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_patio3', ['class' => 'form-control file', 'id' => 'rf_patio3', 'onchange' => 'displaySelectedFile("rf_patio3","selected_rf_patio3")']) !!}
                         </div>
@@ -512,7 +512,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_estudio1" class="form-label text-uppercase">Estudio 1</label>
+                        <label for="rf_estudio1" class="form-label text-uppercase mb-0">Estudio 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_estudio1', ['class' => 'form-control file', 'id' => 'rf_estudio1', 'onchange' => 'displaySelectedFile("rf_estudio1","selected_rf_estudio1")']) !!}
                         </div>
@@ -533,7 +533,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_estudio2" class="form-label text-uppercase">Estudio 2</label>
+                        <label for="rf_estudio2" class="form-label text-uppercase mb-0">Estudio 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_estudio2', ['class' => 'form-control file', 'id' => 'rf_estudio2', 'onchange' => 'displaySelectedFile("rf_estudio2","selected_rf_estudio2")']) !!}
                         </div>
@@ -554,7 +554,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_estudio3" class="form-label text-uppercase">Estudio 3</label>
+                        <label for="rf_estudio3" class="form-label text-uppercase mb-0">Estudio 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_estudio3', ['class' => 'form-control file', 'id' => 'rf_estudio3', 'onchange' => 'displaySelectedFile("rf_estudio3","selected_rf_estudio3")']) !!}
                         </div>
@@ -575,7 +575,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cuarto_util1" class="form-label text-uppercase">Cuarto Útil 1</label>
+                        <label for="rf_cuarto_util1" class="form-label text-uppercase mb-0">Cuarto Útil 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_cuarto_util1', ['class' => 'form-control file', 'id' => 'rf_cuarto_util1', 'onchange' => 'displaySelectedFile("rf_cuarto_util1","selected_rf_cuarto_util1")']) !!}
                         </div>
@@ -596,7 +596,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cuarto_util2" class="form-label text-uppercase">Cuarto Útil 2</label>
+                        <label for="rf_cuarto_util2" class="form-label text-uppercase mb-0">Cuarto Útil 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_cuarto_util2', ['class' => 'form-control file', 'id' => 'rf_cuarto_util2', 'onchange' => 'displaySelectedFile("rf_cuarto_util2","selected_rf_cuarto_util2")']) !!}
                         </div>
@@ -617,7 +617,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_cuarto_util3" class="form-label text-uppercase">Cuarto Útil 3</label>
+                        <label for="rf_cuarto_util3" class="form-label text-uppercase mb-0">Cuarto Útil 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_cuarto_util3', ['class' => 'form-control file', 'id' => 'rf_cuarto_util3', 'onchange' => 'displaySelectedFile("rf_cuarto_util3","selected_rf_cuarto_util3")']) !!}
                         </div>
@@ -638,7 +638,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_pasillo1" class="form-label text-uppercase">Pasillo 1</label>
+                        <label for="rf_pasillo1" class="form-label text-uppercase mb-0">Pasillo 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_pasillo1', ['class' => 'form-control file', 'id' => 'rf_pasillo1', 'onchange' => 'displaySelectedFile("rf_pasillo1","selected_rf_pasillo1")']) !!}
                         </div>
@@ -659,7 +659,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_pasillo2" class="form-label text-uppercase">Pasillo 2</label>
+                        <label for="rf_pasillo2" class="form-label text-uppercase mb-0">Pasillo 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_pasillo2', ['class' => 'form-control file', 'id' => 'rf_pasillo2', 'onchange' => 'displaySelectedFile("rf_pasillo2","selected_rf_pasillo2")']) !!}
                         </div>
@@ -680,7 +680,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_pasillo3" class="form-label text-uppercase">Pasillo 3</label>
+                        <label for="rf_pasillo3" class="form-label text-uppercase mb-0">Pasillo 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_pasillo3', ['class' => 'form-control file', 'id' => 'rf_pasillo3', 'onchange' => 'displaySelectedFile("rf_pasillo3","selected_rf_pasillo3")']) !!}
                         </div>
@@ -701,7 +701,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_zona_ropa1" class="form-label text-uppercase">Zona ropa 1</label>
+                        <label for="rf_zona_ropa1" class="form-label text-uppercase mb-0">Zona ropa 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_zona_ropa1', ['class' => 'form-control file', 'id' => 'rf_zona_ropa1', 'onchange' => 'displaySelectedFile("rf_zona_ropa1","selected_rf_zona_ropa1")']) !!}
                         </div>
@@ -722,7 +722,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_zona_ropa2" class="form-label text-uppercase">Zona ropa 2</label>
+                        <label for="rf_zona_ropa2" class="form-label text-uppercase mb-0">Zona ropa 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_zona_ropa2', ['class' => 'form-control file', 'id' => 'rf_zona_ropa2', 'onchange' => 'displaySelectedFile("rf_zona_ropa2","selected_rf_zona_ropa2")']) !!}
                         </div>
@@ -743,7 +743,7 @@
 
                 <div class="col-12 col-sm-3 col-md-3 mb-5">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_zona_ropa3" class="form-label text-uppercase">Zona ropa 3</label>
+                        <label for="rf_zona_ropa3" class="form-label text-uppercase mb-0">Zona ropa 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_zona_ropa3', ['class' => 'form-control file', 'id' => 'rf_zona_ropa3', 'onchange' => 'displaySelectedFile("rf_zona_ropa3","selected_rf_zona_ropa3")']) !!}
                         </div>
@@ -762,9 +762,9 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-sm-3 col-md-3 mb-5">
+                <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_balcon1" class="form-label text-uppercase">balcón 1</label>
+                        <label for="rf_balcon1" class="form-label text-uppercase mb-0">balcón 1</label>
                         <div class="div-file">
                             {!! Form::file('rf_balcon1', ['class' => 'form-control file', 'id' => 'rf_balcon1', 'onchange' => 'displaySelectedFile("rf_balcon1","selected_rf_balcon1")']) !!}
                         </div>
@@ -783,9 +783,9 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-sm-3 col-md-3 mb-5">
+                <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_balcon2" class="form-label text-uppercase">balcón 2</label>
+                        <label for="rf_balcon2" class="form-label text-uppercase mb-0">balcón 2</label>
                         <div class="div-file">
                             {!! Form::file('rf_balcon2', ['class' => 'form-control file', 'id' => 'rf_balcon2', 'onchange' => 'displaySelectedFile("rf_balcon2","selected_rf_balcon2")']) !!}
                         </div>
@@ -804,9 +804,9 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-sm-3 col-md-3 mb-5">
+                <div class="col-12 col-sm-3 col-md-3">
                     <div class="form-group d-flex flex-column file-container">
-                        <label for="rf_balcon3" class="form-label text-uppercase">balcón 3</label>
+                        <label for="rf_balcon3" class="form-label text-uppercase mb-0">balcón 3</label>
                         <div class="div-file">
                             {!! Form::file('rf_balcon3', ['class' => 'form-control file', 'id' => 'rf_balcon3', 'onchange' => 'displaySelectedFile("rf_balcon3","selected_rf_balcon3")']) !!}
                         </div>
@@ -832,7 +832,7 @@
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Registro Fotográfico">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Registro Fotográfico">
             </div>
         </div>
     </div>

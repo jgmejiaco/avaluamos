@@ -10,7 +10,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="cli_nombres" class="form-label text-uppercase">Nombre Solicitante<span class="text-danger">*</span></label>
+                    <label for="cli_nombres" class="form-label text-uppercase mb-0">Nombre Solicitante<span class="text-danger">*</span></label>
                     {{-- {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cliente->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!} --}}
                     {!! Form::text('cli_nombres', isset($calcularAvaluo) ? $calcularAvaluo->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_nombres', 'required']) !!}
                 </div>
@@ -20,7 +20,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="cli_tipo_doc" class="form-label text-uppercase">Tipo Documento Cliente<span class="text-danger">*</span></label>
+                    <label for="cli_tipo_doc" class="form-label text-uppercase mb-0">Tipo Documento Cliente<span class="text-danger">*</span></label>
                     {{-- {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->tipoDocCliente->id_tipo_documento : null, ['class' => 'form-select', 'id' => 'cli_tipo_doc', 'required']) !!} --}}
                     {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'cli_tipo_doc', 'required']) !!}
                 </div>
@@ -30,7 +30,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="doc_cliente" class="form-label text-uppercase">Documento Cliente<span class="text-danger">*</span></label>
+                    <label for="doc_cliente" class="form-label text-uppercase mb-0">Documento Cliente<span class="text-danger">*</span></label>
                     {!! Form::text('doc_cliente', isset($calcularAvaluo) ? $calcularAvaluo->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_cliente', 'required']) !!}
                 </div>
             </div>
@@ -45,7 +45,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
+                    <label for="fecha_nacimiento" class="form-label text-uppercase mb-0">Fecha Nacimiento</label>
                     {!! Form::date('fecha_nacimiento', isset($calcularAvaluo) ? $fechaNacimiento : null, ['class' => 'form-control text-uppercase', 'id' => 'fecha_nacimiento']) !!}
                 </div>
             </div>
@@ -54,7 +54,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="cli_celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
+                    <label for="cli_celular" class="form-label text-uppercase mb-0">Celular<span class="text-danger">*</span></label>
                     {!! Form::text('cli_celular', isset($calcularAvaluo) ? $calcularAvaluo->cli_celular : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_celular', 'required']) !!}
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
-                    <label for="cli_correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
+                    <label for="cli_correo" class="form-label text-uppercase mb-0">Email<span class="text-danger">*</span></label>
                     {!! Form::email('cli_correo', isset($calcularAvaluo) ? $calcularAvaluo->cli_email : null, ['class' => 'form-control', 'id' => 'cli_correo', 'required']) !!}
                 </div>
             </div>
@@ -72,7 +72,7 @@
 
             <div class="col-12 col-md-3" id="">
                 <div class="form-group">
-                    <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
+                    <label for="tipo_persona" class="form-label text-uppercase mb-0">Tipo Persona<span class="text-danger">*</span></label>
                     {!! Form::select('tipo_persona', collect(['' => 'Seleccionar...'])->union($tipo_persona), isset($calcularAvaluo) ? $calcularAvaluo->id_tipo_persona : null, ['class' => 'form-select', 'id' => 'tipo_persona', 'required']) !!}
                 </div>
             </div>
@@ -81,7 +81,7 @@
 
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="cli_pais" class="form-label text-uppercase">País residencia</label>
+                <label for="cli_pais" class="form-label text-uppercase mb-0">País residencia</label>
                 {!! Form::select('cli_pais', collect(['' => 'Seleccionar...'])->union($paises), isset($calcularAvaluo) ? $calcularAvaluo->cli_pais : null, ['class' => 'form-select', 'id' => 'cli_pais']) !!}
             </div>
         </div>
@@ -90,7 +90,7 @@
 
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="cli_dpto" class="form-label text-uppercase">Departamento residencia</label>
+                <label for="cli_dpto" class="form-label text-uppercase mb-0">Departamento residencia</label>
                 {!! Form::select('cli_dpto', collect(['' => 'Seleccionar...'])->union($departamentos), isset($calcularAvaluo) ? $calcularAvaluo->cli_dpto : null, ['class' => 'form-select', 'id' => 'cli_dpto']) !!}
             </div>
         </div>
@@ -99,7 +99,7 @@
 
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="cli_ciudad" class="form-label text-uppercase">Ciudad residencia</label>
+                <label for="cli_ciudad" class="form-label text-uppercase mb-0">Ciudad residencia</label>
                 {!! Form::select('cli_ciudad', collect(['' => 'Seleccionar...'])->union($ciudades), isset($calcularAvaluo) ? $calcularAvaluo->cli_ciudad : null, ['class' => 'form-select', 'id' => 'cli_ciudad', 'required']) !!}
             </div>
         </div>
@@ -108,7 +108,7 @@
 
             <div class="col-12 col-md-3">
                 <div class="form-group">
-                    <label for="referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
+                    <label for="referido_por" class="form-label text-uppercase mb-0">Referido Por:<span class="text-danger">*</span></label>
                     {!! Form::select('referido_por', collect(['' => 'Seleccionar...'])->union($referido_por), isset($calcularAvaluo) ? $calcularAvaluo->id_referido_por : null, ['class' => 'form-select', 'id' => 'referido_por', 'required']) !!}
                 </div>
             </div>
@@ -117,7 +117,7 @@
 
             <div class="col-12 col-md-3" id="div_red_social">
                 <div class="form-group">
-                    <label for="red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
+                    <label for="red_social" class="form-label text-uppercase mb-0">Red social<span class="text-danger">*</span></label>
                     {!! Form::select('red_social', collect(['' => 'Seleccionar...'])->union($red_social), isset($calcularAvaluo) ? $calcularAvaluo->id_red_social : null, ['class' => 'form-select', 'id' => 'red_social']) !!}
                 </div>
             </div>
@@ -126,7 +126,7 @@
 
             <div class="col-12 col-md-3" id="div_nombre_refiere">
                 <div class="form-group">
-                    <label for="nombre_quien_refiere" class="form-label text-uppercase">Nombre quien refiere<span class="text-danger">*</span></label>
+                    <label for="nombre_quien_refiere" class="form-label text-uppercase mb-0">Nombre quien refiere<span class="text-danger">*</span></label>
                     {!! Form::text('nombre_quien_refiere', isset($calcularAvaluo) ? $calcularAvaluo->nombre_quien_refiere : null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_quien_refiere']) !!}
                 </div>
             </div>
@@ -135,7 +135,7 @@
 
             <div class="col-12 col-md-3" id="div_empresa_refiere">
                 <div class="form-group">
-                    <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere<span class="text-danger">*</span></label>
+                    <label for="empresa_que_refiere" class="form-label text-uppercase mb-0">Empresa que refiere<span class="text-danger">*</span></label>
                     {!! Form::text('empresa_que_refiere', isset($calcularAvaluo) ? $calcularAvaluo->empresa_que_refiere : null, ['class' => 'form-control text-uppercase', 'id' => 'empresa_que_refiere']) !!}
                 </div>
             </div>
