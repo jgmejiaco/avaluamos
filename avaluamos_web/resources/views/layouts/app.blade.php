@@ -104,7 +104,7 @@
             <script src="{{ asset('js/sesion-inactividad.js') }}"></script>
             <script>
                 initSesionInactividad({
-                    idleMinutes: {{ (int) config('session.lifetime', 120) }},
+                    idleMinutes: {{ (int) config('session.lifetime', 60) }},
                     jwtExp: {{ (int) session('api_jwt_exp', 0) }},
                     keepaliveUrl: @json(route('sesion.keepalive')),
                     logoutUrl: @json(route('logout')),

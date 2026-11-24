@@ -113,6 +113,7 @@ class TraitAppWeb
                 'estados_conservacion' => EstadoConservacionOpciones::orderBy('estado_conservacion_opciones', 'asc')->get(['id_estado_conservacion_opciones', 'estado_conservacion_opciones']),
                 'ciudades_dpto' => $this->ciudadesConDepartamento(),
             ]);
+            
         } catch (Exception $e) {
             return response()->json([
                 'error' => 'Error cargando configuración.',

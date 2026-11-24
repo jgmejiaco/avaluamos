@@ -9,7 +9,7 @@
  *  - refreshSkewSeconds: renovar si faltan menos de N segundos
  */
 window.initSesionInactividad = function (opts) {
-    var idleMs = Math.max(1, Number(opts.idleMinutes) || 120) * 60 * 1000;
+    var idleMs = Math.max(1, Number(opts.idleMinutes) || 60) * 60 * 1000;
     var jwtExp = Number(opts.jwtExp) || 0;
     var skew = Number(opts.refreshSkewSeconds) || 300;
     var idleTimer = null;
