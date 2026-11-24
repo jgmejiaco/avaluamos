@@ -16,7 +16,7 @@
                     <ul class="navbar-nav">
                         @if($permisos->tienePermisoRuta('usuarios.index') || $permisos->tienePermisoRuta('roles.index') || $permisos->tienePermisoRuta('asignar_permisos.index'))
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR USUARIOS</a>
+                                <a class="nav-link dropdown-toggle text-white fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestor Usuarios</a>
                                 <ul class="dropdown-menu">
                                     @if($permisos->tienePermisoRuta('roles.index'))
                                         <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
@@ -33,7 +33,7 @@
 
                         @if($permisos->tienePermisoRuta('dirigido_empresa.index') || $permisos->tienePermisoRuta('cliente_potencial.index'))
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">GESTOR CLIENTES</a>
+                                <a class="nav-link dropdown-toggle text-white fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestor Clientes</a>
                                 <ul class="dropdown-menu">
                                     @if($permisos->tienePermisoRuta('dirigido_empresa.index'))
                                         <li><a class="dropdown-item" href="{{ route('dirigido_empresa.index') }}">Empresas</a></li>
@@ -47,19 +47,19 @@
 
                         @if($permisos->tienePermisoRuta('calendario.index'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('calendario.index') }}">CALENDARIO</a>
+                                <a class="nav-link text-white fs-6" href="{{ route('calendario.index') }}">Calendario</a>
                             </li>
                         @endif
 
                         @if($permisos->tienePermisoRuta('visita.index'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('visita.index') }}">VISITAS</a>
+                                <a class="nav-link text-white fs-6" href="{{ route('visita.index') }}">Visitas</a>
                             </li>
                         @endif
 
                         @if($permisos->tienePermisoRuta('avaluos.index') || $permisos->tienePermisoRuta('calcular_avaluo'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('avaluos.index') }}">AVALÚO</a>
+                                <a class="nav-link text-white fs-6" href="{{ route('avaluos.index') }}">Avaluos</a>
                             </li>
                         @endif
                     </ul>

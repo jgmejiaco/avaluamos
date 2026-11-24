@@ -31,9 +31,9 @@
 
             @include('cliente_potencial.fields_cliente_potencial')
 
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Editar Cliente">
+            <div class="row mt-3 mb-3">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <input class="btn btn-primary rounded-pill" type="submit" value="Editar Cliente">
                 </div>
             </div>
         {!! Form::close() !!}

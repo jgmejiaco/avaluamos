@@ -77,10 +77,19 @@
 
                                     <td>{{$cliente->nombre_usuario}}</td>
 
-                                    <td>
-                                        <a href="{{ route('cliente_potencial.edit', $cliente->id_cliente) }}" class="btn btn-warning rounded">Editar Cliente</a>
-
-                                        <a href="{{ route('visita.create', ['id_cliente' => $cliente->id_cliente]) }}" class="btn btn-success mt-2 rounded">Crear Visita</a>
+                                    <td class="text-nowrap">
+                                        <a href="{{ route('cliente_potencial.edit', $cliente->id_cliente) }}"
+                                           class="btn btn-warning btn-sm rounded"
+                                           title="Editar Cliente"
+                                           aria-label="Editar Cliente">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ route('visita.create', ['id_cliente' => $cliente->id_cliente]) }}"
+                                           class="btn btn-success btn-sm rounded"
+                                           title="Crear Visita"
+                                           aria-label="Crear Visita">
+                                            <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -3318,6 +3318,12 @@ div label input {margin-right: 100px;}
 }
 
 /* DataTables: alineación global (length/buscar e info/paginación en la misma fila) */
+div.dataTables_wrapper table.dataTable > thead > tr > th,
+div.dataTables_wrapper table.dataTable > tbody > tr > td {
+	vertical-align: middle;
+	text-align: center;
+}
+
 div.dataTables_wrapper .dt-buttons {
 	margin-bottom: 0.5rem;
 }
@@ -3341,6 +3347,7 @@ div.dataTables_wrapper .dataTables_paginate {
 /* Fila info + paginador: separar del table (vence margin:0 del CSS de DataTables BS5) */
 div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 
 @media (max-width: 767.98px) {
@@ -3405,6 +3412,22 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 /* ========================================================================== */
 /* ========================================================================== */
 /* ========================================================================== */
+
+/* ========================================= */
+/* Dropdown menú principal (no el de usuario) */
+.navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu:not(.menu-usuario-dropdown) {
+	--bs-dropdown-bg: #21277B;
+	--bs-dropdown-link-color: #fff;
+	--bs-dropdown-link-hover-color: #fff;
+	--bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.12);
+	--bs-dropdown-link-active-color: #fff;
+	--bs-dropdown-link-active-bg: rgba(255, 255, 255, 0.18);
+	background-color: #21277B;
+}
+
+.navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu:not(.menu-usuario-dropdown) .dropdown-item {
+	color: #fff;
+}
 
 /* ========================================= */
 /* INICIO Media Query TopMenu */
