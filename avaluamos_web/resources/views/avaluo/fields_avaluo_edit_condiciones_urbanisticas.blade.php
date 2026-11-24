@@ -1,11 +1,11 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_condi_urbanisticas_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_condi_urbanisticas']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
-            <h2 class="text-uppercase">CONDICIONES URBANISTICAS</h2>
+            <h4 class="text-uppercase">CONDICIONES URBANISTICAS</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_valorizacion" class="form-label text-uppercase mb-0">valorización</label>
@@ -43,7 +43,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_seguridad" class="form-label text-uppercase mb-0">seguridad</label>
                         {!! Form::select('cu_seguridad', collect(['' => 'Seleccionar...'])->union($calificacion_general), isset($calcularAvaluo) ? $calcularAvaluo->cu_seguridad : null, ['class' => 'form-select', 'id' => 'cu_seguridad']) !!}
@@ -52,7 +52,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_salubridad" class="form-label text-uppercase mb-0">salubridad</label>
                         {!! Form::select('cu_salubridad', collect(['' => 'Seleccionar...'])->union($calificacion_general), isset($calcularAvaluo) ? $calcularAvaluo->cu_salubridad : null, ['class' => 'form-select', 'id' => 'cu_salubridad']) !!}
@@ -61,7 +61,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_vias" class="form-label text-uppercase mb-0">vías</label>
                         {!! Form::select('cu_vias', collect(['' => 'Seleccionar...'])->union($calificacion_general), isset($calcularAvaluo) ? $calcularAvaluo->cu_vias : null, ['class' => 'form-select', 'id' => 'cu_vias']) !!}
@@ -70,7 +70,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="id_tipo_vias" class="form-label text-uppercase mb-0">tipo de vías</label>
                         {!! Form::select('id_tipo_vias', collect(['' => 'Seleccionar...'])->union($tipo_vias), isset($calcularAvaluo) ? $calcularAvaluo->id_tipo_vias : null, ['class' => 'form-select', 'id' => 'id_tipo_vias']) !!}
@@ -79,7 +79,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_aceras" class="form-label text-uppercase mb-0">Aceras</label>
                         {!! Form::select('cu_aceras', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cu_aceras : null, ['class' => 'form-select', 'id' => 'cu_aceras']) !!}
@@ -88,7 +88,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_red_gas" class="form-label text-uppercase mb-0">Red Gas</label>
                         {!! Form::select('cu_red_gas', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cu_red_gas : null, ['class' => 'form-select', 'id' => 'cu_red_gas']) !!}
@@ -97,7 +97,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_red_telco" class="form-label text-uppercase mb-0">Red Telecomunicaciones</label>
                         {!! Form::select('cu_red_telco', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cu_red_telco : null, ['class' => 'form-select', 'id' => 'cu_red_telco']) !!}
@@ -106,7 +106,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_red_acueducto" class="form-label text-uppercase mb-0">Red Acueducto</label>
                         {!! Form::select('cu_red_acueducto', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cu_red_acueducto: null, ['class' => 'form-select', 'id' => 'cu_red_acueducto']) !!}
@@ -115,7 +115,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_red_alcantarillado" class="form-label text-uppercase mb-0">Red Alcantarillado</label>
                         {!! Form::select('cu_red_alcantarillado', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cu_red_alcantarillado : null, ['class' => 'form-select', 'id' => 'cu_red_alcantarillado']) !!}
@@ -124,28 +124,28 @@
                 
                 {{-- ======================= --}}
 
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_barrios_sectores" class="form-label text-uppercase mb-0">Barrios/Sectores</label>
-                        {!! Form::textarea('cu_barrios_sectores', isset($calcularAvaluo) ? $calcularAvaluo->cu_barrios_sectores : null, ['class' => 'form-control', 'id' => 'cu_barrios_sectores']) !!}
+                        {!! Form::textarea('cu_barrios_sectores', isset($calcularAvaluo) ? $calcularAvaluo->cu_barrios_sectores : null, ['class' => 'form-control', 'id' => 'cu_barrios_sectores', 'rows' => 4]) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="cu_tipo_edificaciones" class="form-label text-uppercase mb-0">tipo edificaciones</label>
-                        {!! Form::textarea('cu_tipo_edificaciones', isset($calcularAvaluo) ? $calcularAvaluo->cu_tipo_edificaciones : null, ['class' => 'form-control', 'id' => 'cu_tipo_edificaciones']) !!}
+                        {!! Form::textarea('cu_tipo_edificaciones', isset($calcularAvaluo) ? $calcularAvaluo->cu_tipo_edificaciones : null, ['class' => 'form-control', 'id' => 'cu_tipo_edificaciones', 'rows' => 4]) !!}
                     </div>
                 </div>
 
                 {{-- ======================= --}}
                 
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="obs_condiciones_urbanisticas" class="form-label text-uppercase mb-0">Observaciones condiciones urbanisticas<span class="text-danger">*</span></label>
-                        {!! Form::textarea('obs_condiciones_urbanisticas', isset($calcularAvaluo) ? $calcularAvaluo->obs_condiciones_urbanisticas : null, ['class' => 'form-control', 'id' => 'obs_condiciones_urbanisticas', 'required']) !!}
+                        {!! Form::textarea('obs_condiciones_urbanisticas', isset($calcularAvaluo) ? $calcularAvaluo->obs_condiciones_urbanisticas : null, ['class' => 'form-control', 'id' => 'obs_condiciones_urbanisticas', 'rows' => 4, 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -156,9 +156,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Condiciones Urbanísticas" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Condiciones Urbanísticas" id="btn_guardar_visita" name="btn_guardar_visita">
             </div>
         </div>
     </div>

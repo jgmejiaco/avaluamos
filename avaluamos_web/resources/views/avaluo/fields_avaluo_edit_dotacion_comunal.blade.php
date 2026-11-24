@@ -1,11 +1,11 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_dotacion_comunal_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_dotacion_comunal']) !!}
 @csrf
-    <div id="div_dotacion_comunal" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_dotacion_comunal" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
-            <h2 class="text-uppercase">EQUIPAMIENTO Y DOTACIÓN COMUNAL</h2>
+            <h4 class="text-uppercase">EQUIPAMIENTO Y DOTACIÓN COMUNAL</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="porteria_24" class="form-label text-uppercase mb-0">Porteria 24 Horas<span class="text-danger">*</span></label>
@@ -42,7 +42,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="piscinas" class="form-label text-uppercase mb-0">Piscina<span class="text-danger">*</span></label>
                         {!! Form::select('piscinas', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->piscinas : null, ['class' => 'form-select', 'id' => 'piscinas', 'required']) !!}
@@ -51,7 +51,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="zonas_verdes" class="form-label text-uppercase mb-0">Zonas Verdes<span class="text-danger">*</span></label>
                         {!! Form::select('zonas_verdes', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->zonas_verdes : null, ['class' => 'form-select', 'id' => 'zonas_verdes', 'required']) !!}
@@ -60,7 +60,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="sauna" class="form-label text-uppercase mb-0">Sauna<span class="text-danger">*</span></label>
                         {!! Form::select('sauna', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->sauna : null, ['class' => 'form-select', 'id' => 'sauna', 'required']) !!}
@@ -69,7 +69,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="div_telefono">
+                <div class="col-12 col-md-3 mt-4" id="div_telefono">
                     <div class="form-group d-flex flex-column">
                         <label for="salon_social" class="form-label text-uppercase mb-0">Salon Social</label>
                         {!! Form::select('salon_social', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->salon_social : null, ['class' => 'form-select', 'id' => 'salon_social']) !!}
@@ -78,7 +78,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="turco" class="form-label text-uppercase mb-0">Turco<span class="text-danger">*</span></label>
                         {!! Form::select('turco', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->turco : null, ['class' => 'form-select', 'id' => 'turco', 'required']) !!}
@@ -87,7 +87,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="canchas" class="form-label text-uppercase mb-0">canchas</label>
                         {!! Form::select('canchas', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->canchas : null, ['class' => 'form-select', 'id' => 'canchas']) !!}
@@ -96,7 +96,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="gimnasio" class="form-label text-uppercase mb-0">Gimnasio</label>
                         {!! Form::select('gimnasio', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->gimnasio : null, ['class' => 'form-select', 'id' => 'gimnasio']) !!}
@@ -105,7 +105,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="playground" class="form-label text-uppercase mb-0">Playground</label>
                         {!! Form::select('playground', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->playground : null, ['class' => 'form-select', 'id' => 'playground']) !!}
@@ -114,7 +114,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="barbecue" class="form-label text-uppercase mb-0">Barbecue</label>
                         {!! Form::select('barbecue', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->barbecue : null, ['class' => 'form-select', 'id' => 'barbecue']) !!}
@@ -123,7 +123,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="supermercado" class="form-label text-uppercase mb-0">Supermercado</label>
                         {!! Form::select('supermercado', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->supermercado : null, ['class' => 'form-select', 'id' => 'supermercado']) !!}
@@ -132,7 +132,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="sala_cine" class="form-label text-uppercase mb-0">Sala Cine</label>
                         {!! Form::select('sala_cine', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->sala_cine : null, ['class' => 'form-select', 'id' => 'sala_cine']) !!}
@@ -141,7 +141,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="cafeteria" class="form-label text-uppercase mb-0">Cafeteria</label>
                         {!! Form::select('cafeteria', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->cafeteria : null, ['class' => 'form-select', 'id' => 'cafeteria']) !!}
@@ -150,7 +150,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="restaurante" class="form-label text-uppercase mb-0">Restaurante</label>
                         {!! Form::select('restaurante', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->restaurante : null, ['class' => 'form-select', 'id' => 'restaurante']) !!}
@@ -159,7 +159,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="squash" class="form-label text-uppercase mb-0">Squash</label>
                         {!! Form::select('squash', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->squash : null, ['class' => 'form-select', 'id' => 'squash']) !!}
@@ -168,10 +168,10 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="obs_dotacion_comunal" class="form-label text-uppercase mb-0">Observaciones Equipamiento y Dotación Comunal<span class="text-danger">*</span></label>
-                        {!! Form::textarea('obs_dotacion_comunal', isset($calcularAvaluo) ? $calcularAvaluo->obs_dotacion_comunal : null, ['class' => 'form-control', 'id' => 'obs_dotacion_comunal', 'required']) !!}
+                        {!! Form::textarea('obs_dotacion_comunal', isset($calcularAvaluo) ? $calcularAvaluo->obs_dotacion_comunal : null, ['class' => 'form-control', 'id' => 'obs_dotacion_comunal', 'rows' => 4, 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -182,9 +182,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Dotación Comunal" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Dotación Comunal" id="btn_guardar_visita" name="btn_guardar_visita">
             </div>
         </div>
     </div>

@@ -1,12 +1,12 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_visita_tecnica_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_visita_tecnica']) !!}
 @csrf
-    <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         {!! Form::hidden('id_cliente', isset($calcularAvaluo) ? $calcularAvaluo->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
 
-        <h2 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h2>
+        <h4 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h4>
 
-        <div class="row mb-2 mt-2" id="div_dirigido_a">
+        <div class="row mt-5 mb-5" id="div_dirigido_a">
             <div class="col-12 col-md-4" id="">
                 <div class="form-group d-flex flex-column">
                     <label for="dirigido_a" class="form-label text-uppercase mb-0">Nombre Dirigido A<span class="text-danger">*</span></label>
@@ -41,7 +41,7 @@
         {{-- ========================================================= --}}
 
         <div class="row mb-1" id="div_objeto_avaluo">
-            <div class="col-12 mt-5 mb-5">
+            <div class="col-12 mt-4 mb-4">
                 <label for="objeto_avaluo" class="form-label text-uppercase mb-0">Objeto Avalúo<span class="text-danger">*</span></label>
 
                 @php
@@ -103,7 +103,7 @@
             
             {{-- ======================= --}}
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="sector" class="form-label text-uppercase mb-0">Sector</label>
                     {!! Form::text('sector', isset($calcularAvaluo) ? $calcularAvaluo->sector : null, ['class' => 'form-control text-uppercase', 'id' => 'sector']) !!}
@@ -112,7 +112,7 @@
             
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-3 mt-4" id="">
                 <div class="form-group d-flex flex-column">
                     <label for="cerca_de" class="form-label text-uppercase mb-0">Cerca De</label>
                     {!! Form::text('cerca_de', isset($calcularAvaluo) ? $calcularAvaluo->cerca_de : null, ['class' => 'form-control', 'id' => 'cerca_de']) !!}
@@ -121,7 +121,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="barrio" class="form-label text-uppercase mb-0">Barrio</label>
                     {!! Form::text('barrio', isset($calcularAvaluo) ? $calcularAvaluo->barrio : null, ['class' => 'form-control text-uppercase', 'id' => 'barrio']) !!}
@@ -130,7 +130,7 @@
             
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="unidad_edificio" class="form-label text-uppercase mb-0">Urb/Unidad/Edificio</label>
                     {!! Form::text('unidad_edificio', isset($calcularAvaluo) ? $calcularAvaluo->unidad_edificio : null, ['class' => 'form-control', 'id' => 'unidad_edificio']) !!}
@@ -139,7 +139,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="direccion" class="form-label text-uppercase mb-0">Dirección</label>
                     {!! Form::text('direccion', isset($calcularAvaluo) ? $calcularAvaluo->direccion : null, ['class' => 'form-control text-uppercase', 'id' => 'direccion']) !!}
@@ -149,7 +149,7 @@
             {{-- ======================= --}}
 
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="tipo_inmueble" class="form-label text-uppercase mb-0">Tipo Inmueble<span class="text-danger">*</span></label>
                     {!! Form::select('tipo_inmueble', collect(['' => 'Seleccionar...'])->union($tipo_inmueble), isset($calcularAvaluo) ? $calcularAvaluo->id_tipo_inmueble : null, ['class' => 'form-select', 'id' => 'tipo_inmueble', 'required']) !!}
@@ -158,7 +158,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="area" class="form-label text-uppercase mb-0">Área</label>
                     {!! Form::text('area', isset($calcularAvaluo) ? $calcularAvaluo->area : null, ['class' => 'form-control text-uppercase', 'id' => 'area']) !!}
@@ -167,7 +167,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="estrato" class="form-label text-uppercase mb-0">Estrato<span class="text-danger">*</span></label>
                     {!! Form::select('estrato', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($calcularAvaluo) ? $calcularAvaluo->estrato : null, ['class' => 'form-select', 'id' => 'estrato', 'required']) !!}
@@ -176,7 +176,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="numero_inmueble" class="form-label text-uppercase mb-0">Número Inmueble</label>
                     {!! Form::text('numero_inmueble', isset($calcularAvaluo) ? $calcularAvaluo->numero_inmueble : null, ['class' => 'form-control text-uppercase', 'id' => 'numero_inmueble']) !!}
@@ -185,7 +185,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="porcentaje_descuento" class="form-label text-uppercase mb-0">Porcentaje Descuento<span class="text-danger">*</span></label>
                     {!! Form::number('porcentaje_descuento', isset($calcularAvaluo) ? $calcularAvaluo->porcentaje_descuento : null, ['class' => 'form-control text-uppercase', 'id' => 'porcentaje_descuento', 'required']) !!}
@@ -194,7 +194,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="valor_cotizacion" class="form-label text-uppercase mb-0">Valor Cotizacion<span class="text-danger">*</span></label>
                     {!! Form::number('valor_cotizacion', isset($calcularAvaluo) ? $calcularAvaluo->valor_cotizacion : null, ['class' => 'form-control text-uppercase', 'id' => 'valor_cotizacion', 'required']) !!}
@@ -203,7 +203,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="latitud" class="form-label text-uppercase mb-0">Latitud<span class="text-danger">*</span></label>
                     {!! Form::text('latitud', isset($calcularAvaluo) ? $calcularAvaluo->latitud : null, ['class' => 'form-control', 'id' => 'latitud', 'required']) !!}
@@ -212,7 +212,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="longitud" class="form-label text-uppercase mb-0">Longitud<span class="text-danger">*</span></label>
                     {!! Form::text('longitud', isset($calcularAvaluo) ? $calcularAvaluo->longitud : null, ['class' => 'form-control', 'id' => 'longitud', 'required']) !!}
@@ -221,14 +221,14 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12" id="">
+            <div class="col-12 mt-4" id="">
                 <div class="form-group d-flex flex-column">
                     <label for="obser_visita_tecnica" class="form-label text-uppercase mb-0">Observaciones Visita Técnica<span class="text-danger">*</span></label>
-                    {!! Form::textarea('obser_visita_tecnica', isset($calcularAvaluo) ? $calcularAvaluo->obser_visita : null, ['class' => 'form-control', 'id' => 'obser_visita_tecnica', 'required']) !!}
+                    {!! Form::textarea('obser_visita_tecnica', isset($calcularAvaluo) ? $calcularAvaluo->obser_visita : null, ['class' => 'form-control', 'id' => 'obser_visita_tecnica', 'rows' => 4, 'required']) !!}
                 </div>
             </div>
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="visitado" class="form-label text-uppercase mb-0">Visitado<span class="text-danger">*</span></label>
                     {!! Form::select('visitado', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->id_visitado : null, ['class' => 'form-select', 'id' => 'visitado', 'required']) !!}
@@ -243,7 +243,7 @@
                 $fechaVisita = isset($fechaVisitaTimeStamp) ? Carbon::parse($calcularAvaluo->fecha_visita)->toDateString() : null;
             @endphp
             
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="fecha_visita" class="form-label text-uppercase mb-0">Fecha Inspección<span class="text-danger">*</span></label>
                     {!! Form::date('fecha_visita', isset($calcularAvaluo) ? $fechaVisita : null, ['class' => 'form-control', 'id' => 'fecha_visita', 'required']) !!}
@@ -252,7 +252,7 @@
 
             {{-- ======================= --}}
             
-            <div class="col-12 col-md-3" id="">
+            <div class="col-12 col-md-3 mt-4" id="">
                 <div class="form-group d-flex flex-column">
                     <label for="hora_visita" class="form-label text-uppercase mb-0">Hora Visita<span class="text-danger">*</span></label>
                     {!! Form::time('hora_visita', isset($calcularAvaluo) ? $calcularAvaluo->hora_visita : null, ['class' => 'form-control', 'id' => 'hora_visita', 'required']) !!}
@@ -262,7 +262,7 @@
             {{-- ======================= --}}
             
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-4">
                 <div class="form-group d-flex flex-column">
                     <label for="visitador" class="form-label text-uppercase mb-0">visitador<span class="text-danger">*</span></label>
                     {!! Form::select('visitador', collect(['' => 'Seleccionar...'])->union($avaluador), isset($calcularAvaluo) ? $calcularAvaluo->id_visitador : null, ['class' => 'form-select text-uppercase', 'id' => 'visitador', 'required']) !!}
@@ -277,9 +277,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Editar Visita Técnica" id="btn_editar_visita_tecnica">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Editar Visita Técnica" id="btn_editar_visita_tecnica">
             </div>
         </div>
     </div> {{-- FIN div_ppal_cliente_visita --}}

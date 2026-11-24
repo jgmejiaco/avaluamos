@@ -1,11 +1,11 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_info_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_info_inmueble']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
-            <h2 class="text-uppercase">información del inmueble</h2>
+            <h4 class="text-uppercase">información del inmueble</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_tipo_vivienda" class="form-label text-uppercase mb-0">Tipo Vivienda<span class="text-danger">*</span></label>
@@ -42,7 +42,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="id_forma" class="form-label text-uppercase mb-0">Forma<span class="text-danger">*</span></label>
                         {!! Form::select('id_forma', collect(['' => 'Seleccionar...'])->union($forma), isset($calcularAvaluo) ? $calcularAvaluo->id_forma : null, ['class' => 'form-select', 'id' => 'id_forma', 'required']) !!}
@@ -51,7 +51,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="pisos_inmueble" class="form-label text-uppercase mb-0">Número Pisos Inmueble</label>
                         {!! Form::select('pisos_inmueble', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($calcularAvaluo) ? $calcularAvaluo->pisos_inmueble : null, ['class' => 'form-select', 'id' => 'pisos_inmueble']) !!}
@@ -60,7 +60,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="pisos_edificio" class="form-label text-uppercase mb-0">Número Pisos Edificio</label>
                         {!! Form::select('pisos_edificio', collect(['' => 'Seleccionar...'])->union($indicador_numerico), isset($calcularAvaluo) ? $calcularAvaluo->pisos_edificio : null, ['class' => 'form-select', 'id' => 'pisos_edificio']) !!}
@@ -69,7 +69,7 @@
                 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_administracion" class="form-label text-uppercase mb-0">Valor Administracion</label>
                         {!! Form::text('valor_administracion', isset($calcularAvaluo) ? $calcularAvaluo->valor_administracion : null, ['class' => 'form-control', 'id' => 'valor_administracion']) !!}
@@ -78,7 +78,7 @@
 
                 {{-- ======================= --}}
                                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="altura" class="form-label text-uppercase mb-0">Altura</label>
                         {!! Form::text('altura', isset($calcularAvaluo) ? $calcularAvaluo->altura : null, ['class' => 'form-control', 'id' => 'altura']) !!}
@@ -87,7 +87,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="frente" class="form-label text-uppercase mb-0">Frente</label>
                         {!! Form::text('frente', isset($calcularAvaluo) ? $calcularAvaluo->frente : null, ['class' => 'form-control', 'id' => 'frente']) !!}
@@ -96,7 +96,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="fondo" class="form-label text-uppercase mb-0">Fondo</label>
                         {!! Form::text('fondo', isset($calcularAvaluo) ? $calcularAvaluo->fondo : null, ['class' => 'form-control text-uppercase', 'id' => 'fondo']) !!}
@@ -116,7 +116,7 @@
                 {{-- ======================= --}}
 
                 
-                <div class="col-12 col-md-3" id="">
+                <div class="col-12 col-md-3 mt-4" id="">
                     <div class="form-group d-flex flex-column">
                         <label for="remodelado" class="form-label text-uppercase mb-0">Remodelado</label>
                         {!! Form::select('remodelado', collect(['' => 'Seleccionar...'])->union($si_no), isset($calcularAvaluo) ? $calcularAvaluo->remodelado : null, ['class' => 'form-select', 'id' => 'remodelado']) !!}
@@ -125,7 +125,7 @@
                 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="area_libre" class="form-label text-uppercase mb-0">Área Libre M<sup>2</sup></label>
                         {!! Form::text('area_libre', isset($calcularAvaluo) ? $calcularAvaluo->area_libre : null, ['class' => 'form-control', 'id' => 'area_libre']) !!}
@@ -143,7 +143,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="anios_remodelacion" class="form-label text-uppercase mb-0">Año Remodelación</label>
                         {!! Form::text('anios_remodelacion', isset($calcularAvaluo) ? $calcularAvaluo->anios_remodelacion : null, ['class' => 'form-control', 'id' => 'anios_remodelacion']) !!}
@@ -161,7 +161,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="area_patios" class="form-label text-uppercase mb-0">Área Patios - vacio M<sup>2</sup></label>
                         {!! Form::text('area_patios', isset($calcularAvaluo) ? $calcularAvaluo->area_patios : null, ['class' => 'form-control', 'id' => 'area_patios']) !!}
@@ -170,7 +170,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="id_condicion_inmueble" class="form-label text-uppercase mb-0">Condición Inmueble</label>
                         {!! Form::select('id_condicion_inmueble', collect(['' => 'Seleccionar...'])->union($condicion_inmueble), isset($calcularAvaluo) ? $calcularAvaluo->id_condicion_inmueble : null, ['class' => 'form-select', 'id' => 'id_condicion_inmueble']) !!}
@@ -226,10 +226,10 @@
                 {{-- ======================= --}}
                 {{-- ======================= --}}
 
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="obs_info_inmueble" class="form-label text-uppercase mb-0">Observaciones Información Inmueble<span class="text-danger">*</span></label>
-                        {!! Form::textarea('obs_info_inmueble',  isset($calcularAvaluo) ? $calcularAvaluo->obs_info_inmueble : null, ['class' => 'form-control', 'id' => 'obs_info_inmueble', 'required']) !!}
+                        {!! Form::textarea('obs_info_inmueble',  isset($calcularAvaluo) ? $calcularAvaluo->obs_info_inmueble : null, ['class' => 'form-control', 'id' => 'obs_info_inmueble', 'rows' => 4, 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -240,9 +240,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Info Inmueble" id="btn_guardar_visita" name="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Info Inmueble" id="btn_guardar_visita" name="btn_guardar_visita">
             </div>
         </div>
     </div>

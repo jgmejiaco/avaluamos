@@ -1,11 +1,11 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_estado_conservacion_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_estado_conservacion']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
-            <h2 class="text-uppercase">ESTADO CONSERVACIÓN</h2>
+            <h4 class="text-uppercase">ESTADO CONSERVACIÓN</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12 col-md-3">
                     <div class="form-group d-flex flex-column">
                         <label for="id_factor_calidad" class="form-label text-uppercase mb-0">Factor de calidad</label>
@@ -42,7 +42,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="div_valor_pendiente">
+                <div class="col-12 col-md-3 mt-4" id="div_valor_pendiente">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_pendiente" class="form-label text-uppercase mb-0">Valor de pendiente</label>
                         {!! Form::text('valor_pendiente', isset($calcularAvaluo) ? $calcularAvaluo->valor_pendiente : null, ['class' => 'form-control', 'id' => 'valor_pendiente']) !!}
@@ -51,7 +51,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="id_factor_ubicacion" class="form-label text-uppercase mb-0">Factor de ubicación</label>
                         {!! Form::select('id_factor_ubicacion', collect(['' => 'Seleccionar...'])->union($factor_ubicacion), isset($calcularAvaluo) ? $calcularAvaluo->id_factor_ubicacion : null, ['class' => 'form-select', 'id' => 'id_factor_ubicacion']) !!}
@@ -60,7 +60,7 @@
 
                 {{-- ======================= --}}
                 
-                <div class="col-12 col-md-3" id="div_valor_ubicacion">
+                <div class="col-12 col-md-3 mt-4" id="div_valor_ubicacion">
                     <div class="form-group d-flex flex-column">
                         <label for="valor_ubicacion" class="form-label text-uppercase mb-0">Valor de ubicación</label>
                         {!! Form::text('valor_ubicacion', isset($calcularAvaluo) ? $calcularAvaluo->valor_ubicacion : null, ['class' => 'form-control', 'id' => 'valor_ubicacion']) !!}
@@ -69,7 +69,7 @@
 
                 {{-- ======================= --}}
 
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mt-4">
                     <div class="form-group d-flex flex-column">
                         <label for="id_estado_conservacion_opciones" class="form-label text-uppercase mb-0">estado de conservación</label>
                         {!! Form::select('id_estado_conservacion_opciones', collect(['' => 'Seleccionar...'])->union($estado_conservacion_opciones), isset($calcularAvaluo) ? $calcularAvaluo->id_estado_conservacion_opciones : null, ['class' => 'form-select', 'id' => 'id_estado_conservacion_opciones']) !!}
@@ -83,9 +83,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Estado Conservación">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Estado Conservación">
             </div>
         </div>
     </div>

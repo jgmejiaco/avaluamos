@@ -277,9 +277,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Editar Visita Técnica" id="btn_editar_visita_tecnica">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Editar Visita Técnica" id="btn_editar_visita_tecnica">
             </div>
         </div>
     </div> {{-- FIN div_ppal_cliente_visita --}}

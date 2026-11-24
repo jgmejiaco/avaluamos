@@ -1,4 +1,4 @@
-<div class="pt-0 pb-0 py-0 mb-5">
+<div class="p-0 mb-5">
     <div class="panel panel-default container-fluid">
         <div class="panel-body" id="bodyID">
             <div class="row">

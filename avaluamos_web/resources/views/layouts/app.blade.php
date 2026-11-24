@@ -48,7 +48,7 @@
                     @include('layouts.topbar')
                 @endif
 
-                <div class="flex-center position-ref full-height">
+                <div class="flex-center position-ref full-height p-0">
                     <div class="content">
                         @yield('content')
                     </div>

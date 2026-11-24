@@ -1,15 +1,15 @@
 {!! Form::open(['method' => 'POST', 'route' => ['avaluo_obser_generales_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_obser_generales']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($calcularAvaluo) ? $calcularAvaluo->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
-            <h2 class="text-uppercase">OBSERVACIONES GENERALES</h2>
+            <h4 class="text-uppercase">OBSERVACIONES GENERALES</h4>
 
-            <div class="row mb-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-12">
                     <div class="form-group d-flex flex-column">
                         <label for="observaciones_generales" class="form-label text-uppercase mb-0">Observaciones Generales<span class="text-danger">*</span></label>
-                        {!! Form::textarea('observaciones_generales', isset($calcularAvaluo) ? $calcularAvaluo->observaciones_generales : null, ['class' => 'form-control', 'id' => 'observaciones_generales', 'required']) !!}
+                        {!! Form::textarea('observaciones_generales', isset($calcularAvaluo) ? $calcularAvaluo->observaciones_generales : null, ['class' => 'form-control', 'id' => 'observaciones_generales', 'rows' => 4, 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -20,9 +20,9 @@
         {{-- ========================================================= --}}
         {{-- ========================================================= --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
-                <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Guardar Observaciones Generales" id="btn_guardar_visita">
+                <input class="btn btn-primary rounded-pill" type="submit" value="Guardar Observaciones Generales" id="btn_guardar_visita">
             </div>
         </div>
     </div>
