@@ -1,14 +1,14 @@
-<div class="pt-4 pb-0 py-0">
-    <div class="panel panel-default container-fluid p-5">
-        <div class="panel-body p-2" id="bodyID">
+<div class="pt-0 pb-0 py-0 mb-5">
+    <div class="panel panel-default container-fluid">
+        <div class="panel-body" id="bodyID">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-12">
                     {{-- <input name="id_cliente" type="text" id="id_cliente" value=""> --}}
                 </div>
             </div>
             <!-- ***************************************************** -->
             <!-- ***************************************************** -->
-            <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
+            <ul class="nav nav-tabs nav-tabs-avaluamos" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_cliente" aria-selected="true">Cliente</a>
                 </li>

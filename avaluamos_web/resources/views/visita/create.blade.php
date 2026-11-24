@@ -7,7 +7,7 @@
 {{-- ====================================================== --}}
 
 @section('content')
-    <div class="container-fluid p-5 pt-0 mt-5">
+    <div class="container-fluid p-0 pt-0 mt-0">
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center text-uppercase mt-0">registro de visita cliente: <span class="text-primary">{{$crearVisitaCliente->cli_nombres}}</span></h2>

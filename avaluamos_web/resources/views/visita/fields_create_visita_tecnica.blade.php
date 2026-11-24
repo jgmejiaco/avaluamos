@@ -1,7 +1,7 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_crear_visita']) !!}
 @csrf
-    <div id="div_crear_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
-        <h2 class="text-uppercase mb-5">VISITA TÉCNICA INMUEBLE</h2>
+    <div id="div_crear_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
+        <h4 class="text-uppercase mb-5">VISITA TÉCNICA INMUEBLE</h4>
 
         {{-- ======================= --}}
 

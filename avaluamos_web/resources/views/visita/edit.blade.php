@@ -13,7 +13,7 @@
 {{-- ====================================================== --}}
 
 @section('content')
-    <div class="container-fluid p-5">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center text-uppercase">visita cliente:

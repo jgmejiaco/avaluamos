@@ -13,7 +13,7 @@
     <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-uppercase">Listado de visitas</h1>
+                <h1 class="text-center text-uppercase">visitas</h1>
             </div>
         </div>
 

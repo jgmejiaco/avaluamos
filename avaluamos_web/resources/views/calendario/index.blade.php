@@ -142,19 +142,6 @@
                 }
             });
 
-            function mostrarProcesando(mensaje) {
-                Swal.fire({
-                    title: mensaje || 'Procesando...',
-                    text: 'Por favor espere',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    showConfirmButton: false,
-                    didOpen: function () {
-                        Swal.showLoading();
-                    }
-                });
-            }
-
             $(document).on('click', '#btn_crear_visita_calendario', function () {
                 let $btn = $(this);
                 let nombreCliente = $('#nombre_cliente').val();
@@ -182,11 +169,7 @@
                         'visitado': visitado
                     },
                     beforeSend: function () {
-                        $btn.prop('disabled', true);
-                        mostrarProcesando('Creando visita...');
-                    },
-                    complete: function () {
-                        $btn.prop('disabled', false);
+                        marcarBotonProcesando($btn, 'Creando visita...');
                     },
                     success: function (respuesta) {
                         let modalCrear = document.getElementById('modalCrearVisitaCalendario');
@@ -202,6 +185,7 @@
                         }
 
                         if (respuesta == "visita_no_creada") {
+                            restaurarBotonProcesando($btn);
                             Swal.fire(
                                 'Precacuión!',
                                 'La visita NO ha sido creada!',
@@ -211,6 +195,7 @@
                         }
 
                         if (respuesta == "error_exception") {
+                            restaurarBotonProcesando($btn);
                             Swal.fire(
                                 'Erro!',
                                 'Error de Excepción, por favor contacte a soporte!',
@@ -220,6 +205,7 @@
                         }
                     },
                     error: function () {
+                        restaurarBotonProcesando($btn);
                         Swal.fire('Erro!', 'No se pudo crear la visita.', 'error');
                     }
                 });
@@ -255,11 +241,7 @@
                         'visitado_editar': visitadoEditar
                     },
                     beforeSend: function () {
-                        $btn.prop('disabled', true);
-                        mostrarProcesando('Editando visita...');
-                    },
-                    complete: function () {
-                        $btn.prop('disabled', false);
+                        marcarBotonProcesando($btn, 'Editando visita...');
                     },
                     success: function (respuesta) {
                         let modalEditar = document.getElementById('modalEditarVisitaCalendario');
@@ -275,6 +257,7 @@
                         }
 
                         if (respuesta == "visita_no_editada") {
+                            restaurarBotonProcesando($btn);
                             Swal.fire(
                                 'Precacuión!',
                                 'La visita NO ha sido editada!',
@@ -284,6 +267,7 @@
                         }
 
                         if (respuesta == "error_exception") {
+                            restaurarBotonProcesando($btn);
                             Swal.fire(
                                 'Erro!',
                                 'Error de Excepción, por favor contacte a soporte!',
@@ -293,6 +277,7 @@
                         }
                     },
                     error: function () {
+                        restaurarBotonProcesando($btn);
                         Swal.fire('Erro!', 'No se pudo editar la visita.', 'error');
                     }
                 });
@@ -327,7 +312,7 @@
                 }
 
                 let fechaVisitaEditar = nuevaFecha.replace(' ', 'T').substring(0, 16);
-                mostrarProcesando('Actualizando fecha...');
+                mostrarOverlayProcesando('Actualizando fecha...');
 
                 $.ajax({
                     url: "{{ route('consultar_visita_calendario') }}",
@@ -336,6 +321,7 @@
                     data: { 'id_visita_calendario': event.id },
                     success: function (response) {
                         if (!response || !response.id_visita_calendario) {
+                            ocultarOverlayProcesando();
                             Swal.fire('Error!', 'No se pudo consultar la visita.', 'error');
                             if (typeof revertFunc === 'function') {
                                 revertFunc();
@@ -361,6 +347,8 @@
                                 'visitado_editar': response.visita_cumplida
                             },
                             success: function (respuesta) {
+                                ocultarOverlayProcesando();
+
                                 if (respuesta == 'visita_editada') {
                                     Swal.fire(
                                         'Bien!',
@@ -390,6 +378,7 @@
                                 );
                             },
                             error: function () {
+                                ocultarOverlayProcesando();
                                 if (typeof revertFunc === 'function') {
                                     revertFunc();
                                 }
@@ -398,6 +387,7 @@
                         });
                     },
                     error: function () {
+                        ocultarOverlayProcesando();
                         if (typeof revertFunc === 'function') {
                             revertFunc();
                         }
@@ -489,6 +479,8 @@
                             console.log(`id de la visita ${visita.id}`);
                             idVisita = visita.id;
 
+                            mostrarOverlayProcesando('Cargando visita...');
+
                             $.ajax({
                                 url: "{{route('consultar_visita_calendario')}}",
                                 type: 'POST',
@@ -496,6 +488,8 @@
                                 data:{'id_visita_calendario':idVisita},
                                 success:function(response)
                                 {
+                                    ocultarOverlayProcesando();
+
                                     let fechaVisitaEditar = (response.fecha_visita_calendario || '').replace(' ', 'T').substring(0, 16);
 
                                     $('#id_visita_calendario_editar').val(response.id_visita_calendario);
@@ -510,6 +504,10 @@
 
                                     let modalEditar = document.getElementById('modalEditarVisitaCalendario');
                                     bootstrap.Modal.getOrCreateInstance(modalEditar).show();
+                                },
+                                error: function () {
+                                    ocultarOverlayProcesando();
+                                    Swal.fire('Erro!', 'No se pudo cargar la visita.', 'error');
                                 }
                             });
                         },

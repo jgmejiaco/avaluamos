@@ -149,10 +149,6 @@
     {{-- ====================================================== --}}
 
     <div class="modal-footer d-block mt-0 border border-0">
-        {{-- <div id="loadingIndicatorEditUser_{{ $usuario->id_usuario }}" class="loadingIndicator">
-            <img src="{{ asset('img/loading.gif') }}" alt="Procesando...">
-        </div> --}}
-
         <div class="d-flex justify-content-center mt-3">
             <button id="btn_editar_user_{{ $usuario->id_usuario }}" type="submit" class="btn btn-success me-3 rounded"
                 title="Guardar Configuración">

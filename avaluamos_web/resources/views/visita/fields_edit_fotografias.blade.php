@@ -1,10 +1,10 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita_reg_fotografico_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_fotografias', 'enctype'=>'multipart/form-data']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
             {!! Form::hidden('id_cliente', isset($editarVisita) ? $editarVisita->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
-            <h2 class="text-uppercase">REGISTRO FOTOGRÁFICO</h2>
+            <h4 class="text-uppercase">REGISTRO FOTOGRÁFICO</h4>
 
             <div class="row mb-5">
                 <div class="col-12 col-sm-3 col-md-3 mb-5">

@@ -83,6 +83,7 @@
 
         {{-- Sweetalert2 --}}
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+        <script src="{{ asset('js/form-procesando.js') }}"></script>
 
         <script>
             $(document).ajaxError(function (_event, jqxhr) {

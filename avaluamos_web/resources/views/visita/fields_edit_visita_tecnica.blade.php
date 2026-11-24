@@ -1,10 +1,10 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita_tecnica_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_visita_tecnica']) !!}
 @csrf
-    <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_ppal_cliente_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         {!! Form::hidden('id_cliente', isset($editarVisita) ? $editarVisita->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
 
-        <h2 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h2>
+        <h4 class="text-uppercase">VISITA TÉCNICA INMUEBLE</h4>
 
         <div class="row mb-2 mt-2" id="div_dirigido_a">
             <div class="col-12 col-md-4" id="">

@@ -1,9 +1,9 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita_estado_conservacion_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_estado_conservacion']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         <div class="mb-5">
             {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
-            <h2 class="text-uppercase">ESTADO CONSERVACIÓN</h2>
+            <h4 class="text-uppercase">ESTADO CONSERVACIÓN</h4>
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">

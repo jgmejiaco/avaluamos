@@ -196,11 +196,12 @@
                 });
             });
 
-            $('#formAsignarPermisos').on('submit', function () {
+            $('#formAsignarPermisos').on('submit', function (e) {
                 if ($('#alertaAdmin').is(':visible')) {
-                    return false;
+                    e.preventDefault();
+                    return;
                 }
-                $('#btnAsignarPermisos').prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Guardando...');
+                // Spinner global: public/js/form-procesando.js
             });
         });
     </script>

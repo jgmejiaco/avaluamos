@@ -1,9 +1,9 @@
 {!! Form::open(['method' => 'POST', 'route' => ['visita_caracteristicas_inmueble_update'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_caracteristicas_inmueble']) !!}
 @csrf
-    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+    <div id="div_formulario_visita" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
         {!! Form::hidden('id_visita', isset($editarVisita) ? $editarVisita->id_visita : null, ['class' => '', 'id' => 'id_visita']) !!}
         <div class="mb-5">
-            <h2 class="text-uppercase">CARACTERÍSTICAS DEL INMUEBLE</h2>
+            <h4 class="text-uppercase">CARACTERÍSTICAS DEL INMUEBLE</h4>
 
             <div class="row mb-5">
                 <div class="col-12 col-md-3">

@@ -8,7 +8,7 @@
             </div>
             <!-- ***************************************************** -->
             <!-- ***************************************************** -->
-            <ul class="nav nav-tabs" style="margin-bottom: 1vw !important;">
+            <ul class="nav nav-tabs nav-tabs-avaluamos" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active text-uppercase" href="#nav_cliente" id="nav_cliente_tab" data-bs-toggle="tab" role="tab" aria-controls="nav_cliente" aria-selected="true">Cliente</a>
                 </li>
