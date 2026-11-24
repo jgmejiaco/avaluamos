@@ -67,7 +67,7 @@
 
     {{-- INICIO Modal Crear Dirigido Empresa --}}
     <div class="modal fade" id="modalCrearDirigidoEmpresa" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 p-3">
                 @include('dirigido_empresa.modal_crear_empresa')
             </div>
@@ -79,7 +79,7 @@
 
     {{-- INICIO Modal Editar Dirigido Empresa --}}
     <div class="modal fade" id="modalEditarDirigidoEmpresa" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 p-3" id="modalEditarDirigidoEmpresaContent">
                 {{-- El contenido AJAX se cargará aquí --}}
             </div> {{-- FIN modal-content --}}

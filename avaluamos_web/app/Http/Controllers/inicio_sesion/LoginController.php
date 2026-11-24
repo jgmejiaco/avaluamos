@@ -14,7 +14,8 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'keepalive']);
+        $this->middleware('auth')->only('keepalive');
     }
 
     /**
@@ -141,6 +142,58 @@ class LoginController extends Controller
             alert()->error('Ha ocurrido un error');
             return back();
         }
+    }
+
+    /**
+     * Renueva el JWT mientras el usuario sigue activo (evita cierre por TTL fijo).
+     */
+    public function keepalive(Request $request)
+    {
+        try {
+            if (! session('sesion_iniciada') || ! session('api_jwt_token')) {
+                return response()->json(['message' => 'Unauthenticated.', 'sesion_expirada' => true], 401);
+            }
+
+            $response = $this->getClientApi()->post('auth/refresh');
+            $data = json_decode($response->getBody()->getContents());
+
+            if (empty($data->access_token)) {
+                return response()->json(['message' => 'No se pudo renovar la sesión.', 'sesion_expirada' => true], 401);
+            }
+
+            $exp = isset($data->expires_in)
+                ? time() + (int) $data->expires_in
+                : $this->expiracionDelTokenJwt($data->access_token);
+
+            session()->put('api_jwt_token', $data->access_token);
+            session()->put('api_jwt_exp', $exp);
+            session()->put('sesion_iniciada', true);
+
+            return response()->json([
+                'status' => 'ok',
+                'exp' => $exp,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'No se pudo renovar la sesión.',
+                'sesion_expirada' => true,
+            ], 401);
+        }
+    }
+
+    private function expiracionDelTokenJwt(string $token): int
+    {
+        $partes = explode('.', $token);
+
+        if (count($partes) !== 3) {
+            return time() + 3600;
+        }
+
+        $payload = strtr($partes[1], '-_', '+/');
+        $payload .= str_repeat('=', (4 - strlen($payload) % 4) % 4);
+        $datos = json_decode(base64_decode($payload, true), true);
+
+        return (int) ($datos['exp'] ?? (time() + 3600));
     }
     
     public function resetPassword()

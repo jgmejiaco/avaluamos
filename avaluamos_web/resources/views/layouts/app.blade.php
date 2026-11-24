@@ -90,37 +90,28 @@
                     Swal.fire({
                         icon: 'warning',
                         title: 'La sesión se cierra',
-                        text: 'La vigencia de la sesión terminó.',
+                        text: 'Se cerró la sesión por inactividad.',
                         confirmButtonText: 'Aceptar',
                         allowOutsideClick: false
                     }).then(function () {
-                        window.location.href = @json(route('inicio'));
+                        window.location.href = @json(route('logout'));
                     });
                 }
             });
-
-            @if(session('sesion_iniciada') && session('api_jwt_exp'))
-            (function () {
-                var espera = ({{ (int) session('api_jwt_exp') }} * 1000) - Date.now();
-
-                if (espera < 0) {
-                    espera = 0;
-                }
-
-                setTimeout(function () {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'La sesión se cierra',
-                        text: 'La vigencia de la sesión terminó.',
-                        confirmButtonText: 'Aceptar',
-                        allowOutsideClick: false
-                    }).then(function () {
-                        window.location.href = @json(route('inicio'));
-                    });
-                }, espera);
-            })();
-            @endif
         </script>
+
+        @if(session('sesion_iniciada') && session('api_jwt_token'))
+            <script src="{{ asset('js/sesion-inactividad.js') }}"></script>
+            <script>
+                initSesionInactividad({
+                    idleMinutes: {{ (int) config('session.lifetime', 120) }},
+                    jwtExp: {{ (int) session('api_jwt_exp', 0) }},
+                    keepaliveUrl: @json(route('sesion.keepalive')),
+                    logoutUrl: @json(route('logout')),
+                    refreshSkewSeconds: 300
+                });
+            </script>
+        @endif
 
         @yield('scripts')
 

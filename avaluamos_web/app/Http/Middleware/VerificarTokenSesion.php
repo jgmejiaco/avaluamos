@@ -39,7 +39,7 @@ class VerificarTokenSesion
 
     private function cerrarSesionExpirada($request, Closure $next)
     {
-        $mensaje = 'Se cerró la sesión por caducidad de la sesión.';
+        $mensaje = 'Se cerró la sesión por inactividad.';
 
         Session::flush();
         Session::put('sesion_expirada', $mensaje);

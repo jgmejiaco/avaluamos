@@ -29,6 +29,8 @@ Route::group(['namespace' => 'App\Http\Controllers\inicio_sesion'], function () 
 });
 
 Route::middleware('auth')->group(function () {
+    Route::post('sesion/keepalive', 'App\Http\Controllers\inicio_sesion\LoginController@keepalive')
+        ->name('sesion.keepalive');
 
     Route::group(['namespace' => 'App\Http\Controllers\home'], function () {
         Route::resource('home', 'HomeController')->middleware('permission');
