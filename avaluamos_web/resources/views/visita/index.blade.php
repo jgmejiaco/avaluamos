@@ -10,7 +10,7 @@
     {{-- @php
         use Carbon\Carbon;
     @endphp --}}
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center text-uppercase">visitas</h1>
