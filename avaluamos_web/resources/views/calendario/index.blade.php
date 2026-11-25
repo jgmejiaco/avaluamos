@@ -43,29 +43,29 @@
 {{-- LIBRERIAS === https://cdnjs.com/libraries --}}
 
 @section('content')
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}" /> --}}
-
-    <div class="page-titles">
-        <div class="d-flex flex-row justify-content-between align-center px-3">
-            <h3 class="text-themecolor m-b-0 m-t-0">Calendario Visitas</h3>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <h1 class="text-uppercase">Calendario Visitas</h1>
+            </div>
         </div>
-    </div>
 
-    {{-- ========================================================= --}}
+        {{-- ========================================================= --}}
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-header d-flex flex-md-row justify-content-between align-items-center">
-                            <h4 class="card-title text-themecolor m-t-10 pointer mostrar_ocultar_campos">Agendamiento</h4>
-                        </div>
-                        {{-- ======================== --}}
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12" id='calendar_container'>
-                                    <div id="calendar"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header d-flex flex-md-row justify-content-between align-items-center">
+                                <h4 class="card-title text-themecolor m-t-10 pointer mostrar_ocultar_campos">Agendamiento</h4>
+                            </div>
+                            {{-- ======================== --}}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12" id='calendar_container'>
+                                        <div id="calendar"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -73,41 +73,41 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- Modal Crear Visita Calendario --}}
-    <div class="modal fade" id="modalCrearVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalCrearVisitaCalendarioLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0">
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase" id="modalCrearVisitaCalendarioLabel">Agendamiento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body p-4">
-                    @include('calendario.partials.modal_crear_visita')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="btn_crear_visita_calendario">Crear Visita</button>
+        {{-- Modal Crear Visita Calendario --}}
+        <div class="modal fade" id="modalCrearVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalCrearVisitaCalendarioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="modalCrearVisitaCalendarioLabel">Agendamiento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        @include('calendario.partials.modal_crear_visita')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary rounded" id="btn_crear_visita_calendario">Crear Visita</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- Modal Editar Visita Calendario --}}
-    <div class="modal fade" id="modalEditarVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalEditarVisitaCalendarioLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0">
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase" id="modalEditarVisitaCalendarioLabel">Editar Visita</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body p-4">
-                    @include('calendario.partials.modal_editar_visita')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="btn_editar_visita_calendario">Editar Visita</button>
+        {{-- Modal Editar Visita Calendario --}}
+        <div class="modal fade" id="modalEditarVisitaCalendario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalEditarVisitaCalendarioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="modalEditarVisitaCalendarioLabel">Editar Visita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        @include('calendario.partials.modal_editar_visita')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary rounded" id="btn_editar_visita_calendario">Editar Visita</button>
+                    </div>
                 </div>
             </div>
         </div>

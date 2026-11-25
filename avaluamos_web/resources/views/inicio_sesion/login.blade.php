@@ -19,7 +19,7 @@
     <div class="container-fluid mt-5 d-flex justify-content-center align-items-center">
         <form class="" method="post" action="{{route('login.store')}}" autocomplete="off">
             @csrf
-            <div class="mb-5">
+            <div class="mb-4">
                 <h4>Ingrese Datos de Acceso</h4>
             </div>
 
@@ -36,11 +36,11 @@
                 <input class="w-100 form-control" type="password" name="clave" id="clave" placeholder="Clave" autocomplete="current-password" value="">
             </div>
 
-            <div class="mt-5 d-flex justify-content-center">
-                <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+            <div class="mt-3 d-flex justify-content-center">
+                <button class="btn btn-primary rounded" type="submit">Iniciar Sesión</button>
             </div>
 
-            <div class="mt-5 d-flex justify-content-end">
+            <div class="mt-3 d-flex justify-content-end">
                 <a class="" href="{{route('recuperar_clave')}}" style="color: blue">Olvidé mi Clave</a>
             </div>
         </form>
