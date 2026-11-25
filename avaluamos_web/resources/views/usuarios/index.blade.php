@@ -19,8 +19,6 @@
             </div>
         </div>
 
-
-
         <div class="row p-t-30">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="table-responsive">
@@ -117,8 +115,12 @@
                 ],
                 scrollX: true,
                 order: [[0, 'asc']]
-            });
-        });
+            }); // FIN DataTable
+
+
+            //==========================================//
+
+        }); // FIN Document Ready
 
         //==========================================//
 

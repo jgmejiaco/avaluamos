@@ -4,81 +4,83 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12 mt-3">
-            <h1 class="text-center text-uppercase">Roles</h1>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-uppercase">Roles</h1>
+            </div>
         </div>
-    </div>
 
-    <div class="row p-b-20 float-right mb-3">
-        <div class="col-12">
-            <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#modalCrearRol">
-                Crear Rol
-            </button>
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#modalCrearRol">
+                    Crear Rol
+                </button>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered w-100" id="tabla_roles">
-                    <thead>
-                        <tr class="header-table">
-                            <th>Id</th>
-                            <th>Rol</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $rol)
-                            <tr>
-                                <td>{{ $rol->id }}</td>
-                                <td>{{ $rol->name }}</td>
-                                <td>
-                                    @if ($rol->name === 'Administrador')
-                                        <span class="text-muted">Sin edición</span>
-                                    @else
-                                        <button type="button" class="btn btn-primary rounded btn-editar-rol" data-id="{{ $rol->id }}">
-                                            <i class="fa fa-pencil"></i> Editar
-                                        </button>
-                                    @endif
-                                </td>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered w-100" id="tabla_roles">
+                        <thead>
+                            <tr class="header-table">
+                                <th>Id</th>
+                                <th>Rol</th>
+                                <th>Editar</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    {{-- Modal Crear Rol --}}
-    <div class="modal fade" id="modalCrearRol" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0">
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase">Crear Rol</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </thead>
+                        <tbody>
+                            @foreach ($roles as $rol)
+                                <tr>
+                                    <td>{{ $rol->id }}</td>
+                                    <td>{{ $rol->name }}</td>
+                                    <td>
+                                        @if ($rol->name === 'Administrador')
+                                            <span class="text-muted">Sin edición</span>
+                                        @else
+                                            <button type="button" class="btn btn-primary rounded btn-editar-rol" data-id="{{ $rol->id }}">
+                                                <i class="fa fa-pencil"></i> Editar
+                                            </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                {!! Form::open(['route' => 'roles.store', 'method' => 'POST', 'id' => 'formCrearRol', 'autocomplete' => 'off']) !!}
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Nombre del rol <span class="text-danger">*</span></label>
-                            {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" id="btn_crear_rol">Crear</button>
-                    </div>
-                {!! Form::close() !!}
             </div>
         </div>
-    </div>
 
-    {{-- Modal Editar Rol --}}
-    <div class="modal fade" id="modalEditarRol" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0" id="modalEditarRolContent"></div>
+        {{-- Modal Crear Rol --}}
+        <div class="modal fade" id="modalCrearRol" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase">Crear Rol</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    {!! Form::open(['route' => 'roles.store', 'method' => 'POST', 'id' => 'formCrearRol', 'autocomplete' => 'off']) !!}
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Nombre del rol <span class="text-danger">*</span></label>
+                                {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success rounded" id="btn_crear_rol">Crear</button>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal Editar Rol --}}
+        <div class="modal fade" id="modalEditarRol" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0" id="modalEditarRolContent"></div>
+            </div>
         </div>
     </div>
 @endsection
@@ -86,9 +88,32 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('#tabla_roles').DataTable({
+            
+            $("#tabla_roles").DataTable({
+                dom: window.dataTableDomConBotones,
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        text: 'PDF',
+                        className: 'btn btn-sm btn-danger rounded-pill',
+                        title: 'Lista_de_Usuarios',
+                        customize: function(doc) {
+                            doc.pageOrientation = 'landscape';
+                            doc.pageSize = 'LETTER';
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        className: 'btn btn-sm btn-success rounded-pill',
+                        title: 'Lista_de_Usuarios'
+                    }
+                ],
+                scrollX: true,
                 order: [[1, 'asc']]
-            });
+            }); // FIN DataTable
+
+            //==========================================//
 
             $(document).on('click', '.btn-editar-rol', function () {
                 const idRol = $(this).data('id');
@@ -111,7 +136,10 @@
                         }
                     }
                 });
-            });
-        });
+            }); // FIN btn-editar-rol
+
+            //==========================================//
+
+        }); // FIN Document Ready
     </script>
 @endsection

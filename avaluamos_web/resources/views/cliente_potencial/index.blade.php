@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-12">
-                <h2 class="text-center text-uppercase">Clientes</h2>
+                <h1 class="text-center text-uppercase">Clientes</h1>
             </div>
         </div>
 

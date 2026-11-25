@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success rounded">Guardar</button>
     </div>
 {!! Form::close() !!}
