@@ -18,14 +18,14 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestor Usuarios</a>
                                 <ul class="dropdown-menu">
+                                    @if($permisos->tienePermisoRuta('usuarios.index'))
+                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
+                                    @endif
                                     @if($permisos->tienePermisoRuta('roles.index'))
                                         <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
                                     @endif
                                     @if($permisos->tienePermisoRuta('asignar_permisos.index'))
                                         <li><a class="dropdown-item" href="{{ route('asignar_permisos.index') }}">Asignar Permisos</a></li>
-                                    @endif
-                                    @if($permisos->tienePermisoRuta('usuarios.index'))
-                                        <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
                                     @endif
                                 </ul>
                             </li>
@@ -35,11 +35,11 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestor Clientes</a>
                                 <ul class="dropdown-menu">
-                                    @if($permisos->tienePermisoRuta('dirigido_empresa.index'))
-                                        <li><a class="dropdown-item" href="{{ route('dirigido_empresa.index') }}">Empresas</a></li>
-                                    @endif
                                     @if($permisos->tienePermisoRuta('cliente_potencial.index'))
                                         <li><a class="dropdown-item" href="{{ route('cliente_potencial.index') }}">Clientes</a></li>
+                                    @endif
+                                    @if($permisos->tienePermisoRuta('dirigido_empresa.index'))
+                                        <li><a class="dropdown-item" href="{{ route('dirigido_empresa.index') }}">Empresas</a></li>
                                     @endif
                                 </ul>
                             </li>

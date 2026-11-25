@@ -41,7 +41,7 @@
             </div>
 
             <div class="mt-3 d-flex justify-content-end">
-                <a class="" href="{{route('recuperar_clave')}}" style="color: blue">Olvidé mi Clave</a>
+                <a class="btn btn-warning rounded" href="{{route('recuperar_clave')}}" style="color: blue">Olvidé mi Clave</a>
             </div>
         </form>
     </div>
