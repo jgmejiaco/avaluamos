@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="cli_tipo_doc" class="form-label text-uppercase mb-0">Tipo Documento Cliente<span class="text-danger">*</span></label>
                     {{-- {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->tipoDocCliente->id_tipo_documento : null, ['class' => 'form-select', 'id' => 'cli_tipo_doc', 'required']) !!} --}}
-                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'cli_tipo_doc', 'required']) !!}
+                    {!! Form::select('cli_tipo_doc',  collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($calcularAvaluo) ? $calcularAvaluo->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'cli_tipo_doc', 'required', 'data-doc-tipo' => 'cliente-avaluo']) !!}
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
             <div class="col-12 col-md-3">
                 <div class="form-group">
                     <label for="doc_cliente" class="form-label text-uppercase mb-0">Documento Cliente<span class="text-danger">*</span></label>
-                    {!! Form::text('doc_cliente', isset($calcularAvaluo) ? $calcularAvaluo->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_cliente', 'required']) !!}
+                    {!! Form::text('doc_cliente', isset($calcularAvaluo) ? $calcularAvaluo->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'doc_cliente', 'required', 'data-doc-numero' => 'cliente-avaluo']) !!}
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
             <div class="col-12 col-md-3 mt-4" id="">
                 <div class="form-group">
                     <label for="cli_correo" class="form-label text-uppercase mb-0">Email<span class="text-danger">*</span></label>
-                    {!! Form::email('cli_correo', isset($calcularAvaluo) ? $calcularAvaluo->cli_email : null, ['class' => 'form-control', 'id' => 'cli_correo', 'required']) !!}
+                    {!! Form::email('cli_correo', isset($calcularAvaluo) ? $calcularAvaluo->cli_email : null, ['class' => 'form-control', 'id' => 'cli_correo', 'required', 'data-validar-correo' => '1']) !!}
                 </div>
             </div>
 

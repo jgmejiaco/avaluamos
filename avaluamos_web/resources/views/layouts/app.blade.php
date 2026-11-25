@@ -83,6 +83,8 @@
 
         {{-- Sweetalert2 --}}
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+        <script src="{{ asset('js/validacion-documento.js') }}"></script>
+        <script src="{{ asset('js/validacion-correo.js') }}"></script>
         <script src="{{ asset('js/form-procesando.js') }}"></script>
 
         <script>

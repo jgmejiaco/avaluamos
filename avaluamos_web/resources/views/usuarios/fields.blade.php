@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="nombres" class="form-label">Nombres
+                <label for="nombres" class="form-label mb-0">Nombres
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::text('nombres', null, ['class' => 'form-control', 'id' => 'nombres', 'required']) !!}
@@ -13,7 +13,7 @@
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="apellidos" class="form-label">Apellidos
+                <label for="apellidos" class="form-label mb-0">Apellidos
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::text('apellidos', null, ['class' => 'form-control', 'id' => 'apellidos', 'required']) !!}
@@ -24,7 +24,7 @@
 
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
-                <label for="id_cargo" class="form-label">Cargo
+                <label for="id_cargo" class="form-label mb-0">Cargo
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::select('id_cargo', collect(['' => 'Seleccionar...'])->union($cargo), null, ['class' => 'form-select', 'id' => 'id_cargo', 'required']) !!}
@@ -35,7 +35,7 @@
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="id_rol" class="form-label">Rol
+                <label for="id_rol" class="form-label mb-0">Rol
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::select('id_rol', collect(['' => 'Seleccionar...'])->union($rol), null, ['class' => 'form-select', 'id' => 'id_rol', 'required']) !!}
@@ -44,42 +44,42 @@
 
         {{-- ======================= --}}
 
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 mt-3">
             <div class="form-group">
-                <label for="id_tipo_documento" class="form-label">Tipo de Documento
+                <label for="id_tipo_documento" class="form-label mb-0">Tipo de Documento
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::select('id_tipo_documento', collect(['' => 'Seleccionar...'])->union($descripcion_documento), null, ['class' => 'form-select', 'id' => 'id_tipo_documento', 'required']) !!}
+                {!! Form::select('id_tipo_documento', collect(['' => 'Seleccionar...'])->union($descripcion_documento), null, ['class' => 'form-select', 'id' => 'id_tipo_documento', 'required', 'data-doc-tipo' => 'usuario']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
 
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 mt-3">
             <div class="form-group">
-                <label for="numero_documento" class="form-label">Número Documento
+                <label for="numero_documento" class="form-label mb-0">Número Documento
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::text('numero_documento', null, ['class' => 'form-control', 'id' => 'numero_documento', 'required']) !!}
+                {!! Form::text('numero_documento', null, ['class' => 'form-control', 'id' => 'numero_documento', 'required', 'data-doc-numero' => 'usuario']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-3" id="">
             <div class="form-group">
-                <label for="correo" class="form-label">Correo
+                <label for="correo" class="form-label mb-0">Correo
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::email('correo', null, ['class' => 'form-control', 'id' => 'correo', 'required']) !!}
+                {!! Form::email('correo', null, ['class' => 'form-control', 'id' => 'correo', 'required', 'data-validar-correo' => '1']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
 
-        <div class="col-12 col-md-3" id="div_celular_whatsapp">
+        <div class="col-12 col-md-3 mt-3" id="div_celular_whatsapp">
             <div class="form-group">
-                <label for="celular" class="form-label" data-placeholder="celular">Celular
+                <label for="celular" class="form-label mb-0" data-placeholder="celular">Celular
                     <span class="text-danger">*</span>
                 </label>
                 {!! Form::text('celular', null, ['class' => 'form-control', 'id' => 'celular', 'required']) !!}
@@ -90,9 +90,9 @@
     {{-- ========================================================= --}}
     {{-- ========================================================= --}}
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12 d-flex justify-content-center">
-            <input class="btn btn-primary rounded-pill mt-3" type="submit" value="Crear Usuario" id="btn_save_user" name="btn_save_user">
+            <input class="btn btn-primary rounded-pill" type="submit" value="Crear Usuario" id="btn_save_user" name="btn_save_user">
         </div>
     </div>
 </div>

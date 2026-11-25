@@ -243,6 +243,13 @@
                 return;
             }
 
+            if (window.ValidacionDocumento) {
+                const formato = window.ValidacionDocumento.validarNumero(idTipoDocumento, numeroDocumento);
+                if (!formato.ok) {
+                    return;
+                }
+            }
+
             $.ajax({
                 url: "{{ route('validar_empresa') }}",
                 type: 'POST',

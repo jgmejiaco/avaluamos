@@ -19,7 +19,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
-                {!! Form::select('id_doc_cliente', collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($cliente) ? $cliente->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'id_doc_cliente']) !!}
+                {!! Form::select('id_doc_cliente', collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($cliente) ? $cliente->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'id_doc_cliente', 'data-doc-tipo' => 'cliente']) !!}
             </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente</label>
-                {!! Form::text('documento_cliente', isset($cliente) ? $cliente->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente']) !!}
+                {!! Form::text('documento_cliente', isset($cliente) ? $cliente->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'data-doc-numero' => 'cliente']) !!}
             </div>
         </div>
 
@@ -55,7 +55,7 @@
         <div class="col-12 col-md-3" id="">
             <div class="form-group">
                 <label for="correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
-                {!! Form::email('correo', isset($cliente) ? $cliente->cli_email : null, ['class' => 'form-control', 'id' => 'correo', 'required']) !!}
+                {!! Form::email('correo', isset($cliente) ? $cliente->cli_email : null, ['class' => 'form-control', 'id' => 'correo', 'required', 'data-validar-correo' => '1']) !!}
             </div>
         </div>
 

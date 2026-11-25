@@ -26,7 +26,7 @@
                         'id_tipo_documento',
                         collect(['' => 'Seleccionar...'])->union($tipo_documento),
                         null,
-                        ['class' => 'form-select', 'id' => 'id_tipo_documento', 'required' => 'required']
+                        ['class' => 'form-select', 'id' => 'id_tipo_documento', 'required' => 'required', 'data-doc-tipo' => 'empresa']
                     ) !!}
                 </div>
             </div>
@@ -39,6 +39,7 @@
                         'class' => 'form-control',
                         'id' => 'numero_documento',
                         'required' => 'required',
+                        'data-doc-numero' => 'empresa',
                     ]) !!}
                 </div>
             </div>

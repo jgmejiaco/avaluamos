@@ -65,6 +65,13 @@
                     return;
                 }
 
+                if (window.ValidacionDocumento) {
+                    const formato = window.ValidacionDocumento.validarNumero(usuidTipoDocumento, usuNumeroDocumento);
+                    if (!formato.ok) {
+                        return;
+                    }
+                }
+
                 $.ajax({
                     url:      "{{ route('verificar_documento_store') }}",
                     method:   'POST',
@@ -105,14 +112,11 @@
                     return;
                 }
 
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usuCorreo)) {
-                    Swal.fire(
-                        'Atención!',
-                        'Ingrese un correo válido.',
-                        'warning'
-                    );
-                    $('#correo').val('');
-                    return;
+                if (window.ValidacionCorreo) {
+                    const formato = window.ValidacionCorreo.validarCorreo(usuCorreo);
+                    if (!formato.ok) {
+                        return;
+                    }
                 }
 
                 if (peticionCorreo) {

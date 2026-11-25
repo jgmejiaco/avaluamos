@@ -24,7 +24,7 @@
             </div>
 
             <div class="mb-4">
-                <input class="w-100 form-control" type="email" name="recu_correo" id="recu_correo" placeholder="Correo">
+                <input class="w-100 form-control" type="email" name="recu_correo" id="recu_correo" placeholder="Correo" data-validar-correo="1">
             </div>
 
             <div class="mt-5 d-flex justify-content-center">

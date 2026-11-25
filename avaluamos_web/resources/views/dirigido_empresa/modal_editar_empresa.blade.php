@@ -28,7 +28,7 @@
                         'id_tipo_documento_editar',
                         collect(['' => 'Seleccionar...'])->union($tipo_documento),
                         $empresa->id_tipo_documento ?? null,
-                        ['class' => 'form-select', 'id' => 'id_tipo_documento_editar']
+                        ['class' => 'form-select', 'id' => 'id_tipo_documento_editar', 'data-doc-tipo' => 'empresa-editar']
                     ) !!}
                 </div>
             </div>
@@ -40,6 +40,7 @@
                     {!! Form::text('numero_documento_editar', $empresa->numero_documento ?? null, [
                         'class' => 'form-control',
                         'id' => 'numero_documento_editar',
+                        'data-doc-numero' => 'empresa-editar',
                     ]) !!}
                 </div>
             </div>
