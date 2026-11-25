@@ -9,28 +9,30 @@
 {{-- ========================================================== --}}
 
 @section('content')
-    <div class="row mt-5">
-        <div class="col-12">
-            <h2 class="text-center text-uppercase">Crear Nuevo Usuario</h2>
+    <div class="container-fluid mt-3 mb-3">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center text-uppercase">Crear Nuevo Usuario</h2>
+            </div>
         </div>
-    </div>
 
-    {{-- ==================================================== --}}
-    
-    <div class="row">
-        <div class="col-12">
-            <a class="btn btn-warning" href="{{route('usuarios.index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Regresar</a>
+        {{-- ==================================================== --}}
+        
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-warning rounded" href="{{route('usuarios.index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Regresar</a>
+            </div>
         </div>
+        
+        {{-- ==================================================== --}}
+
+        {!! Form::open(['method' => 'POST', 'route' => ['usuarios.store'], 'class' => 'login100-form validate-form mt-3', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!}
+            @csrf
+
+            @include('usuarios.fields')
+
+        {!! Form::close() !!}
     </div>
-    
-    {{-- ==================================================== --}}
-
-    {!! Form::open(['method' => 'POST', 'route' => ['usuarios.store'], 'class' => 'login100-form validate-form mt-5', 'autocomplete' => 'off', 'id' => 'form_nuevo_usuario']) !!}
-        @csrf
-
-        @include('usuarios.fields')
-
-    {!! Form::close() !!}
 @stop
 
 {{-- ========================================================== --}}

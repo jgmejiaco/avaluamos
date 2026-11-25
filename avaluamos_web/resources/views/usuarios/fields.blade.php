@@ -1,5 +1,5 @@
-<div id="div_form_crear_usuario" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
-    <div class="row mb-5">
+<div id="div_form_crear_usuario" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
+    <div class="row">
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="nombres" class="form-label">Nombres
@@ -92,7 +92,7 @@
 
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Crear Usuario" id="btn_save_user" name="btn_save_user">
+            <input class="btn btn-primary rounded-pill mt-3" type="submit" value="Crear Usuario" id="btn_save_user" name="btn_save_user">
         </div>
     </div>
 </div>
