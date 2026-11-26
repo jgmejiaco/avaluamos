@@ -245,42 +245,59 @@
 
             // ==============================================
 
-            $('#celular').blur(function () {
-                let cliCelular = ValidacionCelular.obtenerNumero('#celular');
+            let peticionCelular = null;
 
-                // Vacío o inválido: el mensaje inline ya lo indica.
+            $('#celular').on('focusout', function () {
+                // E.164 (+573001234567); '' si está vacío, null si es inválido
+                const cliCelular = window.ValidacionCelular
+                    ? ValidacionCelular.obtenerNumero('#celular')
+                    : $.trim($('#celular').val() || '');
+                const msgErrorCelular = 'No fue posible consultar el celular, intente nuevamente!';
+
+                // Vacío o inválido: validacion-celular.js ya muestra el mensaje inline
                 if (!cliCelular) {
                     return;
                 }
 
-                $.ajax({
-                    url: "{{route('verificar_celular')}}",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        '_token': "{{ csrf_token() }}",
-                        'cliCelular': cliCelular
-                    },
-                    success: function (respuesta) {
-                        if (respuesta == "existe_cli_celular") {
-                            Swal.fire(
-                                'Cuidado!',
-                                'Este número de celular ya existe!',
-                                'warning'
-                            )
-                            ValidacionCelular.asignarNumero('#celular', '');
-                        }
+                if (peticionCelular) {
+                    peticionCelular.abort();
+                }
 
-                        if (respuesta == "error_exception") {
-                            Swal.fire(
-                                'Error!',
-                                'No fue posible consultar el celular, intente nuevamente!',
-                                'error'
-                            )
-                        }
+                peticionCelular = $.ajax({
+                    url:      "{{ route('verificar_celular') }}",
+                    method:   'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: @json(csrf_token()),
+                        cliCelular: cliCelular
                     }
+                }).done(function (respuesta) {
+                    // Solo actuar si el celular del input sigue siendo el consultado
+                    if (window.ValidacionCelular && ValidacionCelular.obtenerNumero('#celular') !== cliCelular) {
+                        return;
+                    }
+
+                    if (respuesta === 'existe_celular') {
+                        Swal.fire(
+                            'Cuidado!',
+                            'Ya existe un cliente con este número de celular!',
+                            'warning'
+                        );
+                        ValidacionCelular.asignarNumero('#celular', '');
+                        return;
+                    }
+
+                    if (respuesta === 'error_exception') {
+                        Swal.fire('Error!', msgErrorCelular, 'error');
+                    }
+                }).fail(function (xhr, textStatus) {
+                    if (textStatus === 'abort') {
+                        return;
+                    }
+                    console.log('error verificar celular cliente', xhr.status, xhr.responseText);
+                    Swal.fire('Error!', msgErrorCelular, 'error');
                 });
-            })
+            }); // FIN $('#celular').on('focusout', function ()
 
             // ==============================================
 

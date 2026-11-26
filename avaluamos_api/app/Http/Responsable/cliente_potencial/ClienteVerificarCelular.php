@@ -23,27 +23,21 @@ class ClienteVerificarCelular implements Responsable
                 $variantes[] = '+57' . $cliCelular;
             }
 
-            $clienteVerificarCelular = Cliente::select('cli_celular')
-                ->whereIn('cli_celular', $variantes)
-                ->first();
-
-            if (isset($clienteVerificarCelular) && ! is_null($clienteVerificarCelular) && ! empty($clienteVerificarCelular)) {
-                return response()->json([
-                    'message' => 'El celular existe',
-                    'success' => true,
-                ], 200);
+            if ($cliCelular === '') {
+                return response()->json('celular_vacio');
             }
 
-            return response()->json([
-                'message' => 'El celular no existe',
-                'success' => false,
-            ], 200);
+            $existeCelular = Cliente::whereIn('cli_celular', $variantes)->exists();
+
+            // Mismos códigos que verificar documento / correo
+            if ($existeCelular) {
+                return response()->json('existe_celular');
+            }
+
+            return response()->json('no_existe_celular');
 
         } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Error verificando el celular para crear el cliente potencial',
-                'success' => false,
-            ], 500);
+            return response()->json('error_exception');
         }
     }
 }
