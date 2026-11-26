@@ -1,16 +1,15 @@
-<div id="div_cliente_potencial" class="border border-dark-subtle w-100 mx-auto p-5 rounded-4">
+<div id="div_cliente_potencial" class="border border-dark-subtle w-100 mx-auto p-3 rounded-4">
     <div class="row mb-1" id="div_campos_cliente_potencial">
         {{-- ======================= --}}
         
-
         {!! Form::hidden('id_cliente', isset($cliente) ? $cliente->id_cliente : null, ['class' => '', 'id' => 'id_cliente']) !!}
 
         {{-- ======================= --}}
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="nombre_solicitante" class="form-label text-uppercase">Nombre Cliente<span class="text-danger">*</span></label>
-                {!! Form::text('nombre_solicitante', isset($cliente) ? $cliente->cli_nombres : null, ['class' => 'form-control text-uppercase', 'id' => 'nombre_solicitante', 'required']) !!}
+                <label for="nombre_solicitante" class="form-label mb-0">Nombre Cliente<span class="text-danger">*</span></label>
+                {!! Form::text('nombre_solicitante', isset($cliente) ? $cliente->cli_nombres : null, ['class' => 'form-control', 'id' => 'nombre_solicitante', 'required']) !!}
             </div>
         </div>
 
@@ -18,7 +17,7 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="id_doc_cliente" class="form-label text-uppercase">Tipo Documento Cliente</label>
+                <label for="id_doc_cliente" class="form-label mb-0">Tipo Documento Cliente</label>
                 {!! Form::select('id_doc_cliente', collect(['' => 'Seleccionar...'])->union($tipo_documento), isset($cliente) ? $cliente->id_doc_cliente : null, ['class' => 'form-select', 'id' => 'id_doc_cliente', 'data-doc-tipo' => 'cliente']) !!}
             </div>
         </div>
@@ -27,7 +26,7 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="documento_cliente" class="form-label text-uppercase">Documento Cliente</label>
+                <label for="documento_cliente" class="form-label mb-0">Documento Cliente</label>
                 {!! Form::text('documento_cliente', isset($cliente) ? $cliente->documento_cliente : null, ['class' => 'form-control text-uppercase', 'id' => 'documento_cliente', 'data-doc-numero' => 'cliente']) !!}
             </div>
         </div>
@@ -36,97 +35,97 @@
         
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="fecha_nacimiento" class="form-label text-uppercase">Fecha Nacimiento</label>
+                <label for="fecha_nacimiento" class="form-label mb-0">Fecha Nacimiento</label>
                 {!! Form::date('fecha_nacimiento', isset($cliente) ? $cliente->fecha_nacimiento : null, ['class' => 'form-control text-uppercase', 'id' => 'fecha_nacimiento']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 mt-4">
             <div class="form-group">
-                <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
+                <label for="celular" class="form-label mb-0">Celular<span class="text-danger">*</span></label>
                 {!! Form::text('celular', isset($cliente) ? $cliente->cli_celular : null, ['class' => 'form-control', 'id' => 'celular', 'required', 'data-validar-celular' => '1']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-4" id="">
             <div class="form-group">
-                <label for="correo" class="form-label text-uppercase">Email<span class="text-danger">*</span></label>
+                <label for="correo" class="form-label mb-0">Email<span class="text-danger">*</span></label>
                 {!! Form::email('correo', isset($cliente) ? $cliente->cli_email : null, ['class' => 'form-control', 'id' => 'correo', 'required', 'data-validar-correo' => '1']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-4" id="">
             <div class="form-group">
-                <label for="tipo_persona" class="form-label text-uppercase">Tipo Persona<span class="text-danger">*</span></label>
+                <label for="tipo_persona" class="form-label mb-0">Tipo Persona<span class="text-danger">*</span></label>
                 {!! Form::select('tipo_persona', collect(['' => 'Seleccionar...'])->union($tipo_persona), isset($cliente) ? $cliente->id_tipo_persona : null, ['class' => 'form-select', 'id' => 'tipo_persona', 'required']) !!}
             </div>
         </div>
         
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-4" id="">
             <div class="form-group">
-                <label for="pais" class="form-label text-uppercase">País residencia</label>
+                <label for="pais" class="form-label mb-0">País residencia</label>
                 {!! Form::select('pais', collect(['' => 'Seleccionar...'])->union($paises), isset($cliente) ? $cliente->id_pais : null, ['class' => 'form-select', 'id' => 'pais']) !!}
             </div>
         </div>
         
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-4" id="">
             <div class="form-group">
-                <label for="departamento" class="form-label text-uppercase">Departamento residencia</label>
+                <label for="departamento" class="form-label mb-0">Departamento residencia</label>
                 {!! Form::select('departamento', collect(['' => 'Seleccionar...'])->union($departamentos), isset($cliente) ? $cliente->id_dpto_estado : null, ['class' => 'form-select', 'id' => 'departamento']) !!}
             </div>
         </div>
         
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="">
+        <div class="col-12 col-md-3 mt-4" id="">
             <div class="form-group">
-                <label for="municipio" class="form-label text-uppercase">Ciudad residencia</label>
+                <label for="municipio" class="form-label mb-0">Ciudad residencia</label>
                 {!! Form::select('municipio', collect(['' => 'Seleccionar...'])->union($ciudades), isset($cliente) ? $cliente->id_ciudad : null, ['class' => 'form-select', 'id' => 'municipio']) !!}
             </div>
         </div>
         
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 mt-4">
             <div class="form-group">
-                <label for="id_referido_por" class="form-label text-uppercase">Referido Por:<span class="text-danger">*</span></label>
+                <label for="id_referido_por" class="form-label mb-0">Referido Por:<span class="text-danger">*</span></label>
                 {!! Form::select('id_referido_por', collect(['' => 'Seleccionar...'])->union($referido_por), isset($cliente) ? $cliente->id_referido_por : null, ['class' => 'form-select', 'id' => 'id_referido_por', 'required']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="div_red_social">
+        <div class="col-12 col-md-3 mt-4" id="div_red_social">
             <div class="form-group">
-                <label for="id_red_social" class="form-label text-uppercase">Red social<span class="text-danger">*</span></label>
+                <label for="id_red_social" class="form-label mb-0">Red social<span class="text-danger">*</span></label>
                 {!! Form::select('id_red_social', collect(['' => 'Seleccionar...'])->union($red_social), isset($cliente) ? $cliente->id_red_social : null, ['class' => 'form-select', 'id' => 'id_red_social']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="div_nombre_refiere">
+        <div class="col-12 col-md-3 mt-4" id="div_nombre_refiere">
             <div class="form-group">
-                <label for="nombre_quien_refiere" class="form-label text-uppercase">Nombre quien refiere<span class="text-danger">*</span></label>
+                <label for="nombre_quien_refiere" class="form-label mb-0">Nombre quien refiere<span class="text-danger">*</span></label>
                 {!! Form::text('nombre_quien_refiere', isset($cliente) ? $cliente->nombre_quien_refiere : null, ['class' => 'form-control', 'id' => 'nombre_quien_refiere']) !!}
             </div>
         </div>
 
         {{-- ======================= --}}
         
-        <div class="col-12 col-md-3" id="div_empresa_refiere">
+        <div class="col-12 col-md-3 mt-4" id="div_empresa_refiere">
             <div class="form-group">
-                <label for="empresa_que_refiere" class="form-label text-uppercase">Empresa que refiere<span class="text-danger">*</span></label>
+                <label for="empresa_que_refiere" class="form-label mb-0">Empresa que refiere<span class="text-danger">*</span></label>
                 {!! Form::text('empresa_que_refiere', isset($cliente) ? $cliente->empresa_que_refiere : null, ['class' => 'form-control', 'id' => 'empresa_que_refiere']) !!}
             </div>
         </div>

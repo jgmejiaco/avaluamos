@@ -18,7 +18,7 @@
 
         {{-- ====================================================== --}}
         
-        <div class="row mt-3">
+        <div class="row mt-2">
             <div class="col-12">
                 <a href="{{route('cliente_potencial.index')}}" class="btn btn-primary rounded">Volver</a>
             </div>
@@ -26,14 +26,14 @@
         
         {{-- ====================================================== --}}
 
-        {!! Form::open(['method' => 'POST', 'route' => ['cliente_potencial.store'], 'class' => 'mt-5', 'autocomplete' => 'off', 'id' => 'form_cliente_potencial']) !!}
+        {!! Form::open(['method' => 'POST', 'route' => ['cliente_potencial.store'], 'class' => 'mt-2', 'autocomplete' => 'off', 'id' => 'form_cliente_potencial']) !!}
             @csrf
 
             @include('cliente_potencial.fields_cliente_potencial')
 
-            <div class="row">
+            <div class="row mt-3 mb-3">
                 <div class="col-12 d-flex justify-content-center">
-                    <input class="btn btn-primary rounded mt-5" type="submit" value="Crear Cliente">
+                    <input class="btn btn-primary rounded" type="submit" value="Crear Cliente">
                 </div>
             </div>
         {!! Form::close() !!}
