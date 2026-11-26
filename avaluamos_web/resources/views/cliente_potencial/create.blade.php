@@ -185,6 +185,66 @@
 
             // ==============================================
 
+            let peticionCorreo = null;
+
+            $('#correo').on('focusout', function () {
+                const cliCorreo = $.trim($('#correo').val() || '');
+                const msgErrorCorreo = 'No fue posible consultar el correo, intente nuevamente!';
+
+                if (!cliCorreo) {
+                    return;
+                }
+
+                // Formato (validacion-correo.js ya muestra el mensaje inline)
+                if (window.ValidacionCorreo) {
+                    const formato = window.ValidacionCorreo.validarCorreo(cliCorreo);
+                    if (!formato.ok) {
+                        return;
+                    }
+                }
+
+                if (peticionCorreo) {
+                    peticionCorreo.abort();
+                }
+
+                peticionCorreo = $.ajax({
+                    url:      "{{ route('verificar_correo_cliente') }}",
+                    method:   'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: @json(csrf_token()),
+                        cliCorreo: cliCorreo
+                    }
+                }).done(function (respuesta) {
+                    // Solo actuar si el correo del input sigue siendo el consultado
+                    if ($.trim($('#correo').val() || '') !== cliCorreo) {
+                        return;
+                    }
+
+                    if (respuesta === 'existe_correo') {
+                        Swal.fire(
+                            'Cuidado!',
+                            'Ya existe un cliente con este correo!',
+                            'warning'
+                        );
+                        $('#correo').val('');
+                        return;
+                    }
+
+                    if (respuesta === 'error_exception') {
+                        Swal.fire('Error!', msgErrorCorreo, 'error');
+                    }
+                }).fail(function (xhr, textStatus) {
+                    if (textStatus === 'abort') {
+                        return;
+                    }
+                    console.log('error verificar correo cliente', xhr.status, xhr.responseText);
+                    Swal.fire('Error!', msgErrorCorreo, 'error');
+                });
+            }); // FIN $('#correo').on('focusout', function ()
+
+            // ==============================================
+
             $('#celular').blur(function () {
                 let cliCelular = ValidacionCelular.obtenerNumero('#celular');
 

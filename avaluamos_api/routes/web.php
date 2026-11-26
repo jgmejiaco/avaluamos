@@ -67,6 +67,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     $router->post('cliente_verificar_celular', 'cliente_potencial\ClientePotencialController@clienteVerificarCelular');
     $router->post('cliente_consultar_ciudad_dpto', 'cliente_potencial\ClientePotencialController@clienteConsultarCiudadDpto');
     $router->post('cliente_verificar_documento', 'cliente_potencial\ClientePotencialController@clienteVerificarDocumento');
+    $router->post('cliente_verificar_correo', 'cliente_potencial\ClientePotencialController@clienteVerificarCorreo');
 
     // ======================================================================
 

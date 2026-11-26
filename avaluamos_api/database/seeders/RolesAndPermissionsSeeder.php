@@ -54,6 +54,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'verificar_celular' => 'Verificar celular cliente',
                 'consultar_ciudad_dpto' => 'Consultar ciudad/dpto cliente',
                 'verificar_documento_cliente' => 'Verificar documento cliente',
+                'verificar_correo_cliente' => 'Verificar correo cliente',
             ],
             'dirigido_empresa' => [
                 'dirigido_empresa.index' => 'Listar empresas',

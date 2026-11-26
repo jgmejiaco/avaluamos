@@ -208,6 +208,37 @@ class ClientePotencialController extends Controller
 
     // ========================================================
 
+    public function verificarCorreoCliente()
+    {
+        try {
+            $cliCorreo = trim((string) request('cliCorreo', ''));
+
+            if ($cliCorreo === '') {
+                return response()->json('correo_vacio');
+            }
+
+            $response = $this->getClientApi()->post('cliente_verificar_correo', [
+                'json' => [
+                    'cliCorreo' => $cliCorreo,
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta);
+
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error verificarCorreoCliente: '.$e->getMessage());
+            return response()->json('error_exception');
+        }
+    }
+
+    // ========================================================
+
     public function consultarCiudadDpto()
     {
         try {
