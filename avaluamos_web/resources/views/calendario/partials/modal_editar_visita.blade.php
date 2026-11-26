@@ -12,7 +12,7 @@
         <label for="celular_editar" class="fs-14">Celular
             <span class="text-danger">*</span>
         </label>
-        {!! Form::text('celular_editar', null, ['class' => 'form-control', 'id' => 'celular_editar', 'required']) !!}
+        {!! Form::text('celular_editar', null, ['class' => 'form-control', 'id' => 'celular_editar', 'required', 'data-validar-celular' => '1']) !!}
     </div>
 </div>
 

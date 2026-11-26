@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
                 <h1 class="text-center text-uppercase">Editar Cliente</h1>
             </div>
@@ -18,9 +18,9 @@
 
         {{-- ====================================================== --}}
         
-        <div class="row p-b-20 float-right">
+        <div class="row mt-3">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <a href="{{route('cliente_potencial.index')}}" class="btn btn-primary">Volver</a>
+                <a href="{{route('cliente_potencial.index')}}" class="btn btn-primary rounded">Volver</a>
             </div>
         </div>
         
@@ -33,7 +33,7 @@
 
             <div class="row mt-3 mb-3">
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <input class="btn btn-primary rounded-pill" type="submit" value="Editar Cliente">
+                    <input class="btn btn-primary rounded" type="submit" value="Editar Cliente">
                 </div>
             </div>
         {!! Form::close() !!}

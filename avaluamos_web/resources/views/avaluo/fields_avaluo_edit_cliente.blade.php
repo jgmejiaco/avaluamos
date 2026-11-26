@@ -56,7 +56,7 @@
             <div class="col-12 col-md-3 mt-4">
                 <div class="form-group">
                     <label for="cli_celular" class="form-label text-uppercase mb-0">Celular<span class="text-danger">*</span></label>
-                    {!! Form::text('cli_celular', isset($calcularAvaluo) ? $calcularAvaluo->cli_celular : null, ['class' => 'form-control text-uppercase', 'id' => 'cli_celular', 'required']) !!}
+                    {!! Form::text('cli_celular', isset($calcularAvaluo) ? $calcularAvaluo->cli_celular : null, ['class' => 'form-control', 'id' => 'cli_celular', 'required', 'data-validar-celular' => '1']) !!}
                 </div>
             </div>
 

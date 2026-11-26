@@ -11,10 +11,20 @@ class ClienteVerificarCelular implements Responsable
     public function toResponse($request)
     {
         try {
-            $cliCelular = request('cliCelular', null);
+            $cliCelular = trim((string) request('cliCelular', ''));
+
+            // Los celulares nuevos llegan en E.164 (+573001234567); los antiguos
+            // de Colombia quedaron guardados sin indicativo (3001234567).
+            $variantes = [$cliCelular];
+
+            if (str_starts_with($cliCelular, '+57')) {
+                $variantes[] = substr($cliCelular, 3);
+            } elseif ($cliCelular !== '' && ! str_starts_with($cliCelular, '+')) {
+                $variantes[] = '+57' . $cliCelular;
+            }
 
             $clienteVerificarCelular = Cliente::select('cli_celular')
-                ->where('cli_celular', $cliCelular)
+                ->whereIn('cli_celular', $variantes)
                 ->first();
 
             if (isset($clienteVerificarCelular) && ! is_null($clienteVerificarCelular) && ! empty($clienteVerificarCelular)) {

@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
                 <h1 class="text-center text-uppercase">Crear Cliente</h1>
             </div>
@@ -18,9 +18,9 @@
 
         {{-- ====================================================== --}}
         
-        <div class="row p-b-20 float-right">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <a href="{{route('cliente_potencial.index')}}" class="btn btn-primary">Volver</a>
+        <div class="row mt-3">
+            <div class="col-12">
+                <a href="{{route('cliente_potencial.index')}}" class="btn btn-primary rounded">Volver</a>
             </div>
         </div>
         
@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <input class="btn btn-primary rounded-pill w-25 mt-5" type="submit" value="Crear Cliente">
+                    <input class="btn btn-primary rounded mt-5" type="submit" value="Crear Cliente">
                 </div>
             </div>
         {!! Form::close() !!}
@@ -129,7 +129,12 @@
             // ==============================================
 
             $('#celular').blur(function () {
-                let cliCelular = $('#celular').val();
+                let cliCelular = ValidacionCelular.obtenerNumero('#celular');
+
+                // Vacío o inválido: el mensaje inline ya lo indica.
+                if (!cliCelular) {
+                    return;
+                }
 
                 $.ajax({
                     url: "{{route('verificar_celular')}}",
@@ -146,7 +151,7 @@
                                 'Este número de celular ya existe!',
                                 'warning'
                             )
-                            $('#celular').val('');
+                            ValidacionCelular.asignarNumero('#celular', '');
                         }
 
                         if (respuesta == "error_exception") {

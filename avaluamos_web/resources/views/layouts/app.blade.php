@@ -29,6 +29,9 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.min.css')}}">
 
         {{-- Estilos propios --}}
+        {{-- intl-tel-input (celular internacional) --}}
+        <link rel="stylesheet" href="{{ asset('vendor/intl-tel-input/css/intlTelInput.min.css') }}">
+
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
         {{-- jQuery (antes de cualquier plugin) --}}
@@ -85,6 +88,8 @@
         <script src="{{asset('js/sweetalert2.min.js')}}"></script>
         <script src="{{ asset('js/validacion-documento.js') }}"></script>
         <script src="{{ asset('js/validacion-correo.js') }}"></script>
+        <script src="{{ asset('vendor/intl-tel-input/js/intlTelInputWithUtils.min.js') }}"></script>
+        <script src="{{ asset('js/validacion-celular.js') }}"></script>
         <script src="{{ asset('js/form-procesando.js') }}"></script>
 
         <script>

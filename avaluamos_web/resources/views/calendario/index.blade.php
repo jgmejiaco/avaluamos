@@ -145,7 +145,11 @@
             $(document).on('click', '#btn_crear_visita_calendario', function () {
                 let $btn = $(this);
                 let nombreCliente = $('#nombre_cliente').val();
-                let celular = $('#celular').val();
+
+                if (!ValidacionCelular.validarCampo('#celular')) {
+                    return;
+                }
+                let celular = ValidacionCelular.obtenerNumero('#celular');
                 let tipoInmueble = $('#tipo_inmueble').val();
                 let ciudad = $('#ciudad').val();
                 let barrio = $('#barrio').val();
@@ -215,7 +219,11 @@
                 let $btn = $(this);
                 let idVisitaCalendarioEditar = $('#id_visita_calendario_editar').val();
                 let nombreClienteEditar = $('#nombre_cliente_editar').val();
-                let celularEditar = $('#celular_editar').val();
+
+                if (!ValidacionCelular.validarCampo('#celular_editar')) {
+                    return;
+                }
+                let celularEditar = ValidacionCelular.obtenerNumero('#celular_editar');
                 let tipoInmuebleEditar = $('#tipo_inmueble_editar').val();
                 let ciudadEditar = $('#ciudad_editar').val();
                 let barrioEditar = $('#barrio_editar').val();
@@ -494,7 +502,7 @@
 
                                     $('#id_visita_calendario_editar').val(response.id_visita_calendario);
                                     $('#nombre_cliente_editar').val(response.nombre_cliente);
-                                    $('#celular_editar').val(response.celular);
+                                    ValidacionCelular.asignarNumero('#celular_editar', response.celular);
                                     $('#tipo_inmueble_editar').val(response.t_inmueble);
                                     $('#ciudad_editar').val(response.municipio);
                                     $('#barrio_editar').val(response.barrio);

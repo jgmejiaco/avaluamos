@@ -82,7 +82,7 @@
                 <label for="celular" class="form-label mb-0" data-placeholder="celular">Celular
                     <span class="text-danger">*</span>
                 </label>
-                {!! Form::text('celular', null, ['class' => 'form-control', 'id' => 'celular', 'required']) !!}
+                {!! Form::text('celular', null, ['class' => 'form-control', 'id' => 'celular', 'required', 'data-validar-celular' => '1']) !!}
             </div>
         </div>
     </div>

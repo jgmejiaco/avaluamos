@@ -129,6 +129,7 @@
                         'class' => 'form-control',
                         'id' => 'usu_celular',
                         'required' => 'required',
+                        'data-validar-celular' => '1',
                     ]) !!}
                 </div>
             </div>

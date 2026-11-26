@@ -143,6 +143,12 @@
                 success: function (html) {
                     // HTML del formulario (Blade) que devolvió UsuarioEdit
                     $('#modalEditarUsuarioContent').html(html);
+
+                    // El modal se abrió antes de llegar el HTML (show.bs.modal ya pasó),
+                    // así que el celular (intl-tel-input) se inicializa aquí.
+                    if (window.ValidacionCelular) {
+                        ValidacionCelular.inicializarEn('#modalEditarUsuarioContent');
+                    }
                 },
                 error: function (xhr) {
                     if (xhr.status === 403 && xhr.responseText) {

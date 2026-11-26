@@ -46,7 +46,7 @@
         <div class="col-12 col-md-3">
             <div class="form-group">
                 <label for="celular" class="form-label text-uppercase">Celular<span class="text-danger">*</span></label>
-                {!! Form::text('celular', isset($cliente) ? $cliente->cli_celular : null, ['class' => 'form-control text-uppercase', 'id' => 'celular', 'required']) !!}
+                {!! Form::text('celular', isset($cliente) ? $cliente->cli_celular : null, ['class' => 'form-control', 'id' => 'celular', 'required', 'data-validar-celular' => '1']) !!}
             </div>
         </div>
 
