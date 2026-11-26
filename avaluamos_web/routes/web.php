@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('cliente_potencial', 'ClientePotencialController')->middleware('permission');
         Route::post('verificar_celular', 'ClientePotencialController@verificarCelular')->name('verificar_celular')->middleware('permission');
         Route::post('consultar_ciudad_dpto', 'ClientePotencialController@consultarCiudadDpto')->name('consultar_ciudad_dpto')->middleware('permission');
+        Route::post('verificar_documento_cliente', 'ClientePotencialController@verificarDocumentoCliente')->name('verificar_documento_cliente')->middleware('permission');
     });
 
     Route::group(['namespace' => 'App\Http\Controllers\dirigido_empresa'], function () {

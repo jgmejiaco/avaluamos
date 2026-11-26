@@ -128,6 +128,63 @@
 
             // ==============================================
 
+            $('#documento_cliente').on('focusout', function () {
+                const idDocCliente = $('#id_doc_cliente').val();
+                const documentoCliente = $.trim($('#documento_cliente').val() || '');
+                const msgErrorDocumento = 'No fue posible consultar el documento, intente nuevamente!';
+
+                if (!documentoCliente) {
+                    return;
+                }
+
+                if (!idDocCliente) {
+                    Swal.fire(
+                        'Atención!',
+                        'Debe seleccionar el tipo de documento antes de validar el número.',
+                        'warning'
+                    );
+                    $('#id_doc_cliente').focus();
+                    return;
+                }
+
+                // Formato según el tipo (validacion-documento.js ya muestra el mensaje inline)
+                if (window.ValidacionDocumento) {
+                    const formato = window.ValidacionDocumento.validarNumero(idDocCliente, documentoCliente);
+                    if (!formato.ok) {
+                        return;
+                    }
+                }
+
+                $.ajax({
+                    url:      "{{ route('verificar_documento_cliente') }}",
+                    method:   'POST',
+                    dataType: 'json',
+                    data: {
+                        _token: @json(csrf_token()),
+                        idDocCliente: idDocCliente,
+                        documentoCliente: documentoCliente
+                    }
+                }).done(function (respuesta) {
+                    if (respuesta === 'existe_documento') {
+                        Swal.fire(
+                            'Cuidado!',
+                            'Ya existe un cliente con este tipo y número de documento!',
+                            'warning'
+                        );
+                        $('#documento_cliente').val('');
+                    }
+
+                    if (respuesta === 'error_exception') {
+                        Swal.fire('Error!', msgErrorDocumento, 'error');
+                    }
+                }).fail(function (xhr) {
+                    console.log('error verificar documento cliente', xhr.status, xhr.responseText);
+                    Swal.fire('Error!', msgErrorDocumento, 'error');
+                });
+            }); // FIN $('#documento_cliente').on('focusout', function ()
+
+            // ==============================================
+
             $('#celular').blur(function () {
                 let cliCelular = ValidacionCelular.obtenerNumero('#celular');
 

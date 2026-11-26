@@ -182,6 +182,32 @@ class ClientePotencialController extends Controller
 
     // ========================================================
 
+    public function verificarDocumentoCliente()
+    {
+        try {
+            $response = $this->getClientApi()->post('cliente_verificar_documento', [
+                'json' => [
+                    'idDocCliente' => request('idDocCliente', null),
+                    'documentoCliente' => request('documentoCliente', null),
+                ],
+            ]);
+
+            $respuesta = json_decode($response->getBody()->getContents());
+
+            return response()->json($respuesta);
+
+        } catch (Exception $e) {
+            if (\App\Support\FalloServicio::esConexion($e)) {
+                throw $e;
+            }
+
+            logger()->error('Error verificarDocumentoCliente: '.$e->getMessage());
+            return response()->json('error_exception');
+        }
+    }
+
+    // ========================================================
+
     public function consultarCiudadDpto()
     {
         try {
