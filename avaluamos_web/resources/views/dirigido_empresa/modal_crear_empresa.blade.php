@@ -8,13 +8,13 @@
 ]) !!}
 @csrf
 
-    <div class="rounded-top text-white text-center" style="background-color: #337AB7; border: solid 1px #337AB7;">
-        <h5 class="m-0 pt-1 pb-1">Crear Empresa</h5>
+    <div class="rounded-top text-center" style="background-color: #337AB7; border: solid 1px #337AB7;">
+        <h5 class="m-0 pt-1 pb-1 text-white ">Crear Empresa</h5>
     </div>
 
     {{-- ====================================================== --}}
 
-    <div class="modal-body p-0 m-0" style="border: solid 1px #337AB7;">
+    <div class="modal-body p-0 m-0 rounded-bottom" style="border: solid 1px #337AB7;">
         {{-- Tipo Documento / Número Documento --}}
         <div class="row m-2">
             <div class="col-12 col-md-6">
@@ -64,8 +64,8 @@
 
     {{-- ====================================================== --}}
 
-    <div class="modal-footer d-block mt-0 border border-0">
-        <div class="d-flex justify-content-center mt-3">
+    <div class="modal-footer d-block mt-0 mb-0 border border-0 pb-0">
+        <div class="d-flex justify-content-center mt-0 mb-0">
             <button id="btn_crear_empresa" type="submit" class="btn btn-success me-3 rounded" title="Crear">
                 <i class="fa fa-floppy-o" aria-hidden="true"> Crear</i>
             </button>

@@ -8,15 +8,15 @@
 ]) !!}
 @csrf
 
-    <div class="rounded-top text-white text-center" style="background-color: #337AB7; border: solid 1px #337AB7;">
-        <h5 class="m-0 pt-1 pb-1">Editar Empresa</h5>
+    <div class="rounded-top text-center" style="background-color: #337AB7; border: solid 1px #337AB7;">
+        <h5 class="m-0 pt-1 pb-1 text-white">Editar Empresa</h5>
     </div>
 
     {{ Form::hidden('id_empresa_editar', $empresa->id_dirigido_a ?? null, ['id' => 'id_empresa_editar']) }}
 
     {{-- ====================================================== --}}
 
-    <div class="modal-body p-0 m-0" style="border: solid 1px #337AB7;">
+    <div class="modal-body p-0 m-0 rounded-bottom" style="border: solid 1px #337AB7;">
         {{-- Tipo Documento / Número Documento --}}
         <div class="row m-2">
             <div class="col-12 col-md-6">
@@ -65,8 +65,8 @@
 
     {{-- ====================================================== --}}
 
-    <div class="modal-footer d-block mt-0 border border-0">
-        <div class="d-flex justify-content-center mt-3">
+    <div class="modal-footer d-block mt-0 mb-0 border border-0 pb-0">
+        <div class="d-flex justify-content-center mt-0 mb-0">
             <button id="btn_editar_empresa_{{ $empresa->id_dirigido_a }}" type="submit" class="btn btn-success me-3 rounded"
                 title="Guardar">
                 <i class="fa fa-floppy-o" aria-hidden="true"> Editar</i>
