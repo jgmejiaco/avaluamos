@@ -53,6 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'cliente_potencial.destroy' => 'Eliminar cliente',
                 'verificar_celular' => 'Verificar celular cliente',
                 'consultar_ciudad_dpto' => 'Consultar ciudad/dpto cliente',
+                'verificar_documento_cliente' => 'Verificar documento cliente',
             ],
             'dirigido_empresa' => [
                 'dirigido_empresa.index' => 'Listar empresas',

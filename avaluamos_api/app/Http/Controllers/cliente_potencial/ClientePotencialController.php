@@ -11,6 +11,7 @@ use App\Http\Responsable\cliente_potencial\ClientePotencialEdit;
 use App\Http\Responsable\cliente_potencial\ClientePotencialUpdate;
 use App\Http\Responsable\cliente_potencial\ClienteVerificarCelular;
 use App\Http\Responsable\cliente_potencial\ClienteConsultarCiudadDpto;
+use App\Http\Responsable\cliente_potencial\ClienteVerificarDocumento;
 
 
 class ClientePotencialController extends Controller
@@ -120,6 +121,14 @@ class ClientePotencialController extends Controller
     public function clienteConsultarCiudadDpto()
     {
         return new ClienteConsultarCiudadDpto();
+    }
+
+    // ======================================================================
+    // ======================================================================
+
+    public function clienteVerificarDocumento()
+    {
+        return new ClienteVerificarDocumento();
     }
 
     // ======================================================================
